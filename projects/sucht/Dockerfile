@@ -1,0 +1,17 @@
+FROM tmvdl/alpine:latest
+
+ENV PATH=sucht
+
+RUN gh repo clone brtmvdl/${PATH} /project
+
+WORKDIR /app
+
+RUN gh repo clone brtmvdl/brtmvdl.github.io . 
+
+RUN cp /project/src/github.io/ ./${PATH} -rfv
+
+RUN git add *
+
+RUN git commit -m "Fixing ${PATH} project"
+
+RUN gh repo sync
