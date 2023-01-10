@@ -1,5 +1,7 @@
 FROM tmvdl/alpine:latest
 
+ENV GH_TOKEN=${GH_TOKEN}
+
 ENV PATH=sucht
 
 RUN gh repo clone brtmvdl/${PATH} /project
