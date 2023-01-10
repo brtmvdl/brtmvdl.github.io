@@ -1,9 +1,5 @@
 version: '3'
 
 services:
-  app:
-    build: '.'
-    volumes:
-      - '.:/app'
-    ports:
-      - '80:80'
+  sucht:
+    build: './projects/sucht'
