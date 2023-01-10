@@ -1,4 +1,4 @@
-FROM tmvdl/alpine:latest
+FROM docker/github-actions
 
 ENV GH_TOKEN=${GH_TOKEN}
 
