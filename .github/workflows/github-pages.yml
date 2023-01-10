@@ -10,8 +10,8 @@ jobs:
   pages:
     runs-on: ubuntu-latest
     steps:
-      - using: 'docker'
-        image: 'Dockerfile'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout github.io
+        uses: actions/checkout@v3
 
+      - name: Docker build
+        run: docker-compose build
