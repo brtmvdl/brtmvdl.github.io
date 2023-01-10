@@ -6,14 +6,16 @@ ENV PATH=sucht
 
 RUN gh repo clone brtmvdl/${PATH} /project
 
-WORKDIR /app
+RUN ls -la /project
 
-RUN gh repo clone brtmvdl/brtmvdl.github.io . 
+# WORKDIR /app
 
-RUN cp /project/src/github.io/ ./${PATH} -rfv
+# RUN gh repo clone brtmvdl/brtmvdl.github.io . 
 
-RUN git add *
+# RUN cp /project/src/github.io/ ./${PATH} -rfv
 
-RUN git commit -m "Fixing ${PATH} project"
+# RUN git add *
 
-RUN gh repo sync
+# RUN git commit -m "Fixing ${PATH} project"
+
+# RUN gh repo sync
