@@ -1,4 +1,4 @@
-FROM docker/github-actions
+FROM docker/github-actions:v1
 
 ENV GH_TOKEN=${GH_TOKEN}
 
