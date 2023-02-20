@@ -20,6 +20,8 @@ jobs:
         run: | 
           apt update -y && apt install -y jq
           bash env/projects.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Copy projects
         run: | 
