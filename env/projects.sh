@@ -20,6 +20,8 @@ for REPO in $( ls tmp/brtmvdl/ ); do
 
   echo cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
 
-  cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}" > /dev/null
+  [[ -f "tmp/brtmvdl/${REPO}/src/github.io/index.html" ]] && \
+    cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}" \
+    echo OK
 
 done
