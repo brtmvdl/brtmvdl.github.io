@@ -1,4 +1,4 @@
-REPOS=$( curl -sSL 'https://api.github.com/users/brtmvdl/repos?limit=1&source=1' | jq '.[].full_name' | sed -e 's/"//ig' )
+REPOS=$( curl -sSL 'https://api.github.com/users/brtmvdl/repos?per_page=1&source=1' | jq '.[].full_name' | sed -e 's/"//ig' )
 
 echo REPOS: $REPOS
 
@@ -20,7 +20,7 @@ for REPO in $( ls tmp/brtmvdl/ ); do
 
   REPO_PATH="${TEMPDIR}/${REPO}"
 
-  mkdir -p "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
+  # mkdir -p "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
 
   echo cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
 
