@@ -22,6 +22,6 @@ for REPO in $REPOS; do
 
   echo cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
 
-  cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
+  cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}" > /dev/zero
 
 done
