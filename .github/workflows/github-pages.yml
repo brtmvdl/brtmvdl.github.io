@@ -21,8 +21,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: | 
 
-          echo apt update -y && apt install -y jq
-          apt update -y && apt install -y jq
+          echo sudo apt update -y && sudo apt install -y jq
+          sudo apt update -y && sudo apt install -y jq
 
           echo bash env/projects.sh
           bash env/projects.sh
