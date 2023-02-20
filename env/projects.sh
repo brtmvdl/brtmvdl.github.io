@@ -18,6 +18,8 @@ for REPO in $( ls tmp/brtmvdl/ ); do
 
   REPO_PATH="${TEMPDIR}/${REPO}"
 
+  mkdir -p "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
+
   echo cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
 
   [[ -f "tmp/brtmvdl/${REPO}/src/github.io/index.html" ]] && \
