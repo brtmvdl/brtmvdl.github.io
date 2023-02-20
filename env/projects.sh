@@ -1,4 +1,4 @@
-REPOS=$( curl -sSL 'https://api.github.com/users/brtmvdl/repos?limit=200&source=1' | jq '.[].full_name' | sed -e 's/"//ig' )
+REPOS=$( curl -sSL 'https://api.github.com/users/brtmvdl/repos?limit=20&source=1' | jq '.[].full_name' | sed -e 's/"//ig' )
 
 TEMPDIR="tmp"
 
