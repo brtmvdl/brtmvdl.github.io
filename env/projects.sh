@@ -1,5 +1,7 @@
 REPOS=$( curl -sSL 'https://api.github.com/users/brtmvdl/repos?limit=1&source=1' | jq '.[].full_name' | sed -e 's/"//ig' )
 
+echo REPOS: $REPOS
+
 TEMPDIR="tmp"
 
 mkdir -p "${TEMPDIR}" "projects/"
