@@ -1,0 +1,39 @@
+name: GitHub pages
+
+on:
+  schedule:
+    - cron: '50 23 2 * *'
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  release:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Copy projects
+        run: | 
+          apt update -y && apt install -y jq
+          bash env/projects.sh
+
+      - name: Copy projects
+        run: | 
+          echo git config user.name github-actions
+          git config user.name github-actions
+
+          echo git config user.email github-actions@github.com
+          git config user.email github-actions@github.com
+
+          echo git add -A 
+          git add -A 
+
+          echo git commit -m "commit-$( date +%Y%m%d%H%M%S )"
+          git commit -m "commit-$( date +%Y%m%d%H%M%S )"
+
+          echo git push
+          git push
