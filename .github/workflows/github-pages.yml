@@ -16,15 +16,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Copy projects
-        run: | 
-          apt update -y && apt install -y jq
-          bash env/projects.sh
+      - name: Git push
         env:
           GH_TOKEN: ${{ github.token }}
-
-      - name: Copy projects
         run: | 
+
+          echo apt update -y && apt install -y jq
+          apt update -y && apt install -y jq
+
+          echo bash env/projects.sh
+          bash env/projects.sh
+
           echo git config user.name github-actions
           git config user.name github-actions
 
