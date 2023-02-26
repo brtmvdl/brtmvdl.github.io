@@ -16,16 +16,14 @@ for REPO in $REPOS; do
 
 done
 
-for REPO in $( ls tmp/brtmvdl/ ); do
+for REPO in $REPOS; do
 
-  REPO_PATH="${TEMPDIR}/${REPO}"
+  echo mkdir -p "projects/${REPO}"
 
-  # mkdir -p "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
+  mkdir -p "projects/${REPO}"
 
-  echo cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}"
+  echo mkdir -p "${TEMPDIR}/brtmvdl/${REPO}/src/github.io/*" "projects/${REPO}"
 
-  [[ -f "tmp/brtmvdl/${REPO}/src/github.io/index.html" ]] && \
-    cp -rfv "tmp/brtmvdl/${REPO}/src/github.io" "projects/${REPO}" && \
-    echo OK
+  mkdir -p "${TEMPDIR}/brtmvdl/${REPO}/src/github.io/*" "projects/${REPO}"
 
 done
