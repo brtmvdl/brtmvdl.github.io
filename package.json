@@ -1,0 +1,12 @@
+{
+  "name": "brtmvdl.github.io",
+  "version": "1.0.0",
+  "description": "[brtmvdl.github.io](https://brtmvdl.github.io/)",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.150.1"
+  }
+}
