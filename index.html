@@ -22,14 +22,18 @@
     title.setText(owner)
     app.append(title)
 
-    const projects = new nElement()
-    app.append(projects)
+    const projectsEl = new nElement()
+    app.append(projectsEl)
 
-    repos.forEach((repo) => {
+    const projects = [
+      { href: 'https://brtmvdl.github.io/3d/clock/', text: 'Clock' },
+    ]
+
+    repos.forEach(({ text, href }) => {
       const proj = new nLink()
-      proj.setText(repo)
-      proj.href(`https://github.com/${owner}/${repo}`)
-      projects.append(proj)
+      proj.setText(text)
+      proj.href(href)
+      projectsEl.append(proj)
     })
   </script>
 </body>
