@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "dat.gui": "^0.7.9",
-    "es-module-shims": "^1.6.3",
+    "es-module-shims": "^1.7.1",
     "three": "^0.151.2"
   }
 }
