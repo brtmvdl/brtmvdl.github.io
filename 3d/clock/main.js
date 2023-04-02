@@ -1,6 +1,8 @@
-import * as THREE from 'three'
-import dat from 'dat.gui'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from '../../node_modules/three/build/three.module.js'
+import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls.js'
+
+import dat from '../../node_modules/dat.gui/build/dat.gui.module.js'
+const gui = new dat.GUI({ name: 'Clock' })
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000)
@@ -10,8 +12,6 @@ camera.lookAt(0, 0, 0)
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
-
-const gui = new dat.GUI({ name: 'My GUI' })
 
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.update()
@@ -46,16 +46,8 @@ minutePointer.rotation.set(0, 0, Math.PI / 2)
 minutePointer.position.set(-2.5, 0.75, 0)
 scene.add(minutePointer)
 
-// gui.add(minutePointer.rotation, 'x', -10, 10).name('rotation x')
-// gui.add(minutePointer.rotation, 'y', -10, 10).name('rotation y')
-// gui.add(minutePointer.rotation, 'z', -10, 10).name('rotation z')
-
-function animate() {
+renderer.setAnimationLoop(time => {
+  // console.log({ time })
   controls.update()
-
-  requestAnimationFrame(animate)
-
   renderer.render(scene, camera)
-}
-
-animate()
+})
