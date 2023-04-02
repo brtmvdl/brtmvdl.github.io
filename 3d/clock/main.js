@@ -1,7 +1,7 @@
-import * as THREE from '../../node_modules/three/build/three.module.js'
-import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
-import dat from '../../node_modules/dat.gui/build/dat.gui.module.js'
+import dat from 'dat.gui'
 const gui = new dat.GUI({ name: 'Clock' })
 
 const scene = new THREE.Scene()
@@ -47,7 +47,7 @@ minutePointer.position.set(-2.5, 0.75, 0)
 scene.add(minutePointer)
 
 renderer.setAnimationLoop(time => {
-  // console.log({ time })
-  controls.update()
+  // controls.update()
+
   renderer.render(scene, camera)
 })
