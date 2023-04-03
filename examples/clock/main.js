@@ -16,11 +16,8 @@ document.body.appendChild(renderer.domElement)
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.update()
 
-// const axesHelper = new THREE.AxesHelper(10)
-// scene.add(axesHelper)
-
-// const gridHelper = new THREE.GridHelper(10, 100)
-// scene.add(gridHelper)
+const gridHelper = new THREE.GridHelper(7, 70)
+scene.add(gridHelper)
 
 const edge = new THREE.Mesh(
   new THREE.CylinderGeometry(3, 2.75, 0.999),
