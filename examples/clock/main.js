@@ -78,7 +78,7 @@ const loadFont = (name) => new Promise((res, rej) => {
 const size = 1 / 2
 const height = 1 / 50
 
-const matcap = new THREE.TextureLoader().load('./ball.png')
+const matcap = new THREE.TextureLoader().load('./textTexture.png')
 
 Array.from(Array(12))
   .forEach((_, angle) => loadFont(helvetiker)
