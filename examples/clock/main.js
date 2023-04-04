@@ -21,8 +21,8 @@ document.body.appendChild(renderer.domElement)
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.update()
 
-const gridHelper = new THREE.GridHelper(10, 100)
-scene.add(gridHelper)
+// const gridHelper = new THREE.GridHelper(10, 100)
+// scene.add(gridHelper)
 
 const origin = new THREE.Mesh(
   new THREE.CylinderGeometry(Math.PI / 16, .1, 1),
