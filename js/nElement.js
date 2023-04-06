@@ -150,6 +150,17 @@ class nH1 extends nElement {
   }
 }
 
+class nH2 extends nElement {
+  constructor() {
+    super({
+      component: { name: 'h1' },
+    })
+
+    this.setStyle('font-weight', 'bold')
+    this.setStyle('font-size', '2rem')
+  }
+}
+
 class nText extends nElement {
   constructor() {
     super({
