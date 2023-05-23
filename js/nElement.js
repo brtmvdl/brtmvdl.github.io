@@ -1,5 +1,5 @@
 
-class nElement {
+export class nElement {
   container = document.createElement('div')
   element = document.createElement('div')
 
@@ -128,6 +128,12 @@ class nElement {
     return this
   }
 
+  addData(key, value = '') {
+    this.element.dataset[key] = value
+
+    return this
+  }
+
   append(ntag = new nElement()) {
     this.element.append(ntag.render())
     return this
@@ -139,7 +145,7 @@ class nElement {
   }
 }
 
-class nH1 extends nElement {
+export class nH1 extends nElement {
   constructor() {
     super({
       component: { name: 'h1' },
@@ -150,7 +156,7 @@ class nH1 extends nElement {
   }
 }
 
-class nH2 extends nElement {
+export class nH2 extends nElement {
   constructor() {
     super({
       component: { name: 'h1' },
@@ -161,7 +167,7 @@ class nH2 extends nElement {
   }
 }
 
-class nText extends nElement {
+export class nText extends nElement {
   constructor() {
     super({
       element: { tagName: 'p' },
@@ -170,7 +176,7 @@ class nText extends nElement {
   }
 }
 
-class nNumber extends nElement {
+export class nNumber extends nElement {
   num = 0
 
   constructor() {
@@ -205,7 +211,7 @@ class nNumber extends nElement {
   }
 }
 
-class nButton extends nElement {
+export class nButton extends nElement {
   constructor() {
     super({
       element: { tagName: 'button' },
@@ -219,7 +225,7 @@ class nButton extends nElement {
   }
 }
 
-class nLink extends nElement {
+export class nLink extends nElement {
   constructor() {
     super({
       element: { tagName: 'a' },
@@ -236,7 +242,7 @@ class nLink extends nElement {
   }
 }
 
-class nFlex extends nElement {
+export class nFlex extends nElement {
   constructor() {
     super({
       component: { name: 'flex' },
@@ -247,7 +253,7 @@ class nFlex extends nElement {
   }
 }
 
-class nLabel extends nElement {
+export class nLabel extends nElement {
   constructor() {
     super({
       component: { name: 'label' },
@@ -259,7 +265,7 @@ class nLabel extends nElement {
   }
 }
 
-class Valuable extends nElement {
+export class Valuable extends nElement {
   maxlength = undefined
 
   setMaxLength(value) {
@@ -278,7 +284,7 @@ class Valuable extends nElement {
 
 }
 
-class nInputText extends Valuable {
+export class nInputText extends Valuable {
   constructor() {
     super({
       component: { name: 'input-text' },
@@ -295,7 +301,7 @@ class nInputText extends Valuable {
   }
 }
 
-class nInputNumber extends Valuable {
+export class nInputNumber extends Valuable {
   constructor() {
     super({
       component: { name: 'input-number' },
@@ -308,7 +314,7 @@ class nInputNumber extends Valuable {
   }
 }
 
-class nInputDate extends nElement {
+export class nInputDate extends nElement {
   flex = new nFlex
 
   day = new nInputNumber
@@ -366,7 +372,7 @@ class nInputDate extends nElement {
   }
 }
 
-class nInputTime extends nElement {
+export class nInputTime extends nElement {
   flex = new nFlex
 
   hour = new nInputNumber
@@ -415,7 +421,7 @@ class nInputTime extends nElement {
   }
 }
 
-class nError extends nElement {
+export class nError extends nElement {
   constructor() {
     super({
       component: { name: 'error' },
@@ -427,7 +433,7 @@ class nError extends nElement {
   }
 }
 
-class nCenter extends nElement {
+export class nCenter extends nElement {
   constructor() {
     super({ component: { name: 'center' } })
 
@@ -436,7 +442,7 @@ class nCenter extends nElement {
   }
 }
 
-class nInputTextGroup extends nElement {
+export class nInputTextGroup extends nElement {
   label = new nLabel
   input = new nInputText
   error = new nError
@@ -453,5 +459,17 @@ class nInputTextGroup extends nElement {
     this.append(this.input)
 
     this.append(this.error)
+  }
+}
+
+export class nHR extends nElement {
+  constructor() {
+    super({
+      element: { tagName: 'hr' },
+      component: { name: 'hr' }
+    })
+
+    this.setStyle('border-bottom', '1px solid #000000')
+    this.setStyle('margin', '1rem 0rem 0rem')
   }
 }
