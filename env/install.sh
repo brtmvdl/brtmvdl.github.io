@@ -1,1 +1,1 @@
-npm i 
+npm i -D live-server
