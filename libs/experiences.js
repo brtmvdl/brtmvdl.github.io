@@ -7,71 +7,71 @@ const TYPES = {
 const xp = [
   {
     "title": "airplane",
-    "url": "https://airplane-brtmvdl.surge.sh"
+    "link": "https://airplane-brtmvdl.surge.sh"
   },
   {
     "title": "Create nElement App",
-    "url": "https://www.npmjs.com/package/create-nelement-app"
+    "link": "https://www.npmjs.com/package/create-nelement-app"
   },
   {
     "title": "docker alpine",
-    "url": "https://hub.docker.com/r/tmvdl/alpine"
+    "link": "https://hub.docker.com/r/tmvdl/alpine"
   },
   {
     "title": "docker android",
-    "url": "https://hub.docker.com/r/tmvdl/android"
+    "link": "https://hub.docker.com/r/tmvdl/android"
   },
   {
     "title": "docker dart",
-    "url": "https://hub.docker.com/r/tmvdl/dart"
+    "link": "https://hub.docker.com/r/tmvdl/dart"
   },
   {
     "title": "docker dotnet",
-    "url": "https://hub.docker.com/r/tmvdl/dotnet"
+    "link": "https://hub.docker.com/r/tmvdl/dotnet"
   },
   {
     "title": "docker downloads",
-    "url": "https://hub.docker.com/r/tmvdl/downloads"
+    "link": "https://hub.docker.com/r/tmvdl/downloads"
   },
   {
     "title": "docker go",
-    "url": "https://hub.docker.com/r/tmvdl/go"
+    "link": "https://hub.docker.com/r/tmvdl/go"
   },
   {
     "title": "docker java",
-    "url": "https://hub.docker.com/r/tmvdl/java"
+    "link": "https://hub.docker.com/r/tmvdl/java"
   },
   {
     "title": "docker kotlin",
-    "url": "https://hub.docker.com/r/tmvdl/kotlin"
+    "link": "https://hub.docker.com/r/tmvdl/kotlin"
   },
   {
     "title": "docker node",
-    "url": "https://hub.docker.com/r/tmvdl/node"
+    "link": "https://hub.docker.com/r/tmvdl/node"
   },
   {
     "title": "docker php",
-    "url": "https://hub.docker.com/r/tmvdl/php"
+    "link": "https://hub.docker.com/r/tmvdl/php"
   },
   {
     "title": "docker projects",
-    "url": "https://hub.docker.com/r/tmvdl/projects"
+    "link": "https://hub.docker.com/r/tmvdl/projects"
   },
   {
     "title": "docker python",
-    "url": "https://hub.docker.com/r/tmvdl/python"
+    "link": "https://hub.docker.com/r/tmvdl/python"
   },
   {
     "title": "docker ruby",
-    "url": "https://hub.docker.com/r/tmvdl/ruby"
+    "link": "https://hub.docker.com/r/tmvdl/ruby"
   },
   {
     "title": "yt-docker dl",
-    "url": "https://hub.docker.com/r/tmvdl/yt-dl"
+    "link": "https://hub.docker.com/r/tmvdl/yt-dl"
   },
   {
     "title": "",
-    "url": "https://github.com/actions"
+    "link": "https://github.com/actions"
   },
   {
     "title": "Visual Studio Code Front-End Extension Pack",
@@ -80,11 +80,11 @@ const xp = [
   },
   {
     "title": "nume",
-    "url": "https://nume-brtmvdl.surge.sh/"
+    "link": "https://nume-brtmvdl.surge.sh/"
   },
   {
     "title": "piano",
-    "url": "https://piano-brtmvdl.surge.sh/",
+    "link": "https://piano-brtmvdl.surge.sh/",
   }
 ]
 
