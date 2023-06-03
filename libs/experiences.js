@@ -17,7 +17,7 @@ const xp = [
   },
   {
     "title": "Youtube Download (Docker)",
-    "image": "/img/docker-yt-dl.png",
+    "image": "/img/yt-docker dl.png",
     "link": "https://hub.docker.com/r/tmvdl/yt-dl"
   },
   {
