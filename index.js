@@ -1,6 +1,7 @@
 import { nElement, nH1, nH2, nHR, nLink } from './js/nElement.js'
-import experiences from './libs/experiences.js'
 import { Experience } from './js/experience.js'
+
+import experiences from './libs/experiences.js'
 
 nElement.fromElement(document.body)
   .setStyle('margin', '0rem')
@@ -28,4 +29,5 @@ body.append(experiencesEl)
 
 experiences
   .map((xp = {}) => new Experience(xp))
+  .sort((xp1, xp2) => xp2.title.localeCompare(xp1.title))
   .map((xp) => experiencesEl.append(xp.getListItem()))
