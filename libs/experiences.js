@@ -5,15 +5,25 @@ const TYPES = {
 }
 
 const xp = [
+  // {
+  //   "title": "Airplane (3D)",
+  //   "image": "/img/airplane.png",
+  //   "link": "https://airplane-brtmvdl.surge.sh"
+  // },
   {
-    "title": "Airplane",
-    "image": "/img/airplane.png",
-    "link": "https://airplane-brtmvdl.surge.sh"
+    "title": "Piano (3D)",
+    "image": "/img/piano.png",
+    "link": "https://piano-brtmvdl.surge.sh/",
   },
   {
-    "title": "Clock",
+    "title": "Clock (3D)",
     "image": "/img/clock.png",
     "link": "/examples/clock/"
+  },
+  {
+    "title": "Nume",
+    "image": "/img/nume.png",
+    "link": "https://nume-brtmvdl.surge.sh/"
   },
   {
     "title": "Create nElement App",
@@ -29,16 +39,6 @@ const xp = [
     "title": "Visual Studio Code Front-End Extension Pack",
     "image": "/img/frontend-extension-pack-vsce.png",
     "link": "https://marketplace.visualstudio.com/items?itemName=tmvdl.frontend-extension-pack-vsce"
-  },
-  {
-    "title": "Nume",
-    "image": "/img/nume.png",
-    "link": "https://nume-brtmvdl.surge.sh/"
-  },
-  {
-    "title": "Piano",
-    "image": "/img/piano.png",
-    "link": "https://piano-brtmvdl.surge.sh/",
   },
   {
     "title": "Alpine (Docker)",
