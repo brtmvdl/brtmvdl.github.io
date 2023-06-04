@@ -56,11 +56,6 @@ const xp = [
     "link": "https://hub.docker.com/r/tmvdl/dotnet"
   },
   {
-    "title": "Downloads (Docker)",
-    "image": "/img/docker-downloads.png",
-    "link": "https://hub.docker.com/r/tmvdl/downloads"
-  },
-  {
     "title": "Go (Docker)",
     "image": "/img/docker-go.png",
     "link": "https://hub.docker.com/r/tmvdl/go"
@@ -84,11 +79,6 @@ const xp = [
     "title": "PHP (Docker)",
     "image": "/img/docker-php.png",
     "link": "https://hub.docker.com/r/tmvdl/php"
-  },
-  {
-    "title": "Projects (Docker)",
-    "image": "/img/docker-projects.png",
-    "link": "https://hub.docker.com/r/tmvdl/projects"
   },
   {
     "title": "Python (Docker)",
