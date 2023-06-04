@@ -11,6 +11,11 @@ const xp = [
     "link": "https://airplane-brtmvdl.surge.sh"
   },
   {
+    "title": "Clock",
+    "image": "/img/clock.png",
+    "link": "/examples/clock/"
+  },
+  {
     "title": "Create nElement App",
     "image": "/img/create-nelement-app.png",
     "link": "https://www.npmjs.com/package/create-nelement-app"
