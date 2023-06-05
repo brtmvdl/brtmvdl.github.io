@@ -16,6 +16,11 @@ export default [
     "link": "/examples/clock/"
   },
   {
+    "title": "Calc (3D)",
+    "image": "/img/calc.png",
+    "link": "/examples/calc/"
+  },
+  {
     "title": "Nume",
     "image": "/img/nume.png",
     "link": "https://nume-brtmvdl.surge.sh/"
