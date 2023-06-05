@@ -29,27 +29,19 @@ export class Experience {
     xpEl.addData('type', type)
     xpEl.setStyle('padding', '1rem 0rem')
 
+    const linkEl = new nLink()
+    linkEl.href(link)
+    xpEl.append(linkEl)
+
     const titleEl = new nH2()
     titleEl.setText(title)
     titleEl.setStyle('margin-bottom', '0.5em')
-    xpEl.append(titleEl)
+    linkEl.append(titleEl)
 
     const imageEl = new nImage()
     imageEl.setStyle('margin-bottom', '0.5em')
-
-    if (link) {
-      const linkEl = new nLink()
-      linkEl.href(link)
-
-      imageEl.src(image)
-      linkEl.append(imageEl)
-
-      xpEl.append(linkEl)
-    } else {
-
-      imageEl.src(image)
-      xpEl.append(imageEl)
-    }
+    imageEl.src(image)
+    linkEl.append(imageEl)
 
     if (dates && dates.length) {
       const dateEl = new nElement()
