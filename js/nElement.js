@@ -178,7 +178,7 @@ export class nH1 extends nElement {
     })
 
     this.setStyle('font-weight', 'bold')
-    this.setStyle('font-size', '3rem')
+    this.setStyle('font-size', '3em')
   }
 }
 
@@ -189,7 +189,7 @@ export class nH2 extends nElement {
     })
 
     this.setStyle('font-weight', 'bold')
-    this.setStyle('font-size', '2rem')
+    this.setStyle('font-size', '2em')
   }
 }
 
@@ -254,8 +254,10 @@ export class nButton extends nElement {
     })
 
     this.setStyle('border', 'none')
+    this.setStyle('font', 'inherit')
     this.setStyle('outline', 'none')
-    this.setStyle('padding', '1rem')
+    this.setStyle('padding', '1em')
+    this.setStyle('cursor', 'pointer')
     this.setStyle('font-weight', 'bold')
   }
 }
@@ -294,9 +296,6 @@ export class nFlex extends nElement {
 
     return this
   }
-
-
-
 }
 
 export class nLabel extends nElement {
@@ -305,9 +304,9 @@ export class nLabel extends nElement {
       component: { name: 'label' },
     })
 
-    this.setStyle('margin-bottom', '0.5rem')
-    this.setStyle('padding-top', '0.5rem')
-    this.setStyle('padding-botton', '0.5rem')
+    this.setStyle('margin-bottom', '0.5em')
+    this.setStyle('padding-top', '0.5em')
+    this.setStyle('padding-botton', '0.5em')
   }
 }
 
@@ -360,7 +359,8 @@ export class nInputText extends Valuable {
     this.setContainerStyle('display', 'inline-block')
     this.setContainerStyle('width', '100%')
 
-    this.setStyle('padding', '0.5rem')
+    this.setStyle('font', 'inherit')
+    this.setStyle('padding', '0.5em')
     this.setStyle('width', '100%')
   }
 }
@@ -373,8 +373,8 @@ export class nInputNumber extends Valuable {
     })
 
     this.setAttr('type', 'number')
-
-    this.setStyle('padding', '0.5rem')
+    this.setStyle('font', 'inherit')
+    this.setStyle('padding', '0.5em')
   }
 }
 
@@ -407,12 +407,12 @@ export class nInputDate extends nElement {
   makeSeparator(text) {
     const sep = new nText()
 
-    sep.setContainerStyle('width', '1rem')
-    sep.setStyle('width', '1rem')
+    sep.setContainerStyle('width', '1em')
+    sep.setStyle('width', '1em')
 
     sep.setStyle('text-align', 'center')
-    sep.setStyle('padding-top', '0.5rem')
-    sep.setStyle('padding-botton', '0.5rem')
+    sep.setStyle('padding-top', '0.5em')
+    sep.setStyle('padding-botton', '0.5em')
 
     sep.setText(text)
 
@@ -452,12 +452,12 @@ export class nInputTime extends nElement {
     const sep = new nElement()
     sep.setText(':')
 
-    sep.setContainerStyle('width', '1rem')
+    sep.setContainerStyle('width', '1em')
 
-    sep.setStyle('padding-botton', '0.5rem')
-    sep.setStyle('padding-top', '0.5rem')
+    sep.setStyle('padding-botton', '0.5em')
+    sep.setStyle('padding-top', '0.5em')
     sep.setStyle('text-align', 'center')
-    sep.setStyle('width', '1rem')
+    sep.setStyle('width', '1em')
     this.flex.append(sep)
 
     this.flex.append(this.makeInput(this.minutes))
@@ -492,8 +492,8 @@ export class nError extends nElement {
     })
 
     this.setStyle('color', 'red')
-    this.setStyle('padding-top', '0.5rem')
-    this.setStyle('padding-botton', '0.5rem')
+    this.setStyle('padding-top', '0.5em')
+    this.setStyle('padding-botton', '0.5em')
   }
 }
 
@@ -502,7 +502,7 @@ export class nCenter extends nElement {
     super({ component: { name: 'center' } })
 
     this.setStyle('margin', '0 auto')
-    this.setStyle('width', '42rem')
+    this.setStyle('width', '42em')
   }
 }
 
@@ -512,7 +512,9 @@ export class nInputTextGroup extends nElement {
   error = new nError
 
   constructor() {
-    super({ component: { name: 'input-text-group' } })
+    super({
+      component: { name: 'input-text-group' }
+    })
 
     const id = Date.now()
 
@@ -520,6 +522,8 @@ export class nInputTextGroup extends nElement {
     this.append(this.label)
 
     this.input.setAttr('id', id)
+    // this.input.setContainerStyle('width', '100%')
+    // this.input.setStyle('width', '100%')
     this.append(this.input)
 
     this.append(this.error)
@@ -534,7 +538,7 @@ export class nHR extends nElement {
     })
 
     this.setStyle('border-bottom', '1px solid #000000')
-    this.setStyle('margin', '1rem 0rem 0rem')
+    this.setStyle('margin', '1em 0em 0em')
   }
 }
 
@@ -593,7 +597,7 @@ export class nThead extends nElement {
     super({
       container: { append: false },
       element: { tagName: 'thead' },
-      component: { name: 'thead' },
+      component: { name: 'thead' }
     })
   }
 }
@@ -603,7 +607,7 @@ export class nTbody extends nElement {
     super({
       container: { append: false },
       element: { tagName: 'tbody' },
-      component: { name: 'tbody' },
+      component: { name: 'tbody' }
     })
   }
 }
@@ -613,7 +617,7 @@ export class nTr extends nElement {
     super({
       container: { append: false },
       element: { tagName: 'tr' },
-      component: { name: 'tr' },
+      component: { name: 'tr' }
     })
   }
 }
@@ -623,7 +627,7 @@ export class nTd extends nElement {
     super({
       container: { append: false },
       element: { tagName: 'td' },
-      component: { name: 'td' },
+      component: { name: 'td' }
     })
   }
 }
@@ -632,7 +636,7 @@ export class nForm extends nElement {
   constructor() {
     super({
       element: { tagName: 'form' },
-      component: { name: 'form' },
+      component: { name: 'form' }
     })
   }
 
@@ -651,17 +655,21 @@ export class nOption extends Valuable {
     super({
       container: { append: false },
       element: { tagName: 'option' },
-      component: { name: 'option' },
+      component: { name: 'option' }
     })
+
+    this.setStyle('font', 'inherit')
   }
 }
 
-export class nSelect extends nElement {
+export class nSelect extends Valuable {
   constructor() {
     super({
       element: { tagName: 'select' },
-      component: { name: 'select' },
+      component: { name: 'select' }
     })
+
+    this.setStyle('font', 'inherit')
   }
 
   addOption(key, value = '') {
@@ -682,6 +690,8 @@ export class nSelectGroup extends Valuable {
       component: { name: 'select-group' }
     })
 
+    this.setStyle('font', 'inherit')
+
     const id = Date.now()
 
     this.label.setAttr('for', id)
@@ -693,4 +703,3 @@ export class nSelectGroup extends Valuable {
     this.append(this.error)
   }
 }
-
