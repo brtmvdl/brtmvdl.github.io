@@ -31,7 +31,6 @@ body.append(socialsEl)
 
 socials
   .map((s = {}) => new Social(s))
-  .sort((s1, s2) => s2.title.localeCompare(s1.title))
   .map((s) => socialsEl.append(s.getListItem()))
 
 const experiencesEl = new nElement()
@@ -39,5 +38,4 @@ body.append(experiencesEl)
 
 experiences
   .map((xp = {}) => new Experience(xp))
-  .sort((xp1, xp2) => xp2.title.localeCompare(xp1.title))
   .map((xp) => experiencesEl.append(xp.getListItem()))
