@@ -9,6 +9,7 @@ export class nElement {
     },
     container: {
       tagName: 'div',
+      append: true,
     },
     component: {
       name: 'component',
@@ -62,6 +63,27 @@ export class nElement {
 
   addClass(value) {
     this.element.classList.add(value)
+    return this
+  }
+
+  removeClass(value) {
+    this.element.classList.remove(value)
+    return this
+  }
+
+  toggleClass(value) {
+    if (this.element.classList.contains(value)) {
+      this.removeClass(value)
+    } else {
+      this.addClass(value)
+    }
+
+    return this
+  }
+
+  setId(value = '') {
+    this.element.id = value
+
     return this
   }
 
@@ -134,14 +156,18 @@ export class nElement {
     return this
   }
 
-  append(ntag = new nElement()) {
-    this.element.append(ntag.render())
+  append(el = new nElement()) {
+    this.element.append(el.render())
     return this
   }
 
   render() {
-    this.container.append(this.element)
-    return this.container
+    if (this.options.container.append) {
+      this.container.append(this.element)
+      return this.container
+    } else {
+      return this.element
+    }
   }
 }
 
@@ -172,6 +198,15 @@ export class nText extends nElement {
     super({
       element: { tagName: 'p' },
       component: { name: 'text' },
+    })
+  }
+}
+
+export class nPre extends nElement {
+  constructor() {
+    super({
+      element: { tagName: 'pre' },
+      component: { name: 'pre' },
     })
   }
 }
@@ -251,6 +286,17 @@ export class nFlex extends nElement {
     this.setStyle('display', 'flex')
     this.setStyle('justify-content', 'space-between')
   }
+
+  // flex-wrap: wrap;
+
+  flexWrap(wrap = 'wrap') {
+    this.setStyle('flex-wrap', wrap)
+
+    return this
+  }
+
+
+
 }
 
 export class nLabel extends nElement {
@@ -273,6 +319,15 @@ export class Valuable extends nElement {
     return this
   }
 
+  setName(value) {
+    this.element.name = value
+    return this
+  }
+
+  getName() {
+    return this.element.name || ''
+  }
+
   getValue() {
     return this.element.value
   }
@@ -280,6 +335,15 @@ export class Valuable extends nElement {
   setValue(value) {
     this.element.value = value
     return this
+  }
+
+  setPlaceholder(value) {
+    this.element.placeholder = value
+    return this
+  }
+
+  getPlaceholder() {
+    return this.element.placeholder || ''
   }
 
 }
@@ -486,7 +550,7 @@ export class nImage extends nElement {
     this.alt()
   }
 
-  src(value = '') {
+  src(value) {
     this.element.src = value
 
     return this
@@ -496,6 +560,137 @@ export class nImage extends nElement {
     this.element.alt = value
 
     return this
+  }
+}
+
+export class nTable extends nElement {
+  thead = new nThead()
+  tbody = new nTbody()
+
+  constructor() {
+    super({
+      element: { tagName: 'table' },
+      component: { name: 'table' }
+    })
+
+    this.append(this.thead)
+    this.append(this.tbody)
+  }
+
+  addInHead(element = new nElement) {
+    this.thead.append(element)
+    return this
+  }
+
+  addInHead(element = new nElement) {
+    this.tbody.append(element)
+    return this
+  }
+}
+
+export class nThead extends nElement {
+  constructor() {
+    super({
+      container: { append: false },
+      element: { tagName: 'thead' },
+      component: { name: 'thead' },
+    })
+  }
+}
+
+export class nTbody extends nElement {
+  constructor() {
+    super({
+      container: { append: false },
+      element: { tagName: 'tbody' },
+      component: { name: 'tbody' },
+    })
+  }
+}
+
+export class nTr extends nElement {
+  constructor() {
+    super({
+      container: { append: false },
+      element: { tagName: 'tr' },
+      component: { name: 'tr' },
+    })
+  }
+}
+
+export class nTd extends nElement {
+  constructor() {
+    super({
+      container: { append: false },
+      element: { tagName: 'td' },
+      component: { name: 'td' },
+    })
+  }
+}
+
+export class nForm extends nElement {
+  constructor() {
+    super({
+      element: { tagName: 'form' },
+      component: { name: 'form' },
+    })
+  }
+
+  setAction(value = '?#') {
+    this.element.action = value
+    return this
+  }
+
+  getAction() {
+    return this.element.action || ''
+  }
+}
+
+export class nOption extends Valuable {
+  constructor() {
+    super({
+      container: { append: false },
+      element: { tagName: 'option' },
+      component: { name: 'option' },
+    })
+  }
+}
+
+export class nSelect extends nElement {
+  constructor() {
+    super({
+      element: { tagName: 'select' },
+      component: { name: 'select' },
+    })
+  }
+
+  addOption(key, value = '') {
+    const options = new nOption()
+    options.setValue(key)
+    options.setText(value)
+    return this.append(options)
+  }
+}
+
+export class nSelectGroup extends Valuable {
+  label = new nLabel
+  select = new nSelect
+  error = new nError
+
+  constructor() {
+    super({
+      component: { name: 'select-group' }
+    })
+
+    const id = Date.now()
+
+    this.label.setAttr('for', id)
+    this.append(this.label)
+
+    this.select.setAttr('id', id)
+    this.append(this.select)
+
+    this.append(this.error)
   }
 }
 
