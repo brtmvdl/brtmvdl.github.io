@@ -31,14 +31,14 @@ export default [
     "link": "https://www.npmjs.com/package/create-nelement-app"
   },
   {
-    "title": "Youtube Download (Docker)",
-    "image": "/img/yt-docker dl.png",
-    "link": "https://hub.docker.com/r/tmvdl/yt-dl"
-  },
-  {
     "title": "Visual Studio Code Front-End Extension Pack",
     "image": "/img/frontend-extension-pack-vsce.png",
     "link": "https://marketplace.visualstudio.com/items?itemName=tmvdl.frontend-extension-pack-vsce"
+  },
+  {
+    "title": "Youtube Download (Docker)",
+    "image": "/img/yt-docker dl.png",
+    "link": "https://hub.docker.com/r/tmvdl/yt-dl"
   },
   {
     "title": "Alpine (Docker)",
