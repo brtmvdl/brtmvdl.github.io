@@ -4,12 +4,7 @@ const TYPES = {
   EDUCATION: "education",
 }
 
-const xp = [
-  // {
-  //   "title": "Airplane (3D)",
-  //   "image": "/img/airplane.png",
-  //   "link": "https://airplane-brtmvdl.surge.sh"
-  // },
+export default [
   {
     "title": "Piano (3D)",
     "image": "/img/piano.png",
@@ -96,5 +91,3 @@ const xp = [
     "link": "https://hub.docker.com/r/tmvdl/ruby"
   }
 ]
-
-export default xp
