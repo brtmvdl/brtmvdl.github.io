@@ -345,6 +345,11 @@ export class Valuable extends nElement {
     return this.element.placeholder || ''
   }
 
+  focus() {
+    this.element.focus()
+    return this
+  }
+
 }
 
 export class nInputText extends Valuable {
