@@ -7,7 +7,7 @@ export default [
   {
     "title": "Linkedin",
     "image": "/img/linkedin.svg",
-    "link": "https://www.linkedin.com/feed/?nis=true"
+    "link": "https://www.linkedin.com/in/brtmvdl"
   },
   {
     "title": "Twitter",
