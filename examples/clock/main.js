@@ -80,10 +80,10 @@ const height = 1 / 50
 
 const matcap = new THREE.TextureLoader().load('./textTexture.png')
 
-Array.from(Array(12))
-  .forEach((_, angle) => loadFont(helvetiker)
+Array.from(['12', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',])
+  .forEach((num, angle) => loadFont(helvetiker)
     .then((font) => {
-      const textGeometry = new TextGeometry(angle.toString(), { font, size, height })
+      const textGeometry = new TextGeometry(num, { font, size, height })
       textGeometry.center()
 
       const textMesh = new THREE.Mesh(
