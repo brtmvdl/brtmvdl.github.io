@@ -3,10 +3,9 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
 
-const helvetiker = '../../libs/three/examples/fonts/helvetiker_regular.typeface.json'
+document.body.style.margin = '0em'
 
-import dat from 'dat.gui'
-const gui = new dat.GUI({ name: 'Clock' })
+const helvetiker = '../../libs/three/examples/fonts/helvetiker_regular.typeface.json'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500)
@@ -20,9 +19,6 @@ document.body.appendChild(renderer.domElement)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.update()
-
-// const gridHelper = new THREE.GridHelper(10, 100)
-// scene.add(gridHelper)
 
 const origin = new THREE.Mesh(
   new THREE.CylinderGeometry(Math.PI / 16, .1, 1),
@@ -105,14 +101,33 @@ const degreeAngle = (angle) => 2 * Math.PI * angle
 renderer.setAnimationLoop(() => {
   const date = new Date()
 
-  const hourRotation = degreeAngle(-date.getHours() / 12)
-  const minuteRotation = degreeAngle(-date.getMinutes() / 60)
-  const secondRotation = degreeAngle(-date.getSeconds() / 60)
-
-  hourPointer.rotation.y = hourRotation
-  minutePointer.rotation.y = minuteRotation
-  secondPointer.rotation.y = secondRotation
+  hourPointer.rotation.y = degreeAngle(-date.getHours() / 12)
+  minutePointer.rotation.y = degreeAngle(-date.getMinutes() / 60)
+  secondPointer.rotation.y = degreeAngle(-date.getSeconds() / 60)
 
   controls.update()
   renderer.render(scene, camera)
 })
+
+const padLeft = (text, length = 1, pad = ' ') => {
+  while (text.toString().length < length) text = pad + text
+  return text
+}
+
+const title = document.getElementsByTagName('title').item(0)
+
+window.setInterval(() => {
+  const date = new Date()
+
+  const yearDate = date.getFullYear().toString()
+  const monthDate = padLeft(date.getMonth() + 1, 2, '0').toString()
+  const dayDate = padLeft(date.getDay(), 2, '0').toString()
+
+  const hourDate = padLeft(date.getHours(), 2, '0').toString()
+  const minuteDate = padLeft(date.getMinutes(), 2, '0').toString()
+  const secondsDate = padLeft(date.getSeconds(), 2, '0').toString()
+
+  const dateString = `${yearDate}/${monthDate}/${dayDate} ${hourDate}:${minuteDate}:${secondsDate}`
+
+  title.textContent = ['Clock', dateString].join(' - ')
+}, 1e3)
