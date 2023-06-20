@@ -5,31 +5,31 @@ const TYPES = {
 }
 
 export default [
-  {
-    "title": "Chalkboard",
-    "image": "/img/chalkboard.png",
-    "link": "https://chalkboard-brtmvdl.surge.sh/",
-  },
-  {
-    "title": "Airplane (3D)",
-    "image": "/img/airplane.png",
-    "link": "https://airplane-brtmvdl.surge.sh/",
-  },
-  {
-    "title": "QR Code Scanner",
-    "image": "/img/qrcodescanner.png",
-    "link": "https://qrcodescanner-brtmvdl.surge.sh/",
-  },
-  {
-    "title": "nAmazon",
-    "image": "/img/namazon.png",
-    "link": "https://namazon-brtmvdl.surge.sh/",
-  },
-  {
-    "title": "Calendario",
-    "image": "/img/calendario.png",
-    "link": "https://brtmvdl-calendario.surge.sh/"
-  },
+  // {
+  //   "title": "Chalkboard",
+  //   "image": "/img/chalkboard.png",
+  //   "link": "https://chalkboard-brtmvdl.surge.sh/",
+  // },
+  // {
+  //   "title": "Airplane (3D)",
+  //   "image": "/img/airplane.png",
+  //   "link": "https://airplane-brtmvdl.surge.sh/",
+  // },
+  // {
+  //   "title": "QR Code Scanner",
+  //   "image": "/img/qrcodescanner.png",
+  //   "link": "https://qrcodescanner-brtmvdl.surge.sh/",
+  // },
+  // {
+  //   "title": "nAmazon",
+  //   "image": "/img/namazon.png",
+  //   "link": "https://namazon-brtmvdl.surge.sh/",
+  // },
+  // {
+  //   "title": "Calendario",
+  //   "image": "/img/calendario.png",
+  //   "link": "https://brtmvdl-calendario.surge.sh/"
+  // },
   {
     "title": "Piano (3D)",
     "image": "/img/piano.png",
