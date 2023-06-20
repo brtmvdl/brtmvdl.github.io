@@ -1,7 +1,9 @@
+
 stages:          
   - deploy
 
 surge-deploy:
+  image: node:lts-alpine
   stage: deploy  
   script:
     - npx surge . 
