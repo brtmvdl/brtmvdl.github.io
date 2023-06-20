@@ -40,11 +40,11 @@ export default [
     "image": "/img/clock.png",
     "link": "/examples/clock/"
   },
-  {
-    "title": "Calc (3D)",
-    "image": "/img/calc.png",
-    "link": "/examples/calc/"
-  },
+  // {
+  //   "title": "Calc (3D)",
+  //   "image": "/img/calc.png",
+  //   "link": "/examples/calc/"
+  // },
   {
     "title": "Nume",
     "image": "/img/nume.png",
