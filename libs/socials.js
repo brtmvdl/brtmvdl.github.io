@@ -5,6 +5,11 @@ export default [
     "link": "https://github.com/brtmvdl?tab=repositories"
   },
   {
+    "title": "GitLab",
+    "image": "/img/gitlab.svg",
+    "link": "https://gitlab.com/brtmvdl?tab=repositories"
+  },
+  {
     "title": "Twitter",
     "image": "/img/twitter.svg",
     "link": "https://twitter.com/brtmvdl"
@@ -13,10 +18,5 @@ export default [
     "title": "Linkedin",
     "image": "/img/linkedin.svg",
     "link": "https://www.linkedin.com/in/brtmvdl"
-  },
-  {
-    "title": "Amazon",
-    "image": "/img/amazon.svg",
-    "link": "https://www.amazon.com.br/hz/wishlist/ls/QUI8HXVLO72H?ref_=wl_share"
-  },
+  }
 ]
