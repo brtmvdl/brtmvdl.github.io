@@ -18,7 +18,7 @@ export default [
   {
     "title": "Clock (3D)",
     "image": "/img/clock.png",
-    "link": "/examples/clock/",
+    "link": "/projects/clock/",
   },
   {
     "title": "Nume",
@@ -283,6 +283,6 @@ export default [
   // {
   //   "title": "Calc (3D)",
   //   "image": "/img/calc.png",
-  //   "link": "/examples/calc/",
+  //   "link": "/projects/calc/",
   // },
 ]
