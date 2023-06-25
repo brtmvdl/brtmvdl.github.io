@@ -11,11 +11,6 @@ export default [
     "link": "https://piano-brtmvdl.surge.sh/",
   },
   {
-    "title": "Nume",
-    "image": "/img/nume.png",
-    "link": "https://nume-brtmvdl.surge.sh/",
-  },
-  {
     "title": "Clock (3D)",
     "image": "/img/clock.png",
     "link": "/projects/clock/",
@@ -36,70 +31,70 @@ export default [
     "link": "https://marketplace.visualstudio.com/items?itemName=tmvdl.frontend-extension-pack-vsce",
   },
   {
-    "title": "Youtube Download (Docker)",
-    "image": "/img/yt-dl.png",
-    "link": "https://hub.docker.com/r/tmvdl/yt-dl",
+    "title": "Calc",
+    "image": "/img/calc.png",
+    "link": "/projects/calc/",
   },
-  {
-    "title": "Alpine (Docker)",
-    "image": "/img/docker-alpine.png",
-    "link": "https://hub.docker.com/r/tmvdl/alpine",
-  },
-  {
-    "title": "Android (Docker)",
-    "image": "/img/docker-android.png",
-    "link": "https://hub.docker.com/r/tmvdl/android",
-  },
-  {
-    "title": "Dart (Docker)",
-    "image": "/img/docker-dart.png",
-    "link": "https://hub.docker.com/r/tmvdl/dart",
-  },
-  {
-    "title": ".Net (Docker)",
-    "image": "/img/docker-dotnet.png",
-    "link": "https://hub.docker.com/r/tmvdl/dotnet",
-  },
-  {
-    "title": "Go (Docker)",
-    "image": "/img/docker-go.png",
-    "link": "https://hub.docker.com/r/tmvdl/go",
-  },
-  {
-    "title": "Java (Docker)",
-    "image": "/img/docker-java.png",
-    "link": "https://hub.docker.com/r/tmvdl/java",
-  },
-  {
-    "title": "Kotlin (Docker)",
-    "image": "/img/docker-kotlin.png",
-    "link": "https://hub.docker.com/r/tmvdl/kotlin",
-  },
-  {
-    "title": "Node.js (Docker)",
-    "image": "/img/docker-node.png",
-    "link": "https://hub.docker.com/r/tmvdl/node",
-  },
-  {
-    "title": "PHP (Docker)",
-    "image": "/img/docker-php.png",
-    "link": "https://hub.docker.com/r/tmvdl/php",
-  },
-  {
-    "title": "Python (Docker)",
-    "image": "/img/docker-python.png",
-    "link": "https://hub.docker.com/r/tmvdl/python",
-  },
-  {
-    "title": "Ruby (Docker)",
-    "image": "/img/docker-ruby.png",
-    "link": "https://hub.docker.com/r/tmvdl/ruby",
-  },
-  {
-    "title": "",
-    "image": "",
-    "link": "",
-  },
+  // {
+  //   "title": "Youtube Download (Docker)",
+  //   "image": "/img/yt-dl.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/yt-dl",
+  // },
+  // {
+  //   "title": "Alpine (Docker)",
+  //   "image": "/img/docker-alpine.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/alpine",
+  // },
+  // {
+  //   "title": "Android (Docker)",
+  //   "image": "/img/docker-android.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/android",
+  // },
+  // {
+  //   "title": "Dart (Docker)",
+  //   "image": "/img/docker-dart.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/dart",
+  // },
+  // {
+  //   "title": ".Net (Docker)",
+  //   "image": "/img/docker-dotnet.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/dotnet",
+  // },
+  // {
+  //   "title": "Go (Docker)",
+  //   "image": "/img/docker-go.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/go",
+  // },
+  // {
+  //   "title": "Java (Docker)",
+  //   "image": "/img/docker-java.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/java",
+  // },
+  // {
+  //   "title": "Kotlin (Docker)",
+  //   "image": "/img/docker-kotlin.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/kotlin",
+  // },
+  // {
+  //   "title": "Node.js (Docker)",
+  //   "image": "/img/docker-node.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/node",
+  // },
+  // {
+  //   "title": "PHP (Docker)",
+  //   "image": "/img/docker-php.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/php",
+  // },
+  // {
+  //   "title": "Python (Docker)",
+  //   "image": "/img/docker-python.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/python",
+  // },
+  // {
+  //   "title": "Ruby (Docker)",
+  //   "image": "/img/docker-ruby.png",
+  //   "link": "https://hub.docker.com/r/tmvdl/ruby",
+  // },
   // {
   //   "title": "Chalkboard",
   //   "image": "/img/chalkboard.png",
