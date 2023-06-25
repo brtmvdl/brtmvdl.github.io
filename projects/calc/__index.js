@@ -6,7 +6,6 @@ import { nButton } from '../../js/nElement/components/button.js'
 import { nFlex } from '../../js/nElement/components/flex.js'
 import { nH1 } from '../../js/nElement/components/h1.js'
 
-// import { Validator, Validation } from '../../libs/validator.js'
 import * as COLORS from '../../libs/colors.js'
 
 nElement.fromElement(document.body)
@@ -39,7 +38,6 @@ class nContainer extends nElement {
   }
 }
 
-
 class HeadCalc extends nContainer {
   domain = new nInputTextGroup
   hours = new nCounterGroup
@@ -56,23 +54,25 @@ class HeadCalc extends nContainer {
 
     const flex = new nFlex()
 
-    this.domain.setContainerStyle('width', '60%')
+    this.domain.setContainerStyle('width', '20rem')
 
     this.domain.label.setText('domain')
     this.domain.input.setPlaceholder('domain.com')
 
-    this.domain.input.setStyle('width', '80%')
+    this.domain.input.setStyle('width', '100%')
     this.domain.input.setStyle('padding', '0.5rem')
     this.domain.input.setStyle('border-radius', 'calc(1rem / 8)')
     this.domain.input.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
     flex.append(this.domain)
 
     this.hours.label.setText('$ / h')
+    this.hours.input.setStyle('width', '100%')
+    this.hours.setContainerStyle('width', '9rem')
     flex.append(this.hours)
 
     this.contract.label.setText('contract')
     this.contract.input.setStyle('width', '100%')
-    this.contract.input.setStyle('padding', '0.5rem 0rem')
+    this.contract.input.setStyle('padding', '0.5rem')
     this.contract.input.setStyle('background-color', COLORS.WHITE)
     this.contract.input.setStyle('border-radius', 'calc(1rem / 8)')
     this.contract.input.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
@@ -80,7 +80,7 @@ class HeadCalc extends nContainer {
     this.contract.input.addOption('03', '3 years')
     this.contract.input.addOption('05', '5 years')
     this.contract.input.addOption('10', '10 years')
-    this.contract.setContainerStyle('width', '20%')
+    this.contract.setContainerStyle('width', '9rem')
     flex.append(this.contract)
 
     this.append(flex)
