@@ -123,6 +123,14 @@ export class nElement {
     return this.element.innerText
   }
 
+  dispatchEvent(key, value = {}) {
+    const ev = new Event(key)
+    Object.keys(value).map((_key) => ev[_key] = value[_key])
+    this.element.dispatchEvent(ev)
+
+    return this
+  }
+
   on(name, value) {
     this.element.addEventListener(name, value.bind(this))
     return this
@@ -178,7 +186,7 @@ export class nH1 extends nElement {
     })
 
     this.setStyle('font-weight', 'bold')
-    this.setStyle('font-size', '3em')
+    this.setStyle('font-size', '3rem')
   }
 }
 
@@ -189,7 +197,7 @@ export class nH2 extends nElement {
     })
 
     this.setStyle('font-weight', 'bold')
-    this.setStyle('font-size', '2em')
+    this.setStyle('font-size', '2rem')
   }
 }
 
@@ -256,7 +264,7 @@ export class nButton extends nElement {
     this.setStyle('border', 'none')
     this.setStyle('font', 'inherit')
     this.setStyle('outline', 'none')
-    this.setStyle('padding', '1em')
+    this.setStyle('padding', '1rem')
     this.setStyle('cursor', 'pointer')
     this.setStyle('font-weight', 'bold')
   }
@@ -289,8 +297,6 @@ export class nFlex extends nElement {
     this.setStyle('justify-content', 'space-between')
   }
 
-  // flex-wrap: wrap;
-
   flexWrap(wrap = 'wrap') {
     this.setStyle('flex-wrap', wrap)
 
@@ -304,9 +310,9 @@ export class nLabel extends nElement {
       component: { name: 'label' },
     })
 
-    this.setStyle('margin-bottom', '0.5em')
-    this.setStyle('padding-top', '0.5em')
-    this.setStyle('padding-botton', '0.5em')
+    this.setStyle('margin-bottom', '0.5rem')
+    this.setStyle('padding-top', '0.5rem')
+    this.setStyle('padding-botton', '0.5rem')
   }
 }
 
@@ -365,7 +371,7 @@ export class nInputText extends Valuable {
     this.setContainerStyle('width', '100%')
 
     this.setStyle('font', 'inherit')
-    this.setStyle('padding', '0.5em')
+    this.setStyle('padding', '0.5rem 0rem')
     this.setStyle('width', '100%')
   }
 }
@@ -379,7 +385,7 @@ export class nInputNumber extends Valuable {
 
     this.setAttr('type', 'number')
     this.setStyle('font', 'inherit')
-    this.setStyle('padding', '0.5em')
+    this.setStyle('padding', '0.5rem')
   }
 }
 
@@ -412,12 +418,12 @@ export class nInputDate extends nElement {
   makeSeparator(text) {
     const sep = new nText()
 
-    sep.setContainerStyle('width', '1em')
-    sep.setStyle('width', '1em')
+    sep.setContainerStyle('width', '1rem')
+    sep.setStyle('width', '1rem')
 
     sep.setStyle('text-align', 'center')
-    sep.setStyle('padding-top', '0.5em')
-    sep.setStyle('padding-botton', '0.5em')
+    sep.setStyle('padding-top', '0.5rem')
+    sep.setStyle('padding-botton', '0.5rem')
 
     sep.setText(text)
 
@@ -457,12 +463,12 @@ export class nInputTime extends nElement {
     const sep = new nElement()
     sep.setText(':')
 
-    sep.setContainerStyle('width', '1em')
+    sep.setContainerStyle('width', '1rem')
 
-    sep.setStyle('padding-botton', '0.5em')
-    sep.setStyle('padding-top', '0.5em')
+    sep.setStyle('padding-botton', '0.5rem')
+    sep.setStyle('padding-top', '0.5rem')
     sep.setStyle('text-align', 'center')
-    sep.setStyle('width', '1em')
+    sep.setStyle('width', '1rem')
     this.flex.append(sep)
 
     this.flex.append(this.makeInput(this.minutes))
@@ -497,8 +503,8 @@ export class nError extends nElement {
     })
 
     this.setStyle('color', 'red')
-    this.setStyle('padding-top', '0.5em')
-    this.setStyle('padding-botton', '0.5em')
+    this.setStyle('padding-top', '0.5rem')
+    this.setStyle('padding-botton', '0.5rem')
   }
 }
 
@@ -507,7 +513,7 @@ export class nCenter extends nElement {
     super({ component: { name: 'center' } })
 
     this.setStyle('margin', '0 auto')
-    this.setStyle('width', '42em')
+    this.setStyle('width', '42rem')
   }
 }
 
@@ -527,11 +533,13 @@ export class nInputTextGroup extends nElement {
     this.append(this.label)
 
     this.input.setAttr('id', id)
-    // this.input.setContainerStyle('width', '100%')
-    // this.input.setStyle('width', '100%')
     this.append(this.input)
 
     this.append(this.error)
+  }
+
+  getValue() {
+    return this.input.getValue()
   }
 }
 
@@ -543,7 +551,7 @@ export class nHR extends nElement {
     })
 
     this.setStyle('border-bottom', '1px solid #000000')
-    this.setStyle('margin', '1em 0em 0em')
+    this.setStyle('margin', '1rem 0rem 0rem')
   }
 }
 
@@ -687,7 +695,7 @@ export class nSelect extends Valuable {
 
 export class nSelectGroup extends Valuable {
   label = new nLabel
-  select = new nSelect
+  input = new nSelect
   error = new nError
 
   constructor() {
@@ -702,8 +710,8 @@ export class nSelectGroup extends Valuable {
     this.label.setAttr('for', id)
     this.append(this.label)
 
-    this.select.setAttr('id', id)
-    this.append(this.select)
+    this.input.setAttr('id', id)
+    this.append(this.input)
 
     this.append(this.error)
   }
