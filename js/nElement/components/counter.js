@@ -19,7 +19,6 @@ export class nCounter extends nElement {
     const flex = new nFlex
     flex.setStyle('border-radius', 'calc(1rem / 8)')
     flex.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
-    flex.setStyle('width', '60%')
 
     this.minus.setText('-')
     this.minus.setStyle('padding', '0.5rem')
