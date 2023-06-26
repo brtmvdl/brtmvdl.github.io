@@ -6,10 +6,13 @@ import { nButton } from '../../js/nElement/components/button.js'
 import { nFlex } from '../../js/nElement/components/flex.js'
 import { nH1 } from '../../js/nElement/components/h1.js'
 
+import { Validation, Validator } from '../../libs/validations/index.js'
+
 import * as COLORS from '../../libs/colors.js'
 
 nElement.fromElement(document.body)
   .setStyle('margin', '0rem')
+  .setStyle('font-family', 'sans-serif')
 
 class TopCalc extends nElement {
   constructor() {
@@ -110,20 +113,13 @@ class HeadCalc extends nContainer {
         .catch((errors) => {
           console.log({ errors })
           //
-          this.hours.setError(errors.get('gain'), { text: false })
-          this.domain.setError(errors.get('domain'), { text: false })
-          this.contract.setError(errors.get('contract'), { text: false })
+          this.hours.setError(errors.getError('gain'), { text: false })
+          this.domain.setError(errors.getError('domain'), { text: false })
+          this.contract.setError(errors.getError('contract'), { text: false })
         })
     })
     //
     this.append(this.button)
-  }
-
-  addProject({ domain, gain, contract }) {
-    return this.dispatchEvent(
-      'addproject',
-      { domain, gain, contract }
-    )
   }
 }
 
