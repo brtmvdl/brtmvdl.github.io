@@ -1,4 +1,5 @@
-import { nElement, nH2, nHR, nLink, nImage } from './nElement.js'
+import { nElement } from './nElement/index.js'
+import { nH2, nHR, nLink, nImage } from './nElement/components/index.js'
 import months from '../libs/months.js'
 
 export class Experience {

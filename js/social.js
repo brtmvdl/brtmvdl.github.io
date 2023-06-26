@@ -1,4 +1,5 @@
-import { nElement, nImage, nLink } from './nElement.js'
+import { nElement } from './nElement/index.js'
+import { nImage, nLink } from './nElement/components/index.js'
 
 export class Social {
   title = ''
