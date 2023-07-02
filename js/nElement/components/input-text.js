@@ -8,12 +8,7 @@ export class nInputText extends Valuable {
     })
 
     this.setAttr('type', 'text')
-
-    this.setContainerStyle('display', 'inline-block')
-    this.setContainerStyle('width', '100%')
-
     this.setStyle('font', 'inherit')
-    this.setStyle('padding', '0.5rem 0rem')
-    this.setStyle('width', '100%')
+    this.setStyle('padding', '0.5rem')
   }
 }
