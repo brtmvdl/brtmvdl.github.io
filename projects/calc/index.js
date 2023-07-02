@@ -1,4 +1,5 @@
-import { nButton, nElement, nFlex, nH1, nInputTextGroup, nSelectGroup } from '../../js/nElement/index.js'
+import { nElement } from '../../js/nElement/index.js'
+import { nButton, nFlex, nH1, nInputTextGroup, nSelectGroup } from '../../js/nElement/components/index.js'
 import * as COLORS from '../../libs/colors.js'
 
 nElement.fromElement(document.body)
@@ -167,12 +168,12 @@ class Page {
 
     const contract = new nSelectGroup()
     contract.label.setText('Contract:')
-    contract.select.setStyle('padding', '1em 0em')
-    contract.select.setStyle('background-color', COLORS.WHITE)
-    contract.select.addOption('01', periods['01'])
-    contract.select.addOption('03', periods['03'])
-    contract.select.addOption('05', periods['05'])
-    contract.select.addOption('10', periods['10'])
+    contract.input.setStyle('padding', '1em 0em')
+    contract.input.setStyle('background-color', COLORS.WHITE)
+    contract.input.addOption('01', periods['01'])
+    contract.input.addOption('03', periods['03'])
+    contract.input.addOption('05', periods['05'])
+    contract.input.addOption('10', periods['10'])
     flex.append(contract)
 
     const button = new nButton()
@@ -186,7 +187,7 @@ class Page {
 
       const project = new Project({
         domain: domain.input.getValue(),
-        contract: +contract.select.getValue(),
+        contract: +contract.input.getValue(),
       })
 
       if (project.isValid()) {
@@ -194,7 +195,7 @@ class Page {
         this.updateProjects()
 
         domain.input.setValue('')
-        contract.select.setValue('01')
+        contract.input.setValue('01')
       } else {
         const errors = project.getErrors()
 
