@@ -1,5 +1,3 @@
-FROM nginx:stable
+FROM nginx:stable-alpine
 
-WORKDIR /usr/share/nginx/html
-
-COPY . .
+COPY . /usr/share/nginx/html
