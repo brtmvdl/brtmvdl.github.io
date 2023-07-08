@@ -25,6 +25,7 @@ header.append(title)
 const body = new nElement()
 body.setStyle('margin', '1rem auto')
 body.setStyle('padding', '0rem 1rem')
+body.setStyle('max-width', '60rem')
 app.append(body)
 
 const socialsEl = new nFlex()
