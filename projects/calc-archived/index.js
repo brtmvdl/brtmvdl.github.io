@@ -1,5 +1,4 @@
-import { nElement } from '../../js/nElement/index.js'
-import { nButton, nFlex, nH1, nInputTextGroup, nSelectGroup } from '../../js/nElement/components/index.js'
+import { nElement,nButton, nFlex, nH1, nInputTextGroup, nSelectGroup } from '../../js/nElement/index.js'
 import * as COLORS from '../../libs/colors.js'
 
 nElement.fromElement(document.body)
@@ -8,8 +7,8 @@ nElement.fromElement(document.body)
 const app = nElement.fromId('app')
 
 const header = new nElement()
-header.setStyle('background-color', COLORS.BLACK)
-header.setStyle('color', COLORS.WHITE)
+header.setStyle('background-color', COLORS.BLACK_1)
+header.setStyle('color', COLORS.WHITE_1)
 header.setStyle('padding', '1rem')
 app.append(header)
 
@@ -22,60 +21,6 @@ const body = new nElement()
 body.setStyle('margin', '1rem auto')
 body.setStyle('width', '40rem')
 app.append(body)
-
-// const projects = [
-// ]
-
-// const projectsEl = new nElement()
-// body.append(projectsEl)
-
-// const updateProjects = () => {
-//   projectsEl.clear()
-
-//   if (projects.length > 0) {
-//     projects.map((p, ix) => {
-//       const proj = new nElement()
-//       proj.setStyle('box-shadow', ['0em', '0em', '0em', 'calc(1em / 8)', COLORS.BLACK].join(' '))
-//       proj.setStyle('margin', '1em 0em')
-//       proj.setStyle('padding', '1em')
-
-//       const projHeader = new nFlex()
-//       proj.append(projHeader)
-
-//       const projTitle = new nElement()
-//       projTitle.setText(`${p.domain} - ${periods[p.period]}`)
-//       projHeader.append(projTitle)
-
-//       const projDelete = new nElement()
-//       projDelete.setText('delete')
-//       projDelete.setStyle('color', COLORS.RED)
-//       projDelete.setStyle('cursor', 'pointer')
-//       projDelete.on('click', () => {
-//         const projs = projects.filter((_, pIx) => pIx != ix)
-//         while (projects.length > 0) projects.pop()
-//         projs.map((p) => projects.push(p))
-
-//         updateProjects()
-//       })
-//       projHeader.append(projDelete)
-
-//       const projBody = new nElement()
-//       proj.append(projBody)
-
-//       projectsEl.append(proj)
-//     })
-//   } else {
-//     const noProjectst = new nElement()
-//     noProjectst.setText('no projects')
-//     noProjectst.setStyle('padding', '1em 0em')
-//     noProjectst.setStyle('text-align', 'center')
-//     projectsEl.append(noProjectst)
-//   }
-// }
-
-// updateProjects(projects)
-
-// // // //
 
 class Service {
   name = ''
@@ -160,27 +105,27 @@ class Page {
 
     const domain = new nInputTextGroup()
     domain.setContainerStyle('width', '80%')
-    domain.label.setText('Domain:')
-    domain.input.setPlaceholder('domain.com')
-    domain.input.setStyle('padding', '1em 0em')
-    domain.error.setStyle('padding', '1em 0em')
+    domain.children.label.setText('Domain:')
+    domain.children.input.setPlaceholder('domain.com')
+    domain.children.input.setStyle('padding', '1em 0em')
+    domain.children.error.setStyle('padding', '1em 0em')
     flex.append(domain)
 
     const contract = new nSelectGroup()
-    contract.label.setText('Contract:')
-    contract.input.setStyle('padding', '1em 0em')
-    contract.input.setStyle('background-color', COLORS.WHITE)
-    contract.input.addOption('01', periods['01'])
-    contract.input.addOption('03', periods['03'])
-    contract.input.addOption('05', periods['05'])
-    contract.input.addOption('10', periods['10'])
+    contract.children.label.setText('Contract:')
+    contract.children.select.setStyle('padding', '1em 0em')
+    contract.children.select.setStyle('background-color', COLORS.WHITE_1)
+    contract.children.select.addOption('01', periods['01'])
+    contract.children.select.addOption('03', periods['03'])
+    contract.children.select.addOption('05', periods['05'])
+    contract.children.select.addOption('10', periods['10'])
     flex.append(contract)
 
     const button = new nButton()
     button.setStyle('width', '100%')
     button.setStyle('border-radius', 'calc(1em / 4)')
-    button.setStyle('background-color', COLORS.BLACK)
-    button.setStyle('color', COLORS.WHITE)
+    button.setStyle('background-color', COLORS.BLACK_1)
+    button.setStyle('color', COLORS.WHITE_1)
     button.setText('add project')
     button.on('click', () => {
       domain.error.setText('')
