@@ -1,4 +1,4 @@
-import { nComponent, nElement } from '../nElement.js'
+import { nComponent } from '../nElement.js'
 import { FormComponent } from './form.js'
 import { ProjectsComponent } from './projects.js'
 
@@ -27,7 +27,8 @@ export class BodyComponent extends nComponent {
   }
 
   getForm() {
-    return this.children.form.on('createproject', ({ value }) => this.onCreateProject(value))
+    this.children.form.on('createproject', ({ value }) => this.onCreateProject(value))
+    return this.children.form
   }
 
   getProjects() {
