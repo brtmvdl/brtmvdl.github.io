@@ -1,4 +1,4 @@
-import { nElement } from '../../../js/nElement/index.js'
+import { nElement } from '../nElement.js'
 import { FormComponent } from './form.js'
 import { ProjectsComponent } from './projects.js'
 
@@ -9,7 +9,7 @@ export class BodyComponent extends nElement {
   }
 
   getName() {
-    return 'body'
+    return 'body-component'
   }
 
   onCreate() {
