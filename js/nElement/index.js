@@ -18,7 +18,7 @@ export class nElement {
   }
 
   getVersion() {
-    return this.version = '1.0.0-alpha.20230709'
+    return this.version = '1.0.0-alpha.20230718'
   }
 
   getTagName() {
@@ -36,11 +36,6 @@ export class nElement {
   //
 
   onCreate() {
-    this.setStyle('margin', '0')
-    this.setStyle('padding', '0')
-    this.setStyle('outline', 'none')
-    this.setStyle('border', 'none')
-    this.setStyle('box-sizing', 'border-box')
   }
 
   static fromElement(el = document.createElement('')) {
@@ -84,31 +79,31 @@ export class nElement {
     return this
   }
 
-  setContainerStyle(name, value) {
-    this.container.style[name] = value
+  setContainerStyle(key, value) {
+    this.container.style[key] = value
     return this
   }
 
-  getContainerStyle(name) {
-    return this.container.style[name]
+  getContainerStyle(key) {
+    return this.container.style[key]
   }
 
-  setStyle(name, value) {
-    this.element.style[name] = value
+  setStyle(key, value = '') {
+    this.element.style[key] = value
     return this
   }
 
-  getStyle(name) {
-    return this.element.style[name]
+  getStyle(key) {
+    return this.element.style[key]
   }
 
-  setAttr(name, value) {
-    this.element.setAttribute(name, value)
+  setAttr(key, value) {
+    this.element.setAttribute(key, value)
     return this
   }
 
-  getAttr(name) {
-    return this.element.getAttribute(name)
+  getAttr(key) {
+    return this.element.getAttribute(key)
   }
 
   setText(value) {
@@ -120,23 +115,34 @@ export class nElement {
     return this.element.innerText
   }
 
-  on(name, value) {
-    this.element.addEventListener(name, value.bind(this))
+  on(key, value) {
+    this.element.addEventListener(key, value.bind(this))
     return this
   }
 
-  once(name, value) {
-    this.element.addEventListener(name, value.bind(this), { once: true })
+  once(key, value) {
+    this.element.addEventListener(key, value.bind(this), { once: true })
     return this
   }
 
-  setData(name, value) {
-    this.element.dataset[name] = value
+  dispatch(ev = new Event('')) {
+    this.element.dispatchEvent(ev)
     return this
   }
 
-  getData(name) {
-    return this.element.dataset[name]
+  dispatchEvent(key, value = {}) {
+    const ev = new Event(key)
+    ev.value = value
+    return this.dispatch(ev)
+  }
+
+  setData(key, value) {
+    this.element.dataset[key] = value
+    return this
+  }
+
+  getData(key) {
+    return this.element.dataset[key]
   }
 
   clear() {
@@ -149,17 +155,16 @@ export class nElement {
 
   addData(key, value = '') {
     this.element.dataset[key] = value
-
     return this
   }
 
   append(el = new nElement()) {
     el.onCreate()
-    this.element.append(el.onRender())
+    this.element.append(el.render())
     return this
   }
 
-  onRender() {
+  render() {
     if (this.hasContainer()) {
       this.container.append(this.element)
       return this.container
@@ -607,6 +612,41 @@ export class nInput extends nElement {
   getTagName() {
     return 'input'
   }
+
+  onCreate() {
+    super.onCreate()
+
+    this.setContainerStyle('display', 'inline-block')
+    this.setStyle('display', 'inline-block')
+  }
+
+  setValue(value = '') {
+    return this.setData('value', this.element.value = value)
+  }
+
+  getValue(def = '') {
+    return this.element.value || def
+  }
+
+  setPlaceholder(value = '') {
+    return this.setData('placeholder', this.element.placeholder = value)
+  }
+
+  getPlaceholder(def = '') {
+    return this.getData('placeholder', this.element.placeholder || def)
+  }
+}
+
+export class nInputNumber extends nInput {
+  getName() {
+    return 'input-number'
+  }
+
+  onCreate() {
+    super.onCreate()
+
+    this.setAttr('type', 'number')
+  }
 }
 
 export class nIns extends nElement {
@@ -759,13 +799,17 @@ export class nOptGroup extends nElement {
   }
 }
 
-export class nOption extends nElement {
+export class nOption extends nInput {
   getName() {
     return 'option'
   }
 
   getTagName() {
     return 'option'
+  }
+
+  hasContainer() {
+    return false
   }
 }
 
@@ -859,13 +903,20 @@ export class nSection extends nElement {
   }
 }
 
-export class nSelect extends nElement {
+export class nSelect extends nInput {
   getName() {
     return 'select'
   }
 
   getTagName() {
     return 'select'
+  }
+
+  addOption(key, value = '') {
+    const option = new nOption()
+    option.setValue(key)
+    option.setText(value)
+    return this.append(option)
   }
 }
 
@@ -896,6 +947,10 @@ export class nSpan extends nElement {
 
   getTagName() {
     return 'span'
+  }
+
+  hasContainer() {
+    return false
   }
 }
 
@@ -977,6 +1032,10 @@ export class nTbody extends nElement {
   getTagName() {
     return 'tbody'
   }
+
+  hasContainer() {
+    return false
+  }
 }
 
 export class nTd extends nElement {
@@ -986,6 +1045,10 @@ export class nTd extends nElement {
 
   getTagName() {
     return 'td'
+  }
+
+  hasContainer() {
+    return false
   }
 }
 
@@ -1017,6 +1080,10 @@ export class nTFoot extends nElement {
   getTagName() {
     return 'tfoot'
   }
+
+  hasContainer() {
+    return false
+  }
 }
 
 export class nTh extends nElement {
@@ -1027,6 +1094,10 @@ export class nTh extends nElement {
   getTagName() {
     return 'th'
   }
+
+  hasContainer() {
+    return false
+  }
 }
 
 export class nTHead extends nElement {
@@ -1036,6 +1107,10 @@ export class nTHead extends nElement {
 
   getTagName() {
     return 'thead'
+  }
+
+  hasContainer() {
+    return false
   }
 }
 
@@ -1066,6 +1141,10 @@ export class nTr extends nElement {
 
   getTagName() {
     return 'tr'
+  }
+
+  hasContainer() {
+    return false
   }
 }
 
@@ -1116,6 +1195,112 @@ export class nVideo extends nElement {
 
   getTagName() {
     return 'video'
+  }
+}
+
+//
+// Styleds
+//
+
+export class nFlex extends nElement {
+  getName() {
+    return 'flex'
+  }
+
+  constructor() {
+    super()
+
+    this.setStyle('display', 'flex')
+    this.spaceBetween()
+  }
+
+  spaceBetween() {
+    return this.setStyle('justify-content', 'space-between')
+  }
+
+  append(el = new nElement()) {
+    return super.append(el)
+  }
+}
+
+export class nError extends nElement {
+  getName() {
+    return 'error'
+  }
+
+  constructor() {
+    super()
+
+    this.setStyle('color', 'red')
+  }
+}
+
+//
+// Components
+//
+
+export class nComponent extends nElement {
+  children = {}
+}
+
+export class nInputTextGroup extends nComponent {
+  children = {
+    label: new nLabel(),
+    input: new nInput(),
+    error: new nError(),
+  }
+
+  getName() {
+    return 'input-text-group'
+  }
+
+
+  onCreate() {
+    this.append(this.getLabel())
+    this.append(this.getInput())
+    this.append(this.getError())
+  }
+
+  getLabel() {
+    return this.children.label
+  }
+
+  getInput() {
+    return this.children.input
+  }
+
+  getError() {
+    return this.children.error
+  }
+}
+
+export class nSelectGroup extends nComponent {
+  children = {
+    label: new nLabel(),
+    select: new nSelect(),
+    error: new nError(),
+  }
+
+  getName() {
+    return 'select-group'
+  }
+
+  onCreate() {
+    this.append(this.getLabel())
+    this.append(this.getSelect())
+    this.append(this.getError())
+  }
+
+  getLabel() {
+    return this.children.label
+  }
+
+  getSelect() {
+    return this.children.select
+  }
+
+  getError() {
+    return this.children.error
   }
 }
 
