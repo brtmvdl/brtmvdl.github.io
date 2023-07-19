@@ -13,6 +13,7 @@ export class HeadComponent extends nElement {
 
     this.setStyle('background-color', COLORS.BLACK_1)
     this.setStyle('color', COLORS.WHITE_1)
+    this.setStyle('margin-bottom', '1rem')
     this.setStyle('text-align', 'center')
     this.setStyle('padding', '1rem')
   }
