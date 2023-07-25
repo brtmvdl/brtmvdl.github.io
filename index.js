@@ -1,5 +1,4 @@
-import { nElement } from './js/nElement/index.js'
-import { nFlex, nH1 } from './js/nElement/components/index.js'
+import { nElement, nFlex, nH1 } from './js/nelement/index.js'
 import { Experience } from './js/experience.js'
 import { Social } from './js/social.js'
 
