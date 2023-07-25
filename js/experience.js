@@ -1,5 +1,4 @@
-import { nElement } from './nElement/index.js'
-import { nH2, nHR, nLink, nImage } from './nElement/components/index.js'
+import { nElement, nH2, nHr, nLink, nImage } from './nelement/index.js'
 import months from '../libs/months.js'
 
 export class Experience {
@@ -50,7 +49,7 @@ export class Experience {
       xpEl.append(dateEl)
     }
 
-    xpEl.append(new nHR())
+    xpEl.append(new nHr())
 
     return xpEl
   }
