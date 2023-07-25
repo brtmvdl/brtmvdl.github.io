@@ -1,4 +1,4 @@
-import { nElement,nButton, nFlex, nH1, nInputTextGroup, nSelectGroup } from '../../js/nElement/index.js'
+import { nElement,nButton, nFlex, nH1, nInputTextGroup, nSelectGroup } from '../../js/nelement/index.js'
 import * as COLORS from '../../libs/colors.js'
 
 nElement.fromElement(document.body)

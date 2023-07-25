@@ -1,4 +1,4 @@
-import { nElement } from '../nElement.js'
+import { nElement } from '../../../js/nelement/index.js'
 import * as COLORS from '../../../libs/colors.js'
 
 export class HeadComponent extends nElement {

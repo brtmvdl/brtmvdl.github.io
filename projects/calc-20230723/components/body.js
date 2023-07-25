@@ -1,4 +1,4 @@
-import { nComponent } from '../nElement.js'
+import { nComponent } from '../../../js/nelement/index.js'
 import { FormComponent } from './form.js'
 import { ProjectsComponent } from './projects.js'
 

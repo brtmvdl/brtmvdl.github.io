@@ -1,4 +1,4 @@
-import { nElement } from './nElement.js'
+import { nElement } from '../../js/nelement/index.js'
 import { HeadComponent } from './components/head.js'
 import { BodyComponent } from './components/body.js'
 

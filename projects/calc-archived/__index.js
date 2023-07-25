@@ -1,11 +1,4 @@
-import { nElement } from '../../js/nElement/index.js'
-import { nInputTextGroup } from '../../js/nElement/components/input-text-group.js'
-import { nCounterGroup } from '../../js/nElement/components/counter-group.js'
-import { nSelectGroup } from '../../js/nElement/components/select-group.js'
-import { nButton } from '../../js/nElement/components/button.js'
-import { nFlex } from '../../js/nElement/components/flex.js'
-import { nH1 } from '../../js/nElement/components/h1.js'
-
+import { nElement, nInputTextGroup, nCounterGroup, nSelectGroup, nButton, nFlex, nH1 } from '../../js/nelement/index.js'
 import { Validation, Validator } from '../../libs/validations/index.js'
 
 import * as COLORS from '../../libs/colors.js'

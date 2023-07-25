@@ -1,5 +1,8 @@
-import { nButton, nComponent, nFlex, nInputTextGroup, nSelectGroup } from '../nElement.js'
+import { nButton, nComponent, nFlex, nInputTextGroup, nSelectGroup } from '../../../js/nelement/index.js'
 import * as COLORS from '../../../libs/colors.js'
+
+import { Validator } from '../utils/validator.js'
+import * as Validation from '../utils/validation.js'
 
 export class FormComponent extends nComponent {
   children = {
@@ -53,12 +56,45 @@ export class FormComponent extends nComponent {
     return this.children.contract
   }
 
+  isValid({
+    domain = '',
+    contract = '',
+  } = {}) {
+    const domainRegExp = new RegExp('[a-z]\.(com|net.org)(\.br)?')
+    const isDomainValid = domainRegExp.test(domain)
+
+    const isContractValid = true
+
+    return isDomainValid && isContractValid
+  }
+
   getButton() {
     this.children.button.on('click', () => {
       const domain = this.children.domain.children.input.getValue()
       const contract = this.children.contract.children.select.getValue()
 
-      this.dispatchEvent('createproject', { domain, contract })
+      const validation = new Validator()
+      validation.addField('domain', domain, [Validation.required()])
+      validation.addField('contract', contract, [Validation.required()])
+
+      if (validation.isAllValid()) {
+        this.dispatchEvent('createproject', { domain, contract })
+
+        this.children.domain.children.input.setValue('')
+
+        this.children.contract.children.select.setValue('01')
+
+      } else {
+        if (!validation.isValid('domain')) {
+          console.log('domain', { domain })
+          // this.children.domain.children.input.setValue('')
+        }
+
+        if (!validation.isValid('contract')) {
+          console.log('contract', { contract })
+          // this.children.contract.children.select.setValue('01')
+        }
+      }
     })
 
     this.children.button.setStyle('background-color', COLORS.BLACK_1)
