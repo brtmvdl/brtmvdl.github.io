@@ -1,1 +1,1 @@
-npm i -D live-server
+docker-compose run $@ npm i
