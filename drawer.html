@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawer</title>
+</head>
+
+<body>
+  <script type="module">
+    const _ = {
+      getWidth: () => 480,
+      getHeight: () => _.getWidth() / 2,
+    }
+
+    const canvas = document.createElement('canvas')
+    canvas.width = _.getWidth()
+    canvas.height = _.getHeight()
+    canvas.style.width = _.getWidth()
+    canvas.style.height = _.getHeight()
+    canvas.style.boxShadow = '0rem 0rem 0rem calc(1rem / 8) #000000'
+    document.body.append(canvas)
+
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = '#000000'
+    ctx.fillRect(0, 0, _.getWidth(), _.getHeight())
+
+    Array.from(Array(_.getHeight() / 10)).map((___, ixH) => {
+      Array.from(Array(_.getWidth() / 10)).map((___, ixW) => {
+        ctx.beginPath()
+        ctx.fillStyle = '#333333'
+
+        ctx.moveTo(
+          ((1 + ixW) * 10),
+          ((1 + ixH) * 10),
+        )
+        ctx.lineTo(
+          ((0 + ixW) * 10),
+          ((0 + ixH) * 10),
+        )
+        ctx.fill()
+
+        ctx.closePath()
+      })
+    })
+
+    const fontSize = 128
+
+    ctx.font = `${fontSize}px sans-serif`
+    ctx.textAlign = 'center'
+    ctx.strokeStyle = '#ffffff'
+    ctx.strokeText('brtmvdl', _.getWidth() / 2, (_.getHeight() / 2) + 40)
+
+    console.log({ ctx })
+
+  </script>
+</body>
+
+</html>
