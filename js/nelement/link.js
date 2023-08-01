@@ -1,5 +1,4 @@
 import { nElement } from './nElement.js'
-import * as COLORS from './utils/colors.js'
 
 export class nLink extends nElement {
   getName() {
@@ -15,7 +14,7 @@ export class nLink extends nElement {
   }
 
   setStyles() {
-    this.setStyle('color', COLORS.WHITE_1)
+    this.setStyle('color', 'inherit')
     this.setStyle('text-decoration', 'none')
   }
 

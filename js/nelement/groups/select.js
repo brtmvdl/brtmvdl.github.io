@@ -1,6 +1,7 @@
-import { nElement, nLabel, nSelect, nError } from '../index.js'
+import { nLabel, nSelect, nError } from '../index.js'
+import { nGroup } from './group.js'
 
-export class nSelectGroup extends nElement {
+export class nSelectGroup extends nGroup {
   children = {
     label: new nLabel(),
     select: new nSelect(),
@@ -27,17 +28,5 @@ export class nSelectGroup extends nElement {
 
   getError() {
     return this.children.error
-  }
-
-  setError(error = '') {
-    this.children.error.setText(error)
-    this.children.select.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) red')
-    return this
-  }
-
-  clearError() {
-    this.children.error.setText('')
-    this.children.select.setStyle('box-shadow', 'none')
-    return this
   }
 }
