@@ -1,12 +1,13 @@
-import { nElement, nFlex, nLink } from '../nelement/index.js'
-import * as COLORS from '../nelement/utils/colors.js'
+import { nElement } from '../../nelement/index.js'
+import * as COLORS from '../../nelement/utils/colors.js'
 
-import { nUncontaineredLink } from '../../js/components/uncontainered-link.js'
+import { nUncontaineredLink } from '../../components/uncontainered-link.js'
 
 export class TopMenu extends nElement {
   children = {
     para_voce: new nUncontaineredLink(),
     para_empresas: new nUncontaineredLink(),
+    para_desenvolvedores: new nUncontaineredLink(),
     monte_o_seu: new nUncontaineredLink(),
     sob_demanda: new nUncontaineredLink(),
   }
@@ -15,6 +16,7 @@ export class TopMenu extends nElement {
     this.setStyles()
     this.append(this.getParaVoceLink())
     this.append(this.getParaEmpresasLink())
+    this.append(this.getParaDesenvolvedoresLink())
     this.append(this.getMonteOSeuLink())
     this.append(this.getSobDemandaLink())
   }
@@ -41,6 +43,14 @@ export class TopMenu extends nElement {
     this.children.para_empresas.setStyle('margin-right', '1rem')
 
     return this.children.para_empresas
+  }
+
+  getParaDesenvolvedoresLink() {
+    this.children.para_desenvolvedores.setText('Para Desenvolvedores')
+
+    this.children.para_desenvolvedores.setStyle('margin-right', '1rem')
+
+    return this.children.para_desenvolvedores
   }
 
   getMonteOSeuLink() {
