@@ -1,7 +1,7 @@
 import { nElement } from '../js/nelement/index.js'
 
-import { TopMenu } from '../js/libs/top-menu.js'
-import { ParaVoceMenu } from '../js/libs/para-voce-menu.js'
+import { TopMenu } from '../js/libs/menu/top.js'
+import { ParaVoceMenu } from '../js/libs/menu/para-voce.js'
 
 export class Page extends nElement {
   children = {
