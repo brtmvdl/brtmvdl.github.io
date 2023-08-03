@@ -1,17 +1,9 @@
-const PARAVOCE = '/para-voce/'
-const PARAVOCE_ = '/para-voce/'
-const PARAEMPRESAS = '/para-empresas/'
-const PARADESENVOLVEDORES = '/para-desenvolvedores/'
-const MONTEOSEU = '/monte-o-seu/'
-const SOBDEMANDA = '/sob-demanda/'
 
-export default {
-  URLS: {
-    PARAVOCE,
-    PARAVOCE_,
-    PARAEMPRESAS,
-    PARADESENVOLVEDORES,
-    MONTEOSEU,
-    SOBDEMANDA,
-  }
+export const URLS = {
+  PARAVOCE: '/para-voce/',
+  PARAVOCE_CURSOS: '/para-voce/cursos/',
+  PARAEMPRESAS: '/para-empresas/',
+  PARADESENVOLVEDORES: '/para-desenvolvedores/',
+  MONTEOSEU: '/monte-o-seu/',
+  SOBDEMANDA: '/sob-demanda/',
 }
