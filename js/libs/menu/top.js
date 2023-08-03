@@ -1,7 +1,9 @@
-import { nElement } from '../../nelement/index.js'
+import { nElement, nLink } from '../../nelement/index.js'
 import * as COLORS from '../../nelement/utils/colors.js'
 
 import { nUncontaineredLink } from '../../components/uncontainered-link.js'
+
+import { URLS } from '../../utils/constants.js'
 
 export class TopMenu extends nElement {
   children = {
@@ -29,43 +31,50 @@ export class TopMenu extends nElement {
     this.setStyle('width', '80rem')
   }
 
+  createLink(chid = new nLink(), text = '', href = '') {
+    chid.setStyle('margin-right', '1rem')
+    chid.setText(text)
+    chid.href(href)
+    return chid
+  }
+
   getParaVoceLink() {
-    this.children.para_voce.setText('Para você')
-
-    this.children.para_voce.setStyle('margin-right', '1rem')
-
-    return this.children.para_voce
+    return this.createLink(
+      this.children.para_voce,
+      'Para você',
+      URLS.PARAVOCE,
+    )
   }
 
   getParaEmpresasLink() {
-    this.children.para_empresas.setText('Para Empresas')
-
-    this.children.para_empresas.setStyle('margin-right', '1rem')
-
-    return this.children.para_empresas
+    return this.createLink(
+      this.children.para_empresas,
+      'Para Empresas',
+      URLS.PARAEMPRESAS,
+    )
   }
 
   getParaDesenvolvedoresLink() {
-    this.children.para_desenvolvedores.setText('Para Desenvolvedores')
-
-    this.children.para_desenvolvedores.setStyle('margin-right', '1rem')
-
-    return this.children.para_desenvolvedores
+    return this.createLink(
+      this.children.para_desenvolvedores,
+      'Para Desenvolvedores',
+      URLS.PARADESENVOLVEDORES,
+    )
   }
 
   getMonteOSeuLink() {
-    this.children.monte_o_seu.setText('Monte o seu')
-
-    this.children.monte_o_seu.setStyle('margin-right', '1rem')
-
-    return this.children.monte_o_seu
+    return this.createLink(
+      this.children.monte_o_seu,
+      'Monte o seu',
+      URLS.MONTEOSEU,
+    )
   }
 
   getSobDemandaLink() {
-    this.children.sob_demanda.setText('Sob Demanda')
-
-    this.children.sob_demanda.setStyle('margin-right', '1rem')
-
-    return this.children.sob_demanda
+    return this.createLink(
+      this.children.sob_demanda,
+      'Sob Demanda',
+      URLS.SOBDEMANDA,
+    )
   }
 }

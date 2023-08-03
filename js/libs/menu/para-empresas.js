@@ -1,7 +1,7 @@
 import { nElement, nFlex, nImage, nLink } from '../../nelement/index.js'
-import { URLS } from '../../utils/constants.js'
+import * as URLS from '../../utils/constants.js'
 
-export class ParaVoceMenu extends nElement {
+export class ParaEmpresasMenu extends nElement {
   onCreate() {
     this.append(this.getFlex())
   }
@@ -9,16 +9,13 @@ export class ParaVoceMenu extends nElement {
   getFlex() {
     const flex = new nFlex()
     flex.append(this.getLogo())
-    flex.append(this.getCursosLink())
-    flex.append(this.getAppsJogosLink())
-    flex.append(this.getAtendimentoLink())
     flex.append(this.getSearch())
     return flex
   }
 
   getLogo() {
     const link = new nLink()
-    link.href(URLS.PARAVOCE)
+    link.href(URLS.PARAEMPRESAS)
     const image = new nImage()
     image.src('/img/logo.png')
     image.setStyle('', '')
@@ -34,21 +31,21 @@ export class ParaVoceMenu extends nElement {
   }
 
   getCursosLink() {
-    return this.createLink(URLS.PARAVOCE_CURSOS, 'Cursos')
+    return this.createLink('/para-voce/cursos/', 'Cursos')
   }
 
   getAppsJogosLink() {
-    return this.createLink(URLS.PARAVOCE_APPS, 'Apps')
+    return this.createLink('/para-voce/apps-jogos/', 'Apps')
   }
 
   getAtendimentoLink() {
-    return this.createLink(URLS.PARAVOCE_ATENDIMENTO, 'Atendimento')
+    return this.createLink('/para-voce/atendimento/', 'Atendimento')
   }
 
   getSearch() {
     const image = new nImage()
     image.src('/img/magnifying-glass.svg')
-    // image.on('click', () => console.log('search'))
+    image.on('click', () => console.log('search'))
     return image
   }
 }
