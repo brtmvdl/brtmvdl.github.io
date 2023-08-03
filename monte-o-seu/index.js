@@ -5,7 +5,7 @@ import { URLS } from '../js/utils/constants.js'
 
 export class Page extends nElement {
   children = {
-    top_menu: new TopMenu(URLS.PARAVOCE),
+    top_menu: new TopMenu(URLS.MONTEOSEU),
     main_menu: new ParaVoceMenu(),
   }
 
