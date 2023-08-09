@@ -1,30 +1,41 @@
 import { nElement, nFlex, nImage, nInput, nSelect } from '../../../js/nelement/index.js'
-import * as COLORS from '../../../libs/colors.js'
+import * as COLORS from '../../../js/nelement/utils/colors.js'
+
+import { EndPointModel } from '../models/endpoint.js'
+import { ProjectModel } from '../models/project.js'
+
+import { CONTRACTS } from '../utils/constansts.js'
+import { Logger } from '../utils/logger.js'
+
+import { EndPoint } from './endpoint.js'
+import { ProjectHeader } from './project.header.js'
+import { ProjectFooter } from './project.footer.js'
 
 export class Project extends nElement {
-  state = {
-    endpoints: [],
-  }
+  logger = new Logger('Project')
+
+  state = new ProjectModel()
 
   children = {
-    domain: new nInput(),
-    contract: new nSelect(),
+    header: new ProjectHeader(),
     endpoints: new nElement(),
-    delButton: new nElement(),
-    plusButton: new nElement(),
+    footer: new ProjectFooter(),
   }
 
-  constructor({ domain, contract } = {}) {
+  constructor(state = new ProjectModel()) {
     super()
 
-    this.state.domain = domain
-    this.state.contract = contract
+    this.state = state
   }
 
   onCreate() {
     this.setStyles()
-    this.append(this.getHead())
+    this.setEvents()
+    this.append(this.getHeader())
     this.append(this.getEndPoints())
+    this.append(this.children.footer)
+
+    this.children.header.dispatchEvent('createendpoint')
   }
 
   setStyles() {
@@ -32,75 +43,43 @@ export class Project extends nElement {
     this.setStyle('margin-bottom', '1rem')
   }
 
-  getDomain() {
-    this.children.domain.setText('domain.com')
-    this.children.domain.setPlaceholder('domain.com')
-
-    this.children.domain.setStyle('border', 'none')
-
-    return this.children.domain
+  getHeader() {
+    return this.children.header
   }
 
-  getContract() {
-    this.children.contract.setValue(1)
+  setEvents() {
+    this.children.header.on('createendpoint', () => this.onCreateEndPoint())
 
-    this.children.contract.addOption(1, '1 year')
-    this.children.contract.addOption(2, '2 years')
-    this.children.contract.addOption(3, '3 years')
-    this.children.contract.addOption(4, '4 years')
-    this.children.contract.addOption(5, '5 years')
-    this.children.contract.addOption(10, '10 years')
+    this.on('updateendpoints', () => this.onUpdateEndPoints())
 
-    this.children.contract.setStyle('border', 'none')
-    this.children.contract.setStyle('background-color', COLORS.TRANSPARENT)
-
-    return this.children.contract
+    this.on('updatevalues', () => this.onUpdateValues())
+    this.on('updatefooter', () => this.onUpdateFooter())
   }
 
-  getDelButtonImage() {
-    const image = new nImage()
-    image.src('/img/trash-can.svg')
-    image.setSize('1rem')
-    return image
+  onCreateEndPoint() {
+    this.logger.log('onCreateEndPoint', {})
+
+    this.state.endpoints.push(new EndPointModel())
+    this.dispatchEvent('updateendpoints')
   }
 
-  getDelButton() {
-    this.children.delButton.setStyle('margin-left', '1rem')
-    this.children.delButton.append(this.getDelButtonImage())
-    this.children.delButton.on('click', () => this.dispatchEvent('delete', this))
-    return this.children.delButton
-  }
+  onUpdateEndPoints() {
+    this.logger.log('onUpdateEndPoints', {})
 
-  getPlusButtonImage() {
-    const image = new nImage()
-    image.src('/img/plus.svg')
-    image.setSize('1rem')
-    return image
-  }
+    this.children.endpoints.clear()
 
-  getPlusButton() {
-    this.children.plusButton.setStyle('margin-left', '1rem')
-    this.children.plusButton.append(this.getPlusButtonImage())
-    this.children.plusButton.on('click', () => this.dispatchEvent('addproject'))
-    return this.children.plusButton
-  }
+    this.state.endpoints.map((ep) => {
+      const endpoint = new EndPoint(ep)
+      endpoint.on('updateendpoint', () => this.dispatchEvent('updateendpoints'))
+      this.children.endpoints.append(endpoint)
+    })
 
-  getHead() {
-    const head = new nFlex()
-    head.setContainerStyle('border', 'calc(1rem / 8) solid #000000')
-    head.setStyle('padding', '1rem')
+    // update values
+    this.state.unique = +this.state.endpoints.reduce((h, { hours }) => h + hours, 0)
 
-    const left = new nElement()
-    left.append(this.getDomain())
-    head.append(left)
-
-    const right = new nFlex()
-    right.append(this.getContract())
-    right.append(this.getDelButton())
-    right.append(this.getPlusButton())
-    head.append(right)
-
-    return head
+    // update footer
+    this.children.footer.setUnique(this.state.unique)
+    this.children.footer.setYearly(this.state.yearly)
   }
 
   getEndPoints() {

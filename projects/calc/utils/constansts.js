@@ -1,4 +1,5 @@
 export const DEF_HOURS = 8
+export const DEF_URL = '/'
 
 export const EMPTY = ''
 

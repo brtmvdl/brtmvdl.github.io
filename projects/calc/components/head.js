@@ -34,7 +34,7 @@ export class Head extends nElement {
   }
 
   getAddProject() {
-    this.children.addProject.setText('add project')
+    this.children.addProject.setText('create project')
 
     this.children.addProject.setStyle('cursor', 'pointer')
 
