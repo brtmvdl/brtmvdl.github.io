@@ -27,4 +27,10 @@ export class nImage extends nElement {
     this.element.alt = value
     return this
   }
+
+  setSize(size = '1rem') {
+    this.setStyle('height', size)
+    this.setStyle('width', size)
+    return this
+  }
 }
