@@ -1,1 +1,1 @@
-npx surge . 
+npx surge .
