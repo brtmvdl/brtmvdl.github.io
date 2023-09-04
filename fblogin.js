@@ -2,14 +2,15 @@ import { Frontend, nButton } from '@brtmvdl/frontend'
 const app = Frontend.fromId('app')
 console.log({ app })
 
+const status = new Frontend()
+
 function statusChangeCallback(response) {
   console.log('statusChangeCallback')
   console.log(response)
   if (response.status === 'connected') {
     testAPI()
   } else {
-    document.getElementById('status').innerHTML = 'Please log ' +
-      'into this webpage.'
+    status.setText('Please log into this webpage.')
   }
 }
 
@@ -23,8 +24,7 @@ function testAPI() {
   console.log('Welcome!  Fetching your information.... ')
   FB.api('/me', function (response) {
     console.log('Successful login for: ' + response.name)
-    document.getElementById('status').innerHTML =
-      'Thanks for logging in, ' + response.name + '!'
+    status.setText('Thanks for logging in, ' + response.name + '!')
   })
 }
 const btn = new nButton()
