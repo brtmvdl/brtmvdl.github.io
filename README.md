@@ -2,29 +2,11 @@
 
 [brtmvdl.github.io](https://brtmvdl.github.io/)
 
-## menu
+## Links
 
-/para-voce
-  /cursos
-  /apps-jogos
-  /musica
-/para-empresas
-  /alimentacao
-  /automoveis
-  /bandas-musica
-  /energia
-  /fretes
-  /fintechs
-  /fotografia
-  /gestao-de-gente
-  /leiloes
-  /logistica
-  /roupas
-/para-desenvolvedores
-  /front-end
-  /back-end
-  /3d
-  /vagas
+https://brtmvdl.surge.sh/fblogin.html
+https://developers.facebook.com/apps/<APP-ID>/fb-login/quickstart/
+https://developers.facebook.com/docs/facebook-login/web#logindialog
 
 ## LICENSE
 
