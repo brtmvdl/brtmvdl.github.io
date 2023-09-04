@@ -3,11 +3,25 @@ const app = Frontend.fromId('app')
 console.log({ app })
 
 const fb_app = {
-  statusChangeCallback: (key, ...values) => {
-    console.log('FB', key, ...values)
+  log: (key, ...values) => fb_app.log('FB', key, ...values),
+  testAPI: () => {
+    fb_app.log('Welcome!  Fetching your information.... ')
+    FB.api('/me', (response) => {
+      fb_app.log('Successful login for: ' + response.name,)
+      fb_app.log('Thanks for logging in, ' + response.name + '!')
+    })
+  },
+  statusChangeCallback: (response) => {
+    fb_app.log('statusChangeCallback', { response })
+
+    if (response.status === 'connected') {
+      fb_app.testAPI()
+    } else {
+      fb_app.log('Please log into this webpage.')
+    }
   },
   checkLoginState: () => {
-    FB.getLoginStatus((response) => fb_app.statusChangeCallback('checkLoginState', { response }))
+    FB.getLoginStatus((response) => fb_app.statusChangeCallback(response))
   },
 }
 
