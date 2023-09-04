@@ -1,6 +1,6 @@
 import { Frontend, nButton } from '@brtmvdl/frontend'
+
 const app = Frontend.fromId('app')
-console.log({ app })
 
 const status = new Frontend()
 
@@ -18,7 +18,7 @@ function fb_login() {
 
 function statusChangeCallback(response) {
   console.log('statusChangeCallback', { response })
-  switch(response.status) {
+  switch (response.status) {
     case 'connected': return fb_api_me()
     case 'not_authorized': return fb_login()
     default: return status.setText('Please log into this webpage.')
