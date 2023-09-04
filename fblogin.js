@@ -18,12 +18,10 @@ function fb_login() {
 
 function statusChangeCallback(response) {
   console.log('statusChangeCallback', { response })
-  if (response.status === 'connected') {
-    fb_api_me()
-  } else if (response.status === 'not_authorized') {
-    fb_login()
-  } else {
-    status.setText('Please log into this webpage.')
+  switch(response.status) {
+    case 'connected': return fb_api_me()
+    case 'not_authorized': return fb_login()
+    default: return status.setText('Please log into this webpage.')
   }
 }
 
