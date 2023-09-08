@@ -18,18 +18,27 @@ function fb_login() {
 
 function statusChangeCallback(response) {
   console.log('statusChangeCallback', { response })
+
   switch (response.status) {
     case 'connected': return fb_api_me()
     case 'not_authorized': return fb_login()
-    default: return status.setText('Please log into this webpage.')
   }
+
+  status.setText('Please log into this webpage.')
 }
 
 function fb_get_login_status() {
-  FB.getLoginStatus(function (response) { statusChangeCallback(response) })
+  FB.getLoginStatus(function (response) {
+    statusChangeCallback(response)
+  })
 }
 
 const btn = new nButton()
 btn.setText('FB login state')
 btn.on('click', () => fb_get_login_status())
 app.append(btn)
+
+const link = new nLink()
+link.setText('FB login')
+link.href(`?${Date.now()}`)
+app.append()
