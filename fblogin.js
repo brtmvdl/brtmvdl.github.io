@@ -1,4 +1,4 @@
-import { Frontend, nButton } from '@brtmvdl/frontend'
+import { Frontend, nButton, nLink } from '@brtmvdl/frontend'
 
 const app = Frontend.fromId('app')
 
