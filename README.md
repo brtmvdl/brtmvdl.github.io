@@ -4,9 +4,11 @@
 
 ## Links
 
-https://brtmvdl.surge.sh/fblogin.html
-https://developers.facebook.com/apps/<APP-ID>/fb-login/quickstart/
-https://developers.facebook.com/docs/facebook-login/web#logindialog
+[fblogin.html](https://brtmvdl.surge.sh/fblogin.html)
+
+[fb login](https://developers.facebook.com/apps/<APP-ID>/fb-login/quickstart/)
+
+[facebook login](https://developers.facebook.com/docs/facebook-login/web#logindialog)
 
 ## LICENSE
 
