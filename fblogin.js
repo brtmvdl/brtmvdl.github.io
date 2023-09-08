@@ -13,5 +13,5 @@ app.append(getLoginStatusButton)
 
 const loginButton = new nButton()
 loginButton.setText('Login')
-loginButton.on('click', () => FB.login(function (response) { console.log({ response }) }))
+loginButton.on('click', () => FB.login(function (response) { console.log({ response }) }, { scope: 'email' }))
 app.append(loginButton)
