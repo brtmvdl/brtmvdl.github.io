@@ -1,44 +1,15 @@
-import { Frontend, nButton, nLink } from '@brtmvdl/frontend'
-
+import { Frontend, nButton } from '@brtmvdl/frontend'
 const app = Frontend.fromId('app')
 
-const status = new Frontend()
+const title = new nH1()
+title.setText('Facebook JavaScript SDK')
 
-function fb_api_me() {
-  console.log('Welcome! Fetching your information...')
-  FB.api('/me', function (response) {
-    console.log('Successful login for: ' + response.name)
-    status.setText('Thanks for logging in, ' + response.name + '!')
-  })
-}
+const getLoginStatusButton = new nButton()
+getLoginStatusButton.setText('Get Login Status')
+getLoginStatusButton.on('click', () => FB.getLoginStatus(function (response) { console.log({ response }) }))
+app.append(getLoginStatusButton)
 
-function fb_login() {
-  FB.login(function (response) { console.log('fb_login', { response }) })
-}
-
-function statusChangeCallback(response) {
-  console.log('statusChangeCallback', { response })
-
-  switch (response.status) {
-    case 'connected': return fb_api_me()
-    case 'not_authorized': return fb_login()
-  }
-
-  status.setText('Please log into this webpage.')
-}
-
-function fb_get_login_status() {
-  FB.getLoginStatus(function (response) {
-    statusChangeCallback(response)
-  })
-}
-
-const btn = new nButton()
-btn.setText('FB login state')
-btn.on('click', () => fb_get_login_status())
-app.append(btn)
-
-const link = new nLink()
-link.setText('FB login')
-link.href(`?${Date.now()}`)
-app.append()
+const loginButton = new nButton()
+loginButton.setText('Login')
+loginButton.on('click', () => FB.login(function (response) { console.log({ response }) }))
+app.append(loginButton)
