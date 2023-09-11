@@ -2,9 +2,13 @@
 
 [brtmvdl.github.io](https://brtmvdl.github.io/)
 
-## Links
+## Login links
 
-[fblogin.html](https://brtmvdl.surge.sh/fblogin.html)
+[Facebook Login](https://brtmvdl.surge.sh/login/facebook.html)
+
+[Google Login](https://brtmvdl.surge.sh/login/google.html)
+
+## Other links
 
 [fb login](https://developers.facebook.com/apps/<APP-ID>/fb-login/quickstart/)
 
