@@ -1,7 +1,7 @@
 import { Frontend, nButton, nH1, nHr, nImage, nInput, nLink } from '@brtmvdl/frontend'
-import { GOOGLE } from './config.js'
+import { GOOGLE } from '../config.js'
 
-import * as Local from './js/utils/local.js'
+import * as Local from '../js/utils/local.js'
 
 class nForm extends Frontend {
   getName() { return 'form' }
