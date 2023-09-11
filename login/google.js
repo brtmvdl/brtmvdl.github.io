@@ -1,5 +1,5 @@
 import { Frontend, nButton, nH1, nHr, nImage, nInput, nLink } from '@brtmvdl/frontend'
-import { GOOGLE } from '../config.js'
+import { GOOGLE } from './googleusercontent.js'
 
 import * as Local from '../js/utils/local.js'
 
@@ -38,10 +38,15 @@ link.href(GOOGLE.redirect_uri)
 link.setText('Google OAuth 2.0 Login')
 app.append(link)
 
-const button = new nButton()
-button.setText('login')
-button.on('click', () => form.submit())
-app.append(button)
+const btnLogin = new nButton()
+btnLogin.setText('login')
+btnLogin.on('click', () => form.submit())
+app.append(btnLogin)
+
+const btnErase = new nButton()
+btnErase.setText('erase')
+btnErase.on('click', () => Local.set(['google', 'access_token'], ''))
+app.append(btnErase)
 
 Array.from(location.hash.substring(1).matchAll(/([^&=]+)=([^&]+)/g))
   .map(([, key, value]) => Local.set(['google', key], value))
@@ -49,3 +54,4 @@ Array.from(location.hash.substring(1).matchAll(/([^&=]+)=([^&]+)/g))
 const access_token = new Frontend()
 access_token.setText(Local.get(['google', 'access_token']))
 app.append(access_token)
+
