@@ -1,6 +1,8 @@
-# brtmvdl.github.io
+# [brtmvdl.github.io](https://brtmvdl.github.io/)
 
-[brtmvdl.github.io](https://brtmvdl.github.io/)
+## social & donate
+
+[Donate](https://link.mercadopago.com.br/brtmvdl) - [Telegram](https://t.me/+KRmg5MlqgMk0MTg5) - [Discord](https://discord.gg/auCmnvV2)
 
 ## Login links
 
