@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>brtmvdl</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import { nElement, nFlex, nH1 } from './js/nelement/index.js'
+    import { Page } from './privacy-policy.js'
+
+    nElement.fromElement(document.body).setStyle('margin', '0rem')
+
+    nElement.fromId('app').append(new Page())
+  </script>
+</body>
+
+</html>
