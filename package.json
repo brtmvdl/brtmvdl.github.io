@@ -1,6 +1,7 @@
 {
+  "name": "brtmvdl",
   "dependencies": {
-    "@brtmvdl/frontend": "^1.0.7",
+    "@brtmvdl/frontend": "^1.0.8",
     "dat.gui": "^0.7.9",
     "es-module-shims": "^1.7.1",
     "live-server": "^1.2.2",
