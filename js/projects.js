@@ -165,11 +165,6 @@ export const projects = [
     "url": "qrcodescanner-brtmvdl.surge.sh"
   },
   {
-    "title": "nelement",
-    "subtitle": "",
-    "url": "nelement-brtmvdl.surge.sh"
-  },
-  {
     "title": "brtmvdl-calendario",
     "subtitle": "",
     "url": "brtmvdl-calendario.surge.sh"
