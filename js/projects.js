@@ -5,11 +5,6 @@ export const projects = [
     "url": "airplane-brtmvdl.surge.sh"
   },
   {
-    "title": "brtmvdl",
-    "subtitle": "",
-    "url": "brtmvdl.surge.sh"
-  },
-  {
     "title": "cube",
     "subtitle": "",
     "url": "cube-brtmvdl.surge.sh"
