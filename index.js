@@ -1,10 +1,12 @@
-import { HTML, nFlex, nImage, nLink } from './libs/@brtmvdl/frontend/src/index.js'
+import { HTML, nFlex, nH1, nImage, nLink, nSpan } from './libs/@brtmvdl/frontend/src/index.js'
+
+import { projects } from './js/projects.js'
 
 export class Page extends HTML {
   children = {
     top: new HTML,
     socials: new nFlex,
-    experiencies: new nFlex,
+    experiencies: new HTML,
   }
 
   state = {
@@ -12,8 +14,6 @@ export class Page extends HTML {
       { image: './img/twitter.svg', link: 'https://twitter.com/brtmvdl', },
       { image: './img/linkedin.svg', link: 'https://www.linkedin.com/in/brtmvdl', },
       { image: './img/github.svg', link: 'https://github.com/brtmvdl', },
-    ],
-    experiencies: [
     ],
   }
 
@@ -62,8 +62,22 @@ export class Page extends HTML {
   }
 
   getExperiencies() {
-    this.state.experiencies.map(({ }, ix) => {
-      console.log({ ix })
+    projects.map(({ title, subtitle, url }, ix) => {
+      const html = new nLink()
+      html.setStyle('color', '#000000')
+      html.setStyle('padding', '1rem')
+      html.href(`http://${url}`)
+
+      const imageHTML = new nImage()
+      imageHTML.src(`/img/${title}.png`)
+      imageHTML.alt(title)
+      html.append(imageHTML)
+
+      const titleHTML = new nH1()
+      titleHTML.setText(title)
+      html.append(titleHTML)
+
+      this.children.experiencies.append(html)
     })
 
     return this.children.experiencies
