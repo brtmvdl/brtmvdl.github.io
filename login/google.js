@@ -1,9 +1,9 @@
-import { Frontend, nButton, nH1, nHr, nImage, nInput, nLink } from '@brtmvdl/frontend'
+import { HTML, nButton, nH1, nInput, nLink } from '@brtmvdl/frontend'
 import { GOOGLE } from './googleusercontent.js'
 
 import * as Local from '../js/utils/local.js'
 
-class nForm extends Frontend {
+class nForm extends HTML {
   getName() { return 'form' }
 
   getTagName() { return 'form' }
@@ -14,7 +14,7 @@ class nForm extends Frontend {
   }
 }
 
-const app = Frontend.fromId('app')
+const app = HTML.fromId('app')
 
 const title = new nH1()
 title.setText('Google OAuth 2.0 Login')
@@ -51,7 +51,7 @@ app.append(btnErase)
 Array.from(location.hash.substring(1).matchAll(/([^&=]+)=([^&]+)/g))
   .map(([, key, value]) => Local.set(['google', key], value))
 
-const access_token = new Frontend()
+const access_token = new HTML()
 access_token.setText(Local.get(['google', 'access_token']))
 app.append(access_token)
 

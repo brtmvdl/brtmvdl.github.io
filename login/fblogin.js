@@ -1,6 +1,6 @@
-import { Frontend, nButton, nH1 } from '@brtmvdl/frontend'
+import { HTML, nButton, nH1 } from '@brtmvdl/frontend'
 
-const app = Frontend.fromId('app')
+const app = HTML.fromId('app')
 
 const title = new nH1()
 title.setText('Facebook JavaScript SDK')
