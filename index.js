@@ -71,7 +71,7 @@ export class Page extends HTML {
       const imageHTML = new nImage()
       imageHTML.src(`/img/${title}.png`)
       imageHTML.alt(title)
-      html.append(imageHTML)
+      // html.append(imageHTML)
 
       const titleHTML = new nH1()
       titleHTML.setText(title)
