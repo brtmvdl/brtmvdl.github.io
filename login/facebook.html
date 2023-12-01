@@ -10,7 +10,7 @@
   <script type="importmap">
   {
     "imports": {
-      "@brtmvdl/frontend": "./libs/@brtmvdl/frontend/src/index.js"
+      "@brtmvdl/frontend": "../libs/@brtmvdl/frontend/src/index.js"
     }
   }
   </script>
@@ -19,7 +19,14 @@
 <body>
   <div id="app"></div>
   <script type="module" src="./fbAsyncInit.js"></script>
-  <script type="module" src="./fblogin.js"></script>
+  <script type="module" src=""></script>
+  <script type="module">
+    import { HTML, nButton, nH1 } from '@brtmvdl/frontend'
+    import { Page } from './facebook.js'
+
+    HTML.fromElement(document.body).append(new Page())
+    HTML.fromId('app').setStyles('margin', '0rem')
+</script>
 </body>
 
 </html>
