@@ -17,16 +17,20 @@
 </head>
 
 <body>
+  <script src="https://connect.facebook.net/en_US/sdk.js" id="facebook-jssdk"></script>
   <div id="app"></div>
-  <script type="module" src="./fbAsyncInit.js"></script>
-  <script type="module" src=""></script>
   <script type="module">
     import { HTML, nButton, nH1 } from '@brtmvdl/frontend'
     import { Page } from './facebook.js'
 
     HTML.fromElement(document.body).append(new Page())
-    HTML.fromId('app').setStyles('margin', '0rem')
-</script>
+    HTML.fromId('app').setStyle('margin', '0rem')
+
+    window.fbAsyncInit = () => ([
+      FB.init({ appId: '1409563713018342', xfbml: true, version: 'v18.0' }),
+      FB.AppEvents.logPageView()
+    ])
+  </script>
 </body>
 
 </html>
