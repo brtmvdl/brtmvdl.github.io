@@ -1,12 +1,19 @@
-import { HTML, nInput, nButton } from '@brtmvdl/frontend'
+import { HTML, nButton } from '@brtmvdl/frontend'
 
-const app = HTML.fromId('app')
+export class Page extends HTML {
+  children = {
+    login_button: new nButton()
+  }
 
-const input = new nInput()
-input.setPlaceholder('input')
-app.append(input)
+  onCreate() {
+    this.append(this.getLoginButton())
+  }
 
-const button = new nButton()
-button.setText('button')
-button.on('click', () => window.alert(`value: ${input.getValue()}`))
-app.append(button)
+  getLoginButton() {
+    this.children.login_button.setText('login')
+
+    this.children.login_button.on('click', () => console.log('login'))
+
+    return this.children.login_button
+  }
+}
