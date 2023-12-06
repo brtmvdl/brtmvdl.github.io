@@ -1,37 +1,53 @@
 import { HTML, nButton, nInputTextGroup } from '@brtmvdl/frontend'
 
-import { API_KEY, DISCOVERY_DOCS, CLIENT_ID } from './config.js'
+import { API_KEY, CLIENT_ID } from './config.js'
 
-const listChannels = (forUsername, part = 'statistics') => new Promise((s) =>
-  gapi.client.youtube.channels.list({ part, forUsername }).execute(s)
-)
+function authenticate() {
+  return gapi.auth2.getAuthInstance()
+    .signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
+    .then((res) => console.log('Sign-in successful', res))
+    .catch((err) => console.error('Error signing in', err))
+}
 
-const start = () => gapi.client.init({ 'apiKey': API_KEY, 'discoveryDocs': DISCOVERY_DOCS })
+function loadClient() {
+  gapi.client.setApiKey(API_KEY)
 
-const gapiLoad = () => new Promise((s) => gapi.load('client', s))
+  return gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+    .then((res) => console.log('GAPI client loaded for API', res))
+    .catch((err) => console.error('Error loading GAPI client for API', err))
+}
 
-// //
+function execute() {
+  const broadcastId = broadcastIdInput.children.input.getValue()
+
+  if (!broadcastId) return console.error('no broadcast id')
+
+  return gapi.client.youtube.liveBroadcasts.bind({
+    id: broadcastId,
+    part: ['id', 'snippet', 'contentDetails', 'status']
+  })
+    .then((res) => console.log('Response', res),)
+    .catch((err) => console.error('Execute error', err))
+}
+
+const load = () => gapi.load('client:auth2', () => gapi.auth2.init({ client_id: CLIENT_ID }))
+
+// // //
 
 const app = HTML.fromId('app')
 
-const usernameInput = new nInputTextGroup()
-usernameInput.children.label.setText('username')
-app.append(usernameInput)
+const broadcastIdInput = new nInputTextGroup()
+broadcastIdInput.children.input.setText('BROADCAST ID')
+app.append(broadcastIdInput)
 
-const listChannelsButton = new nButton()
-listChannelsButton.setText('list channels')
-listChannelsButton.on('click', () => {
-  listChannels(usernameInput.children.input.getValue())
-    .then(console.log).catch(console.error)
+const [] = [
+  { title: 'load', fn: load },
+  { title: 'auth2 getAuthInstance', fn: authenticate },
+  { title: 'client load', fn: loadClient },
+  { title: 'liveBroadcasts bind', fn: execute },
+].map(({ title, fn = (() => { }) } = {}) => {
+  const button = new nButton()
+  button.setText(title)
+  button.on('click', () => fn())
+  app.append(button)
 })
-app.append(listChannelsButton)
-
-// //
-
-gapiLoad().then(() => start()).then((res) => console.log('res', res))
-
-const loginButton = new nButton()
-loginButton.setText('login')
-loginButton.on('click', () => gapi.auth2.authorize({ client_id: CLIENT_ID }).execute(console.log))
-
-gapi.auth2.authorize({ scope: 'youtube', client_id: CLIENT_ID }, console.log)
