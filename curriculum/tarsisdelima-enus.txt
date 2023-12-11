@@ -1,0 +1,101 @@
+Tarsis Mikael Ventura Dumas de Lima
+
+30 years old - single - no children
+Rio Claro, São Paulo, Brazil
+E-mail: br.tmvdl@gmail.com
+Linkedin: https://www.linkedin.com/in/brtmvdl/
+GitHub: https://github.com/brtmvdl
+
+Experience
+
+Contrato de trabalho - Programador Full-Stack Senior
+Meta Serviços em Informática - Remote / São Leopoldo, Rio Grande do Sul, Brasil
+From january/2021 to september/2021
+Ferramentas: HTML 5, CSS 3, Javascript, API REST, Node.js, Angular 2+, SASS, AWS, Git
+
+Contrato de projeto - Aplicativo de solicitação de presente de Natal
+MSwebmaker Digital Marketing Agency - Remoto / Miami, Florida, EUA
+From november/2020 to december/2020
+Ferramentas: HTML 5, CSS 3, Javascript, API REST, Node.js, Angular, SASS, MySQL, Git
+
+Contrato de projeto - Sistema de envio de notificações e e-mails
+Grupo Rio Claro - Rio Claro, São Paulo, Brasil
+From march/2020 to july/2020
+Ferramentas: Typescript, Javascript, API REST, Node.js, PostgreSQL, AWS, Git
+
+Contrato de projeto - Sistema de gestão educacional
+Claretiano Faculdades - Rio Claro, São Paulo, Brasil
+From december/2019 to january/2020
+Ferramentas: HTML 5, CSS 3 Javascript, API REST, Node.js, PostgreSQL, Git
+
+Contrato de projeto - Website e aplicativo de e-commerce
+Rique Iluminação - Rio Claro, São Paulo, Brasil
+From december/2018 to january/2019
+Ferramentas: HTML 5, CSS 3, Javascript, React.js, API REST, Node.js, MySQL, Git
+
+Contrato de projeto - Aplicativo de entrega de comida
+Food & Drink - Limeira, São Paulo, Brasil
+Em april/2018
+Ferramentas: HTML 5, CSS 3, Javascript, React.js, Typescript, API REST, Node.js, PostgreSQL, Git
+
+Contrato de projeto - Aplicativo de entrega de comida
+Food & Drink - Rio Claro, São Paulo, Brasil
+Em january/2018
+Ferramentas: HTML 5, CSS 3, Javascript, React.js, Typescript, API REST, Node.js, PostgreSQL, Git
+
+Contrato de projeto - Aplicativo de e-commerce
+Rique Iluminação - Rio Claro, São Paulo, Brasil
+Em july/2014
+Ferramentas: HTML 5, CSS 3, Javascript, React.js, API REST, Node.js, MySQL, Git
+
+Contrato de projeto - Sistema de gestão imobiliária
+Armando Aparecido Gobato - Rio Claro, São Paulo, Brasil
+From april/2014 to june/2014
+Ferramentas: HTML 5, CSS 3, Javascript, PHP, CakePHP, MySQL
+
+Contrato de trabalho - Programador
+Luxfacta Soluções em TI - Rio Claro, São Paulo, Brasil
+From march/2014 to september/2017
+Ferramentas: HTML 5, CSS 3, Less, Javascript, Cordova/Phonegap, API REST, Node.js, PHP, Laravel, MySQL, Subversion(SVN)
+
+Contrato de trabalho - Programador
+Plano W - Rio Claro, São Paulo, Brasil
+From april/2013 to september/2013
+Ferramentas: HTML 5, CSS 3, Javascript, PHP, Wordpress, MySQL, Git
+
+Voluntariado - Programador
+Igreja Batista do Parque - Rio Claro, São Paulo, Brasil
+From january/2011 to july/2014
+Ferramentas: HTML 5, CSS 3, Javascript, PHP, CakePHP, MySQL
+
+Education
+
+Análise e Desenvolvimento de Sistemas - Tecnólogo
+Claretiano Faculdades - Rio Claro, São Paulo, Brasil
+From january/2016 to august/2018
+
+Informática - Technician
+ETEC Professor Armando Bayeux da Silva - Rio Claro, São Paulo, Brasil
+From july/2009 to december/2010
+
+Certificações
+
+AWS Certified Cloud Practitioner - Certificado de horas
+Alura
+Em july/2021
+
+Amazon Web Services - Certificado de horas
+Alura
+Em july/2021
+
+Amazon Web Services - Selo de habilidade
+LinkedIn
+Em july/2021
+
+Node.js - Selo de habilidade
+LinkedIn
+Em june/2021
+
+Javascript - Selo de habilidade
+LinkedIn
+Em june/2021
