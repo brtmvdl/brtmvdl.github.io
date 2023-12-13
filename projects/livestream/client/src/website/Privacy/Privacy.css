@@ -1,0 +1,17 @@
+.privacy-container {
+  width: 80%;
+  font-size: 16px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.ohmystream-logo {
+  width: 200px;
+  margin-bottom: -2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .privacy-container {
+    width: 90%;
+  }
+}

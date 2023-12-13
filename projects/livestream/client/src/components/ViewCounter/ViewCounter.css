@@ -1,0 +1,13 @@
+.view-counter {
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: var(--navbar-background-color);
+  margin-left: 1rem;
+  font-family: var(--main-font-light);
+  text-align: center;
+  color: grey;
+  color: var(--purple-color);
+  border: 1px solid var(--purple-color);
+  /* background-color: lightgrey; */
+}

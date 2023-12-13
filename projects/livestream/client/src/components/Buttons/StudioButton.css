@@ -1,0 +1,50 @@
+button > * {
+  vertical-align: middle;
+}
+
+/* .studio-button-container {
+  margin-right: 1rem;
+  margin-left: 1rem;
+} */
+
+.studio-button {
+  /* background-color: #03a9f4; */
+  background-color: var(--card-background-color);
+  color: grey;
+  letter-spacing: 2px;
+  outline: none;
+  border: none;
+  padding: 20px 20px;
+  font-size: 14px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  font-family: var(--main-font-light);
+  /* margin-right: 30px; */
+  vertical-align: middle;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.studio-button:hover {
+  /* background-color: #0298db; */
+  background-color: #dddddd;
+  background-color: #2a2a2a;
+  cursor: pointer;
+}
+
+.studio-button-label {
+  color: grey;
+  font-family: var(--main-font-light);
+}
+
+@media screen and (max-width: 600px) {
+  .studio-button-label {
+    display: none;
+  }
+
+  .studio-button {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    padding: 25px 25px;
+  }
+}

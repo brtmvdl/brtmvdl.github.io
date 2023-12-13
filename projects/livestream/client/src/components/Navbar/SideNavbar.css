@@ -1,0 +1,93 @@
+.side-navbar {
+  float: left;
+  position: fixed;
+  top: 0;
+  border-right: 1px solid var(--card-background-color);
+  background-color: var(--background-color);
+  /* background-color: #1a161e; */
+  width: 200px;
+  z-index: 100;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.side-navbar-hidden {
+  display: none;
+}
+
+.broadcast-li-navbar {
+  margin-top: 100rem;
+}
+
+/* Style the buttons inside the tab */
+.side-navbar li {
+  display: block;
+  background-color: inherit;
+  padding: 14px 16px;
+  margin: 0.4rem 0;
+  margin-left: 8px;
+  width: 90%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Change background color of buttons on hover */
+.side-navbar li:hover {
+  background-color: var(--navbar-background-color-hover);
+  /* background-color: #212122; */
+  /* background-color: #272728; */
+}
+
+#side-navbar-broadcasts-li {
+  margin-top: 1.5rem;
+}
+
+.side-navbar-title {
+  margin-left: 10px;
+  font-family: var(--main-font-light);
+  /* letter-spacing: 0.5px; */
+}
+
+.side-navbar-icon,
+.side-navbar-title {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  color: grey;
+}
+
+@media screen and (max-width: 1200px) {
+  .side-navbar li {
+    margin-left: 0;
+    display: flex;
+    align-self: center;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .side-navbar-title {
+    display: none;
+  }
+
+  .side-navbar {
+    width: 60px;
+    transition: 0.3s;
+  }
+
+  .side-navbar-icon,
+  .side-navbar-icon-active {
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 592px) {
+  .side-navbar {
+    display: none;
+  }
+}

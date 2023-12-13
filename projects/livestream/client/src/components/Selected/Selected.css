@@ -1,0 +1,13 @@
+.selected-label {
+  font-family: var(--main-font-light);
+  color: grey;
+}
+
+.selected-container {
+  margin-bottom: 1rem;
+  font-family: var(--main-font-light);
+}
+
+.selected {
+  margin-bottom: 1rem;
+}

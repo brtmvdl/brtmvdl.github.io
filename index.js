@@ -43,6 +43,10 @@ export class Experiencies extends HTML {
       titleHTML.setText(title)
       html.append(titleHTML)
 
+      const imageHTML = new nImage()
+      imageHTML.src(`./projects/${title}/image.png`)
+      html.append(imageHTML)
+
       this.append(html)
     })
   }
