@@ -1,4 +1,4 @@
-import { nElement, nH2, nHr, nLink, nImage } from './nelement/index.js'
+import { HTML, nH2, nHr, nLink, nImage } from '@brtmvdl/frontend'
 import months from '../libs/months.js'
 
 export class Experience {
@@ -25,7 +25,7 @@ export class Experience {
   getListItem() {
     const { type, link, image, title, dates } = this
 
-    const xpEl = new nElement()
+    const xpEl = new HTML()
     xpEl.addData('type', type)
     xpEl.setStyle('padding', '1rem 0rem')
 
@@ -44,7 +44,7 @@ export class Experience {
     linkEl.append(imageEl)
 
     if (dates && dates.length) {
-      const dateEl = new nElement()
+      const dateEl = new HTML()
       dateEl.setText(dates.map(([y, m]) => [y, months(m)].join(' / ')).join(' - '))
       xpEl.append(dateEl)
     }

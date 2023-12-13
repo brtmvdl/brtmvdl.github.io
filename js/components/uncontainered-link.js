@@ -1,4 +1,4 @@
-import { nLink } from '../nelement/index.js'
+import { nLink } from '@brtmvdl/frontend'
 
 export class nUncontaineredLink extends nLink {
   hasContainer() {

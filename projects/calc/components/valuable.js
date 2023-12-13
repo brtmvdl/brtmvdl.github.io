@@ -1,9 +1,9 @@
-import { nElement, nFlex } from '../../../js/nelement/index.js'
+import { HTML, nFlex } from '@brtmvdl/frontend'
 
-export class Valuable extends nElement {
+export class Valuable extends HTML {
   children = {
-    title: new nElement(),
-    value: new nElement(),
+    title: new HTML(),
+    value: new HTML(),
   }
 
   onCreate() {

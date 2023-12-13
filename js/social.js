@@ -1,4 +1,4 @@
-import { nElement, nImage, nLink } from './nelement/index.js'
+import { HTML, nImage, nLink } from '@brtmvdl/frontend'
 
 export class Social {
   title = ''
@@ -16,7 +16,7 @@ export class Social {
   }
 
   getListItem() {
-    const el = new nElement()
+    const el = new HTML()
     el.setStyle('margin', '1em 0em')
     el.setStyle('width', '4em')
 

@@ -1,9 +1,9 @@
-import { nElement } from '../../../js/nelement/index.js'
+import { HTML } from '@brtmvdl/frontend'
 import { Logger } from '../utils/logger.js'
 import { ProjectModel } from '../models/project.js'
 import { Project } from './project.js'
 
-export class Body extends nElement {
+export class Body extends HTML {
   logger = new Logger('Body')
 
   state = {
@@ -11,7 +11,7 @@ export class Body extends nElement {
   }
 
   children = {
-    projects: new nElement(),
+    projects: new HTML(),
   }
 
   onCreate() {

@@ -1,7 +1,7 @@
-import { nElement, nFlex, nImage, nInput, nSelect } from '../../../js/nelement/index.js'
+import { HTML, COLORS, nFlex, nImage, nInput, nSelect } from '@brtmvdl/frontend'
 import { Logger } from '../utils/logger.js'
 import { CONTRACTS } from '../utils/constansts.js'
-import * as COLORS from '../../../js/nelement/utils/colors.js'
+// import * as COLORS from '../../../js/HTML/utils/colors.js'
 
 export class ProjectHeader extends nFlex {
   logger = new Logger('Project Header')
@@ -14,8 +14,8 @@ export class ProjectHeader extends nFlex {
   children = {
     domain: new nInput(),
     contract: new nSelect(),
-    delButton: new nElement(),
-    plusButton: new nElement(),
+    delButton: new HTML(),
+    plusButton: new HTML(),
   }
 
   onCreate() {
@@ -32,7 +32,7 @@ export class ProjectHeader extends nFlex {
   getFlex() {
     const flex = new nFlex()
 
-    const left = new nElement()
+    const left = new HTML()
     left.append(this.getDomain())
     flex.append(left)
 
@@ -72,7 +72,7 @@ export class ProjectHeader extends nFlex {
     return this.children.contract
   }
 
-  getButtonFilled(button = new nElement(), imageSrc = '', event = '') {
+  getButtonFilled(button = new HTML(), imageSrc = '', event = '') {
     const image = new nImage()
     image.src(imageSrc)
     image.setSize('1rem')

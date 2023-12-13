@@ -1,8 +1,8 @@
-import { nElement, nFlex, nInputNumber, nInputText } from '../../../js/nelement/index.js'
+import { HTML, nFlex, nInputNumber, nInputText } from '@brtmvdl/frontend'
 import { EndPointModel } from '../models/endpoint.js'
 import { Logger } from '../utils/logger.js'
 
-export class EndPoint extends nElement {
+export class EndPoint extends HTML {
   logger = new Logger('EndPoint')
 
   state = {
@@ -13,7 +13,7 @@ export class EndPoint extends nElement {
   children = {
     path: new nInputText(),
     hours: new nInputNumber(),
-    delButton: new nElement(),
+    delButton: new HTML(),
   }
 
   constructor(state = new EndPointModel()) {

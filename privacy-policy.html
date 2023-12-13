@@ -7,18 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>brtmvdl</title>
   <meta name="google-adsense-account" content="ca-pub-8803365396237758">
+  <script type="importmap">
+    {
+      "imports": {
+        "@brtmvdl/frontend": "./libs/@brtmvdl/frontend/src/index.js"
+      }
+    }
+  </script>
 </head>
 
 <body>
   <div id="app"></div>
 
   <script type="module">
-    import { nElement } from './js/nelement/index.js'
+    import { HTML } from '@brtmvdl/frontend'
     import { Page } from './privacy-policy.js'
 
-    nElement.fromElement(document.body).setStyle('margin', '0rem')
+    HTML.fromElement(document.body).setStyle('margin', '0rem')
 
-    nElement.fromId('app').append(new Page())
+    HTML.fromId('app').append(new Page())
   </script>
 </body>
 

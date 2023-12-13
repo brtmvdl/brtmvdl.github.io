@@ -1,11 +1,11 @@
-import { nElement } from '../../../js/nelement/index.js'
+import { HTML } from '@brtmvdl/frontend'
 
 import { Logger } from '../utils/logger.js'
 
 import { Unique } from './unique.js'
 import { Yearly } from './yearly.js'
 
-export class ProjectFooter extends nElement {
+export class ProjectFooter extends HTML {
   logger = new Logger('Project Footer')
 
   state = {

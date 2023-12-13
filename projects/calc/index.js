@@ -1,8 +1,8 @@
-import { nElement } from '../../js/nelement/index.js'
+import { HTML } from '@brtmvdl/frontend'
 import { Head } from './components/head.js'
 import { Body } from './components/body.js'
 
-export class Page extends nElement {
+export class Page extends HTML {
   children = {
     header: new Head(),
     body: new Body(),

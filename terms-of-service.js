@@ -1,6 +1,6 @@
-import { nElement } from './js/nelement/index.js'
+import { HTML } from '@brtmvdl/frontend'
 
-export class Page extends nElement {
+export class Page extends HTML {
   onCreate() {
     this.setText('terms of service')
   }

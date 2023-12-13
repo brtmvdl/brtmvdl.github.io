@@ -1,5 +1,5 @@
-import { nElement, nFlex, nImage, nInput, nSelect } from '../../../js/nelement/index.js'
-import * as COLORS from '../../../js/nelement/utils/colors.js'
+import { HTML, nFlex, nImage, nInput, nSelect } from '@brtmvdl/frontend'
+import * as COLORS from '../../../js/HTML/utils/colors.js'
 
 import { EndPointModel } from '../models/endpoint.js'
 import { ProjectModel } from '../models/project.js'
@@ -11,14 +11,14 @@ import { EndPoint } from './endpoint.js'
 import { ProjectHeader } from './project.header.js'
 import { ProjectFooter } from './project.footer.js'
 
-export class Project extends nElement {
+export class Project extends HTML {
   logger = new Logger('Project')
 
   state = new ProjectModel()
 
   children = {
     header: new ProjectHeader(),
-    endpoints: new nElement(),
+    endpoints: new HTML(),
     footer: new ProjectFooter(),
   }
 

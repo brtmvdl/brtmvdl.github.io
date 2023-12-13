@@ -10,12 +10,12 @@
 <body>
   <div id="app"></div>
   <script type="module">
-    import { nElement } from '../../js/nelement/index.js'
+    import { HTML } from '@brtmvdl/frontend'
     import { Page } from './index.js'
 
-    nElement.fromId('app').append(new Page())
+    HTML.fromId('app').append(new Page())
 
-    nElement.fromElement(document.body).setStyle('margin', '0')
+    HTML.fromElement(document.body).setStyle('margin', '0')
   </script>
 </body>
 
