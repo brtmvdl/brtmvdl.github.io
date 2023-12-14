@@ -33,18 +33,18 @@ export class Socials extends nFlex {
 
 export class Experiencies extends HTML {
   onCreate() {
-    projects.map(({ title, subtitle, url }, ix) => {
+    projects.map(({ title, subtitle, }, ix) => {
       const html = new nLink()
       html.setStyle('color', '#000000')
       html.setStyle('padding', '1rem')
-      html.href(`http://${url}`)
+      html.href(`/xp/${title}/`)
 
       const titleHTML = new nH1()
       titleHTML.setText(title)
       html.append(titleHTML)
 
       const imageHTML = new nImage()
-      imageHTML.src(`./projects/${title}/image.png`)
+      imageHTML.src(`./xp/${title}/image.png`)
       html.append(imageHTML)
 
       this.append(html)

@@ -1,172 +1,134 @@
 export const projects = [
   {
     "title": "airplane",
-    "subtitle": "",
-    "url": "airplane-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "cube",
-    "subtitle": "",
-    "url": "cube-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "coins",
-    "subtitle": "",
-    "url": "coins-brtmvdl.surge.sh"
-  },
-  {
-    "title": "edsonjunior-22",
-    "subtitle": "",
-    "url": "edsonjunior-22.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "debian",
-    "subtitle": "",
-    "url": "debian-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "home-workout",
-    "subtitle": "",
-    "url": "home-workout-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "math",
-    "subtitle": "",
-    "url": "math-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "metronomo",
-    "subtitle": "",
-    "url": "metronomo-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "market",
-    "subtitle": "",
-    "url": "market-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "nume",
-    "subtitle": "",
-    "url": "nume-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "numbers",
-    "subtitle": "",
-    "url": "numbers-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "ncontext",
-    "subtitle": "",
-    "url": "ncontext-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "pomodoro",
-    "subtitle": "",
-    "url": "pomodoro-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "piano",
-    "subtitle": "",
-    "url": "piano-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "study",
-    "subtitle": "",
-    "url": "study-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "stroll",
-    "subtitle": "",
-    "url": "stroll-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "school",
-    "subtitle": "",
-    "url": "school-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "youchat",
-    "subtitle": "",
-    "url": "youchat-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "vestibular",
-    "subtitle": "",
-    "url": "vestibular-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "justeat",
-    "subtitle": "",
-    "url": "justeat-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "jornal",
-    "subtitle": "",
-    "url": "jornal-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "hours",
-    "subtitle": "",
-    "url": "hours-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "games",
-    "subtitle": "",
-    "url": "games-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "drawer",
-    "subtitle": "",
-    "url": "drawer-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "curriculus",
-    "subtitle": "",
-    "url": "curriculus-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "clock",
-    "subtitle": "",
-    "url": "clock-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "chess",
-    "subtitle": "",
-    "url": "chess-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "cento",
-    "subtitle": "",
-    "url": "cento-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "calendar",
-    "subtitle": "",
-    "url": "calendar-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "apply",
-    "subtitle": "",
-    "url": "apply-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "app",
-    "subtitle": "",
-    "url": "app-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "namazon",
-    "subtitle": "",
-    "url": "namazon-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "qrcodescanner",
-    "subtitle": "",
-    "url": "qrcodescanner-brtmvdl.surge.sh"
+    "subtitle": ""
   },
   {
     "title": "brtmvdl-calendario",
-    "subtitle": "",
-    "url": "brtmvdl-calendario.surge.sh"
+    "subtitle": ""
   }
 ]
