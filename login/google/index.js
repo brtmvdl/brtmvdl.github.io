@@ -1,7 +1,7 @@
 import { HTML, nButton, nH1, nInput, nLink } from '@brtmvdl/frontend'
 import { GOOGLE } from './googleusercontent.js'
 
-import * as Local from '../js/utils/local.js'
+import * as Local from '../../js/utils/local.js'
 
 class nForm extends HTML {
   getName() { return 'form' }
