@@ -5,7 +5,7 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
 
 document.body.style.margin = '0em'
 
-const helvetiker = '../../libs/three/examples/fonts/helvetiker_regular.typeface.json'
+const helvetiker = '../../assets/libs/three/examples/fonts/helvetiker_regular.typeface.json'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500)

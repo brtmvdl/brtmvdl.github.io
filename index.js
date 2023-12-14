@@ -1,6 +1,6 @@
 import { HTML, nFlex, nH1, nImage, nLink } from '@brtmvdl/frontend'
-import { Container } from './components/container.js'
-import { projects } from './js/projects.js'
+import { Container } from './assets/js/components/container.js'
+import { projects } from './assets/js/projects.js'
 
 export class Socials extends nFlex {
   onCreate() {
@@ -8,9 +8,9 @@ export class Socials extends nFlex {
     self.setStyles()
 
     const socials = [
-      { image: './img/twitter.svg', link: 'https://twitter.com/brtmvdl', },
-      { image: './img/linkedin.svg', link: 'https://www.linkedin.com/in/brtmvdl', },
-      { image: './img/github.svg', link: 'https://github.com/brtmvdl', },
+      { image: './assets/img/twitter.svg', link: 'https://twitter.com/brtmvdl', },
+      { image: './assets/img/linkedin.svg', link: 'https://www.linkedin.com/in/brtmvdl', },
+      { image: './assets/img/github.svg', link: 'https://github.com/brtmvdl', },
     ]
 
     Array.from(socials).map(({ image: photo, link: url }) => {

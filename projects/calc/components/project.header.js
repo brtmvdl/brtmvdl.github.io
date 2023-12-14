@@ -1,7 +1,6 @@
 import { HTML, COLORS, nFlex, nImage, nInput, nSelect } from '@brtmvdl/frontend'
 import { Logger } from '../utils/logger.js'
 import { CONTRACTS } from '../utils/constansts.js'
-// import * as COLORS from '../../../js/HTML/utils/colors.js'
 
 export class ProjectHeader extends nFlex {
   logger = new Logger('Project Header')
