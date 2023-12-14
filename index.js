@@ -7,18 +7,12 @@ export class Socials extends nFlex {
     const self = this
     self.setStyles()
 
-    const socials = [
-      { image: './assets/img/twitter.svg', link: 'https://twitter.com/brtmvdl', },
-      { image: './assets/img/linkedin.svg', link: 'https://www.linkedin.com/in/brtmvdl', },
-      { image: './assets/img/github.svg', link: 'https://github.com/brtmvdl', },
-    ]
-
-    Array.from(socials).map(({ image: photo, link: url }) => {
+    Array.from(['twitter', 'linkedin', 'github']).map((social) => {
       const link = new nLink()
-      link.href(url)
+      link.href(`/pages/${social}/`)
       const image = new nImage()
       image.setStyle('max-width', '4rem')
-      image.src(photo)
+      image.src(`/assets/img/${social}.svg`)
       link.append(image)
       self.append(link)
     })
