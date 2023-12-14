@@ -1,6 +1,6 @@
 import { HTML, nFlex, nH1, nImage, nLink } from '@brtmvdl/frontend'
 import { Container } from './assets/js/components/container.js'
-import { projects } from './assets/js/projects.js'
+import { projects } from './assets/js/lists/projects.js'
 
 export class Socials extends nFlex {
   onCreate() {
