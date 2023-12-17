@@ -1,6 +1,6 @@
 import { HTML, nFlex, nH1, nImage, nLink } from '@brtmvdl/frontend'
 import { Container } from './assets/js/components/container.js'
-import { projects } from './assets/js/lists/projects.js'
+import { experiencies } from './assets/js/lists/xp.js'
 
 export class Socials extends nFlex {
   onCreate() {
@@ -27,18 +27,24 @@ export class Socials extends nFlex {
 
 export class Experiencies extends HTML {
   onCreate() {
-    projects.map(({ title, subtitle, }, ix) => {
+    experiencies.map(({ id, title, subtitle, url }) => {
       const html = new nLink()
       html.setStyle('color', '#000000')
       html.setStyle('padding', '1rem')
-      html.href(`/xp/${title}/`)
+      html.href(`./xp/${id}/`)
 
       const titleHTML = new nH1()
       titleHTML.setText(title)
       html.append(titleHTML)
 
+      if (subtitle) {
+        const subtitleHTML = new HTML()
+        subtitleHTML.setText(subtitle)
+        html.append(subtitleHTML)
+      }
+
       const imageHTML = new nImage()
-      imageHTML.src(`./xp/${title}/image.png`)
+      imageHTML.src(`./xp/${id}/image.png`)
       html.append(imageHTML)
 
       this.append(html)
