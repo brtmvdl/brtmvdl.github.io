@@ -1,4 +1,4 @@
-export const experiencies = [
+export const experiences = [
   {
     'id': 'airplane',
     'title': 'airplane',
