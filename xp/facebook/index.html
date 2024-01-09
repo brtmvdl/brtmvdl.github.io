@@ -14,22 +14,22 @@
     }
   }
   </script>
+  <script src="https://connect.facebook.net/en_US/sdk.js" id="facebook-jssdk"></script>
 </head>
 
 <body>
-  <script src="https://connect.facebook.net/en_US/sdk.js" id="facebook-jssdk"></script>
   <div id="app"></div>
   <script type="module">
     import { HTML, nButton, nH1 } from '@brtmvdl/frontend'
     import { Page } from './index.js'
 
-    HTML.fromElement(document.body).append(new Page())
-    HTML.fromId('app').setStyle('margin', '0rem')
-
     window.fbAsyncInit = () => ([
-      FB.init({ appId: '1409563713018342', xfbml: true, version: 'v18.0' }),
+      FB.init({ appId: '1076664787000278', cookie: true, xfbml: true, version: 'v18.0' }),
       FB.AppEvents.logPageView()
     ])
+
+    HTML.fromElement(document.body).append(new Page())
+    HTML.fromId('app').setStyle('margin', '0rem')
   </script>
 </body>
 
