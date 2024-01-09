@@ -4,12 +4,6 @@
 
 [Donate](https://link.mercadopago.com.br/brtmvdl) - [Telegram](https://t.me/+KRmg5MlqgMk0MTg5) - [Discord](https://discord.gg/auCmnvV2)
 
-## Login links
-
-[Facebook Login](https://brtmvdl.surge.sh/login/facebook.html)
-
-[Google Login](https://brtmvdl.surge.sh/login/google.html)
-
 ## Other links
 
 [fb login](https://developers.facebook.com/apps/<APP-ID>/fb-login/quickstart/)
