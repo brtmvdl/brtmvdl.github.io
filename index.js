@@ -1,6 +1,7 @@
 import { HTML, nFlex, nH1, nImage, nLink } from '@brtmvdl/frontend'
 import { Container } from './assets/js/components/container.js'
 import { experiences } from './assets/js/lists/xp.js'
+import { jobs } from './assets/js/lists/jobs.js'
 
 export class Socials extends nFlex {
   onCreate() {
@@ -37,55 +38,48 @@ class Experience extends HTML {
     id: null,
     title: null,
     subtitle: null,
+    dates: [],
+    tags: [],
   }
 
   children = {
     image: new nImage(),
     title: new HTML(),
     subtitle: new HTML(),
+    dates: new HTML(),
+    tags: new HTML(),
   }
 
-  constructor({ id, title, subtitle } = {}) {
+  constructor({ id, title, subtitle, dates = [], tags = [] } = {}) {
     super()
 
     this.state.id = id
     this.state.title = title
     this.state.subtitle = subtitle
+    this.state.dates = dates
+    this.state.tags = tags
   }
 
   onCreate() {
     this.setStyles()
-    this.append(this.getFlex())
+    this.append(this.getImageHTML())
+    this.append(this.getTitleHTML())
+    this.append(this.getSubtitleHTML())
   }
 
   setStyles() {
     this.setStyle('margin', '2rem 0rem')
   }
 
-  getFlex() {
-    const flex = new nFlex()
-    flex.append(this.getLeftHTML().setContainerStyle('width', '50%'))
-    flex.append(this.getRightHTML().setContainerStyle('width', '50%'))
-    this.append(flex)
-  }
-
-  getLeftHTML() {
-    return new HTML()
-  }
-
-  getRightHTML() {
-    return new HTML()
-  }
-
-  getTitlesHTML() {
-    const titles = new HTML()
-    titles.append(this.getTitleHTML())
-    titles.append(this.getSubtitleHTML())
-    return titles
-  }
-
   getHref() {
     return `/xp/${this.state.id}/`
+  }
+
+  getImageHTML() {
+    const link = new nLink2()
+    link.href(this.getHref())
+    this.children.image.src(`/xp/${this.state.id}/image.png`)
+    return link.append(this.children.image)
   }
 
   getTitleHTML() {
@@ -103,44 +97,17 @@ class Experience extends HTML {
     return link.append(this.children.subtitle)
   }
 
-  getImageHTML() {
-    const link = new nLink2()
-    link.href(this.getHref())
-    this.children.image.src(`/xp/${this.state.id}/image.png`)
-    return link.append(this.children.image)
-  }
 }
 
-class LeftExperiences extends Experience {
-  getLeftHTML() {
-    return this.getImageHTML()
-  }
-
-  getRightHTML() {
-    const html = new HTML()
-    html.append(this.getTitleHTML())
-    html.append(this.getSubtitleHTML())
-    return html
-  }
-}
-
-class RightExperiences extends Experience {
-  getLeftHTML() {
-    const html = new HTML()
-    html.append(this.getTitleHTML())
-    html.append(this.getSubtitleHTML())
-    return html
-  }
-
-  getRightHTML() {
-    return this.getImageHTML()
+export class Jobs extends HTML {
+  onCreate() {
+    jobs.map((xp) => this.append(new Experience(xp)))
   }
 }
 
 export class Experiences extends HTML {
   onCreate() {
-    experiences
-      .map((xp) => this.append(new LeftExperiences(xp)))
+    experiences.map((xp) => this.append(new Experience(xp)))
   }
 }
 
@@ -148,6 +115,15 @@ export class Page extends Container {
   onCreate() {
     super.onCreate()
     this.children.content.append(new Socials())
+    this.children.content.append(this.getTitle('Jobs'))
+    this.children.content.append(new Jobs())
+    this.children.content.append(this.getTitle('Experiences'))
     this.children.content.append(new Experiences())
+  }
+
+  getTitle(title) {
+    const html = new nH1()
+    html.setText(title)
+    return html
   }
 }
