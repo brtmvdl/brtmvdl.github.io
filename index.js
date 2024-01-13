@@ -140,8 +140,7 @@ class RightExperiences extends Experience {
 export class Experiences extends HTML {
   onCreate() {
     experiences
-      .map((xp, ix) => [xp, ix % 2 === 0])
-      .map(([xp, side]) => this.append(side ? new LeftExperiences(xp) : new RightExperiences(xp)))
+      .map((xp) => this.append(new LeftExperiences(xp)))
   }
 }
 
