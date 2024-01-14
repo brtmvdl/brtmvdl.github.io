@@ -1,0 +1,12 @@
+{
+  "name": "@brtmvdl/frontend",
+  "version": "1.0.12",
+  "main": "src/index.js",
+  "bin": "bin/index.js",
+  "description": "Easy Front-end Node.js library",
+  "url": "https://github.com/brtmvdl/frontend/issues",
+  "funding": "https://link.mercadopago.com.br/brtmvdl",
+  "author": "Tarsis Lima (https://github.com/brtmvdl)",
+  "repository": "github:brtmvdl/frontend",
+  "license": "MIT"
+}
