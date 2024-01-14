@@ -1,10 +1,12 @@
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^Duplex$" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^net|tls|https$" }] */
 
 'use strict';
 
 const EventEmitter = require('events');
 const http = require('http');
-const { Duplex } = require('stream');
+const https = require('https');
+const net = require('net');
+const tls = require('tls');
 const { createHash } = require('crypto');
 
 const extension = require('./extension');
@@ -29,11 +31,6 @@ class WebSocketServer extends EventEmitter {
    * Create a `WebSocketServer` instance.
    *
    * @param {Object} options Configuration options
-   * @param {Boolean} [options.allowSynchronousEvents=false] Specifies whether
-   *     any of the `'message'`, `'ping'`, and `'pong'` events can be emitted
-   *     multiple times in the same tick
-   * @param {Boolean} [options.autoPong=true] Specifies whether or not to
-   *     automatically send a pong in response to a ping
    * @param {Number} [options.backlog=511] The maximum length of the queue of
    *     pending connections
    * @param {Boolean} [options.clientTracking=true] Specifies whether or not to
@@ -60,8 +57,6 @@ class WebSocketServer extends EventEmitter {
     super();
 
     options = {
-      allowSynchronousEvents: false,
-      autoPong: true,
       maxPayload: 100 * 1024 * 1024,
       skipUTF8Validation: false,
       perMessageDeflate: false,
@@ -226,7 +221,8 @@ class WebSocketServer extends EventEmitter {
    * Handle a HTTP Upgrade request.
    *
    * @param {http.IncomingMessage} req The request object
-   * @param {Duplex} socket The network socket between the server and client
+   * @param {(net.Socket|tls.Socket)} socket The network socket between the
+   *     server and client
    * @param {Buffer} head The first packet of the upgraded stream
    * @param {Function} cb Callback
    * @public
@@ -350,7 +346,8 @@ class WebSocketServer extends EventEmitter {
    * @param {String} key The value of the `Sec-WebSocket-Key` header
    * @param {Set} protocols The subprotocols
    * @param {http.IncomingMessage} req The request object
-   * @param {Duplex} socket The network socket between the server and client
+   * @param {(net.Socket|tls.Socket)} socket The network socket between the
+   *     server and client
    * @param {Buffer} head The first packet of the upgraded stream
    * @param {Function} cb Callback
    * @throws {Error} If called more than once with the same socket
@@ -382,7 +379,7 @@ class WebSocketServer extends EventEmitter {
       `Sec-WebSocket-Accept: ${digest}`
     ];
 
-    const ws = new this.options.WebSocket(null, undefined, this.options);
+    const ws = new this.options.WebSocket(null);
 
     if (protocols.size) {
       //
@@ -416,7 +413,6 @@ class WebSocketServer extends EventEmitter {
     socket.removeListener('error', socketOnError);
 
     ws.setSocket(socket, head, {
-      allowSynchronousEvents: this.options.allowSynchronousEvents,
       maxPayload: this.options.maxPayload,
       skipUTF8Validation: this.options.skipUTF8Validation
     });
@@ -481,7 +477,7 @@ function socketOnError() {
 /**
  * Close the connection when preconditions are not fulfilled.
  *
- * @param {Duplex} socket The socket of the upgrade request
+ * @param {(net.Socket|tls.Socket)} socket The socket of the upgrade request
  * @param {Number} code The HTTP response status code
  * @param {String} [message] The HTTP response body
  * @param {Object} [headers] Additional HTTP response headers
@@ -522,7 +518,7 @@ function abortHandshake(socket, code, message, headers) {
  *
  * @param {WebSocketServer} server The WebSocket server
  * @param {http.IncomingMessage} req The request object
- * @param {Duplex} socket The socket of the upgrade request
+ * @param {(net.Socket|tls.Socket)} socket The socket of the upgrade request
  * @param {Number} code The HTTP response status code
  * @param {String} message The HTTP response body
  * @private

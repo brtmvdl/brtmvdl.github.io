@@ -1,6 +1,6 @@
 {
   "name": "@brtmvdl/frontend",
-  "version": "1.0.12",
+  "version": "1.0.10",
   "main": "src/index.js",
   "bin": "bin/index.js",
   "description": "Easy Front-end Node.js library",

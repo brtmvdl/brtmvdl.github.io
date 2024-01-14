@@ -1,4 +1,4 @@
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^Duplex|Readable$" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^Readable$" }] */
 
 'use strict';
 
@@ -8,7 +8,7 @@ const http = require('http');
 const net = require('net');
 const tls = require('tls');
 const { randomBytes, createHash } = require('crypto');
-const { Duplex, Readable } = require('stream');
+const { Readable } = require('stream');
 const { URL } = require('url');
 
 const PerMessageDeflate = require('./permessage-deflate');
@@ -84,7 +84,6 @@ class WebSocket extends EventEmitter {
 
       initAsClient(this, address, protocols, options);
     } else {
-      this._autoPong = options.autoPong;
       this._isServer = true;
     }
   }
@@ -190,12 +189,10 @@ class WebSocket extends EventEmitter {
   /**
    * Set up the socket and the internal resources.
    *
-   * @param {Duplex} socket The network socket between the server and client
+   * @param {(net.Socket|tls.Socket)} socket The network socket between the
+   *     server and client
    * @param {Buffer} head The first packet of the upgraded stream
    * @param {Object} options Options object
-   * @param {Boolean} [options.allowSynchronousEvents=false] Specifies whether
-   *     any of the `'message'`, `'ping'`, and `'pong'` events can be emitted
-   *     multiple times in the same tick
    * @param {Function} [options.generateMask] The function used to generate the
    *     masking key
    * @param {Number} [options.maxPayload=0] The maximum allowed message size
@@ -205,7 +202,6 @@ class WebSocket extends EventEmitter {
    */
   setSocket(socket, head, options) {
     const receiver = new Receiver({
-      allowSynchronousEvents: options.allowSynchronousEvents,
       binaryType: this.binaryType,
       extensions: this._extensions,
       isServer: this._isServer,
@@ -227,11 +223,8 @@ class WebSocket extends EventEmitter {
     receiver.on('ping', receiverOnPing);
     receiver.on('pong', receiverOnPong);
 
-    //
-    // These methods may not be available if `socket` is just a `Duplex`.
-    //
-    if (socket.setTimeout) socket.setTimeout(0);
-    if (socket.setNoDelay) socket.setNoDelay();
+    socket.setTimeout(0);
+    socket.setNoDelay();
 
     if (head.length > 0) socket.unshift(head);
 
@@ -289,8 +282,7 @@ class WebSocket extends EventEmitter {
     if (this.readyState === WebSocket.CLOSED) return;
     if (this.readyState === WebSocket.CONNECTING) {
       const msg = 'WebSocket was closed before the connection was established';
-      abortHandshake(this, this._req, msg);
-      return;
+      return abortHandshake(this, this._req, msg);
     }
 
     if (this.readyState === WebSocket.CLOSING) {
@@ -485,8 +477,7 @@ class WebSocket extends EventEmitter {
     if (this.readyState === WebSocket.CLOSED) return;
     if (this.readyState === WebSocket.CONNECTING) {
       const msg = 'WebSocket was closed before the connection was established';
-      abortHandshake(this, this._req, msg);
-      return;
+      return abortHandshake(this, this._req, msg);
     }
 
     if (this._socket) {
@@ -623,13 +614,6 @@ module.exports = WebSocket;
  * @param {(String|URL)} address The URL to which to connect
  * @param {Array} protocols The subprotocols
  * @param {Object} [options] Connection options
- * @param {Boolean} [options.allowSynchronousEvents=false] Specifies whether any
- *     of the `'message'`, `'ping'`, and `'pong'` events can be emitted multiple
- *     times in the same tick
- * @param {Boolean} [options.autoPong=true] Specifies whether or not to
- *     automatically send a pong in response to a ping
- * @param {Function} [options.finishRequest] A function which can be used to
- *     customize the headers of each http request before it is sent
  * @param {Boolean} [options.followRedirects=false] Whether or not to follow
  *     redirects
  * @param {Function} [options.generateMask] The function used to generate the
@@ -652,8 +636,6 @@ module.exports = WebSocket;
  */
 function initAsClient(websocket, address, protocols, options) {
   const opts = {
-    allowSynchronousEvents: false,
-    autoPong: true,
     protocolVersion: protocolVersions[1],
     maxPayload: 100 * 1024 * 1024,
     skipUTF8Validation: false,
@@ -672,8 +654,6 @@ function initAsClient(websocket, address, protocols, options) {
     port: undefined
   };
 
-  websocket._autoPong = opts.autoPong;
-
   if (!protocolVersions.includes(opts.protocolVersion)) {
     throw new RangeError(
       `Unsupported protocol version: ${opts.protocolVersion} ` +
@@ -685,21 +665,16 @@ function initAsClient(websocket, address, protocols, options) {
 
   if (address instanceof URL) {
     parsedUrl = address;
+    websocket._url = address.href;
   } else {
     try {
       parsedUrl = new URL(address);
     } catch (e) {
       throw new SyntaxError(`Invalid URL: ${address}`);
     }
-  }
 
-  if (parsedUrl.protocol === 'http:') {
-    parsedUrl.protocol = 'ws:';
-  } else if (parsedUrl.protocol === 'https:') {
-    parsedUrl.protocol = 'wss:';
+    websocket._url = address;
   }
-
-  websocket._url = parsedUrl.href;
 
   const isSecure = parsedUrl.protocol === 'wss:';
   const isIpcUrl = parsedUrl.protocol === 'ws+unix:';
@@ -707,8 +682,7 @@ function initAsClient(websocket, address, protocols, options) {
 
   if (parsedUrl.protocol !== 'ws:' && !isSecure && !isIpcUrl) {
     invalidUrlMessage =
-      'The URL\'s protocol must be one of "ws:", "wss:", ' +
-      '"http:", "https", or "ws+unix:"';
+      'The URL\'s protocol must be one of "ws:", "wss:", or "ws+unix:"';
   } else if (isIpcUrl && !parsedUrl.pathname) {
     invalidUrlMessage = "The URL's pathname is empty";
   } else if (parsedUrl.hash) {
@@ -822,8 +796,8 @@ function initAsClient(websocket, address, protocols, options) {
           ? opts.socketPath === websocket._originalHostOrSocketPath
           : false
         : websocket._originalIpc
-          ? false
-          : parsedUrl.host === websocket._originalHostOrSocketPath;
+        ? false
+        : parsedUrl.host === websocket._originalHostOrSocketPath;
 
       if (!isSameHost || (websocket._originalSecure && !isSecure)) {
         //
@@ -1007,18 +981,13 @@ function initAsClient(websocket, address, protocols, options) {
     }
 
     websocket.setSocket(socket, head, {
-      allowSynchronousEvents: opts.allowSynchronousEvents,
       generateMask: opts.generateMask,
       maxPayload: opts.maxPayload,
       skipUTF8Validation: opts.skipUTF8Validation
     });
   });
 
-  if (opts.finishRequest) {
-    opts.finishRequest(req, websocket);
-  } else {
-    req.end();
-  }
+  req.end();
 }
 
 /**
@@ -1127,7 +1096,7 @@ function sendAfterClose(websocket, data, cb) {
       `WebSocket is not open: readyState ${websocket.readyState} ` +
         `(${readyStates[websocket.readyState]})`
     );
-    process.nextTick(cb, err);
+    cb(err);
   }
 }
 
@@ -1218,7 +1187,7 @@ function receiverOnMessage(data, isBinary) {
 function receiverOnPing(data) {
   const websocket = this[kWebSocket];
 
-  if (websocket._autoPong) websocket.pong(data, !this._isServer, NOOP);
+  websocket.pong(data, !websocket._isServer, NOOP);
   websocket.emit('ping', data);
 }
 
@@ -1243,7 +1212,7 @@ function resume(stream) {
 }
 
 /**
- * The listener of the socket `'close'` event.
+ * The listener of the `net.Socket` `'close'` event.
  *
  * @private
  */
@@ -1294,7 +1263,7 @@ function socketOnClose() {
 }
 
 /**
- * The listener of the socket `'data'` event.
+ * The listener of the `net.Socket` `'data'` event.
  *
  * @param {Buffer} chunk A chunk of data
  * @private
@@ -1306,7 +1275,7 @@ function socketOnData(chunk) {
 }
 
 /**
- * The listener of the socket `'end'` event.
+ * The listener of the `net.Socket` `'end'` event.
  *
  * @private
  */
@@ -1319,7 +1288,7 @@ function socketOnEnd() {
 }
 
 /**
- * The listener of the socket `'error'` event.
+ * The listener of the `net.Socket` `'error'` event.
  *
  * @private
  */
