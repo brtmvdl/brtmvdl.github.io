@@ -3,12 +3,24 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>airplane</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "@brtmvdl/frontend": "../../assets/libs/@brtmvdl/frontend/src/index.js",
+      "three": "../../assets/libs/three/build/three.module.js",
+      "three/addons/": "../../assets/libs/three/examples/jsm/",
+      "dat.gui": "../../assets/libs/dat.gui/build/dat.gui.module.js",
+      "webSocket": "../../assets/libs/webSocket/socket.client.js"
+    }
+  }
+  </script>
 </head>
 
 <body>
-  <meta http-equiv="refresh" content="0; url=https://airplane-brtmvdl.surge.sh" />
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>
