@@ -1,0 +1,20 @@
+{
+  "status": "ok",
+  "message": null,
+  "data": {
+    "list": [
+      {
+        "image": "./img/speed-match.png",
+        "name": "Speed Match",
+        "price": 0.0,
+        "link": "./games/speed-match/"
+      },
+      {
+        "image": "./img/chalkboard.png",
+        "name": "Chalkboard",
+        "price": 1.0,
+        "link": "./games/chalkboard/"
+      }
+    ]
+  }
+}
