@@ -11,15 +11,7 @@ export const GOOGLE = {
   "project_id": "brtmvdl",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "client_id": "387615697147-ae61ofb1tnqaks4a9repv15bf54mpqp7.apps.googleusercontent.com",
-  "redirect_uris": [
-    "https://brtmvdl.surge.sh/login/google.html",
-    "http://127.0.0.1:8080/login/google.html",
-    "https://brtmvdl.surge.sh",
-    "http://127.0.0.1:8080",
-  ],
-  "javascript_origins": [
-    "http://127.0.0.1:8080",
-    "https://brtmvdl.surge.sh"
-  ]
+  "client_id": "387615697147-uqui8oke9g48nqlqnmov7onslgrucobd.apps.googleusercontent.com",
+  "client_secret": "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",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
 }
