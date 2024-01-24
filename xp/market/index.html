@@ -5,21 +5,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google OAuth 2.0 Login</title>
+  <title>Market as a project</title>
   <meta name="google-adsense-account" content="ca-pub-8803365396237758">
   <script type="importmap">
-  {
-    "imports": {
-      "@brtmvdl/frontend": "../../../assets/libs/@brtmvdl/frontend/src/index.js"
+    {
+      "imports": {
+        "@brtmvdl/frontend": "../../../assets/libs/@brtmvdl/frontend/src/index.js",
+        "googleapis": "../../../assets/libs/googleapis/build/src/apis/sheets/index.js"
+      }
     }
-  }
   </script>
 </head>
 
 <body>
   <div id="app"></div>
 
-  <script type="module" src="./index.js"></script>
+  <script type="module">
+    import { HTML } from '@brtmvdl/frontend'
+    import { Page } from './index.js'
+
+    HTML.fromElement(document.body).setStyle('margin', '0')
+
+    HTML.fromId('app').append(new Page())
+  </script>
 </body>
 
 </html>

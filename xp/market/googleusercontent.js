@@ -7,8 +7,8 @@ export const GOOGLE = {
   "project_id": "brtmvdl",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "client_id": "387615697147-iklgjv3bl81i9u88ujn1rgh3lnffko7d.apps.googleusercontent.com",
-  // "client_secret": "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",
+  "client_id": "387615697147-3nnghavlpeocc53s0cbktfda7omq1h81.apps.googleusercontent.com",
+  // "client_secret": "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",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "redirect_uris": [
     "https://brtmvdl.github.io/xp/market/",
