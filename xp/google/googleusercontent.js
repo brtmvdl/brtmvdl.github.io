@@ -11,7 +11,15 @@ export const GOOGLE = {
   "project_id": "brtmvdl",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "client_id": "387615697147-uqui8oke9g48nqlqnmov7onslgrucobd.apps.googleusercontent.com",
-  // "client_secret": "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",
+  "client_id": "387615697147-2uictavc3bnao44q9m3dps2b8qltdtni.apps.googleusercontent.com",
+  // "client_secret": "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",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-}
+  "redirect_uris": [
+    "https://brtmvdl.github.io/xp/google/",
+    "http://localhost:8080/xp/google/"
+  ],
+  "javascript_origins": [
+    "https://brtmvdl.github.io",
+    "http://localhost:8080"
+  ]
+} 
