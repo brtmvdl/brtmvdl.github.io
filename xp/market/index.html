@@ -8,12 +8,11 @@
   <title>Market as a project</title>
   <meta name="google-adsense-account" content="ca-pub-8803365396237758">
   <script type="importmap">
-    {
-      "imports": {
-        "@brtmvdl/frontend": "../../../assets/libs/@brtmvdl/frontend/src/index.js",
-        "googleapis": "../../../assets/libs/googleapis/build/src/apis/sheets/index.js"
-      }
+  {
+    "imports": {
+      "@brtmvdl/frontend": "../../../assets/libs/@brtmvdl/frontend/src/index.js"
     }
+  }
   </script>
 </head>
 
@@ -26,8 +25,14 @@
 
     HTML.fromElement(document.body).setStyle('margin', '0')
 
-    HTML.fromId('app').append(new Page())
+    const page = new Page()
+    HTML.fromId('app').append(page)
+
+    window.addEventListener('gapi.loaded', () => page.dispatchEvent(new Event('gapi.loaded')))
+    window.addEventListener('gis.loaded', () => page.dispatchEvent(new Event('gis.loaded')))
   </script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="window.dispatchEvent(new Event('gapi.loaded'))"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="window.dispatchEvent(new Event('gis.loaded'))"></script>
 </body>
 
 </html>

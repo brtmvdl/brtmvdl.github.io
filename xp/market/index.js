@@ -1,4 +1,4 @@
-import { HTML, nButton, nH1, nInput, nLink } from '@brtmvdl/frontend'
+import { HTML, nButton, nH2, nInput, nLink } from '@brtmvdl/frontend'
 import { GOOGLE } from './googleusercontent.js'
 
 import * as Local from '../../assets/js/utils/local.js'
@@ -20,6 +20,7 @@ export class Page extends HTML {
   }
 
   onCreate() {
+    this.setEvents()
     this.append(this.getForm())
     this.append(this.getTitleLink())
     this.append(this.getLoginButton())
@@ -27,6 +28,11 @@ export class Page extends HTML {
     this.append(this.getAccessTokenHTML())
     this.append(this.getSpreadsheetsValuesGetButton())
     this.saveSessionInfo()
+  }
+
+  setEvents() {
+    this.on('gapi.loaded', () => console.log('gapi.loaded'))
+    this.on('gis.loaded', () => console.log('gis.loaded'))
   }
 
   getForm() {
@@ -46,7 +52,7 @@ export class Page extends HTML {
 
   getTitleLink() {
     const link = new nLink()
-    link.href(GOOGLE.redirect_uri)
+    link.href('/xp/market/')
     link.setText('Market as a project')
     return link
   }
