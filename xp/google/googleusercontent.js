@@ -1,11 +1,5 @@
-const url = new URL(window.location)
-url.pathname = "login/google.html"
-url.hash = ""
-
-const redirect_uri = url.toString()
 
 export const GOOGLE = {
-  redirect_uri,
   "response_type": "token",
   "scope": "https://www.googleapis.com/auth/spreadsheets",
   "project_id": "brtmvdl",
