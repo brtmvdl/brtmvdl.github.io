@@ -1,5 +1,7 @@
+const redirect_uri = window.location.toString()
 
 export const GOOGLE = {
+  redirect_uri,
   "response_type": "token",
   "scope": "https://www.googleapis.com/auth/spreadsheets",
   "project_id": "brtmvdl",
