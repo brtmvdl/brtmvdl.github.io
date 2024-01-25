@@ -1,7 +1,9 @@
 import { HTML, nButton, nH2, nInput, nLink } from '@brtmvdl/frontend'
 import { GOOGLE } from './googleusercontent.js'
-
+import * as api from '../../assets/js/utils/api.js'
 import * as Local from '../../assets/js/utils/local.js'
+
+// const API_KEY = "AIzaSyA5cMo5yL-zZyayWVF6ouxPodWDXV8UobY"
 
 class nForm extends HTML {
   getName() { return 'form' }
@@ -26,7 +28,7 @@ export class Page extends HTML {
     this.append(this.getLoginButton())
     this.append(this.getEraseButton())
     this.append(this.getAccessTokenHTML())
-    this.append(this.getSpreadsheetsValuesGetButton())
+    this.append(this.getFilesListButton())
     this.saveSessionInfo()
   }
 
@@ -86,10 +88,10 @@ export class Page extends HTML {
       .map(([, key, value]) => Local.set(['google', key], value))
   }
 
-  getSpreadsheetsValuesGetButton() {
+  getFilesListButton() {
     const button = new nButton()
-    button.setText('spreadsheets.values.get')
-    button.on('click', () => console.log('spreadsheets.values.get'))
+    button.setText('List files in Google Drive API')
+    button.on('click', () => console.log('get files list button'))
     return button
   }
 }
