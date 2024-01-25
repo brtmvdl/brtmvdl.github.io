@@ -1,55 +1,15 @@
 import { HTML, nButton, nH2, nInput, nLink } from '@brtmvdl/frontend'
-import { GOOGLE } from './googleusercontent.js'
-import * as api from '../../assets/js/utils/api.js'
-import * as Local from '../../assets/js/utils/local.js'
-
-// const API_KEY = "AIzaSyA5cMo5yL-zZyayWVF6ouxPodWDXV8UobY"
-
-class nForm extends HTML {
-  getName() { return 'form' }
-
-  getTagName() { return 'form' }
-
-  submit() {
-    this.element.submit()
-    return this
-  }
-}
+import { GOOGLE, API_KEY, DISCOVERY_DOC } from './googleusercontent.js'
 
 export class Page extends HTML {
-  children = {
-    form: new nForm(),
-  }
-
   onCreate() {
-    this.setEvents()
-    this.append(this.getForm())
     this.append(this.getTitleLink())
-    this.append(this.getLoginButton())
-    this.append(this.getEraseButton())
-    this.append(this.getAccessTokenHTML())
-    this.append(this.getFilesListButton())
-    this.saveSessionInfo()
-  }
-
-  setEvents() {
-    this.on('gapi.loaded', () => console.log('gapi.loaded'))
-    this.on('gis.loaded', () => console.log('gis.loaded'))
-  }
-
-  getForm() {
-    this.children.form.setAttr('method', 'GET')
-    this.children.form.setAttr('action', GOOGLE.auth_uri)
-
-    Object.keys(GOOGLE).filter((key) => (typeof GOOGLE[key]) === 'string').map((key) => {
-      const input = new nInput()
-      input.setAttr('type', 'hidden')
-      input.setAttr('name', key)
-      input.setValue(GOOGLE[key])
-      this.children.form.append(input)
-    })
-
-    return this.children.form
+    this.append(this.getLoadAuth2Button())
+    this.append(this.getAuth2AuthorizeButton())
+    this.append(this.getLoadClientButton())
+    this.append(this.getClientInitButton())
+    this.on('gapi', () => console.log('gapi'))
+    this.on('gis', () => console.log('gis'))
   }
 
   getTitleLink() {
@@ -59,39 +19,31 @@ export class Page extends HTML {
     return link
   }
 
-  getLoginButton() {
+  getLoadClientButton() {
     const button = new nButton()
-    button.setText('login')
-    button.on('click', () => this.children.form.submit())
+    button.setText('load:client')
+    button.on('click', () => gapi.load('client', { callback: () => console.log('gapi.load:client') }))
     return button
   }
 
-  deleteAccessToken() {
-    Local.set(['google', 'access_token'], '')
-  }
-
-  getEraseButton() {
+  getLoadAuth2Button() {
     const button = new nButton()
-    button.setText('erase')
-    button.on('click', () => this.deleteAccessToken())
+    button.setText('load:auth2')
+    button.on('click', () => gapi.load('auth2', { callback: () => console.log('gapi.load:auth2') }))
     return button
   }
 
-  getAccessTokenHTML() {
-    const access_token = new HTML()
-    access_token.setText(Local.get(['google', 'access_token']))
-    return access_token
-  }
-
-  saveSessionInfo() {
-    Array.from(location.hash.substring(1).matchAll(/([^&=]+)=([^&]+)/g))
-      .map(([, key, value]) => Local.set(['google', key], value))
-  }
-
-  getFilesListButton() {
+  getClientInitButton() {
     const button = new nButton()
-    button.setText('List files in Google Drive API')
-    button.on('click', () => console.log('get files list button'))
+    button.setText('client.init')
+    button.on('click', () => gapi.client.init({ apiKey: API_KEY, discoveryDocs: [DISCOVERY_DOC], clientId: GOOGLE.client_id, scope: GOOGLE.scope }, console.log('client.init')))
+    return button
+  }
+
+  getAuth2AuthorizeButton() {
+    const button = new nButton()
+    button.setText('auth2.authorize')
+    button.on('click', () => gapi.auth2.authorize({ client_id: GOOGLE.client_id, scope: GOOGLE.scope, response_type: 'id_token permission' }, console.log('auth2.authorize')))
     return button
   }
 }

@@ -28,11 +28,11 @@
     const page = new Page()
     HTML.fromId('app').append(page)
 
-    window.addEventListener('gapi.loaded', () => page.dispatchEvent(new Event('gapi.loaded')))
-    window.addEventListener('gis.loaded', () => page.dispatchEvent(new Event('gis.loaded')))
+    window.addEventListener('gapi', () => page.dispatchEvent(new Event('gapi')))
+    window.addEventListener('gis', () => page.dispatchEvent(new Event('gis')))
   </script>
-  <script async defer src="https://apis.google.com/js/api.js" onload="window.dispatchEvent(new Event('gapi.loaded'))"></script>
-  <script async defer src="https://accounts.google.com/gsi/client" onload="window.dispatchEvent(new Event('gis.loaded'))"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="window.dispatchEvent(new Event('gapi'))"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="window.dispatchEvent(new Event('gis'))"></script>
 </body>
 
 </html>
