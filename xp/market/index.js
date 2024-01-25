@@ -33,17 +33,25 @@ export class Page extends HTML {
     return button
   }
 
+  gapiClientInit() {
+    return new Promise((s, f) => gapi.client.init({ apiKey: API_KEY, discoveryDocs: [DISCOVERY_DOC], clientId: GOOGLE.client_id, scope: GOOGLE.scope }, (err) => err ? f() : s()))
+  }
+
   getClientInitButton() {
     const button = new nButton()
     button.setText('client.init')
-    button.on('click', () => gapi.client.init({ apiKey: API_KEY, discoveryDocs: [DISCOVERY_DOC], clientId: GOOGLE.client_id, scope: GOOGLE.scope }, console.log('client.init')))
+    button.on('click', () => this.gapiClientInit())
     return button
+  }
+
+  gapiAuth2Authorize() {
+    return new Promise((s, f) => gapi.auth2.authorize({ clientId: GOOGLE.client_id, scope: GOOGLE.scope, response_type: 'id_token permission' }, (err) => err ? f() : s()))
   }
 
   getAuth2AuthorizeButton() {
     const button = new nButton()
     button.setText('auth2.authorize')
-    button.on('click', () => gapi.auth2.authorize({ client_id: GOOGLE.client_id, scope: GOOGLE.scope, response_type: 'id_token permission' }, console.log('auth2.authorize')))
+    button.on('click', () => this.gapiAuth2Authorize())
     return button
   }
 }
