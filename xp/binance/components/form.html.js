@@ -1,15 +1,17 @@
 import { HTML, nSelect, nButton, nInputTextGroup } from '@brtmvdl/frontend'
 import { InputTextGroupComponent } from './input-text-group.component.js'
+import { getMethodsList, getParamsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
-import { getMethodsList } from '../utils/lists.js'
+import { InputsComponent } from './inputs.component.js'
 
 export class FormHTML extends HTML {
   children = {
     method: new SelectComponent(),
     params: new HTML(),
     send: new ButtonComponent(),
-    backup: new InputTextGroupComponent(),
+    backup: new InputTextGroupComponent('backup url server'),
+    inputs: new InputsComponent(),
   }
 
   onCreate() {
@@ -27,7 +29,8 @@ export class FormHTML extends HTML {
   }
 
   onMethodSelectChange() {
-    console.log('onEndpointSelectChange', this.getMethodValue())
+    this.children.params.clear()
+    getParamsList()[this.getMethodValue()]?.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -41,10 +44,7 @@ export class FormHTML extends HTML {
   }
 
   onSendButtonClick() {
-    this.dispatchEvent('submit', {
-      method: this.getMethodValue(),
-      params: this.getParamsValues(),
-    })
+    this.dispatchEvent('submit', { method: this.getMethodValue(), params: this.getParamsValues(), })
   }
 
   getMethodValue() {
@@ -52,7 +52,7 @@ export class FormHTML extends HTML {
   }
 
   getParamsValues() {
-    return {} // FIXME
+    return getParamsList()[this.getMethodValue()]?.reduce((params, input) => ({ ...params, [input]: this.children.inputs.getValue(input) }), {})
   }
 
   getBackupInputTextGroup() {

@@ -31,7 +31,7 @@ export class Page extends nFlex {
     this.addMessage(new OpenMessagesModel(data))
   }
 
-  onSocketMessage({ data }) {
+  onSocketMessage({ data } = {}) {
     this.addMessage(this.getMessageInstance(JSON.parse(data)))
   }
 

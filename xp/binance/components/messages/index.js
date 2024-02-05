@@ -69,7 +69,11 @@ export class timeMessage extends MessageHTML {
   }
 }
 
-export class exchangeInfoMessage extends MessageHTML { }
+export class exchangeInfoMessage extends MessageHTML {
+  getInputHTML() {
+    return new TextHTML(`Symbol: ${this.data.params.symbol}`)
+  }
+}
 
 export class depthMessage extends MessageHTML { }
 
