@@ -1,4 +1,4 @@
-export * from './separator.html.js'
+export * from './horizontal.separator.html.js'
 
 export * from './form.html.js'
 

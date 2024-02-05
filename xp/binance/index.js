@@ -2,7 +2,7 @@ import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormHTML, MessagesHTML } from './components/index.js'
 import { CloseMessagesModel, ErrorMessagesModel, MessagesModel, OpenMessagesModel } from './models/index.js'
 
-export class Page extends nFlex {
+export class Page extends HTML {
   state = {
     socket: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
     messages: [],
@@ -16,8 +16,11 @@ export class Page extends nFlex {
   onCreate() {
     super.onCreate()
     this.setEvents()
-    this.append(this.getFormHTML())
-    this.append(this.getMessagesHTML())
+    this.setStyles()
+    const flex = new nFlex()
+    flex.append(this.getFormHTML())
+    flex.append(this.getMessagesHTML())
+    this.append(flex)
   }
 
   setEvents() {
@@ -25,6 +28,13 @@ export class Page extends nFlex {
     this.state.socket.addEventListener('message', (data) => this.onSocketMessage(data))
     this.state.socket.addEventListener('error', (data) => this.onSocketError(data))
     this.state.socket.addEventListener('close', (data) => this.onSocketClose(data))
+  }
+
+  setStyles() {
+    this.setStyle('font-family', 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"')
+    this.setStyle('font-stretch', '100%')
+    this.setStyle('font-weight', '400')
+    this.setStyle('font-size', '16px')
   }
 
   onSocketOpen(data) {

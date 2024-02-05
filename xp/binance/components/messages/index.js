@@ -1,5 +1,5 @@
-import { HTML } from '@brtmvdl/frontend'
-
+import { HTML, nTable, nTr, nTd } from '@brtmvdl/frontend'
+import { HorizontalSeparatorHTML } from '../horizontal.separator.html.js'
 import { TextHTML } from '../text.html.js'
 
 export class MessageHTML extends HTML {
@@ -23,6 +23,7 @@ export class MessageHTML extends HTML {
     this.setContainerStyle('background-color', ({ none: '#ffffff', input: '#000000', output: '#000000', error: '#ff0000' })[this.data.side])
     this.setContainerStyle('color', ({ none: '#000000', input: '#ffffff', output: '#ff0000', error: '#000000' })[this.data.side])
     this.setContainerStyle('margin', '0rem 0rem 1rem 0rem')
+    this.setContainerStyle('box-sizing', 'border-box')
     this.setContainerStyle('padding', '1rem')
     this.setContainerStyle('width', '100%')
   }
@@ -75,7 +76,44 @@ export class exchangeInfoMessage extends MessageHTML {
   }
 }
 
-export class depthMessage extends MessageHTML { }
+export class TableMessage extends MessageHTML {
+  getTableHTML(rows = [], ths = []) {
+    const table = new nTable()
+    const th = new nTr()
+    Array.from(ths).map((text) => {
+      const td = new nTd()
+      td.setText(text)
+      th.append(td)
+    })
+    table.append(th)
+    Array.from(rows).map((lines) => {
+      const tr = new nTr()
+      Array.from(lines).map((text) => {
+        const td = new nTd()
+        td.setText(text)
+        tr.append(td)
+      })
+      table.append(tr)
+    })
+    return table
+  }
+}
+
+export class depthMessage extends TableMessage {
+  getOutputHTML() {
+    const output = new HTML()
+    output.append(new HorizontalSeparatorHTML())
+    output.append(new TextHTML('Asks'))
+    output.append(new HorizontalSeparatorHTML())
+    output.append(this.getTableHTML(this.data.params.asks, ['Price', 'Quantity']))
+    output.append(new HorizontalSeparatorHTML())
+    output.append(new TextHTML('Bids'))
+    output.append(new HorizontalSeparatorHTML())
+    output.append(this.getTableHTML(this.data.params.bids, ['Price', 'Quantity']))
+    output.append(new HorizontalSeparatorHTML())
+    return output
+  }
+}
 
 export class tradesRecentMessage extends MessageHTML { }
 
@@ -95,7 +133,14 @@ export class tickerTradingDayMessage extends MessageHTML { }
 
 export class tickerMessage extends MessageHTML { }
 
-export class tickerPriceMessage extends MessageHTML { }
+export class tickerPriceMessage extends MessageHTML {
+  getOutputHTML() {
+    const output = new HTML()
+    output.append(new TextHTML(`Symbol: ${this.data.params.symbol}`))
+    output.append(new TextHTML(`Price: ${this.data.params.price}`))
+    return output
+  }
+}
 
 export class tickerBookMessage extends MessageHTML { }
 
