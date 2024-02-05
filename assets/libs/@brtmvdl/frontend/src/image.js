@@ -16,6 +16,7 @@ export class nImage extends HTML {
 
   setStyles() {
     this.setStyle('width', '100%')
+    return this
   }
 
   src(value = '') {

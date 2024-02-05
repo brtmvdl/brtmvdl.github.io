@@ -12,7 +12,7 @@ export class HTML {
     this.container = document.createElement(this.getContainerName())
     this.container.classList.add(`ct-${this.getName()}`)
 
-    this.on('create', () => this.onCreate())
+    this.once('create', () => this.onCreate())
   }
 
   onCreate() { }
@@ -134,6 +134,11 @@ export class HTML {
     return this
   }
 
+  once(key, value = (() => { })) {
+    this.element.addEventListener(key, value.bind(this), { once: true })
+    return this
+  }
+
   dispatch(ev = new Event('')) {
     this.element.dispatchEvent(ev)
     return this
@@ -171,6 +176,13 @@ export class HTML {
     el.dispatchEvent('create')
 
     this.element.append(el.render())
+    return this
+  }
+
+  prepend(el = new HTML()) {
+    el.dispatchEvent('create')
+
+    this.element.prepend(el.render())
     return this
   }
 

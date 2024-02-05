@@ -40,4 +40,8 @@ export class nInputTextGroup extends nComponent {
     this.children.input.setStyle('box-shadow', 'none')
     return this
   }
+
+  getValue() {
+    return this.children.input.getValue()
+  }
 }
