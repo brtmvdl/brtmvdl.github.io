@@ -1,22 +1,29 @@
 import { HTML } from '@brtmvdl/frontend'
 import { InputTextGroupComponent } from './input-text-group.component.js'
 
+export class TimestampInputTextGroupComponent extends InputTextGroupComponent {
+  onCreate() {
+    super.onCreate()
+    setInterval(() => this.children.input.setValue(Date.now()), 100)
+  }
+}
+
 export class InputsComponent extends HTML {
   children = {
     symbol: new InputTextGroupComponent('symbol'),
-    limit: new InputTextGroupComponent('limit'),
-    fromId: new InputTextGroupComponent('fromId'),
+    limit: new InputTextGroupComponent('limit', 1),
+    fromId: new InputTextGroupComponent('fromId', 0),
     interval: new InputTextGroupComponent('interval'),
-    startTime: new InputTextGroupComponent('startTime'),
+    startTime: new InputTextGroupComponent('startTime', Date.now() - (1000 * 60 * 60 * 24)),
     windowSize: new InputTextGroupComponent('windowSize'),
     apiKey: new InputTextGroupComponent('apiKey'),
     signature: new InputTextGroupComponent('signature'),
-    timestamp: new InputTextGroupComponent('timestamp'),
-    side: new InputTextGroupComponent('side'),
+    timestamp: new TimestampInputTextGroupComponent('timestamp'),
+    side: new InputTextGroupComponent('side', 'buy'),
     type: new InputTextGroupComponent('type'),
     timeInForce: new InputTextGroupComponent('timeInForce'),
     price: new InputTextGroupComponent('price'),
-    quantity: new InputTextGroupComponent('quantity'),
+    quantity: new InputTextGroupComponent('quantity', 1),
     orderId: new InputTextGroupComponent('orderId'),
     origClientOrderId: new InputTextGroupComponent('origClientOrderId'),
     cancelReplaceMode: new InputTextGroupComponent('cancelReplaceMode'),
@@ -26,7 +33,7 @@ export class InputsComponent extends HTML {
     stopLimitTimeInForce: new InputTextGroupComponent('stopLimitTimeInForce'),
     newOrderRespType: new InputTextGroupComponent('newOrderRespType'),
     orderListId: new InputTextGroupComponent('orderListId'),
-    endTime: new InputTextGroupComponent('endTime'),
+    endTime: new InputTextGroupComponent('endTime', Date.now()),
   }
 
   getComponent(component = '') {
@@ -36,4 +43,5 @@ export class InputsComponent extends HTML {
   getValue(component = '') {
     return this.children[component].getValue()
   }
+
 }
