@@ -1,5 +1,5 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
-import { FormHTML, MessagesHTML, SeparatorHTML } from './components/index.js'
+import { FormHTML, MessagesHTML } from './components/index.js'
 import { CloseMessagesModel, ErrorMessagesModel, MessagesModel, OpenMessagesModel } from './models/index.js'
 
 export class Page extends nFlex {
@@ -16,11 +16,8 @@ export class Page extends nFlex {
   onCreate() {
     super.onCreate()
     this.setEvents()
-    this.append(new SeparatorHTML())
     this.append(this.getFormHTML())
-    this.append(new SeparatorHTML())
     this.append(this.getMessagesHTML())
-    this.append(new SeparatorHTML())
   }
 
   setEvents() {
@@ -40,12 +37,10 @@ export class Page extends nFlex {
 
   getMessageInstance(data) {
     const error = data.status === 400
-
-    return new MessagesModel(
-      this.getMessageMethodById(data.id),
-      error ? data.error : data.result,
-      error ? 'error' : 'output',
-    )
+    const method = this.getMessageMethodById(data.id)
+    const params = error ? data.error : data.result
+    const side = error ? 'error' : 'output'
+    return new MessagesModel(method, params, side)
   }
 
   getMessageMethodById(message_id) {
@@ -61,7 +56,6 @@ export class Page extends nFlex {
   }
 
   getFormHTML() {
-    this.children.form.setText('form')
     this.children.form.on('submit', (data) => this.onFormHtmlSubmit(data))
     return this.children.form
   }
@@ -73,7 +67,6 @@ export class Page extends nFlex {
   }
 
   getMessagesHTML() {
-    this.children.messages.setText('messages')
     return this.children.messages
   }
 

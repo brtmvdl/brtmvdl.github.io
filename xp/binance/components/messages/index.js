@@ -14,19 +14,44 @@ export class MessageHTML extends HTML {
     super.onCreate()
     this.setStyles()
     this.append(this.getHeaderHTML())
-    this.append(this.getBodyHTML())
+    this.append(({ none: this.getNoneHTML(), input: this.getInputHTML(), output: this.getOutputHTML(), error: this.getErrorHTML() })[this.data.side])
     this.append(this.getFooterHTML())
+    console.log('data', this.data)
   }
 
-  getHeaderHTML() { return new HTML() }
-
-  getBodyHTML() { return new TextHTML(this.data) }
-
-  getFooterHTML() { return new HTML() }
-
   setStyles() {
-    this.setStyle('background-color', ({ none: '#ffffff', input: '#000000', output: '#000000', error: '#ff0000' })[this.data.side])
-    this.setStyle('color', ({ none: '#000000', input: '#ffffff', output: '#ff0000', error: '#000000' })[this.data.side])
+    this.setContainerStyle('background-color', ({ none: '#ffffff', input: '#000000', output: '#000000', error: '#ff0000' })[this.data.side])
+    this.setContainerStyle('color', ({ none: '#000000', input: '#ffffff', output: '#ff0000', error: '#000000' })[this.data.side])
+    this.setContainerStyle('margin', '0rem 0rem 1rem 0rem')
+    this.setContainerStyle('padding', '1rem')
+    this.setContainerStyle('width', '100%')
+  }
+
+  getHeaderHTML() {
+    return new TextHTML(`Method: ${this.data.method} (${this.data.side})`)
+  }
+
+  getNoneHTML() {
+    return new HTML()
+  }
+
+  getInputHTML() {
+    return new HTML()
+  }
+
+  getOutputHTML() {
+    return new HTML()
+  }
+
+  getErrorHTML() {
+    const error = new HTML()
+    error.append(new TextHTML(`Code: ${this.data.params.code}`))
+    error.append(new TextHTML(`Message: ${this.data.params.msg}`))
+    return error
+  }
+
+  getFooterHTML() {
+    return new TextHTML(`Id: ${this.data.id}`)
   }
 }
 
@@ -38,7 +63,11 @@ export class errorMessage extends MessageHTML {
 
 export class pingMessage extends MessageHTML { }
 
-export class timeMessage extends MessageHTML { }
+export class timeMessage extends MessageHTML {
+  getOutputHTML() {
+    return new TextHTML(`Server Time: ${this.data.params.serverTime}`)
+  }
+}
 
 export class exchangeInfoMessage extends MessageHTML { }
 

@@ -23,7 +23,6 @@ export class MessagesHTML extends HTML {
 
   getMessageHTML(data) {
     switch (data.method) {
-      case 'error': return new messages.errorMessage(data)
       case 'ping': return new messages.pingMessage(data)
       case 'time': return new messages.timeMessage(data)
       case 'exchangeInfo': return new messages.exchangeInfoMessage(data)
