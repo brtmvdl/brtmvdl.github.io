@@ -1,6 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 
-export class SeparatorHTML extends HTML {
+export class HorizontalSeparatorHTML extends HTML {
   onCreate() {
     super.onCreate()
     this.setContainerStyle('background-color', '#000000')
