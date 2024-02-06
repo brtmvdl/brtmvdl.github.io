@@ -16,10 +16,15 @@ export class FormHTML extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.setStyles()
     this.append(this.getEndpointSelect())
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
     this.append(this.getBackupInputTextGroup())
+  }
+
+  setStyles() {
+    this.setStyle('padding', '1rem')
   }
 
   getEndpointSelect() {

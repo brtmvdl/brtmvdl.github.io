@@ -9,8 +9,13 @@ export class MessagesHTML extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.setStyles()
     this.setEvents()
     this.append(this.getListHTML())
+  }
+
+  setStyles() {
+    this.setStyle('padding', '1rem')
   }
 
   setEvents() {

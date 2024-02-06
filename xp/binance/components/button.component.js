@@ -15,7 +15,6 @@ export class ButtonComponent extends nButton {
     this.setStyle('border-radius', '6px')
     this.setStyle('cursor', 'pointer')
     this.setStyle('font', 'inherit')
-    this.setStyle('height', '3rem')
     this.setStyle('width', '100%')
   }
 }
