@@ -1,4 +1,5 @@
 import { HTML, nTable, nTr, nTd } from '@brtmvdl/frontend'
+import * as d3 from 'd3'
 import { HorizontalSeparatorHTML } from '../horizontal.separator.html.js'
 import { TextHTML } from '../text.html.js'
 import { CardHTML } from '../card.html.js'
@@ -165,7 +166,55 @@ export class tradesAggregateMessage extends ObjectMessage {
   }
 }
 
-export class klinesMessage extends MessageCardHTML { }
+export class klinesMessage extends MessageCardHTML {
+  getOutputHTML() {
+    const output = new HTML()
+    output.setText('https://observablehq.com/@d3/candlestick-chart/2?intent=fork')
+    // output.append(this.getCharts())
+    return output
+  }
+
+  getCharts() {
+    // Declare the chart dimensions and margins.
+    const width = 640;
+    const height = 400;
+    const marginTop = 20;
+    const marginRight = 20;
+    const marginBottom = 30;
+    const marginLeft = 40;
+
+    const now = Date.now()
+    const yesterday = now - (1000 * 60 * 60 * 24)
+
+    // Declare the x (horizontal position) scale.
+    const x = d3.scaleUtc()
+      .domain([now, yesterday])
+      .range([marginLeft, width - marginRight]);
+
+    // Declare the y (vertical position) scale.
+    const y = d3.scaleLinear()
+      .domain([0, 100])
+      .range([height - marginBottom, marginTop]);
+
+    // Create the SVG container.
+    const svg = d3.create('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    // Add the x-axis.
+    svg.append('g')
+      .attr('transform', `translate(0,${height - marginBottom})`)
+      .call(d3.axisBottom(x));
+
+    // Add the y-axis.
+    svg.append('g')
+      .attr('transform', `translate(${marginLeft},0)`)
+      .call(d3.axisLeft(y));
+
+    // Return the SVG element.
+    return HTML.fromElement(svg.node());
+  }
+}
 
 export class uiKlinesMessage extends MessageCardHTML { }
 
