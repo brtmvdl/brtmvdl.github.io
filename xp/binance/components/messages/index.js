@@ -110,10 +110,32 @@ export class TableMessage extends MessageCardHTML {
   }
 }
 
+export class ObjectMessage extends MessageCardHTML {
+  getTableHTML(rows = []) {
+    const table = new nTable()
+    const th = new nTr()
+    Object.keys(rows[0]).map((text) => {
+      const td = new nTd()
+      td.setText(text)
+      th.append(td)
+    })
+    table.append(th)
+    Array.from(rows).map((row) => {
+      const tr = new nTr()
+      Object.keys(row).map((col) => {
+        const td = new nTd()
+        td.setText(row[col])
+        tr.append(td)
+      })
+      table.append(tr)
+    })
+    return table
+  }
+}
+
 export class depthMessage extends TableMessage {
   getOutputHTML() {
     const output = new HTML()
-    output.append(new HorizontalSeparatorHTML())
     output.append(new TextHTML('Asks'))
     output.append(new HorizontalSeparatorHTML())
     output.append(this.getTableHTML(this.data.params.asks, ['Price', 'Quantity']))
@@ -121,12 +143,17 @@ export class depthMessage extends TableMessage {
     output.append(new TextHTML('Bids'))
     output.append(new HorizontalSeparatorHTML())
     output.append(this.getTableHTML(this.data.params.bids, ['Price', 'Quantity']))
-    output.append(new HorizontalSeparatorHTML())
     return output
   }
 }
 
-export class tradesRecentMessage extends MessageCardHTML { }
+export class tradesRecentMessage extends ObjectMessage {
+  getOutputHTML() {
+    const output = new HTML()
+    output.append(this.getTableHTML(this.data.params))
+    return output
+  }
+}
 
 export class tradesHistoricalMessage extends MessageCardHTML { }
 
