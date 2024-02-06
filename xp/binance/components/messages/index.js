@@ -111,10 +111,10 @@ export class TableMessage extends MessageCardHTML {
 }
 
 export class ObjectMessage extends MessageCardHTML {
-  getTableHTML(rows = []) {
+  getTableHTML(rows = [], ths = null) {
     const table = new nTable()
     const th = new nTr()
-    Object.keys(rows[0]).map((text) => {
+    Array.from(ths === null ? Object.keys(rows[0]) : ths).map((text) => {
       const td = new nTd()
       td.setText(text)
       th.append(td)
@@ -155,9 +155,15 @@ export class tradesRecentMessage extends ObjectMessage {
   }
 }
 
-export class tradesHistoricalMessage extends MessageCardHTML { }
+export class tradesHistoricalMessage extends tradesRecentMessage { }
 
-export class tradesAggregateMessage extends MessageCardHTML { }
+export class tradesAggregateMessage extends ObjectMessage {
+  getOutputHTML() {
+    const output = new HTML()
+    output.append(this.getTableHTML(this.data.params, []))
+    return output
+  }
+}
 
 export class klinesMessage extends MessageCardHTML { }
 
