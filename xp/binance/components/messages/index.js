@@ -6,6 +6,7 @@ import { CardHTML } from '../card.html.js'
 import { CardHeaderHTML } from '../card-header.html.js'
 import { CardBodyHTML } from '../card-body.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
+import { KeyValueHTML } from '../key-value.html.js'
 
 import * as str from '../../utils/str.js'
 
@@ -68,6 +69,29 @@ export class MessageCardHTML extends CardHTML {
   }
 }
 
+export class ObjectMessage extends MessageCardHTML {
+  getTableHTML(rows = [], ths = null) {
+    const table = new nTable()
+    const th = new nTr()
+    Array.from(ths === null ? Object.keys(rows[0]) : ths).map((text) => {
+      const td = new nTd()
+      td.setText(text)
+      th.append(td)
+    })
+    table.append(th)
+    Array.from(rows).map((row) => {
+      const tr = new nTr()
+      Object.keys(row).map((col) => {
+        const td = new nTd()
+        td.setText(row[col])
+        tr.append(td)
+      })
+      table.append(tr)
+    })
+    return table
+  }
+}
+
 export class errorMessage extends MessageCardHTML {
   getHeaderHTML() {
     return new TextHTML('error')
@@ -82,10 +106,40 @@ export class timeMessage extends MessageCardHTML {
   }
 }
 
-export class exchangeInfoMessage extends MessageCardHTML {
+export class exchangeInfoMessage extends ObjectMessage {
   getInputHTML() {
     return new TextHTML(`Symbol: ${this.data.params.symbol}`)
   }
+
+  getOutputHTML() {
+    const output = new HTML()
+    const symbol = this.data.params.symbols[0]
+
+    output.append(new KeyValueHTML('status', symbol['status']))
+    output.append(new KeyValueHTML('symbol', symbol['symbol']))
+    output.append(new KeyValueHTML('baseAsset', symbol['baseAsset']))
+    output.append(new KeyValueHTML('baseAssetPrecision', symbol['baseAssetPrecision']))
+    output.append(new KeyValueHTML('baseCommissionPrecision', symbol['baseCommissionPrecision']))
+    output.append(new KeyValueHTML('quoteAsset', symbol['quoteAsset']))
+    output.append(new KeyValueHTML('quoteAssetPrecision', symbol['quoteAssetPrecision']))
+    output.append(new KeyValueHTML('quoteCommissionPrecision', symbol['quoteCommissionPrecision']))
+    output.append(new KeyValueHTML('quoteOrderQtyMarketAllowed', symbol['quoteOrderQtyMarketAllowed']))
+    output.append(new KeyValueHTML('quotePrecision', symbol['quotePrecision']))
+    output.append(new KeyValueHTML('allowTrailingStop', symbol['allowTrailingStop']))
+    output.append(new KeyValueHTML('allowedSelfTradePreventionModes', symbol['allowedSelfTradePreventionModes']))
+    output.append(new KeyValueHTML('cancelReplaceAllowed', symbol['cancelReplaceAllowed']))
+    output.append(new KeyValueHTML('defaultSelfTradePreventionMode', symbol['defaultSelfTradePreventionMode']))
+    // output.append(new KeyValueHTML('filters', symbol['filters']))
+    output.append(new KeyValueHTML('icebergAllowed', symbol['icebergAllowed']))
+    output.append(new KeyValueHTML('isMarginTradingAllowed', symbol['isMarginTradingAllowed']))
+    output.append(new KeyValueHTML('isSpotTradingAllowed', symbol['isSpotTradingAllowed']))
+    output.append(new KeyValueHTML('ocoAllowed', symbol['ocoAllowed']))
+    output.append(new KeyValueHTML('orderTypes', symbol['orderTypes']))
+    // output.append(new KeyValueHTML('permissions', symbol['permissions']))
+
+    return output
+  }
+
 }
 
 export class TableMessage extends MessageCardHTML {
@@ -103,29 +157,6 @@ export class TableMessage extends MessageCardHTML {
       Array.from(lines).map((text) => {
         const td = new nTd()
         td.setText(text)
-        tr.append(td)
-      })
-      table.append(tr)
-    })
-    return table
-  }
-}
-
-export class ObjectMessage extends MessageCardHTML {
-  getTableHTML(rows = [], ths = null) {
-    const table = new nTable()
-    const th = new nTr()
-    Array.from(ths === null ? Object.keys(rows[0]) : ths).map((text) => {
-      const td = new nTd()
-      td.setText(text)
-      th.append(td)
-    })
-    table.append(th)
-    Array.from(rows).map((row) => {
-      const tr = new nTr()
-      Object.keys(row).map((col) => {
-        const td = new nTd()
-        td.setText(row[col])
         tr.append(td)
       })
       table.append(tr)
