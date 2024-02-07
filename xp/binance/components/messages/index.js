@@ -1,5 +1,5 @@
-import { HTML, nTable, nTr, nTd } from '@brtmvdl/frontend'
-import * as d3 from 'd3'
+import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
+
 import { HorizontalSeparatorHTML } from '../horizontal.separator.html.js'
 import { TextHTML } from '../text.html.js'
 import { CardHTML } from '../card.html.js'
@@ -27,7 +27,10 @@ export class MessageCardHTML extends CardHTML {
 
   getHeaderHTML() {
     const header = new CardHeaderHTML()
-    header.append(new TextHTML(`Method: ${this.data.method} (${this.data.side})`))
+    const flex = new nFlex()
+    flex.append(new TextHTML(this.data.method))
+    flex.append(new TextHTML(this.data.side))
+    header.append(flex)
     return header
   }
 
@@ -44,15 +47,15 @@ export class MessageCardHTML extends CardHTML {
   }
 
   getNoneHTML() {
-    return new HTML()
+    return new TextHTML('none')
   }
 
   getInputHTML() {
-    return new HTML()
+    return new TextHTML('input')
   }
 
   getOutputHTML() {
-    return new HTML()
+    return new TextHTML('output')
   }
 
   getErrorHTML() {
@@ -182,7 +185,8 @@ export class depthMessage extends TableMessage {
 export class tradesRecentMessage extends ObjectMessage {
   getOutputHTML() {
     const output = new HTML()
-    output.append(this.getTableHTML(this.data.params))
+    const params = Array.from(this.data.params).map(({ id, isBestMatch, isBuyerMaker, price, qty, quoteQty, time }) => ({ id, isBestMatch, isBuyerMaker, price: +price, qty: +qty, quoteQty: +quoteQty, time: str.timestamp2str(time) }))
+    output.append(this.getTableHTML(params))
     return output
   }
 }
@@ -192,58 +196,28 @@ export class tradesHistoricalMessage extends tradesRecentMessage { }
 export class tradesAggregateMessage extends ObjectMessage {
   getOutputHTML() {
     const output = new HTML()
-    output.append(this.getTableHTML(this.data.params, []))
+    const params = Array.from(this.data.params).map(({ a, p, q, f, l, T, m, M, }) => ({ a, p, q, f, l, T: str.timestamp2str(T), m, M, }))
+    const headers = ['Aggregate trade ID', 'Price', 'Quantity', 'First trade ID', 'Last trade ID', 'Timestamp', 'Was the buyer the maker?', 'Was the trade the best price match?',]
+    output.append(this.getTableHTML(params, headers))
     return output
   }
 }
 
-export class klinesMessage extends MessageCardHTML {
+export class klinesMessage extends ObjectMessage {
   getOutputHTML() {
     const output = new HTML()
-    output.setText('https://observablehq.com/@d3/candlestick-chart/2?intent=fork')
+    // output.setText('https://observablehq.com/@d3/candlestick-chart/2?intent=fork')
     // output.append(this.getCharts())
+    output.append(this.getTableHTML(this.getData()))
     return output
   }
 
-  getCharts() {
-    // Declare the chart dimensions and margins.
-    const width = 640;
-    const height = 400;
-    const marginTop = 20;
-    const marginRight = 20;
-    const marginBottom = 30;
-    const marginLeft = 40;
-
-    const now = Date.now()
-    const yesterday = now - (1000 * 60 * 60 * 24)
-
-    // Declare the x (horizontal position) scale.
-    const x = d3.scaleUtc()
-      .domain([now, yesterday])
-      .range([marginLeft, width - marginRight]);
-
-    // Declare the y (vertical position) scale.
-    const y = d3.scaleLinear()
-      .domain([0, 100])
-      .range([height - marginBottom, marginTop]);
-
-    // Create the SVG container.
-    const svg = d3.create('svg')
-      .attr('width', width)
-      .attr('height', height);
-
-    // Add the x-axis.
-    svg.append('g')
-      .attr('transform', `translate(0,${height - marginBottom})`)
-      .call(d3.axisBottom(x));
-
-    // Add the y-axis.
-    svg.append('g')
-      .attr('transform', `translate(${marginLeft},0)`)
-      .call(d3.axisLeft(y));
-
-    // Return the SVG element.
-    return HTML.fromElement(svg.node());
+  getData() {
+    return Array.from(this.data.params).map((
+      [Open_Time, Open_Price, High_Price, Low_Price, Close_Price, Volume, Close_Time, Quote_Asset_volume, Number_of_trades, Taker_Buy_Base_Asset_volume, Taker_Buy_Quote_Asset_volume, Unused_field_ignore,]
+    ) => (
+      { Open_Time, Open_Price, High_Price, Low_Price, Close_Price, Volume, Close_Time, Quote_Asset_volume, Number_of_trades, Taker_Buy_Base_Asset_volume, Taker_Buy_Quote_Asset_volume, Unused_field_ignore, }
+    ))
   }
 }
 
