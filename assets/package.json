@@ -1,6 +1,8 @@
 {
   "name": "brtmvdl",
   "dependencies": {
-    "@brtmvdl/frontend": "^1.0.14"
+    "@brtmvdl/frontend": "^1.0.14",
+    "dat.gui": "^0.7.9",
+    "three": "^0.161.0"
   }
 }
