@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawer v0.1</title>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./../../assets/libs/three/build/three.module.js",
+        "three/addons/": "./../../assets/libs/three/examples/jsm/",
+        "three-mesh-ui": "https://unpkg.com/three-mesh-ui@6.4.0/build/three-mesh-ui.module.js",
+        "socket.io": "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three'
+    import * as ThreeMeshUI from 'three-mesh-ui'
+    import * as socketIO from 'socket.io'
+
+    //
+
+    const app = document.getElementById('app')
+
+    const input = document.createElement('input')
+    app.append(input)
+
+    //
+
+    const socket = socketIO.io('0.0.0.0:8080')
+
+    socket.on('connect', () => {
+      socket.emit('message', Date.now().toString())
+      socket.on('message', (message) => console.log('message', message))
+
+      input.addEventListener('keypress', (ev) => {
+        const letter = String.fromCharCode(ev.keyCode)
+        socket.emit('joystick', [
+          socket.id,
+          `letter:${letter}`,
+        ].join(';'))
+      })
+    })
+
+  </script>
+
+</body>
+
+</html>

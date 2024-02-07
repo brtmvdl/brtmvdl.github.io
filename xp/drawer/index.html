@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawer v0.1</title>
+  <style>
+    body {
+      margin: 0
+    }
+  </style>
+</head>
+
+<body>
+  <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./../../assets/libs/three/build/three.module.js",
+        "three/addons/": "./../../assets/libs/three/examples/jsm/",
+        "three-mesh-ui": "https://unpkg.com/three-mesh-ui@6.4.0/build/three-mesh-ui.module.js",
+        "socket.io": "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three'
+    import * as ThreeMeshUI from 'three-mesh-ui'
+    import * as socketIO from 'socket.io'
+
+    //
+
+    const fontFamily = 'https://unpkg.com/three-mesh-ui/examples/assets/Roboto-msdf.json'
+    const fontTexture = 'https://unpkg.com/three-mesh-ui/examples/assets/Roboto-msdf.png'
+
+    const WIDTH = window.innerWidth
+    const HEIGHT = window.innerHeight
+
+    const gamerLetters = []
+    const meshes = []
+
+    const scene = new THREE.Scene()
+
+    const camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 0.1, 1000)
+    camera.position.z = 100
+
+    const renderer = new THREE.WebGLRenderer()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    document.body.appendChild(renderer.domElement)
+
+    const listString = Array.from(Array(10)).map((_, n) => String.fromCodePoint(n + 97))
+
+    const randomFloor = (n, m = 0) => Math.floor(Math.random() * n) + m
+
+    const randomString = () => listString[randomFloor(listString.length)]
+
+    setInterval(() => {
+      const color = gamerLetters.length ? 'yellow' : 'blue'
+      const letter = gamerLetters.length ? gamerLetters.pop() : randomString()
+
+      meshes.push(makeTextPanel(letter, randomFloor(10, 2), color))
+    }, 1000)
+
+    function makeTextPanel(content = '', fontSize = 0.1, color = 'blue') {
+      const backgroundColor = new THREE.Color('black')
+      const fontColor = new THREE.Color(color)
+
+      const container = new ThreeMeshUI.Block({
+        height: fontSize,
+        width: fontSize,
+        backgroundColor,
+        fontTexture,
+        fontFamily,
+        fontColor,
+      })
+
+      container.position.set(
+        randomFloor(200) - (200 / 2),
+        100,
+        0
+      )
+      scene.add(container)
+
+      container.add(new ThreeMeshUI.Text({ content, fontSize, fontColor }))
+
+      return container
+    }
+
+    function render() {
+      meshes.forEach((mesh) => mesh.position.y -= 0.1)
+      ThreeMeshUI.update()
+      renderer.render(scene, camera)
+      requestAnimationFrame(render)
+    }
+
+    requestAnimationFrame(render)
+
+    //
+
+    const socket = socketIO.io('0.0.0.0:8080')
+
+    socket.on("connect", () => {
+      socket.emit('message', Date.now().toString())
+      socket.on('message', (message) => console.log('message', message))
+      socket.on('joystick', (joystick) => {
+        const [, letter] = joystick.split(';')
+        const [, realLetter] = letter.split(':')
+
+        gamerLetters.push(realLetter)
+      })
+    })
+
+  </script>
+</body>
+
+</html>
