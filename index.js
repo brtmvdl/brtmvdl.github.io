@@ -78,7 +78,7 @@ class Experience extends HTML {
   getImageHTML() {
     const link = new nLink2()
     link.href(this.getHref())
-    this.children.image.src(`/xp/${this.state.id}/image.png`)
+    this.children.image.src(`/xp/${this.state.id}/image.jpg`)
     return link.append(this.children.image)
   }
 
