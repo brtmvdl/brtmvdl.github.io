@@ -1,5 +1,4 @@
 import { HTML, nFlex, nImage, nInput, nSelect } from '@brtmvdl/frontend'
-import * as COLORS from '../../../assets/js/HTML/utils/colors.js'
 
 import { EndPointModel } from '../models/endpoint.js'
 import { ProjectModel } from '../models/project.js'

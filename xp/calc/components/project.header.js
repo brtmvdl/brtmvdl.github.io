@@ -13,8 +13,6 @@ export class ProjectHeader extends nFlex {
   children = {
     domain: new nInput(),
     contract: new nSelect(),
-    delButton: new HTML(),
-    plusButton: new HTML(),
   }
 
   onCreate() {
@@ -71,31 +69,19 @@ export class ProjectHeader extends nFlex {
     return this.children.contract
   }
 
-  getButtonFilled(button = new HTML(), imageSrc = '', event = '') {
-    const image = new nImage()
-    image.src(imageSrc)
-    image.setSize('1rem')
-
-    button.append(image)
-    button.setStyle('margin-left', '1rem')
-    button.on('click', () => this.dispatchEvent(event, this))
-
+  createButton(text, onclick = (() => { })) {
+    const button = new HTML()
+    button.setText(text)
+    button.on('click', () => onclick())
+    button.setStyle('cursor', 'pointer')
     return button
   }
 
   getDelButton() {
-    return this.getButtonFilled(
-      this.children.delButton,
-      '/img/trash-can.svg',
-      'deleteproject',
-    )
+    return this.createButton('delete', () => this.dispatchEvent('deleteproject', this) )
   }
 
   getPlusButton() {
-    return this.getButtonFilled(
-      this.children.plusButton,
-      '/img/plus.svg',
-      'createendpoint',
-    )
+    return this.createButton('plus', () => this.dispatchEvent('createendpoint', this))
   }
 }

@@ -5,6 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CALC</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "@brtmvdl/frontend": "../../assets/libs/@brtmvdl/frontend/src/index.js"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -14,7 +21,6 @@
     import { Page } from './index.js'
 
     HTML.fromId('app').append(new Page())
-
     HTML.fromElement(document.body).setStyle('margin', '0')
   </script>
 </body>
