@@ -37,6 +37,13 @@ export class Body extends HTML {
     this.dispatchEvent('updateprojects')
   }
 
+  deleteProjectById(ix) {
+    this.logger.log('deleteProjectById', {})
+
+    this.state.projects = this.state.projects.filter((_, index) => ix != index)
+    this.dispatchEvent('updateprojects')
+  }
+
   onUpdateProjects() {
     this.logger.log('onUpdateProjects', {})
 
@@ -46,13 +53,6 @@ export class Body extends HTML {
       project.children.header.on('deleteproject', () => this.deleteProjectById(ix))
       this.children.projects.append(project)
     })
-  }
-
-  deleteProjectById(ix) {
-    this.logger.log('deleteProjectById', {})
-
-    this.state.projects = this.state.projects.filter((_, index) => ix != index)
-    this.dispatchEvent('updateprojects')
   }
 
   getProjects() {
