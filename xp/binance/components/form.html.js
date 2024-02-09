@@ -21,7 +21,6 @@ export class FormHTML extends HTML {
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
     this.append(this.getBackupInputTextGroup())
-    // this.children.inputs.updateSignature()
   }
 
   setStyles() {
@@ -62,8 +61,8 @@ export class FormHTML extends HTML {
   }
 
   getBackupInputTextGroup() {
-    this.children.backup.children.label.setText('backup url server')
-    this.children.backup.children.input.setPlaceholder('backup url server')
+    this.children.backup.children.label.setText('websocket server url')
+    this.children.backup.children.input.setPlaceholder('websocket server url')
     return this.children.backup
   }
 }
