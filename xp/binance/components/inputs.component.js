@@ -40,7 +40,6 @@ export class InputsComponent extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.updateSignature()
   }
 
   getComponent(component = '') {
@@ -59,8 +58,8 @@ export class InputsComponent extends HTML {
     const msgUint8 = new TextEncoder().encode(message)
     crypto.subtle.digest('SHA-256', msgUint8)
       .then((hashBuffer) => Array.from(new Uint8Array(hashBuffer)).map((b) => b.toString(16).padStart(2, '0')).join(''))
-      .then((hashHex) => console.log('hashHex', hashHex))
-      .then(() => this.updateSignature())
+      .then((hashHex) => this.children.signature.children.input.setValue(hashHex))
+      .then(() => setTimeout(() => this.updateSignature(), 100))
       .catch((err) => console.error(err))
   }
 }

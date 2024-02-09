@@ -21,6 +21,7 @@ export class FormHTML extends HTML {
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
     this.append(this.getBackupInputTextGroup())
+    // this.children.inputs.updateSignature()
   }
 
   setStyles() {
