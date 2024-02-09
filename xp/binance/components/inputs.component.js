@@ -1,5 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 import { InputTextGroupComponent } from './input-text-group.component.js'
+import * as config from '../config.js'
 
 export class TimestampInputTextGroupComponent extends InputTextGroupComponent {
   onCreate() {
@@ -34,6 +35,7 @@ export class InputsComponent extends HTML {
     newOrderRespType: new InputTextGroupComponent('newOrderRespType'),
     orderListId: new InputTextGroupComponent('orderListId'),
     endTime: new InputTextGroupComponent('endTime', Date.now()),
+    recvWindow: new InputTextGroupComponent('recvWindow'),
   }
 
   getComponent(component = '') {
@@ -41,7 +43,16 @@ export class InputsComponent extends HTML {
   }
 
   getValue(component = '') {
+    if (component == 'apiKey') return config.apiKey
+    if (component == 'signature') return this.getSignature()
     return this.children[component].getValue()
   }
 
+  getSignature() {
+    const [apiKey, newOrderRespType, price, quantity, recvWindow, side, symbol, timeInForce, timestamp, type] =
+      Array.from(['apiKey', 'newOrderRespType', 'price', 'quantity', 'recvWindow', 'side', 'symbol', 'timeInForce', 'timestamp', 'type']).map((c) => this.getValue(c))
+
+    const hash = `apiKey=${apiKey}&newOrderRespType=${newOrderRespType}&price=${price}&quantity=${quantity}&recvWindow=${recvWindow}&side=${side}&symbol=${symbol}&timeInForce=${timeInForce}&timestamp=${timestamp}&type=${type}`
+    return '' // jssha256.sha256.hmac(apiKey, hash)
+  }
 }
