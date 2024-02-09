@@ -16,7 +16,6 @@ export class InputsComponent extends HTML {
     interval: new InputTextGroupComponent('interval'),
     startTime: new InputTextGroupComponent('startTime', Date.now() - (1000 * 60 * 60 * 24)),
     windowSize: new InputTextGroupComponent('windowSize'),
-    timestamp: new TimestampInputTextGroupComponent('timestamp'),
     side: new InputTextGroupComponent('side', 'BUY'),
     type: new InputTextGroupComponent('type', 'LIMIT'),
     timeInForce: new InputTextGroupComponent('timeInForce', 'GTC'),
@@ -46,4 +45,5 @@ export class InputsComponent extends HTML {
   getValue(component = '') {
     return this.children[component].getValue()
   }
+
 }

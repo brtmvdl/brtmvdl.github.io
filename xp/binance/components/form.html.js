@@ -10,7 +10,7 @@ export class FormHTML extends HTML {
     method: new SelectComponent(),
     params: new HTML(),
     send: new ButtonComponent(),
-    backup: new InputTextGroupComponent('backup url server'),
+    backup: new InputTextGroupComponent('websocket server url'),
     inputs: new InputsComponent(),
   }
 
