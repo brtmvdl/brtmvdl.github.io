@@ -437,11 +437,31 @@ export class tickerBookMessage extends MessageCardHTML {
   }
 }
 
-export class sessionStatusMessage extends MessageCardHTML { }
+export class sessionStatusMessage extends MessageCardHTML {
+  getOutputHTML() {
+    const { apiKey, authorizedSince, connectedSince, returnRateLimits, serverTime } = this.data.params
+    const html = new HTML()
+    html.append(new TextHTML(`Api Key: ${apiKey}`))
+    html.append(new TextHTML(`Authorized Since: ${authorizedSince}`, str.timestamp2str(authorizedSince)))
+    html.append(new TextHTML(`Connected Since: ${connectedSince}`, str.timestamp2str(connectedSince)))
+    html.append(new TextHTML(`Return Rate Limits: ${returnRateLimits}`))
+    html.append(new TextHTML(`Server Time: ${serverTime}`, str.timestamp2str(serverTime)))
+    return html
+  }
+}
 
-export class sessionLogonMessage extends MessageCardHTML { }
+export class sessionLogonMessage extends MessageCardHTML {
+  getInputHTML() {
+    const { apiKey, signature, timestamp } = this.data.params
+    const html = new HTML()
+    html.append(new TextHTML(`Api Key: ${apiKey}`))
+    html.append(new TextHTML(`Signature: ${signature}`))
+    html.append(new TextHTML(`Timestamp: ${timestamp}`, str.timestamp2str(timestamp)))
+    return html
+  }
+ }
 
-export class sessionLogoutMessage extends MessageCardHTML { }
+export class sessionLogoutMessage extends sessionStatusMessage { }
 
 export class orderTestMessage extends MessageCardHTML { }
 
