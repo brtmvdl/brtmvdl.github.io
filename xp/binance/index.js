@@ -17,10 +17,14 @@ export class Page extends HTML {
     super.onCreate()
     this.setEvents()
     this.setStyles()
+    this.append(this.getFlex())
+  }
+
+  getFlex() {
     const flex = new nFlex()
     flex.append(this.getFormHTML())
     flex.append(this.getMessagesHTML())
-    this.append(flex)
+    return flex
   }
 
   setEvents() {

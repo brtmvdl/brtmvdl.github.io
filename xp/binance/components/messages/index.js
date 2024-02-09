@@ -346,6 +346,27 @@ export class tickerTradingDayMessage extends MessageCardHTML {
     input.append(new TextHTML(`Symbol: ${symbol}`))
     return input
   }
+
+  getOutputHTML() {
+    const { symbol, priceChange, priceChangePercent, weightedAvgPrice, prevClosePrice, lastPrice, lastQty, bidPrice, askPrice, bidQty, askQty, openPrice, highPrice, lowPrice, volume, quoteVolume, openTime, closeTime, firstId, lastId, count } = this.data.params
+    const html = new HTML()
+    html.append((new TextHTML(`Symbol: ${symbol}`)))
+    html.append((new TextHTML(`Price Change: ${+priceChange}`)))
+    html.append((new TextHTML(`Price Change Percent: ${+priceChangePercent}`)))
+    html.append((new TextHTML(`Weighted Average Price: ${+weightedAvgPrice}`)))
+    html.append((new TextHTML(`Last Price: ${+lastPrice}`)))
+    html.append((new TextHTML(`Open Price: ${+openPrice}`)))
+    html.append((new TextHTML(`High Price: ${+highPrice}`)))
+    html.append((new TextHTML(`Low Price: ${+lowPrice}`)))
+    html.append((new TextHTML(`Volume: ${+volume}`)))
+    html.append((new TextHTML(`Quote Volume: ${+quoteVolume}`)))
+    html.append((new TextHTML(`Open Time: ${openTime}`, str.timestamp2str(openTime))))
+    html.append((new TextHTML(`Close Time: ${closeTime}`, str.timestamp2str(closeTime))))
+    html.append((new TextHTML(`First Id: ${firstId}`)))
+    html.append((new TextHTML(`Last Id: ${lastId}`)))
+    html.append((new TextHTML(`Count: ${count}`)))
+    return html
+  }
 }
 
 export class tickerMessage extends MessageCardHTML {
