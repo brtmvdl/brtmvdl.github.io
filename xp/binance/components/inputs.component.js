@@ -17,12 +17,12 @@ export class InputsComponent extends HTML {
     interval: new InputTextGroupComponent('interval'),
     startTime: new InputTextGroupComponent('startTime', Date.now() - (1000 * 60 * 60 * 24)),
     windowSize: new InputTextGroupComponent('windowSize'),
-    apiKey: new InputTextGroupComponent('apiKey'),
+    apiKey: new InputTextGroupComponent('apiKey', config.apiKey),
     signature: new InputTextGroupComponent('signature'),
     timestamp: new TimestampInputTextGroupComponent('timestamp'),
-    side: new InputTextGroupComponent('side', 'buy'),
-    type: new InputTextGroupComponent('type'),
-    timeInForce: new InputTextGroupComponent('timeInForce'),
+    side: new InputTextGroupComponent('side', 'BUY'),
+    type: new InputTextGroupComponent('type', 'LIMIT'),
+    timeInForce: new InputTextGroupComponent('timeInForce', 'GTC'),
     price: new InputTextGroupComponent('price'),
     quantity: new InputTextGroupComponent('quantity', 1),
     orderId: new InputTextGroupComponent('orderId'),
@@ -32,10 +32,15 @@ export class InputsComponent extends HTML {
     stopPrice: new InputTextGroupComponent('stopPrice'),
     stopLimitPrice: new InputTextGroupComponent('stopLimitPrice'),
     stopLimitTimeInForce: new InputTextGroupComponent('stopLimitTimeInForce'),
-    newOrderRespType: new InputTextGroupComponent('newOrderRespType'),
+    newOrderRespType: new InputTextGroupComponent('newOrderRespType', 'ACK'),
     orderListId: new InputTextGroupComponent('orderListId'),
     endTime: new InputTextGroupComponent('endTime', Date.now()),
-    recvWindow: new InputTextGroupComponent('recvWindow'),
+    recvWindow: new InputTextGroupComponent('recvWindow', 100),
+  }
+
+  onCreate() {
+    super.onCreate()
+    this.updateSignature()
   }
 
   getComponent(component = '') {
@@ -43,16 +48,19 @@ export class InputsComponent extends HTML {
   }
 
   getValue(component = '') {
-    if (component == 'apiKey') return config.apiKey
-    if (component == 'signature') return this.getSignature()
     return this.children[component].getValue()
   }
 
-  getSignature() {
+  updateSignature() {
     const [apiKey, newOrderRespType, price, quantity, recvWindow, side, symbol, timeInForce, timestamp, type] =
       Array.from(['apiKey', 'newOrderRespType', 'price', 'quantity', 'recvWindow', 'side', 'symbol', 'timeInForce', 'timestamp', 'type']).map((c) => this.getValue(c))
 
-    const hash = `apiKey=${apiKey}&newOrderRespType=${newOrderRespType}&price=${price}&quantity=${quantity}&recvWindow=${recvWindow}&side=${side}&symbol=${symbol}&timeInForce=${timeInForce}&timestamp=${timestamp}&type=${type}`
-    return '' // jssha256.sha256.hmac(apiKey, hash)
+    const message = `apiKey=${apiKey}&newOrderRespType=${newOrderRespType}&price=${price}&quantity=${quantity}&recvWindow=${recvWindow}&side=${side}&symbol=${symbol}&timeInForce=${timeInForce}&timestamp=${timestamp}&type=${type}`
+    const msgUint8 = new TextEncoder().encode(message)
+    crypto.subtle.digest('SHA-256', msgUint8)
+      .then((hashBuffer) => Array.from(new Uint8Array(hashBuffer)).map((b) => b.toString(16).padStart(2, '0')).join(''))
+      .then((hashHex) => console.log('hashHex', hashHex))
+      .then(() => this.updateSignature())
+      .catch((err) => console.error(err))
   }
 }

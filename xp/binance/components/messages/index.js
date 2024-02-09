@@ -254,7 +254,7 @@ export class klinesMessage extends ObjectMessage {
     return Array.from(this.data.params).map((
       [Open_Time, Open_Price, High_Price, Low_Price, Close_Price, Volume, Close_Time, Quote_Asset_volume, Number_of_trades, Taker_Buy_Base_Asset_volume, Taker_Buy_Quote_Asset_volume, Unused_field_ignore,]
     ) => (
-      { Open_Time: str.timestamp2str(Open_Time), Open_Price: +Open_Price, High_Price: +High_Price, Low_Price: +Low_Price, Close_Price: +Close_Price, Volume: +Volume, Close_Time: str.timestamp2str(Close_Time), Quote_Asset_volume, Number_of_trades, }
+      { Open_Time: str.timestamp2str(Open_Time), Open_Price: +Open_Price, High_Price: +High_Price, Low_Price: +Low_Price, Close_Price: +Close_Price, Close_Time: str.timestamp2str(Close_Time), Number_of_trades, }
     ))
   }
 }
@@ -280,7 +280,7 @@ export class uiKlinesMessage extends ObjectMessage {
     return Array.from(this.data.params).map((
       [Open_Time, Open_Price, High_Price, Low_Price, Close_Price, Volume, Close_Time, Quote_Asset_volume, Number_of_trades, Taker_Buy_Base_Asset_volume, Taker_Buy_Quote_Asset_volume, Unused_field_ignore,]
     ) => (
-      { Open_Time: str.timestamp2str(Open_Time), Open_Price: +Open_Price, High_Price: +High_Price, Low_Price: +Low_Price, Close_Price: +Close_Price, Volume: +Volume, Close_Time: str.timestamp2str(Close_Time), Quote_Asset_volume, Number_of_trades, }
+      { Open_Time: str.timestamp2str(Open_Time), Open_Price: +Open_Price, High_Price: +High_Price, Low_Price: +Low_Price, Close_Price: +Close_Price, Close_Time: str.timestamp2str(Close_Time), Number_of_trades, }
     ))
   }
 }
@@ -459,7 +459,7 @@ export class sessionLogonMessage extends MessageCardHTML {
     html.append(new TextHTML(`Timestamp: ${timestamp}`, str.timestamp2str(timestamp)))
     return html
   }
- }
+}
 
 export class sessionLogoutMessage extends sessionStatusMessage { }
 
