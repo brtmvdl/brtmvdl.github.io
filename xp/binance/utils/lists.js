@@ -1,7 +1,7 @@
 
 export const getMethodsList = () => Array.from([
   'Binance WebSocket API',
-  '[offline]',
+  '[guest]',
   'ping',
   'time',
   'exchangeInfo',
@@ -17,7 +17,7 @@ export const getMethodsList = () => Array.from([
   'ticker',
   'ticker.price',
   'ticker.book',
-  '[online]',
+  '[session]',
   'session.status',
   'session.logon',
   'session.logout',
