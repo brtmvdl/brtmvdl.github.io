@@ -1,10 +1,13 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormHTML, MessagesHTML } from './components/index.js'
 import { CloseMessagesModel, ErrorMessagesModel, MessagesModel, OpenMessagesModel } from './models/index.js'
+import { getInBrowserMethodsList } from './utils/lists.js'
+import { io } from 'socket.io-client'
 
 export class Page extends HTML {
   state = {
     socket: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
+    back: new io('localhost:8000'),
     messages: [],
   }
 
@@ -77,7 +80,8 @@ export class Page extends HTML {
   onFormHtmlSubmit({ value: { method, params } } = {}) {
     const message = new MessagesModel(method, params, 'input')
     this.addMessage(message)
-    this.state.socket.send(message.toString())
+    console.log({ message })
+    this.state[getInBrowserMethodsList().indexOf(method) !== -1 ? 'socket' : 'back'].send(message.toString())
   }
 
   getMessagesHTML() {

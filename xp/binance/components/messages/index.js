@@ -450,16 +450,7 @@ export class sessionStatusMessage extends MessageCardHTML {
   }
 }
 
-export class sessionLogonMessage extends MessageCardHTML {
-  getInputHTML() {
-    const { apiKey, signature, timestamp } = this.data.params
-    const html = new HTML()
-    // html.append(new TextHTML(`Api Key: ${apiKey}`))
-    html.append(new TextHTML(`Signature: ${signature}`))
-    html.append(new TextHTML(`Timestamp: ${timestamp}`, str.timestamp2str(timestamp)))
-    return html
-  }
-}
+export class sessionLogonMessage extends MessageCardHTML { }
 
 export class sessionLogoutMessage extends sessionStatusMessage { }
 

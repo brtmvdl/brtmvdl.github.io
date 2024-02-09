@@ -10,7 +10,6 @@ export class FormHTML extends HTML {
     method: new SelectComponent(),
     params: new HTML(),
     send: new ButtonComponent(),
-    backup: new InputTextGroupComponent('websocket server url'),
     inputs: new InputsComponent(),
   }
 
@@ -20,7 +19,6 @@ export class FormHTML extends HTML {
     this.append(this.getEndpointSelect())
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
-    this.append(this.getBackupInputTextGroup())
   }
 
   setStyles() {
@@ -60,9 +58,4 @@ export class FormHTML extends HTML {
     return getParamsList()[this.getMethodValue()]?.reduce((params, input) => ({ ...params, [input]: this.children.inputs.getValue(input) }), {})
   }
 
-  getBackupInputTextGroup() {
-    this.children.backup.children.label.setText('websocket server url')
-    this.children.backup.children.input.setPlaceholder('websocket server url')
-    return this.children.backup
-  }
 }
