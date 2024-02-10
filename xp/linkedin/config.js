@@ -1,3 +1,3 @@
 // 
 
-export const URL_BASE = 'https://api.linkedin.com/v2'
+export const apiKey = '77noedchkqknrz'

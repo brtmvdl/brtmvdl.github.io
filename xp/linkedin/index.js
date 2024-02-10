@@ -1,5 +1,5 @@
 import { HTML, nH2, nLink } from '@brtmvdl/frontend'
-
+import * as config from './config.js'
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 
 export class Page extends HTML {
