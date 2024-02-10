@@ -6,7 +6,7 @@ import { io } from 'socket.io-client'
 
 export class Page extends HTML {
   state = {
-    socket: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
+    front: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
     back: new io('localhost:8000'),
     messages: [],
   }
@@ -31,10 +31,16 @@ export class Page extends HTML {
   }
 
   setEvents() {
-    this.state.socket.addEventListener('open', (data) => this.onSocketOpen(data))
-    this.state.socket.addEventListener('message', (data) => this.onSocketMessage(data))
-    this.state.socket.addEventListener('error', (data) => this.onSocketError(data))
-    this.state.socket.addEventListener('close', (data) => this.onSocketClose(data))
+    // front
+    this.state.front.addEventListener('open', (data) => this.onFrontSocketOpen(data))
+    this.state.front.addEventListener('message', (data) => this.onFrontSocketMessage(data))
+    this.state.front.addEventListener('error', (data) => this.onFrontSocketError(data))
+    this.state.front.addEventListener('close', (data) => this.onFrontSocketClose(data))
+    // back
+    this.state.back.addEventListener('open', (data) => this.onBackSocketOpen(data))
+    this.state.back.addEventListener('message', (data) => this.onBackSocketMessage(data))
+    this.state.back.addEventListener('error', (data) => this.onBackSocketError(data))
+    this.state.back.addEventListener('close', (data) => this.onBackSocketClose(data))
   }
 
   setStyles() {
@@ -44,11 +50,11 @@ export class Page extends HTML {
     this.setStyle('font-size', '16px')
   }
 
-  onSocketOpen(data) {
+  onFrontSocketOpen(data) {
     this.addMessage(new OpenMessagesModel(data))
   }
 
-  onSocketMessage({ data } = {}) {
+  onFrontSocketMessage({ data } = {}) {
     this.addMessage(this.getMessageInstance(JSON.parse(data)))
   }
 
@@ -64,11 +70,11 @@ export class Page extends HTML {
     return this.state.messages.find(({ id }) => id === message_id)?.method
   }
 
-  onSocketError(data) {
+  onFrontSocketError(data) {
     this.addMessage(new ErrorMessagesModel(data))
   }
 
-  onSocketClose(data) {
+  onFrontSocketClose(data) {
     this.addMessage(new CloseMessagesModel(data))
   }
 
@@ -91,5 +97,21 @@ export class Page extends HTML {
   addMessage(message = new MessagesModel()) {
     this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
+  }
+
+  onBackSocketOpen(data) {
+    return this.onFrontSocketOpen(data)
+  }
+
+  onBackSocketMessage(data) {
+    return this.onFrontSocketMessage({ data: JSON.stringify(data) })
+  }
+
+  onBackSocketError(data) {
+    return this.onFrontSocketError(data)
+  }
+
+  onBackSocketClose(data) {
+    return this.onFrontSocketClose(data)
   }
 }
