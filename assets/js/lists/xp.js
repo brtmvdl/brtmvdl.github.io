@@ -1,16 +1,9 @@
 export const experiences = [
   {
-    'id': 'twitter',
-    'title': 'twitter',
-    'subtitle': 'twitter login',
-    'datetime': ['2024-02-10'],
-    'tags': ['login'],
-  },
-  {
     'id': 'facebook',
     'title': 'facebook',
     'subtitle': 'facebook login',
-    'datetime': ['2024-02-10'],
+    'datetime': '2024-02-10',
     'tags': ['login'],
   },
   {
