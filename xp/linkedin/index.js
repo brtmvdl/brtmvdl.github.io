@@ -40,7 +40,7 @@ export class Page extends HTML {
     const client_id = config.apiKey
     const redirect_uri = 'https://brtmvdl.github.io/xp/linkedin/'
     const state = ''
-    const scope = 'w_member_social' // encodeURIComponent(['liteprofile', 'emailaddress'].join(' '))
+    const scope = encodeURIComponent(['openid', 'profile', 'w_member_social', 'email'].join(' '))
     const link = `https://www.linkedin.com/oauth/v2/authorization?response_type=${response_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&state=${state}&scope=${scope}`
     nlink.href(link)
     nlink.setText('authorization')
