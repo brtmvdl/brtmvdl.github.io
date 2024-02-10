@@ -56,7 +56,7 @@ export class Page extends HTML {
 
   onCodeButtonClick() {
     const url = new URL(window.location)
-    this.append(new TextHTML(url.hash))
+    this.append(new TextHTML(url.searchParams.get('code')))
   }
 
   getTextsHTML() {
