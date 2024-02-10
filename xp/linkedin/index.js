@@ -1,5 +1,6 @@
 import { HTML, nH2, nLink, nButton } from '@brtmvdl/frontend'
 import * as config from './config.js'
+
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 
 class TextHTML extends HTML {
@@ -23,15 +24,18 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(this.getTitle())
+    this.append(this.getTitleLink())
     this.append(this.getAuthorizationLink())
     this.append(this.getCodeButton())
     this.append(this.getTextsHTML())
   }
 
-  getTitle() {
+  getTitleLink() {
+    const link = new nLink()
     const title = new nH2()
-    return title.setText('Share on LinkedIn API')
+    title.setText('Share on LinkedIn API')
+    link.append(title)
+    return link.href('?')
   }
 
   getAuthorizationLink() {
