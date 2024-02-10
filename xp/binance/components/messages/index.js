@@ -74,25 +74,27 @@ export class MessageCardHTML extends CardHTML {
   }
 }
 
-export class ObjectMessage extends MessageCardHTML {
+export class TableMessage extends MessageCardHTML {
+  createData(text) {
+    const td = new nTd()
+    td.setStyle('border', '1px solid #000000')
+    td.setText(text)
+    return td
+  }
+
+  createRow(arr) {
+    const tr = new nTr()
+    Array.from(arr).map((text) => tr.append(this.createData(text)))
+    return tr
+  }
+
   getTableHTML(rows = [], ths = null) {
+
     const table = new nTable()
-    const th = new nTr()
-    Array.from(ths === null ? Object.keys(rows[0]) : ths).map((text) => {
-      const td = new nTd()
-      td.setText(text)
-      th.append(td)
-    })
-    table.append(th)
-    Array.from(rows).map((row) => {
-      const tr = new nTr()
-      Object.keys(row).map((col) => {
-        const td = new nTd()
-        td.setText(row[col])
-        tr.append(td)
-      })
-      table.append(tr)
-    })
+    table.setStyle('border', '1px solid #000000')
+    table.setStyle('border-collapse', 'collapse')
+    table.append(this.createRow(Array.from(ths === null ? Object.keys(rows[0]) : ths)))
+    Array.from(rows).map((row) => table.append(this.createRow(Object.keys(row).map((col) => row[col]))))
     return table
   }
 }
@@ -103,16 +105,28 @@ export class errorMessage extends MessageCardHTML {
   }
 }
 
-export class pingMessage extends MessageCardHTML { }
+export class pingMessage extends MessageCardHTML {
+  getInputHTML() {
+    return new HTML()
+  }
+
+  getOutputHTML() {
+    return new HTML()
+  }
+}
 
 export class timeMessage extends MessageCardHTML {
+  getInputHTML() {
+    return new HTML()
+  }
+
   getOutputHTML() {
     const { serverTime } = this.data.params
     return new TextHTML(`Server Time: ${str.timestamp2str(serverTime)}`)
   }
 }
 
-export class exchangeInfoMessage extends ObjectMessage {
+export class exchangeInfoMessage extends TableMessage {
   getInputHTML() {
     const { symbol } = this.data.params
     return new TextHTML(`Symbol: ${symbol}`)
@@ -142,37 +156,22 @@ export class exchangeInfoMessage extends ObjectMessage {
     output.append(new KeyValueHTML('isSpotTradingAllowed', symbol['isSpotTradingAllowed']))
     output.append(new KeyValueHTML('ocoAllowed', symbol['ocoAllowed']))
     output.append(new KeyValueHTML('orderTypes', symbol['orderTypes']))
-    // output.append(new KeyValueHTML('permissions', symbol['permissions']))
+    Array.from(['permissions:']).concat(symbol['permissions']).map((perm) => output.append(new TextHTML(perm)))
 
     return output
   }
 
 }
 
-export class TableMessage extends MessageCardHTML {
-  getTableHTML(rows = [], ths = []) {
-    const table = new nTable()
-    const th = new nTr()
-    Array.from(ths).map((text) => {
-      const td = new nTd()
-      td.setText(text)
-      th.append(td)
-    })
-    table.append(th)
-    Array.from(rows).map((lines) => {
-      const tr = new nTr()
-      Array.from(lines).map((text) => {
-        const td = new nTd()
-        td.setText(text)
-        tr.append(td)
-      })
-      table.append(tr)
-    })
-    return table
-  }
-}
-
 export class depthMessage extends TableMessage {
+  getInputHTML() {
+    const { symbol, limit } = this.data.params
+    const input = new HTML()
+    input.append(new TextHTML(`Symbol: ${symbol}`))
+    input.append(new TextHTML(`Limit: ${limit}`))
+    return input
+  }
+
   getOutputHTML() {
     const { asks, bids } = this.data.params
     const output = new HTML()
@@ -187,7 +186,7 @@ export class depthMessage extends TableMessage {
   }
 }
 
-export class tradesRecentMessage extends ObjectMessage {
+export class tradesRecentMessage extends TableMessage {
   getInputHTML() {
     const { symbol, limit } = this.data.params
     const input = new HTML()
@@ -215,7 +214,7 @@ export class tradesHistoricalMessage extends tradesRecentMessage {
   }
 }
 
-export class tradesAggregateMessage extends ObjectMessage {
+export class tradesAggregateMessage extends TableMessage {
   getInputHTML() {
     const { symbol, limit } = this.data.params
     const input = new HTML()
@@ -233,7 +232,7 @@ export class tradesAggregateMessage extends ObjectMessage {
   }
 }
 
-export class klinesMessage extends ObjectMessage {
+export class klinesMessage extends TableMessage {
   getInputHTML() {
     const { symbol, interval, startTime, limit } = this.data.params
     const input = new HTML()
@@ -259,7 +258,7 @@ export class klinesMessage extends ObjectMessage {
   }
 }
 
-export class uiKlinesMessage extends ObjectMessage {
+export class uiKlinesMessage extends TableMessage {
   getInputHTML() {
     const { symbol, interval, startTime, limit } = this.data.params
     const input = new HTML()

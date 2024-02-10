@@ -86,8 +86,7 @@ export class Page extends HTML {
   onFormHtmlSubmit({ value: { method, params } } = {}) {
     const message = new MessagesModel(method, params, 'input')
     this.addMessage(message)
-    console.log({ message })
-    this.state[getInBrowserMethodsList().indexOf(method) !== -1 ? 'socket' : 'back'].send(message.toString())
+    this.state[getInBrowserMethodsList().indexOf(method) !== -1 ? 'front' : 'back'].send(message.toString())
   }
 
   getMessagesHTML() {
