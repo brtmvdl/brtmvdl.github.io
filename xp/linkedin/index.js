@@ -1,12 +1,32 @@
-import { HTML, nH2, nLink } from '@brtmvdl/frontend'
+import { HTML, nH2, nLink, nButton } from '@brtmvdl/frontend'
 import * as config from './config.js'
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 
+class TextHTML extends HTML {
+  text = null
+
+  constructor(text = null) {
+    super()
+    this.text = text
+  }
+
+  onCreate() {
+    super.onCreate()
+    this.setText(this.text)
+  }
+}
+
 export class Page extends HTML {
+  children = {
+    texts: new HTML(),
+  }
+
   onCreate() {
     super.onCreate()
     this.append(this.getTitle())
     this.append(this.getAuthorizationLink())
+    this.append(this.getCodeButton())
+    this.append(this.getTextsHTML())
   }
 
   getTitle() {
@@ -25,5 +45,21 @@ export class Page extends HTML {
     nlink.href(link)
     nlink.setText('authorization')
     return nlink
+  }
+
+  getCodeButton() {
+    const button = new nButton()
+    button.setText('get code from url')
+    button.on('click', () => this.onCodeButtonClick())
+    return button
+  }
+
+  onCodeButtonClick() {
+    const url = new URL(window.location)
+    this.append(new TextHTML(url.hash))
+  }
+
+  getTextsHTML() {
+    return this.children.texts
   }
 }
