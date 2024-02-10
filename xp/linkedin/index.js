@@ -1,4 +1,4 @@
-import { HTML, nLink } from '@brtmvdl/frontend'
+import { HTML, nH2, nLink } from '@brtmvdl/frontend'
 
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 
