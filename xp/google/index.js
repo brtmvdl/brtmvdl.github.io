@@ -1,5 +1,5 @@
 import { HTML, nButton, nH1, nInput, nLink } from '@brtmvdl/frontend'
-import { GOOGLE } from './googleusercontent.js'
+import { GOOGLE } from './../../assets/js/utils/googleusercontent.js'
 
 import * as Local from '../../assets/js/utils/local.js'
 

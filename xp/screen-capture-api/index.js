@@ -2,7 +2,7 @@ import { HTML, nButton, nVideo } from '@brtmvdl/frontend'
 
 import { API_KEY } from './config.js'
 
-import google from './googleusercontent.js'
+import { GOOGLE } from './../../assets/js/utils/googleusercontent.js'
 
 class nScreenButton extends nButton {
   onCreate() {
@@ -239,7 +239,7 @@ export class Page extends HTML {
   auth2init() {
     console.log('auth2init')
 
-    const client_id = google.client_id
+    const client_id = GOOGLE.client_id
     const redirect_uri = (window.location).toString()
     console.log('auth2init', { client_id, redirect_uri })
     gapi.auth2.init({ client_id, redirect_uri }, console.log)

@@ -1,5 +1,5 @@
 import { HTML, nButton, nH2, nInput, nLink } from '@brtmvdl/frontend'
-import { GOOGLE, API_KEY, DISCOVERY_DOC } from './googleusercontent.js'
+import { GOOGLE, API_KEY, DISCOVERY_DOC } from './../../assets/js/utils/googleusercontent.js'
 
 export class Page extends HTML {
   onCreate() {
