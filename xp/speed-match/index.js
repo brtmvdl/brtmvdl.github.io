@@ -1,24 +1,24 @@
-import * as __ from './../../js/nElement.js'
+import { HTML, nH1, nButton, nFlex } from '@brtmvdl/frontend'
 
 const LETTERS = ['X', 'X', 'B', 'B', 'Y', 'Y', 'D', 'D', 'Z', 'Z']
 
-__.nElement.fromElement(document.body)
+HTML.fromElement(document.body)
   .setStyle('margin', '0')
 
-const app = __.nElement.fromId('app')
+const app = HTML.fromId('app')
 
-const header = new __.nElement()
+const header = new HTML()
 header.setStyle('padding', '1rem')
 header.setStyle('background-color', '#003399')
 app.append(header)
 
-const title = new __.nH1()
+const title = new nH1()
 title.setText('Speed Match')
 title.setStyle('color', '#FFFFFF')
 title.setStyle('text-align', 'center')
 header.append(title)
 
-const body = new __.nElement()
+const body = new HTML()
 app.append(body)
 
 class Game {
@@ -58,7 +58,7 @@ class Game {
   }
 
   createCard() {
-    this.card = new __.nElement()
+    this.card = new HTML()
     this.card.setStyle('width', '20rem')
     this.card.setStyle('height', '20rem')
     this.card.setStyle('display', 'block')
@@ -77,7 +77,7 @@ class Game {
     color = null,
     onClick = null,
   } = {}) {
-    const button = new __.nButton()
+    const button = new nButton()
     button.setText(text)
 
     button.setStyle('padding', '1rem')
@@ -103,7 +103,7 @@ class Game {
   createButtons() {
     const self = this
 
-    self.buttons = new __.nFlex()
+    self.buttons = new nFlex()
     self.buttons.setStyle('width', '20rem')
     self.buttons.setStyle('margin', '0 auto')
 
