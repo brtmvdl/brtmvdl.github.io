@@ -1,6 +1,6 @@
 import { HTML, nSelect, nButton, nInputTextGroup } from '@brtmvdl/frontend'
 import { InputTextGroupComponent } from './input-text-group.component.js'
-import { getMethodsList, getParamsList } from '../utils/lists.js'
+import { getMethodsList, getParamsList, getWebSocketMethodsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
@@ -19,6 +19,7 @@ export class FormHTML extends HTML {
     this.append(this.getEndpointSelect())
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
+    this.append(this.children.inputs.children.apiKey)
   }
 
   setStyles() {
@@ -31,9 +32,10 @@ export class FormHTML extends HTML {
     return this.children.method
   }
 
-  onMethodSelectChange() {
+  async onMethodSelectChange() {
     this.children.params.clear()
-    getParamsList()[this.getMethodValue()]?.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    const method = await this.getMethodValue()
+    getParamsList()[method]?.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -47,15 +49,19 @@ export class FormHTML extends HTML {
   }
 
   onSendButtonClick() {
-    this.dispatchEvent('submit', { method: this.getMethodValue(), params: this.getParamsValues(), })
+    Promise.all([this.getMethodValue(), this.getParamsValues(),]).then(([method, params]) => this.dispatchEvent('submit', { method, params, }))
   }
 
   getMethodValue() {
-    return this.children.method.getValue()
+    return Promise.resolve(this.children.method.getValue())
   }
 
-  getParamsValues() {
-    return getParamsList()[this.getMethodValue()]?.reduce((params, input) => ({ ...params, [input]: this.children.inputs.getValue(input) }), {})
+  async getParamsValues() {
+    const timestamp = Date.now()
+    const method = await this.getMethodValue()
+    const params = Array.from(getParamsList()[method]).concat(getWebSocketMethodsList().indexOf(method) !== -1 ? ['apiKey', 'signature', 'timestamp'] : [])
+    const values = await Promise.all(params.map(async (input) => [input, await this.children.inputs.getValue(input, method, timestamp)]))
+    return Array.from(values).reduce((params, [input, value]) => ({ ...params, [input]: value }), {})
   }
 
 }

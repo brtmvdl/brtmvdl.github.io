@@ -7,7 +7,6 @@ import { io } from 'socket.io-client'
 export class Page extends HTML {
   state = {
     front: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
-    back: new io('localhost:8000'),
     messages: [],
   }
 
@@ -36,11 +35,6 @@ export class Page extends HTML {
     this.state.front.addEventListener('message', (data) => this.onFrontSocketMessage(data))
     this.state.front.addEventListener('error', (data) => this.onFrontSocketError(data))
     this.state.front.addEventListener('close', (data) => this.onFrontSocketClose(data))
-    // back
-    this.state.back.addEventListener('open', (data) => this.onBackSocketOpen(data))
-    this.state.back.addEventListener('message', (data) => this.onBackSocketMessage(data))
-    this.state.back.addEventListener('error', (data) => this.onBackSocketError(data))
-    this.state.back.addEventListener('close', (data) => this.onBackSocketClose(data))
   }
 
   setStyles() {
@@ -86,7 +80,7 @@ export class Page extends HTML {
   onFormHtmlSubmit({ value: { method, params } } = {}) {
     const message = new MessagesModel(method, params, 'input')
     this.addMessage(message)
-    this.state[getInBrowserMethodsList().indexOf(method) !== -1 ? 'front' : 'back'].send(message.toString())
+    this.state.front.send(message.toString())
   }
 
   getMessagesHTML() {
