@@ -119,13 +119,6 @@ export const experiences = [
     'tags': [],
   },
   {
-    'id': 'livestream',
-    'title': 'livestream',
-    'subtitle': '',
-    'datetime': [],
-    'tags': [],
-  },
-  {
     'id': 'luxfacta',
     'title': 'luxfacta',
     'subtitle': '',
