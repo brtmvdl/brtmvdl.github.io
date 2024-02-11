@@ -20,7 +20,7 @@ scene.add(grid)
 const camera = new THREE.PerspectiveCamera(45, __.getAspect())
 camera.position.set(+10.0, +10.0, +0.0)
 
-const renderer = new THREE.WebGLRenderer()
+const renderer = new THREE.WebGLRenderer({ precision: "lowp" })
 renderer.setSize(__.getWidth(), __.getHeight())
 document.body.appendChild(renderer.domElement)
 
