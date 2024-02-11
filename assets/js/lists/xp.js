@@ -49,6 +49,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'speed-match',
+    'title': 'speed-match',
+    'subtitle': '',
+    'datetime': [],
+    'tags': [],
+  },
+  {
     'id': 'cube2',
     'title': 'cube2',
     'subtitle': '',
@@ -70,22 +77,8 @@ export const experiences = [
     'tags': [],
   },
   {
-    'id': 'exchanges',
-    'title': 'exchanges',
-    'subtitle': '',
-    'datetime': [],
-    'tags': [],
-  },
-  {
     'id': 'frontend',
     'title': 'frontend',
-    'subtitle': '',
-    'datetime': [],
-    'tags': [],
-  },
-  {
-    'id': 'games',
-    'title': 'games',
     'subtitle': '',
     'datetime': [],
     'tags': [],
