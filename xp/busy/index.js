@@ -16,11 +16,6 @@ class TextHTML extends HTML {
 }
 
 export class Page extends HTML {
-  state = {
-    tasks: [],
-    notified_at: null,
-  }
-
   children = {
     input: new nInputText(),
     button: new nButton(),
@@ -29,10 +24,16 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.setEvents()
     this.append(this.getTitle())
     this.append(this.getForm())
     this.append(this.getTasksList())
     this.notifyMe('Am i doing?')
+    this.updateList()
+  }
+
+  setEvents() {
+    setInterval(() => this.notifyMe(text), 1000 * 60 * 5)
   }
 
   getTitle() {
@@ -63,16 +64,18 @@ export class Page extends HTML {
   }
 
   appendTask(title) {
-    this.state.tasks.push({ title, datetime: Date.now() })
+    if (title) {
+      Local.add(['tasks'], { title, datetime: Date.now() })
+    }
   }
 
   updateList() {
     this.children.list.clear()
-    this.state.tasks.map(({ title, datetime }) => {
+    Local.get(['tasks'], []).map(({ title, datetime }) => {
       const flex = new nFlex()
       flex.append(new TextHTML(title))
       flex.append(this.getDateTimeHTML(datetime))
-      this.children.list.append(flex)
+      this.children.list.prepend(flex)
     })
   }
 
@@ -81,18 +84,7 @@ export class Page extends HTML {
   }
 
   notifyMe(text) {
-    if (!('Notification' in window)) {
-      alert('This browser does not support desktop notification')
-    } else if (Notification.permission !== 'denied') {
-      Notification.requestPermission().then((p) => {
-        if (p === 'granted') {
-          if (!Local.get(['notified']))
-            setInterval(() => this.notifyMe(text), 1000 * 60 * 5)
-          new Notification(text)
-          Local.set(['notified'], Date.now())
-        }
-      })
-    }
+    Notification.requestPermission().then((p) => new Notification(text))
   }
 
   getDateTimeHTML(datetime = Date.now()) {
