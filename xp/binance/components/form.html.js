@@ -1,6 +1,5 @@
 import { HTML, nSelect, nButton, nInputTextGroup } from '@brtmvdl/frontend'
-import { InputTextGroupComponent } from './input-text-group.component.js'
-import { getMethodsList, getParamsList, getWebSocketMethodsList } from '../utils/lists.js'
+import { getMethodsList, getParamsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
@@ -32,10 +31,9 @@ export class FormHTML extends HTML {
     return this.children.method
   }
 
-  async onMethodSelectChange() {
+  onMethodSelectChange() {
     this.children.params.clear()
-    const method = await this.getMethodValue()
-    getParamsList()[method]?.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    getParamsList()[this.getMethodValue()]?.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -49,19 +47,15 @@ export class FormHTML extends HTML {
   }
 
   onSendButtonClick() {
-    Promise.all([this.getMethodValue(), this.getParamsValues(),]).then(([method, params]) => this.dispatchEvent('submit', { method, params, }))
+    const method = this.getMethodValue()
+    this.dispatchEvent('submit', { method , params: this.getParamsValues(method) })
   }
 
   getMethodValue() {
-    return Promise.resolve(this.children.method.getValue())
+    return this.children.method.getValue()
   }
 
-  async getParamsValues() {
-    const timestamp = Date.now()
-    const method = await this.getMethodValue()
-    const params = Array.from(getParamsList()[method]).concat(getWebSocketMethodsList().indexOf(method) !== -1 ? ['apiKey', 'signature', 'timestamp'] : [])
-    const values = await Promise.all(params.map(async (input) => [input, await this.children.inputs.getValue(input, method, timestamp)]))
-    return Array.from(values).reduce((params, [input, value]) => ({ ...params, [input]: value }), {})
+  getParamsValues(method = '') {
+    return getParamsList()[method]?.reduce((values, input) => ({ ...values, [input]: this.children.inputs.getValue(input) }), {})
   }
-
 }

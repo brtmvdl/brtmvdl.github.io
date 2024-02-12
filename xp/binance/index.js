@@ -1,12 +1,11 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormHTML, MessagesHTML } from './components/index.js'
 import { CloseMessagesModel, ErrorMessagesModel, MessagesModel, OpenMessagesModel } from './models/index.js'
-import { getInBrowserMethodsList } from './utils/lists.js'
-import { io } from 'socket.io-client'
+import '../../assets/libs/socket.io-client/dist/socket.io.js'
 
 export class Page extends HTML {
   state = {
-    front: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
+    front: io('localhost:8000'),
     messages: [],
   }
 
