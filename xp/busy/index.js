@@ -24,6 +24,7 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.setStyles()
     this.setEvents()
     this.append(this.getTitle())
     this.append(this.getForm())
@@ -32,28 +33,36 @@ export class Page extends HTML {
     this.updateList()
   }
 
+  setStyles() {
+    this.setStyle('padding', '1rem')
+  }
+
   setEvents() {
     setInterval(() => this.notifyMe(text), 1000 * 60 * 5)
   }
 
   getTitle() {
     const title = new nH1()
+    title.setStyle('margin', '0rem')
     title.setText('Busy')
     return title
   }
 
   getForm() {
     const flex = new nFlex()
-    flex.append(this.getInput())
-    flex.append(this.getButton())
+    flex.setStyle('margin', '1rem 0rem 0rem 0rem')
+    flex.append(this.getInput().setContainerStyle('width', '80%'))
+    flex.append(this.getButton().setContainerStyle('width', '20%'))
     return flex
   }
 
   getInput() {
+    this.children.input.setStyle('width', '100%')
     return this.children.input
   }
 
   getButton() {
+    this.children.button.setStyle('width', '100%')
     this.children.button.setText('save')
     this.children.button.on('click', () => {
       this.appendTask(this.children.input.getValue())
@@ -94,6 +103,7 @@ export class Page extends HTML {
   }
 
   getTasksList() {
+    this.children.list.setStyle('margin', '1rem 0rem 0rem 0rem')
     return this.children.list
   }
 }
