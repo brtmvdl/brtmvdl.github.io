@@ -58,6 +58,7 @@ export class Page extends HTML {
 
   getInput() {
     this.children.input.setStyle('width', '100%')
+    this.children.input.setPlaceholder('Am i doing?')
     return this.children.input
   }
 
