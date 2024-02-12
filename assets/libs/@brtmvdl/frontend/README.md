@@ -32,7 +32,7 @@ mv node_modules libs
   <script type="importmap">
     {
       "imports": {
-        "@brtmvdl/frontend": "./libs/@brtmvdl/frontend/src/index.js"
+        "@brtmvdl/frontend": "https://cdn.jsdelivr.net/npm/@brtmvdl/frontend@1.0.15/src/index.js"
       }
     }
   </script>
