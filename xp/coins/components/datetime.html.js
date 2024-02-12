@@ -1,5 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
-import * as UTILS from '../../utils/str.js'
+import * as UTILS from './../utils/str.js'
 
 export class DatetimeHTML extends HTML {
   state = {

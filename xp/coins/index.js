@@ -1,17 +1,9 @@
 import { HTML, nSelect, nSpan, nButton } from '@brtmvdl/frontend'
+import { Pair, Coin, Buy, Sell } from './models/index.js'
+import { DatetimeHTML } from './components/index.js'
 import * as UTILS from './utils/str.js'
 import * as Local from './local.js'
 import { CLOCK } from './constants.js'
-
-// import { PriceHTML } from './views/price.js'
-import { DatetimeHTML } from './views/components/datetime.js'
-// import { TopHTML } from './views/components/top.js'
-// import { ButtonHTML } from './views/button/buy.js'
-
-import { Pair } from './models/pair.js'
-import { Coin } from './models/coin.js'
-import { Buy } from './models/buy.js'
-import { Sell } from './models/sell.js'
 
 export class Page extends HTML {
   children = {

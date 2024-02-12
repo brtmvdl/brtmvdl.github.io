@@ -1,4 +1,4 @@
-import { HTML, TopComponent, CoinsSelect, PriceComponent, DatetimeHTML, BuyButton, HistoryComponent } from './views/index.js'
+import { HTML, TopComponent, CoinsSelect, PriceComponent, DatetimeHTML, BuyButton, HistoryComponent } from './components/index.js'
 
 import { PriceModel } from './models/index.js'
 

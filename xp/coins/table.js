@@ -3,8 +3,8 @@ import { HTML } from '@brtmvdl/frontend'
 import * as Local from './local.js'
 import { PAIRS } from './constants.js'
 
-import { DatetimeHTML } from './views/datetime.js'
-import { TopHTML } from './views/top.js'
+import { DatetimeHTML } from './datetime.js'
+import { TopHTML } from './top.js'
 
 import { Pair } from './models/pair.js'
 import { Coin } from './models/coin.js'
