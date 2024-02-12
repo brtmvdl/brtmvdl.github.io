@@ -87,7 +87,7 @@ export class Page extends HTML {
       Notification.requestPermission().then((p) => {
         if (p === 'granted') {
           if (!Local.get(['notified']))
-            setInterval(() => this.notifyMe(text, 1000 * 60 * 5))
+            setInterval(() => this.notifyMe(text), 1000 * 60 * 5)
           new Notification(text)
           Local.set(['notified'], Date.now())
         }
