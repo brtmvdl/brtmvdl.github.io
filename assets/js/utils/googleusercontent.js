@@ -11,8 +11,8 @@ export const GOOGLE = {
   "project_id": "brtmvdl",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "client_id": "387615697147-2uictavc3bnao44q9m3dps2b8qltdtni.apps.googleusercontent.com",
-  // "client_secret": "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",
+  "client_id": "387615697147-r4t617erjqspc36a7s8tvudj25ni87uv.apps.googleusercontent.com",
+  // "client_secret": "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",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "redirect_uris": [
     "https://brtmvdl.github.io/xp/google/",
