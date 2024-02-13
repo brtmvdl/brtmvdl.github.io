@@ -83,6 +83,13 @@ export const experiences = [
     'datetime': [],
     'tags': [],
   },
+  // {
+  //   'id': 'ajax-in-aws',
+  //   'title': 'ajax-in-aws',
+  //   'subtitle': '',
+  //   'datetime': [],
+  //   'tags': [],
+  // },
   {
     'id': 'frontend',
     'title': 'frontend',

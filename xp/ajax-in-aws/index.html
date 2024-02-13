@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Ajax in AWS</title>
+</head>
+
+<body>
+  <script>
+    function makeReq() {
+      fetch(`http://${document.getElementById('aws_ip').value}/ajax?a=1`)
+    }
+  </script>
+  <div id="app">
+    <input type="text" id="aws_ip">
+    <button onclick="makeReq()">Ajax in AWS</button>
+  </div>
+
+</body>
+
+</html>
