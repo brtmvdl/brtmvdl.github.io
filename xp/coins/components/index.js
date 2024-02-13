@@ -1,3 +1,5 @@
+export * from './amount.input.component.js'
+
 export * from './buy.button.component.js'
 
 export * from './coin.select.component.js'

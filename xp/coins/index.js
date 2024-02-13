@@ -1,5 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
-import { ScreenHTML, CoinSelectComponent, PriceComponent, DatetimeComponent, BuyButtonComponent, HistoryComponent } from './components/index.js'
+import { ScreenHTML, AmountInputComponent, CoinSelectComponent, PriceComponent, DatetimeComponent, BuyButtonComponent, HistoryComponent } from './components/index.js'
 import * as Local from '../../assets/js/utils/local.js'
 
 export class Page extends ScreenHTML {
@@ -9,6 +9,7 @@ export class Page extends ScreenHTML {
   }
 
   children = {
+    amount: new AmountInputComponent(),
     coin: new CoinSelectComponent(),
     price: new PriceComponent(),
     datetime: new DatetimeComponent(),
@@ -18,12 +19,27 @@ export class Page extends ScreenHTML {
 
   onCreate() {
     super.onCreate()
+    this.append(this.getAmountInputComponent())
     this.append(this.getCoinSelectComponent())
     this.append(this.getPriceComponent())
     this.append(this.getDatetimeComponent())
     this.append(this.getBuyButtonComponent())
     this.append(this.getHistoryComponent())
     this.update()
+  }
+
+  getAmountInputComponent() {
+    this.children.amount.setValue(100)
+    this.children.amount.on('keyup', () => this.onAmountInputKeyUp())
+    return this.children.amount
+  }
+
+  onAmountInputKeyUp() {
+    this.children.buy.setText(`Buy (BRL ${this.getAmountValue()})`)
+  }
+
+  getAmountValue() {
+    return this.children.amount.getValue()
   }
 
   getCoinSelectComponent() {
@@ -51,6 +67,7 @@ export class Page extends ScreenHTML {
   onBuyButtonClick() {
     Local.add(['moves'], {
       coin: this.state.coin,
+      amount: this.getAmountValue(),
       buy_datetime: Date.now(),
       buy_price: this.state.price,
     })
