@@ -1,5 +1,4 @@
 import { HTML } from '@brtmvdl/frontend'
-
 import { datetime2str, interval2str } from '../../../assets/js/utils/str.js'
 import { SellButtonComponent } from './sell.button.component.js'
 import { TitleComponent } from './title.component.js'
@@ -23,14 +22,15 @@ export class MoveComponent extends HTML {
     this.append(new TextComponent(`Price: ${this.move.buy_price}`))
     if (this.move.sell_datetime) {
       this.append(new TitleComponent('Sell'))
-      this.append(new TextComponent(`Date: ${this.calcInterval(this.move.buy_datetime, this.move.sell_datetime)}`))
-      this.append(new TextComponent(`Price: ${this.calcDiff(+this.move.buy_price, +this.move.sell_price)}`))
+      this.append(new TextComponent(`Interval: ${this.calcInterval(this.move.buy_datetime, this.move.sell_datetime)}`))
+      this.append(new TextComponent(`Diff: ${this.calcDiff(+this.move.buy_price, +this.move.sell_price)}`))
     } else {
       this.append(new TitleComponent('Now'))
       this.append(new TextComponent(`Interval: ${this.calcInterval(this.move.buy_datetime)}`))
       this.append(new TextComponent(`Diff: ${this.calcDiff(+this.move.buy_price, +this.price)}`))
       this.append(new SellButtonComponent(this.move, +this.price))
     }
+    this.append(new TextComponent(''))
   }
 
   calcInterval(before = Date.now(), after = Date.now()) {

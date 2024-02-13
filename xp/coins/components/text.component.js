@@ -10,6 +10,7 @@ export class TextComponent extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.setStyle('padding', '1rem')
     this.setText(this.text)
   }
 }

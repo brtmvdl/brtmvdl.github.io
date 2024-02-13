@@ -19,7 +19,11 @@ export class SellButtonComponent extends nButton {
   }
 
   setStyles() {
-    this.setStyle('', '')
+    this.setContainerStyle('margin', '1rem')
+    this.setStyle('background-color', '#000000')
+    this.setStyle('color', '#ffffff')
+    this.setStyle('padding', '1rem')
+    this.setStyle('border', 'none')
   }
 
   onClick() {

@@ -8,6 +8,8 @@ export class TitleComponent extends TextComponent {
   }
 
   setStyles() {
-    this.setStyle('', '')
+    this.setStyle('background-color', '#000000')
+    this.setStyle('color', '#ffffff')
+    this.setStyle('padding', '1rem')
   }
 }
