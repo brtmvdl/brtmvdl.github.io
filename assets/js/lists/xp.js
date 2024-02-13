@@ -35,8 +35,8 @@ export const experiences = [
     'tags': [],
   },
   {
-    'id': 'calc',
-    'title': 'calc',
+    'id': 'projects',
+    'title': 'projects',
     'subtitle': '',
     'datetime': [],
     'tags': [],
