@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Recorder</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "@brtmvdl/frontend": "https://cdn.jsdelivr.net/npm/@brtmvdl/frontend@1.0.15/src/index.js"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import { HTML, nInput, nButton } from '@brtmvdl/frontend'
+    import { Page } from './index.js'
+
+    HTML.fromId('app').append(new Page())
+    HTML.fromElement(document.body).setStyle('margin', '0rem')
+  </script>
+</body>
+
+</html>

@@ -91,6 +91,13 @@ export const experiences = [
   //   'tags': [],
   // },
   {
+    'id': 'audio-recorder', 
+    'title': 'audio recorder',
+    'subtitle': '',
+    'datetime': [],
+    'tags': [],
+  },
+  {
     'id': 'frontend',
     'title': 'frontend',
     'subtitle': '',
