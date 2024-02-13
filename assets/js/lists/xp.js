@@ -98,6 +98,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'anagram',
+    'title': 'anagram',
+    'subtitle': '',
+    'datetime': [],
+    'tags': [],
+  },
+  {
     'id': 'gmail',
     'title': 'gmail',
     'subtitle': '',
