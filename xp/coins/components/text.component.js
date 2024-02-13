@@ -1,7 +1,7 @@
 import { HTML } from '@brtmvdl/frontend'
 
-export class TextHTML extends HTML {
-  text = ''
+export class TextComponent extends HTML {
+  text = null
 
   constructor(text = '') {
     super()

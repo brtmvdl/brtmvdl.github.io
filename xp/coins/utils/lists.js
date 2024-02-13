@@ -1,11 +1,5 @@
 
-export const CLOCK = {
-  HOURS: 60 * 60,
-  MINUTES: 60,
-  SECONDS: 1,
-}
-
-export const PAIRS = [
+export const getPairsList = () => Array.from([
   ['BTC', 'BRL'],
   ['USDT', 'BRL'],
   ['ETH', 'BRL'],
@@ -18,8 +12,10 @@ export const PAIRS = [
   ['AVAX', 'BRL'],
   ['DOGE', 'BRL'],
   ['ADA', 'BRL'],
+  ['SHIB', 'BRL'],
   ['DOT', 'BRL'],
   ['BUSD', 'BRL'],
   ['CHZ', 'BRL'],
-  //
-]
+  ['GALA', 'BRL'],
+  ['WIN', 'BRL'],
+])

@@ -1,7 +1,8 @@
+import { Model } from './model.js'
 import { Coin } from './coin.js'
 import { Pair } from './pair.js'
 
-export class Buy {
+export class BuyModel extends Model {
   coin = null
   pair = null
   datetime = null
