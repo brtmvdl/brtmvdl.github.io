@@ -1,5 +1,12 @@
 export const experiences = [
   {
+    'id': 'bitcoin',
+    'title': 'Bitcoin',
+    'subtitle': '',
+    'datetime': '2024-02-14',
+    'tags': ['economy'],
+  },
+  {
     'id': 'twitter',
     'title': 'Twitter',
     'subtitle': 'twitter login',
