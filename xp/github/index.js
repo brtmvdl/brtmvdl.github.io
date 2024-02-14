@@ -1,15 +1,11 @@
-import { HTML, nButton } from '@brtmvdl/frontend'
+import { HTML, nLink } from '@brtmvdl/frontend'
+import { client_id } from './config.js'
 
 export class Page extends HTML {
-  children = {
-    code: new HTML(),
-  }
-
   onCreate() {
     super.onCreate()
     this.append(this.getTitleHTML())
-    this.append(this.getLoginButton())
-    this.append(this.getCodeHTML())
+    this.append(this.getLoginLink())
   }
 
   getTitleHTML() {
@@ -18,18 +14,10 @@ export class Page extends HTML {
     return html
   }
 
-  getLoginButton() {
-    const button = new nButton()
-    button.setText('login')
-    button.on('click', () => this.onButtonClick())
-    return button
-  }
-
-  onButtonClick() {
-    console.log('click')
-  }
-
-  getCodeHTML() {
-    return this.children.code
+  getLoginLink() {
+    const link = new nLink()
+    link.setText('login')
+    link.href(`https://github.com/login/oauth/authorize?scope=user:email&client_id=${client_id}`)
+    return link
   }
 }
