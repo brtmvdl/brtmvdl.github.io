@@ -27,6 +27,7 @@ export class Page extends HTML {
     super.onCreate()
     this.append(this.getTitleHTML())
     this.append(this.getLoginLink())
+    this.append(this.getTokensLink())
     this.append(this.getAccessTokenInput())
     this.append(this.getApiUserButton())
     this.append(this.getResonsesHTML())
@@ -43,6 +44,13 @@ export class Page extends HTML {
     const link = new nLink()
     link.setText('login')
     link.href(`https://github.com/login/oauth/authorize?scope=user:email&client_id=${client_id}`)
+    return link
+  }
+
+  getTokensLink() {
+    const link = new nLink()
+    link.setText('settings/tokens')
+    link.href('https://github.com/settings/tokens?type=beta')
     return link
   }
 
