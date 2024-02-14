@@ -1,4 +1,4 @@
-import { HTML, nLink, nButton } from '@brtmvdl/frontend'
+import { HTML, nLink, nButton, nInputTextGroup } from '@brtmvdl/frontend'
 import { client_id, access_token } from './config.js'
 import * as Local from '../../assets/js/utils/local.js'
 import * as Flow from '../../assets/js/utils/flow.js'
@@ -20,12 +20,14 @@ class TextHTML extends HTML {
 export class Page extends HTML {
   children = {
     responses: new HTML(),
+    access_token: new nInputTextGroup(),
   }
 
   onCreate() {
     super.onCreate()
     this.append(this.getTitleHTML())
     this.append(this.getLoginLink())
+    this.append(this.getAccessTokenInput())
     this.append(this.getApiUserButton())
     this.append(this.getResonsesHTML())
     this.setOauthCode()
@@ -44,6 +46,12 @@ export class Page extends HTML {
     return link
   }
 
+  getAccessTokenInput() {
+    this.children.access_token.children.label.setText('access token')
+    this.children.access_token.children.input.setPlaceholder('access_token')
+    return this.children.access_token
+  }
+
   getApiUserButton() {
     const button = new nButton()
     button.setText('api.github.com/user')
@@ -52,7 +60,7 @@ export class Page extends HTML {
   }
 
   onApiUserButton() {
-    fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${access_token}` } })
+    fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${this.children.access_token.children.input.getValue()}` } })
       .then(res => res.json())
       .then((json) => this.children.responses.append(new TextHTML(JSON.stringify(json))))
       .catch((err) => this.children.responses.append(new TextHTML(err.message)))
