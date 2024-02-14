@@ -1,4 +1,4 @@
-import { HTML, nLink } from '@brtmvdl/frontend'
+import { HTML, nLink, nButton } from '@brtmvdl/frontend'
 import { client_id, access_token } from './config.js'
 import * as Local from '../../assets/js/utils/local.js'
 import * as Flow from '../../assets/js/utils/flow.js'
@@ -46,13 +46,13 @@ export class Page extends HTML {
 
   getApiUserButton() {
     const button = new nButton()
-    button.setText('api.github.com/user') // await 
+    button.setText('api.github.com/user')
     button.on('click', () => this.onApiUserButton())
     return button
   }
 
   onApiUserButton() {
-    fetch('https://api.github.com/user', { headers })
+    fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${access_token}` } })
       .then(res => res.json())
       .then((json) => this.children.responses.append(new TextHTML(JSON.stringify(json))))
       .catch((err) => this.children.responses.append(new TextHTML(err.message)))
