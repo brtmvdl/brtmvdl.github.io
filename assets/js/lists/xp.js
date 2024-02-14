@@ -112,6 +112,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'calculator',
+    'title': 'calculator',
+    'subtitle': 'a simple calculator',
+    'datetime': ['2024-02-13'],
+    'tags': [],
+  },
+  {
     'id': 'gmail',
     'title': 'gmail',
     'subtitle': '',
