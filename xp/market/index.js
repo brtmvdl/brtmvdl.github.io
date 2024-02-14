@@ -1,57 +1,85 @@
-import { HTML, nButton, nH2, nInput, nLink } from '@brtmvdl/frontend'
-import { GOOGLE, API_KEY, DISCOVERY_DOC } from './../../assets/js/utils/googleusercontent.js'
+import { HTML, nButton, nH1, nInput, nLink } from '@brtmvdl/frontend'
+import { GOOGLE } from './../../assets/js/utils/googleusercontent.js'
+import * as Local from '../../assets/js/utils/local.js'
+
+class nForm extends HTML {
+  getName() { return 'form' }
+
+  getTagName() { return 'form' }
+
+  submit() {
+    this.element.submit()
+    return this
+  }
+}
 
 export class Page extends HTML {
-  onCreate() {
-    this.append(this.getTitleLink())
-    this.append(this.getLoadAuth2Button())
-    this.append(this.getAuth2AuthorizeButton())
-    this.append(this.getLoadClientButton())
-    this.append(this.getClientInitButton())
-    this.on('gapi', () => console.log('gapi'))
-    this.on('gis', () => console.log('gis'))
+  children = {
+    form: new nForm(),
   }
 
-  getTitleLink() {
+  onCreate() {
+    super.onCreate()
+    this.append(this.getTitleHTML())
+    this.append(this.getForm())
+    this.append(this.getLink())
+    this.append(this.getLoginButton())
+    this.append(this.getEraseButton())
+    this.append(this.getAccessTokenHTML())
+    this.saveURLSearchParams()
+  }
+
+  getTitleHTML() {
     const link = new nLink()
-    link.href('/xp/market/')
-    link.setText('Market as a project')
+    const h1 = new nH1()
+    h1.setText('Market')
+    link.append(h1)
     return link
   }
 
-  getLoadClientButton() {
+  getForm() {
+    this.children.form.setAttr('method', 'GET')
+    this.children.form.setAttr('action', GOOGLE.auth_uri)
+    Object.keys(GOOGLE).filter((key) => (typeof GOOGLE[key]) === 'string').map((key) => {
+      const input = new nInput()
+      input.setAttr('type', 'hidden')
+      input.setAttr('name', key)
+      input.setValue(GOOGLE[key])
+      this.children.form.append(input)
+    })
+    return this.children.form
+  }
+
+  getLink() {
+    const link = new nLink()
+    link.href(GOOGLE.redirect_uri)
+    link.setText('login link')
+    return link
+  }
+
+  getLoginButton() {
     const button = new nButton()
-    button.setText('load:client')
-    button.on('click', () => gapi.load('client', { callback: () => console.log('gapi.load:client') }))
+    button.setText('login button')
+    button.on('click', () => this.children.form.submit())
     return button
   }
 
-  getLoadAuth2Button() {
+  getEraseButton() {
     const button = new nButton()
-    button.setText('load:auth2')
-    button.on('click', () => gapi.load('auth2', { callback: () => console.log('gapi.load:auth2') }))
+    button.setText('erase button')
+    button.on('click', () => Local.set(['google', 'access_token'], ''))
     return button
   }
 
-  gapiClientInit() {
-    return new Promise((s, f) => gapi.client.init({ apiKey: API_KEY, discoveryDocs: [DISCOVERY_DOC], clientId: GOOGLE.client_id, scope: GOOGLE.scope }, (err) => err ? f() : s()))
+  getAccessTokenHTML() {
+    const html = new HTML()
+    html.setText(Local.get(['google', 'access_token']))
+    return html
   }
 
-  getClientInitButton() {
-    const button = new nButton()
-    button.setText('client.init')
-    button.on('click', () => this.gapiClientInit())
-    return button
-  }
-
-  gapiAuth2Authorize() {
-    return new Promise((s, f) => gapi.auth2.authorize({ clientId: GOOGLE.client_id, scope: GOOGLE.scope, response_type: 'id_token permission' }, (err) => err ? f() : s()))
-  }
-
-  getAuth2AuthorizeButton() {
-    const button = new nButton()
-    button.setText('auth2.authorize')
-    button.on('click', () => this.gapiAuth2Authorize())
-    return button
+  saveURLSearchParams() {
+    const url = new URL(window.location)
+    Array.from(new URLSearchParams(url.hash.replace('#', '?')))
+      .map(([key, value]) => Local.set(['google', key], value))
   }
 }
