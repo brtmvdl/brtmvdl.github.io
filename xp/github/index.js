@@ -60,10 +60,16 @@ export class Page extends HTML {
   }
 
   onApiUserButton() {
-    fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${this.children.access_token.children.input.getValue()}` } })
+    fetch('https://api.github.com/user', { headers: this.getHeaders() })
       .then(res => res.json())
-      .then((json) => this.children.responses.append(new TextHTML(JSON.stringify(json))))
+      .then((json) => this.children.responses.append(new TextHTML(JSON.stringify(json, null, 4))))
       .catch((err) => this.children.responses.append(new TextHTML(err.message)))
+  }
+
+  getHeaders() {
+    return {
+      Authorization: `token ${this.children.access_token.children.input.getValue()}`,
+    }
   }
 
   getResonsesHTML() {
