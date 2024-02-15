@@ -1,0 +1,32 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "image": "",
+      "title": "Jumping jacks",
+      "time": 20,
+      "workouts": null
+    },
+    {
+      "id": 2,
+      "image": "",
+      "title": "Plank",
+      "time": 20,
+      "workouts": null
+    },
+    {
+      "id": 3,
+      "image": "",
+      "title": "Mountain climber",
+      "time": null,
+      "workouts": 16
+    },
+    {
+      "id": 4,
+      "image": "",
+      "title": "Russian twist",
+      "time": null,
+      "workouts": 20
+    }
+  ]
+}

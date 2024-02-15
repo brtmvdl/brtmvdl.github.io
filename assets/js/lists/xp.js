@@ -182,6 +182,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'home-workout',
+    'title': 'Home Workout',
+    'subtitle': '',
+    'datetime': '2024-02-15',
+    'tags': [],
+  },
+  {
     'id': 'audio-recorder',
     'title': 'Audio Recorder',
     'subtitle': '',
