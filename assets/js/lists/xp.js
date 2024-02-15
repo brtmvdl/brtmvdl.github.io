@@ -1,22 +1,22 @@
 export const experiences = [
   {
     'id': 'luxfacta',
-    'title': 'Programador',
-    'subtitle': 'Luxfacta - Rio Claro/SP',
+    'title': 'Luxfacta',
+    'subtitle': 'Programador',
     'dates': ['2014-03', '2017-09'],
     'tags': ['jobs'],
   },
   {
     'id': 'planow',
-    'title': 'Programador',
-    'subtitle': 'Plano W - Rio Claro/SP',
+    'title': 'Plano W',
+    'subtitle': 'Programador',
     'dates': ['2013-04', '2013-09'],
     'tags': ['jobs'],
   },
   {
     'id': 'ibparque',
-    'title': 'Programador',
-    'subtitle': 'Igreja Batista do Parque - Rio Claro/SP',
+    'title': 'Igreja Batista do Parque',
+    'subtitle': 'Programador',
     'dates': ['2011', '2014'],
     'tags': ['jobs'],
   },
@@ -44,14 +44,14 @@ export const experiences = [
   {
     'id': 'twitter',
     'title': 'Twitter',
-    'subtitle': 'twitter login',
+    'subtitle': '',
     'datetime': '2024-02-11',
     'tags': ['login'],
   },
   {
     'id': 'facebook',
     'title': 'Facebook',
-    'subtitle': 'facebook login',
+    'subtitle': '',
     'datetime': '2024-02-10',
     'tags': ['login'],
   },
@@ -64,7 +64,7 @@ export const experiences = [
   },
   {
     'id': 'github',
-    'title': 'GitHub App',
+    'title': 'GitHub',
     'subtitle': '',
     'datetime': '2024-02-14',
     'tags': ['login'],
@@ -198,7 +198,7 @@ export const experiences = [
   {
     'id': 'calculator',
     'title': 'Calculator',
-    'subtitle': 'a simple calculator',
+    'subtitle': '',
     'datetime': '2024-02-13',
     'tags': [],
   },
@@ -219,13 +219,6 @@ export const experiences = [
   {
     'id': 'screen-capture-api',
     'title': 'Screen Capture API',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
-  },
-  {
-    'id': 'app',
-    'title': 'App',
     'subtitle': '',
     'datetime': '',
     'tags': [],
