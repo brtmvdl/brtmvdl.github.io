@@ -33,7 +33,7 @@ export class Page extends HTML {
   getTitleLink() {
     const link = new nLink()
     const title = new nH2()
-    title.setText('Share on LinkedIn API')
+    title.setText('LinkedIn API')
     link.append(title)
     return link.href('?')
   }
