@@ -17,3 +17,11 @@ export const interval2str = (interval = 0) => {
 
   return `${hours}:${minutes}:${seconds} ago`
 }
+
+export const secondsToMinutes = (s = 0) => {
+  const seconds = s * (60 ** 0)
+  const minutes = (s * (60 ** 1)) - (seconds * (60))
+  const hours = (s * (60 ** 2)) - (seconds * (60)) - (minutes * (60 * 60))
+
+  return `${padLeft(hours, 2, '0')}:${padLeft(minutes, 2, '0')}:${padLeft(seconds, 2, '0')}`
+}
