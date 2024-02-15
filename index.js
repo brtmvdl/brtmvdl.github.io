@@ -1,7 +1,7 @@
 import { HTML, nFlex, nH1, nImage, nLink } from '@brtmvdl/frontend'
+
 import { Container } from './assets/js/components/container.js'
 import { experiences } from './assets/js/lists/xp.js'
-import { jobs } from './assets/js/lists/jobs.js'
 
 export class Socials extends nFlex {
   onCreate() {
@@ -99,12 +99,6 @@ class Experience extends HTML {
 
 }
 
-export class Jobs extends HTML {
-  onCreate() {
-    jobs.map((xp) => this.append(new Experience(xp)))
-  }
-}
-
 export class Experiences extends HTML {
   onCreate() {
     experiences.map((xp) => this.append(new Experience(xp)))
@@ -115,8 +109,6 @@ export class Page extends Container {
   onCreate() {
     super.onCreate()
     this.children.content.append(new Socials())
-    this.children.content.append(this.getTitle('Jobs'))
-    this.children.content.append(new Jobs())
     this.children.content.append(this.getTitle('Experiences'))
     this.children.content.append(new Experiences())
   }
