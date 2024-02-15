@@ -105,8 +105,8 @@ export const experiences = [
     'tags': ['3D'],
   },
   {
-    'id': 'cube2',
-    'title': 'Cube 2',
+    'id': 'cube',
+    'title': 'Cube',
     'subtitle': '',
     'datetime': '',
     'tags': ['3D'],
