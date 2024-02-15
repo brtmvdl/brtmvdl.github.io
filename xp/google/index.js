@@ -1,6 +1,5 @@
 import { HTML, nButton, nH1, nInput, nLink } from '@brtmvdl/frontend'
 import { GOOGLE } from './../../assets/js/utils/googleusercontent.js'
-
 import * as Local from '../../assets/js/utils/local.js'
 
 class nForm extends HTML {
@@ -17,7 +16,7 @@ class nForm extends HTML {
 const app = HTML.fromId('app')
 
 const title = new nH1()
-title.setText('Google OAuth 2.0 Login')
+title.setText('Google Login')
 app.append(title)
 
 const form = new nForm()
@@ -35,7 +34,7 @@ Object.keys(GOOGLE).filter((key) => (typeof GOOGLE[key]) === 'string').map((key)
 
 const link = new nLink()
 link.href(GOOGLE.redirect_uri)
-link.setText('Google OAuth 2.0 Login')
+link.setText('Login')
 app.append(link)
 
 const btnLogin = new nButton()
@@ -54,4 +53,3 @@ Array.from(location.hash.substring(1).matchAll(/([^&=]+)=([^&]+)/g))
 const access_token = new HTML()
 access_token.setText(Local.get(['google', 'access_token']))
 app.append(access_token)
-
