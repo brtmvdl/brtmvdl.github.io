@@ -52,15 +52,11 @@ export class Page extends HTML {
   }
 
   getMessageInstance(data) {
-    const error = data.status === 400
-    const method = this.getMessageMethodById(data.id)
+    const error = data.status !== 200
+    const method = this.state.messages.find(({ id }) => id === data.id)?.method
     const params = error ? data.error : data.result
     const side = error ? 'error' : 'output'
     return new MessagesModel(method, params, side)
-  }
-
-  getMessageMethodById(message_id) {
-    return this.state.messages.find(({ id }) => id === message_id)?.method
   }
 
   onFrontSocketError(data) {

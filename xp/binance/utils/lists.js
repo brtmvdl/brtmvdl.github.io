@@ -89,7 +89,7 @@ export const getParamsList = () => ({
   'sor.order.place': ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price'],
   'sor.order.test': ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price'],
   'account.status': [],
-  'account.commission': [],
+  'account.commission': ['symbol'],
   'account.rateLimits.orders': [],
   'allOrders': ['symbol', 'startTime', 'endTime', 'limit'],
   'allOrderLists': ['startTime', 'endTime', 'limit'],

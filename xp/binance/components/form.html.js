@@ -62,10 +62,12 @@ export class FormHTML extends HTML {
 
     if (getWebSocketMethodsList().indexOf(method) !== -1) {
       params.push(['timestamp', Date.now()])
-      params.push(['apiKey', this.children.inputs.getValue('apiKey')])
-      params.push(['signature', sha256.hmac('key', 'message')])
+      const apiKey = this.children.inputs.getValue('apiKey')
+      params.push(['apiKey', apiKey])
+      const message = params?.sort(([a], [b]) => a.localeCompare(b)).map(([name, value]) => `${name}=${value}`).join('&')
+      params.push(['signature', sha256.hmac(apiKey, message)])
     }
 
-    return params?.sort(([a], [b]) => a.localeCompare(b)).reduce((values, [key, value = '']) => ({ ...values, [key]: value }), {})
+    return params?.sort(([a], [b]) => a.localeCompare(b)).reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
   }
 }
