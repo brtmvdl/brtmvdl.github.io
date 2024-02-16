@@ -4,8 +4,6 @@ import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
 
-import * as config from '../config.js'
-
 export class FormHTML extends HTML {
   children = {
     method: new SelectComponent(),
@@ -64,7 +62,7 @@ export class FormHTML extends HTML {
 
     if (getWebSocketMethodsList().indexOf(method) !== -1) {
       params.push(['timestamp', Date.now()])
-      params.push(['apiKey', config.apiKey])
+      params.push(['apiKey', this.children.inputs.getValue('apiKey')])
       params.push(['signature', sha256.hmac('key', 'message')])
     }
 

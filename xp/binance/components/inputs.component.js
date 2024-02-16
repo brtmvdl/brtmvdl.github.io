@@ -33,7 +33,7 @@ export class InputsComponent extends HTML {
     orderListId: new InputTextGroupComponent('orderListId'),
     endTime: new InputTextGroupComponent('endTime', Date.now()),
     recvWindow: new InputTextGroupComponent('recvWindow', 100),
-    apiKey: new InputTextGroupComponent('apiKey', 'apiKey'),
+    apiKey: new InputTextGroupComponent('apiKey', 'apiKey', 'password'),
     signature: new InputTextGroupComponent('signature', 'signature'),
     timestamp: new TimestampInputTextGroupComponent('timestamp')
   }
