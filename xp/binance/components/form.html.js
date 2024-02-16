@@ -1,8 +1,10 @@
 import { HTML, nSelect, nButton, nInputTextGroup } from '@brtmvdl/frontend'
-import { getMethodsList, getParamsList } from '../utils/lists.js'
+import { getMethodsList, getParamsList, getWebSocketMethodsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
+
+import * as config from '../config.js'
 
 export class FormHTML extends HTML {
   children = {
@@ -48,7 +50,7 @@ export class FormHTML extends HTML {
 
   onSendButtonClick() {
     const method = this.getMethodValue()
-    this.dispatchEvent('submit', { method , params: this.getParamsValues(method) })
+    this.dispatchEvent('submit', { method, params: this.getParamsValues(method) })
   }
 
   getMethodValue() {
@@ -56,6 +58,16 @@ export class FormHTML extends HTML {
   }
 
   getParamsValues(method = '') {
-    return getParamsList()[method]?.reduce((values, input) => ({ ...values, [input]: this.children.inputs.getValue(input) }), {})
+    const list = Array.from(getParamsList()[method])
+
+    const params = list?.map((input) => ([input, this.children.inputs.getValue(input)]))
+
+    if (getWebSocketMethodsList().indexOf(method) !== -1) {
+      params.push(['timestamp', Date.now()])
+      params.push(['apiKey', config.apiKey])
+      params.push(['signature', sha256.hmac('key', 'message')])
+    }
+
+    return params?.sort(([a], [b]) => a.localeCompare(b)).reduce((values, [key, value = '']) => ({ ...values, [key]: value }), {})
   }
 }

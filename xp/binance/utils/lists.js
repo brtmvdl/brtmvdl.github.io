@@ -2,9 +2,9 @@
 
 export const getMethodsList = () => Array.from([
   'Binance WebSocket API',
-  '[guest]',
+  // '[guest]',
   ...getInBrowserMethodsList(),
-  '[websocket]',
+  // '[websocket]',
   ...getWebSocketMethodsList(),
 ])
 
@@ -24,12 +24,12 @@ export const getInBrowserMethodsList = () => Array.from([
   'ticker',
   'ticker.price',
   'ticker.book',
+  'session.status',
+  'session.logout',
 ])
 
 export const getWebSocketMethodsList = () => Array.from([
-  'session.status',
   'session.logon',
-  'session.logout',
   'order.test',
   'order.place',
   'order.status',
