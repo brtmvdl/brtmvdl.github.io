@@ -508,6 +508,8 @@ export class accountStatusMessage extends TableMessage {
 
 export class accountCommissionMessage extends MessageCardHTML { }
 
+export class accountRateLimitsOrdersMessage extends MessageCardHTML { }
+
 export class allOrdersMessage extends MessageCardHTML { }
 
 export class allOrderListsMessage extends MessageCardHTML { }

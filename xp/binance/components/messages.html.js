@@ -64,7 +64,7 @@ export class MessagesHTML extends HTML {
       case 'sor.order.test': return new messages.sorOrderTestMessage(data)
       case 'account.status': return new messages.accountStatusMessage(data)
       case 'account.commission': return new messages.accountCommissionMessage(data)
-      case 'account.rateLimits.orders': return new messages.accountRateLimitsOrdersMessage()
+      case 'account.rateLimits.orders': return new messages.accountRateLimitsOrdersMessage(data)
       case 'allOrders': return new messages.allOrdersMessage(data)
       case 'allOrderLists': return new messages.allOrderListsMessage(data)
       case 'myTrades': return new messages.myTradesMessage(data)
