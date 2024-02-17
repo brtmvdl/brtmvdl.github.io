@@ -8,9 +8,7 @@ export class DateTimeGroupComponent extends nInputTextGroup {
 
   children = {
     label: this.getLabel(),
-    // input: this.getInput(),
     error: new nError(),
-    //
     year: new nInputText(),
     month: new nInputText(),
     day: new nInputText(),
@@ -59,6 +57,7 @@ export class DateTimeGroupComponent extends nInputTextGroup {
       input.setStyle('text-align', 'center')
       input.setStyle('color', '#000000')
       input.setStyle('font', 'inherit')
+      input.setValue('')
       flex.append(input)
     })
     return flex
@@ -66,10 +65,13 @@ export class DateTimeGroupComponent extends nInputTextGroup {
 
   getValue() {
     const [year, month, day, hour, minute, second] = Array.from([
-      this.children.year, this.children.month, this.children.day,
-      this.children.hour, this.children.minute, this.children.second,
+      this.children.year,
+      this.children.month,
+      this.children.day,
+      this.children.hour,
+      this.children.minute,
+      this.children.second,
     ]).map((input) => input.getValue())
-    console.log(this.state.label, { year, month, day, hour, minute, second })
     return (new Date(+year, +month - 1, +day, +hour, +minute, +second)).getTime()
   }
 }

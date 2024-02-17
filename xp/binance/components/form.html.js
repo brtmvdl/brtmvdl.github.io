@@ -1,8 +1,9 @@
 import { HTML, nSelect, nButton, nInputTextGroup } from '@brtmvdl/frontend'
-import { getMethodsList, getParamsList, getUserDataStreamMethodsList, getWebSocketMethodsList } from '../utils/lists.js'
+import { getInBrowserMethodsList, getMethodsList, getParamsList, getUserDataStreamMethodsList, getWebSocketMethodsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
+import * as config from '../utils/config.js'
 
 export class FormHTML extends HTML {
   children = {
@@ -56,22 +57,21 @@ export class FormHTML extends HTML {
   }
 
   getParamsValues(method = '') {
-    const list = Array.from(getParamsList()[method])
+    const values = Array.from(getParamsList()[method])?.map((input) => ([input, this.children.inputs.getValue(input)]))
 
-    const params = list?.map((input) => ([input, this.children.inputs.getValue(input)]))
+    let params = Array.from([])
 
     if (getWebSocketMethodsList().indexOf(method) !== -1) {
-      params.push(['timestamp', Date.now()])
-      const apiKey = this.children.inputs.getValue('apiKey')
-      params.push(['apiKey', apiKey])
-      const message = params?.sort(([a], [b]) => a.localeCompare(b)).map(([name, value]) => `${name}=${value}`).join('&')
-      params.push(['signature', sha256.hmac(apiKey, message)])
+      values.push(['apiKey', config.apiKey])
+      values.push(['timestamp', Date.now()])
+      params = params.concat(values?.sort(([a], [b]) => a.localeCompare(b)))
+      params.push(['signature', this.getSignatureValue(config.secretKey, params)])
     }
 
-    if (getUserDataStreamMethodsList().indexOf(method) !== -1) {
-      params.push(['apiKey', this.children.inputs.getValue('apiKey')])
-    }
+    return params.reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
+  }
 
-    return params?.sort(([a], [b]) => a.localeCompare(b)).reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
+  getSignatureValue(key, params) {
+    return sha256.hmac(key, params.map(([name, value]) => `${name}=${value}`).join('&'))
   }
 }
