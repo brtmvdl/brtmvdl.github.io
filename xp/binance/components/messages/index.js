@@ -1,4 +1,4 @@
-import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
+import { HTML, nFlex, nTable, nTr, nTd, nLink } from '@brtmvdl/frontend'
 
 import { HorizontalSeparatorHTML } from '../horizontal.separator.html.js'
 import { TextHTML } from '../text.html.js'
@@ -20,16 +20,21 @@ export class MessageCardHTML extends CardHTML {
 
   onCreate() {
     super.onCreate()
+    this.setAttr('id', this.data.id)
     this.append(this.getHeaderHTML())
     this.append(this.getBodyHTML())
-    if (this.data.limits.length) this.append(this.getRateLimitsHTML())
+    if (this.data.output?.rateLimits?.length) this.append(this.getRateLimitsHTML())
     this.append(this.getFooterHTML())
   }
 
   getHeaderHTML() {
     const header = new CardHeaderHTML()
     const flex = new nFlex()
-    flex.append(new TextHTML(this.data.method))
+    const method = new TextHTML(this.data.method)
+    const link = new nLink()
+    link.href('#' + (this.data.side == 'output' ? this.data.output.id : this.data.id))
+    link.append(method)
+    flex.append(link)
     flex.append(new TextHTML(this.data.side))
     header.append(flex)
     return header
@@ -49,7 +54,7 @@ export class MessageCardHTML extends CardHTML {
 
   getRateLimitsHTML() {
     const ratelimits = new CardBodyHTML()
-    const table = this.getTableHTML(this.data.limits)
+    const table = this.getTableHTML(this.data.output.rateLimits)
     table.setStyle('width', '100%')
     ratelimits.append(table)
     return ratelimits

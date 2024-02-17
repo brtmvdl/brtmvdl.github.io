@@ -54,7 +54,7 @@ export class Page extends HTML {
     const method = this.state.messages.find(({ id }) => id === data.id)?.method
     const params = error ? data.error : data.result
     const side = error ? 'error' : 'output'
-    return new MessagesModel(method, { params, side, limits: data.rateLimits })
+    return new MessagesModel(method, { params, side, limits: data.rateLimits, output: data })
   }
 
   onFrontSocketError(data) {

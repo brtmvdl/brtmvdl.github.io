@@ -5,15 +5,15 @@ export class MessagesModel extends JSONableModel {
   method = ''
   params = {}
   side = null
-  limits = []
+  output = null
 
-  constructor(method, { params = {}, side = 'none', limits = [] } = {}) {
+  constructor(method, { params = {}, side = 'none', output = {} } = {}) {
     super()
 
     this.method = method
     this.params = params
     this.side = side
-    this.limits = limits
+    this.output = output
   }
 
   toJSON() {
