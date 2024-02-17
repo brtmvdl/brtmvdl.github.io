@@ -21,13 +21,6 @@ export const experiences = [
     'tags': ['jobs'],
   },
   {
-    'id': 'bitcoin',
-    'title': 'Bitcoin',
-    'subtitle': '',
-    'datetime': '2024-02-14',
-    'tags': ['economy'],
-  },
-  {
     'id': 'binance',
     'title': 'Binance',
     'subtitle': '',
@@ -229,5 +222,12 @@ export const experiences = [
     'subtitle': '',
     'datetime': '',
     'tags': [],
+  },
+  {
+    'id': 'bitcoin',
+    'title': 'Bitcoin',
+    'subtitle': '',
+    'datetime': '2024-02-14',
+    'tags': ['economy'],
   },
 ]
