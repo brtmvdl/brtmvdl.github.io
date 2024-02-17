@@ -64,8 +64,10 @@ export class FormHTML extends HTML {
     if (getWebSocketMethodsList().indexOf(method) !== -1) {
       values.push(['apiKey', config.apiKey])
       values.push(['timestamp', Date.now()])
-      params = params.concat(values?.sort(([a], [b]) => a.localeCompare(b)))
+      params = values.sort(([a], [b]) => a.localeCompare(b))
       params.push(['signature', this.getSignatureValue(config.secretKey, params)])
+    } else {
+      params = values.sort(([a], [b]) => a.localeCompare(b))
     }
 
     return params.reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
