@@ -42,7 +42,7 @@ export class Page extends HTML {
   }
 
   onFrontSocketOpen(data) {
-    this.addMessage(new MessagesModel('open', data.result, 'none'))
+    this.addMessage(new MessagesModel('open'))
   }
 
   onFrontSocketMessage({ data } = {}) {
@@ -54,15 +54,15 @@ export class Page extends HTML {
     const method = this.state.messages.find(({ id }) => id === data.id)?.method
     const params = error ? data.error : data.result
     const side = error ? 'error' : 'output'
-    return new MessagesModel(method, params, side)
+    return new MessagesModel(method, { params, side, limits: data.rateLimits })
   }
 
   onFrontSocketError(data) {
-    this.addMessage(new MessagesModel('error', data.result, 'none'))
+    this.addMessage(new MessagesModel('error'))
   }
 
   onFrontSocketClose(data) {
-    this.addMessage(new MessagesModel('close', data.result, 'none'))
+    this.addMessage(new MessagesModel('close'))
   }
 
   getFormHTML() {
@@ -71,7 +71,7 @@ export class Page extends HTML {
   }
 
   onFormHtmlSubmit({ value: { method, params } } = {}) {
-    const message = new MessagesModel(method, params, 'input')
+    const message = new MessagesModel(method, { params, side: 'input' })
     this.addMessage(message)
     this.state.front.send(message.toString())
   }

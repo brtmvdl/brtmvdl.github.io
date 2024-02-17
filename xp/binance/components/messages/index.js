@@ -22,6 +22,7 @@ export class MessageCardHTML extends CardHTML {
     super.onCreate()
     this.append(this.getHeaderHTML())
     this.append(this.getBodyHTML())
+    if (this.data.limits.length) this.append(this.getRateLimitsHTML())
     this.append(this.getFooterHTML())
   }
 
@@ -44,6 +45,14 @@ export class MessageCardHTML extends CardHTML {
     }
 
     return body
+  }
+
+  getRateLimitsHTML() {
+    const ratelimits = new CardBodyHTML()
+    const table = this.getTableHTML(this.data.limits)
+    table.setStyle('width', '100%')
+    ratelimits.append(table)
+    return ratelimits
   }
 
   getNoneHTML() {
@@ -72,9 +81,7 @@ export class MessageCardHTML extends CardHTML {
     footer.append(new TextHTML(str.timestamp2str(id)))
     return footer
   }
-}
 
-export class TableMessage extends MessageCardHTML {
   createData(text) {
     const td = new nTd()
     td.setStyle('border', '1px solid #000000')
@@ -126,7 +133,7 @@ export class timeMessage extends MessageCardHTML {
   }
 }
 
-export class exchangeInfoMessage extends TableMessage {
+export class exchangeInfoMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol } = this.data.params
     return new TextHTML(`Symbol: ${symbol}`)
@@ -163,7 +170,7 @@ export class exchangeInfoMessage extends TableMessage {
 
 }
 
-export class depthMessage extends TableMessage {
+export class depthMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, limit } = this.data.params
     const input = new HTML()
@@ -186,7 +193,7 @@ export class depthMessage extends TableMessage {
   }
 }
 
-export class tradesRecentMessage extends TableMessage {
+export class tradesRecentMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, limit } = this.data.params
     const input = new HTML()
@@ -214,7 +221,7 @@ export class tradesHistoricalMessage extends tradesRecentMessage {
   }
 }
 
-export class tradesAggregateMessage extends TableMessage {
+export class tradesAggregateMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, limit } = this.data.params
     const input = new HTML()
@@ -232,7 +239,7 @@ export class tradesAggregateMessage extends TableMessage {
   }
 }
 
-export class klinesMessage extends TableMessage {
+export class klinesMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, interval, startTime, limit } = this.data.params
     const input = new HTML()
@@ -258,7 +265,7 @@ export class klinesMessage extends TableMessage {
   }
 }
 
-export class uiKlinesMessage extends TableMessage {
+export class uiKlinesMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, interval, startTime, limit } = this.data.params
     const input = new HTML()
@@ -478,7 +485,7 @@ export class sorOrderPlaceMessage extends MessageCardHTML { }
 
 export class sorOrderTestMessage extends MessageCardHTML { }
 
-export class accountStatusMessage extends TableMessage {
+export class accountStatusMessage extends MessageCardHTML {
   getOutputHTML() {
     const { makerCommission, takerCommission, buyerCommission, sellerCommission, canTrade, canWithdraw, canDeposit, brokered, requireSelfTradePrevention, preventSor, updateTime, accountType, uid, balances, permissions, commissionRates, } = this.data.params
     const html = new HTML()
