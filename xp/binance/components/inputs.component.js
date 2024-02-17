@@ -35,11 +35,8 @@ export class InputsComponent extends HTML {
     recvWindow: new InputTextGroupComponent('recvWindow', 100),
     apiKey: new InputTextGroupComponent('apiKey', '012345678901234567890123456789012345', 'password'),
     signature: new InputTextGroupComponent('signature', 'signature'),
-    timestamp: new TimestampInputTextGroupComponent('timestamp')
-  }
-
-  onCreate() {
-    super.onCreate()
+    timestamp: new TimestampInputTextGroupComponent('timestamp'),
+    listenKey: new InputTextGroupComponent('listenKey', '', 'password'),
   }
 
   getComponent(component = '') {
@@ -49,5 +46,4 @@ export class InputsComponent extends HTML {
   getValue(component) {
     return this.children[component].getValue()
   }
-
 }

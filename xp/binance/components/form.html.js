@@ -1,5 +1,5 @@
 import { HTML, nSelect, nButton, nInputTextGroup } from '@brtmvdl/frontend'
-import { getMethodsList, getParamsList, getWebSocketMethodsList } from '../utils/lists.js'
+import { getMethodsList, getParamsList, getUserDataStreamMethodsList, getWebSocketMethodsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
@@ -66,6 +66,10 @@ export class FormHTML extends HTML {
       params.push(['apiKey', apiKey])
       const message = params?.sort(([a], [b]) => a.localeCompare(b)).map(([name, value]) => `${name}=${value}`).join('&')
       params.push(['signature', sha256.hmac(apiKey, message)])
+    }
+
+    if (getUserDataStreamMethodsList().indexOf(method) !== -1) {
+      params.push(['apiKey', this.children.inputs.getValue('apiKey')])
     }
 
     return params?.sort(([a], [b]) => a.localeCompare(b)).reduce((values, [name, value]) => ({ ...values, [name]: value }), {})

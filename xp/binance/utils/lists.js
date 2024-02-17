@@ -2,10 +2,9 @@
 
 export const getMethodsList = () => Array.from([
   'Binance WebSocket API',
-  // '[guest]',
   ...getInBrowserMethodsList(),
-  // '[websocket]',
   ...getWebSocketMethodsList(),
+  ...getUserDataStreamMethodsList(),
 ])
 
 export const getInBrowserMethodsList = () => Array.from([
@@ -51,6 +50,10 @@ export const getWebSocketMethodsList = () => Array.from([
   'myTrades',
   'myPreventedMatches',
   'myAllocations',
+])
+
+
+export const getUserDataStreamMethodsList = () => Array.from([
   'userDataStream.start',
   'userDataStream.ping',
   'userDataStream.stop',
@@ -96,4 +99,7 @@ export const getParamsList = () => ({
   'myTrades': ['symbol', 'startTime', 'endTime'],
   'myPreventedMatches': ['symbol', 'orderId'],
   'myAllocations': ['symbol', 'orderId'],
+  'userDataStream.start': [],
+  'userDataStream.ping': ['listenKey'],
+  'userDataStream.stop': ['listenKey'],
 })
