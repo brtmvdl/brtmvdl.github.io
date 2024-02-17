@@ -478,7 +478,33 @@ export class sorOrderPlaceMessage extends MessageCardHTML { }
 
 export class sorOrderTestMessage extends MessageCardHTML { }
 
-export class accountStatusMessage extends MessageCardHTML { }
+export class accountStatusMessage extends TableMessage {
+  getOutputHTML() {
+    const { makerCommission, takerCommission, buyerCommission, sellerCommission, canTrade, canWithdraw, canDeposit, brokered, requireSelfTradePrevention, preventSor, updateTime, accountType, uid, balances, permissions, commissionRates, } = this.data.params
+    const html = new HTML()
+    html.append(new TextHTML(`UID: ${uid}`))
+    html.append(new TextHTML(`Account Type: ${accountType}`))
+    html.append(new TextHTML(`Maker Commission: ${makerCommission}`))
+    html.append(new TextHTML(`Taker Commission: ${takerCommission}`))
+    html.append(new TextHTML(`Buyer Commission: ${buyerCommission}`))
+    html.append(new TextHTML(`Seller Commission: ${sellerCommission}`))
+    html.append(new TextHTML(`Can Trade: ${canTrade}`))
+    html.append(new TextHTML(`Can Withdraw: ${canWithdraw}`))
+    html.append(new TextHTML(`Can Deposit: ${canDeposit}`))
+    html.append(new TextHTML(`Brokered: ${brokered}`))
+    html.append(new TextHTML(`Require Self Trade Prevention: ${requireSelfTradePrevention}`))
+    html.append(new TextHTML(`Prevent Sor: ${preventSor}`))
+    html.append(new TextHTML(`Update Time: ${updateTime}`, str.timestamp2str(updateTime)))
+    html.append(new TextHTML(`Permissions: ${permissions}`))
+    html.append(new TextHTML(`Commission Rate (buyer): ${commissionRates.buyer}`))
+    html.append(new TextHTML(`Commission Rate (maker): ${commissionRates.maker}`))
+    html.append(new TextHTML(`Commission Rate (seller): ${commissionRates.seller}`))
+    html.append(new TextHTML(`Commission Rate (taker): ${commissionRates.taker}`))
+    html.append(new TextHTML(`Balances: `))
+    html.append(this.getTableHTML(balances))
+    return html
+  }
+}
 
 export class accountCommissionMessage extends MessageCardHTML { }
 
