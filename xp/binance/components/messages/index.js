@@ -78,6 +78,7 @@ export class TableMessage extends MessageCardHTML {
   createData(text) {
     const td = new nTd()
     td.setStyle('border', '1px solid #000000')
+    td.setStyle('padding', 'calc(1rem / 4)')
     td.setText(text)
     return td
   }
@@ -89,7 +90,6 @@ export class TableMessage extends MessageCardHTML {
   }
 
   getTableHTML(rows = [], ths = null) {
-
     const table = new nTable()
     table.setStyle('border', '1px solid #000000')
     table.setStyle('border-collapse', 'collapse')

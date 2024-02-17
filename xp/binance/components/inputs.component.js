@@ -1,6 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 import { InputTextGroupComponent } from './input-text-group.component.js'
-import { getParamsList } from '../utils/lists.js'
+import { DateTimeGroupComponent } from './datetime.group.component.js'
 
 export class TimestampInputTextGroupComponent extends InputTextGroupComponent {
   onCreate() {
@@ -15,7 +15,7 @@ export class InputsComponent extends HTML {
     limit: new InputTextGroupComponent('limit', 1),
     fromId: new InputTextGroupComponent('fromId', 0),
     interval: new InputTextGroupComponent('interval'),
-    startTime: new InputTextGroupComponent('startTime', Date.now() - (1000 * 60 * 60 * 24)),
+    startTime: new DateTimeGroupComponent('startTime', Date.now() - (1000 * 60 * 60 * 24)),
     windowSize: new InputTextGroupComponent('windowSize'),
     side: new InputTextGroupComponent('side', 'BUY'),
     type: new InputTextGroupComponent('type', 'LIMIT'),
@@ -31,7 +31,7 @@ export class InputsComponent extends HTML {
     stopLimitTimeInForce: new InputTextGroupComponent('stopLimitTimeInForce'),
     newOrderRespType: new InputTextGroupComponent('newOrderRespType', 'ACK'),
     orderListId: new InputTextGroupComponent('orderListId'),
-    endTime: new InputTextGroupComponent('endTime', Date.now()),
+    endTime: new DateTimeGroupComponent('endTime', Date.now()),
     recvWindow: new InputTextGroupComponent('recvWindow', 100),
     apiKey: new InputTextGroupComponent('apiKey', '012345678901234567890123456789012345', 'password'),
     signature: new InputTextGroupComponent('signature', 'signature'),
