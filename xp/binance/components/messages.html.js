@@ -31,7 +31,6 @@ export class MessagesHTML extends HTML {
       case 'open': return new messages.openMessage(data)
       case 'close': return new messages.closeMessage(data)
       case 'error': return new messages.errorMessage(data)
-      //
       case 'ping': return new messages.pingMessage(data)
       case 'time': return new messages.timeMessage(data)
       case 'exchangeInfo': return new messages.exchangeInfoMessage(data)
@@ -65,7 +64,7 @@ export class MessagesHTML extends HTML {
       case 'sor.order.test': return new messages.sorOrderTestMessage(data)
       case 'account.status': return new messages.accountStatusMessage(data)
       case 'account.commission': return new messages.accountCommissionMessage(data)
-      case 'account.rateLimits.ordersreturn ': new messages.accountRateLimitsOrdersMessage()
+      case 'account.rateLimits.orders': return new messages.accountRateLimitsOrdersMessage()
       case 'allOrders': return new messages.allOrdersMessage(data)
       case 'allOrderLists': return new messages.allOrderListsMessage(data)
       case 'myTrades': return new messages.myTradesMessage(data)
