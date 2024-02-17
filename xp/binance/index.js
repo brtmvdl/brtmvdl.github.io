@@ -3,7 +3,6 @@ import { FormHTML, MessagesHTML } from './components/index.js'
 import { MessagesModel } from './models/index.js'
 
 export class Page extends HTML {
-
   state = {
     front: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
     messages: [],
@@ -29,7 +28,6 @@ export class Page extends HTML {
   }
 
   setEvents() {
-    // front
     this.state.front.addEventListener('open', (data) => this.onFrontSocketOpen(data))
     this.state.front.addEventListener('message', (data) => this.onFrontSocketMessage(data))
     this.state.front.addEventListener('error', (data) => this.onFrontSocketError(data))
