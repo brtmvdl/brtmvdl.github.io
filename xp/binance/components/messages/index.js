@@ -99,11 +99,11 @@ export class TableMessage extends MessageCardHTML {
   }
 }
 
-export class errorMessage extends MessageCardHTML {
-  getHeaderHTML() {
-    return new TextHTML('error')
-  }
-}
+export class errorMessage extends MessageCardHTML { }
+
+export class openMessage extends MessageCardHTML { }
+
+export class closeMessage extends MessageCardHTML { }
 
 export class pingMessage extends MessageCardHTML {
   getInputHTML() {

@@ -1,6 +1,6 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormHTML, MessagesHTML } from './components/index.js'
-import { CloseMessagesModel, ErrorMessagesModel, MessagesModel, OpenMessagesModel } from './models/index.js'
+import { MessagesModel } from './models/index.js'
 
 export class Page extends HTML {
 
@@ -44,7 +44,7 @@ export class Page extends HTML {
   }
 
   onFrontSocketOpen(data) {
-    this.addMessage(new OpenMessagesModel(data))
+    this.addMessage(new MessagesModel('open', data.result, 'none'))
   }
 
   onFrontSocketMessage({ data } = {}) {
@@ -60,11 +60,11 @@ export class Page extends HTML {
   }
 
   onFrontSocketError(data) {
-    this.addMessage(new ErrorMessagesModel(data))
+    this.addMessage(new MessagesModel('error', data.result, 'none'))
   }
 
   onFrontSocketClose(data) {
-    this.addMessage(new CloseMessagesModel(data))
+    this.addMessage(new MessagesModel('close', data.result, 'none'))
   }
 
   getFormHTML() {
