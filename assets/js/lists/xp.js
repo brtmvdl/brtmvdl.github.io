@@ -175,6 +175,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'candlestick',
+    'title': 'Candlestick',
+    'subtitle': '',
+    'datetime': '2024-02-18',
+    'tags': [],
+  },
+  {
     'id': 'home-workout',
     'title': 'Home Workout',
     'subtitle': '',
