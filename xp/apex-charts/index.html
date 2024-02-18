@@ -11,16 +11,18 @@
 <body>
   <div id="chart"></div>
   <script>
+    const searchParams = (param, def = '') => { const url = new URL(window.location); return url.searchParams.get(param) || def }
+
     const chart = new ApexCharts(document.querySelector("#chart"), { chart: { type: 'candlestick' }, series: [{ data: [] }] })
     chart.render()
 
     const run = () => {
-      fetch('https://api4.binance.com/api/v3/klines?symbol=BNBBRL&interval=1m&limit=20')
+      fetch(`https://api4.binance.com/api/v3/klines?symbol=${searchParams('symbol', 'BNBBRL')}&interval=${searchParams('interval', '1m')}&limit=${searchParams('limit', 100)}`)
         .then((res) => res.json())
         .then((data) => Array.from(data).map(([Open_Time, Open_Price, High_Price, Low_Price, Close_Price]) => ([+Open_Time, +Open_Price, +High_Price, +Low_Price, +Close_Price])))
         .then((data) => [data, console.log({ data })][0])
         .then((data) => chart.updateSeries([{ data }]))
-      .then(() => run())
+        .then(() => run())
     }
 
     run()
