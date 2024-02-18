@@ -1,4 +1,5 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex, nLink } from '@brtmvdl/frontend'
+
 import { FormHTML, MessagesHTML } from './components/index.js'
 import { MessagesModel } from './models/index.js'
 
@@ -67,6 +68,7 @@ export class Page extends HTML {
 
   getFormHTML() {
     this.children.form.on('submit', (data) => this.onFormHtmlSubmit(data))
+    this.children.form.on('save', (data) => this.children.form.dispatchEvent('messages', this.state.messages))
     return this.children.form
   }
 
