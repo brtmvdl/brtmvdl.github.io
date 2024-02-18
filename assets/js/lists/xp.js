@@ -175,8 +175,8 @@ export const experiences = [
     'tags': [],
   },
   {
-    'id': 'candlestick',
-    'title': 'Candlestick',
+    'id': 'apex-charts',
+    'title': 'ApexCharts (candlestick)',
     'subtitle': '',
     'datetime': '2024-02-18',
     'tags': [],
