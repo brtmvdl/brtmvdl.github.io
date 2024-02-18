@@ -3,7 +3,6 @@ import { getInBrowserMethodsList, getMethodsList, getParamsList, getUserDataStre
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
-import * as config from '../utils/config.js'
 
 export class FormHTML extends HTML {
   children = {
@@ -21,6 +20,7 @@ export class FormHTML extends HTML {
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
     this.append(this.children.inputs.children.apiKey)
+    this.append(this.children.inputs.children.secretKey)
     this.append(this.getSaveButton())
     this.append(this.children.links)
   }
@@ -98,10 +98,10 @@ export class FormHTML extends HTML {
     let params = Array.from([])
 
     if (getWebSocketMethodsList().indexOf(method) !== -1) {
-      values.push(['apiKey', config.apiKey])
+      values.push(['apiKey', this.children.inputs.getValue('apiKey')])
       values.push(['timestamp', Date.now()])
       params = values.sort(([a], [b]) => a.localeCompare(b))
-      params.push(['signature', this.getSignatureValue(config.secretKey, params)])
+      params.push(['signature', this.getSignatureValue(this.children.inputs.getValue('secretKey'), params)])
     } else {
       params = values.sort(([a], [b]) => a.localeCompare(b))
     }

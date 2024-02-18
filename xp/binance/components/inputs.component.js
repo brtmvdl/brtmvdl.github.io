@@ -1,4 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
+
 import { InputTextGroupComponent } from './input-text-group.component.js'
 import { DateTimeGroupComponent } from './datetime.group.component.js'
 
@@ -24,7 +25,7 @@ export class InputsComponent extends HTML {
     quantity: new InputTextGroupComponent('quantity', 1),
     orderId: new InputTextGroupComponent('orderId'),
     origClientOrderId: new InputTextGroupComponent('origClientOrderId'),
-    cancelReplaceMode: new InputTextGroupComponent('cancelReplaceMode'),
+    cancelReplaceMode: new InputTextGroupComponent('cancelReplaceMode'),  
     cancelOrigClientOrderId: new InputTextGroupComponent('cancelOrigClientOrderId'),
     stopPrice: new InputTextGroupComponent('stopPrice'),
     stopLimitPrice: new InputTextGroupComponent('stopLimitPrice'),
@@ -34,6 +35,7 @@ export class InputsComponent extends HTML {
     endTime: new DateTimeGroupComponent('endTime', Date.now()),
     recvWindow: new InputTextGroupComponent('recvWindow', 100),
     apiKey: new InputTextGroupComponent('apiKey', '012345678901234567890123456789012345', 'password'),
+    secretKey: new InputTextGroupComponent('secretKey', '012345678901234567890123456789012345', 'password'),
     signature: new InputTextGroupComponent('signature', 'signature'),
     timestamp: new TimestampInputTextGroupComponent('timestamp'),
     listenKey: new InputTextGroupComponent('listenKey', '', 'password'),
