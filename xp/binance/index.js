@@ -1,6 +1,5 @@
 import { HTML, nFlex, nLink } from '@brtmvdl/frontend'
-
-import { FormHTML, MessagesHTML } from './components/index.js'
+import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessagesModel } from './models/index.js'
 
 export class Page extends HTML {
@@ -10,6 +9,7 @@ export class Page extends HTML {
   }
 
   children = {
+    top_bar: new TopBarComponent(),
     form: new FormHTML(),
     messages: new MessagesHTML(),
   }
@@ -18,7 +18,12 @@ export class Page extends HTML {
     super.onCreate()
     this.setEvents()
     this.setStyles()
+    this.append(this.getTopBar())
     this.append(this.getFlex())
+  }
+
+  getTopBar() {
+    return this.children.top_bar
   }
 
   getFlex() {
