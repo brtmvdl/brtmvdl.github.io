@@ -23,7 +23,12 @@ export class Page extends HTML {
   }
 
   getTopBar() {
+    this.children.top_bar.on('download', () => this.onDownload())
     return this.children.top_bar
+  }
+
+  onDownload() {
+    this.addMessage(new MessagesModel('download', { params: { messages: this.state.messages } }))
   }
 
   getFlex() {

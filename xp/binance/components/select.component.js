@@ -9,6 +9,7 @@ export class SelectComponent extends nSelect {
   setStyles() {
     this.setStyle('background-color', 'rgba(0, 0, 0, 0)')
     this.setStyle('border-radius', 'calc(1rem / 2)')
+    this.setStyle('padding', 'calc(1rem / 2) 0rem')
     this.setStyle('margin', 'calc(1rem / 2) 0rem')
     this.setStyle('border', '#000000 solid 1px')
     this.setStyle('box-sizing', 'border-box')
@@ -16,4 +17,5 @@ export class SelectComponent extends nSelect {
     this.setStyle('font', 'inherit')
     this.setStyle('width', '100%')
   }
+
 }

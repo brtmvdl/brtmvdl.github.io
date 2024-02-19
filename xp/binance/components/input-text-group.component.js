@@ -15,7 +15,6 @@ export class InputTextGroupComponent extends nInputTextGroup {
   onCreate() {
     super.onCreate()
     this.setStyles()
-
     this.children.label.setText(this.text)
     this.children.input.setValue(this.value)
     this.children.input.setAttr('type', this.type)
@@ -24,6 +23,7 @@ export class InputTextGroupComponent extends nInputTextGroup {
   setStyles() {
     this.children.input.setStyle('background-color', 'rgba(0, 0, 0, 0)')
     this.children.input.setStyle('border-radius', 'calc(1rem / 2)')
+    this.children.input.setStyle('padding', 'calc(1rem / 2) 0rem')
     this.children.input.setStyle('margin', 'calc(1rem / 2) 0rem')
     this.children.input.setStyle('border', '#000000 solid 1px')
     this.children.input.setStyle('box-sizing', 'border-box')

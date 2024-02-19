@@ -1,5 +1,5 @@
 import { HTML, nFlex, nImage } from '@brtmvdl/frontend'
-import { DownloadDropdownComponent } from './download.dropdown.component.js'
+import { ButtonComponent } from './button.component.js'
 import { LogoComponent } from './logo.component.js'
 
 export class TopBarComponent extends HTML {
@@ -17,7 +17,6 @@ export class TopBarComponent extends HTML {
 
   setStyles() {
     this.setStyle('padding', '1rem 1rem 0rem 1rem')
-    this.setStyle('', '')
   }
 
   getFlex() {
@@ -34,8 +33,9 @@ export class TopBarComponent extends HTML {
   }
 
   getRight() {
-    const html = new HTML()
-    html.append(new DownloadDropdownComponent())
-    return html
+    const button = new ButtonComponent()
+    button.setText('download')
+    button.on('click', () => this.dispatchEvent('download'))
+    return button
   }
 }

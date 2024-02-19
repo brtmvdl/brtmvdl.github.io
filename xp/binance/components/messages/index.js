@@ -117,6 +117,8 @@ export class openMessage extends MessageCardHTML { }
 
 export class closeMessage extends MessageCardHTML { }
 
+export class downloadMessage extends MessageCardHTML { }
+
 export class pingMessage extends MessageCardHTML {
   getInputHTML() {
     return new HTML()
