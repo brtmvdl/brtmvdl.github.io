@@ -1,13 +1,13 @@
-import { HTML, nFlex, nTable, nTr, nTd, nLink } from '@brtmvdl/frontend'
+import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
 
 import { HorizontalSeparatorHTML } from '../horizontal.separator.html.js'
+import { CardHeaderHTML } from '../card-header.html.js'
+import { CardFooterHTML } from '../card-footer.html.js'
+import { LinkComponent } from '../link.component.js'
+import { KeyValueHTML } from '../key-value.html.js'
+import { CardBodyHTML } from '../card-body.html.js'
 import { TextHTML } from '../text.html.js'
 import { CardHTML } from '../card.html.js'
-import { CardHeaderHTML } from '../card-header.html.js'
-import { CardBodyHTML } from '../card-body.html.js'
-import { CardFooterHTML } from '../card-footer.html.js'
-import { KeyValueHTML } from '../key-value.html.js'
-
 import * as str from '../../utils/str.js'
 
 export class MessageCardHTML extends CardHTML {
@@ -31,7 +31,7 @@ export class MessageCardHTML extends CardHTML {
     const header = new CardHeaderHTML()
     const flex = new nFlex()
     const method = new TextHTML(this.data.method)
-    const link = new nLink()
+    const link = new LinkComponent()
     link.href('#' + (this.data.side == 'output' ? this.data.output.id : this.data.id))
     link.append(method)
     flex.append(link)
@@ -123,7 +123,7 @@ export class downloadMessage extends MessageCardHTML {
     const type = 'application/json'
     const lastModified = Date.now()
     const filename = `${lastModified}.json`
-    const link = new nLink()
+    const link = new LinkComponent()
     link.setAttr('download', filename)
     link.setText(filename)
     link.href(URL.createObjectURL(new File([new Blob([JSON.stringify(messages)], { type })], filename, { type, lastModified })))

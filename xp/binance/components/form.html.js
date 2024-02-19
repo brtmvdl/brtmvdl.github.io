@@ -1,8 +1,9 @@
-import { HTML, nSelect, nButton, nInputTextGroup, nLink } from '@brtmvdl/frontend'
-import { getInBrowserMethodsList, getMethodsList, getParamsList, getUserDataStreamMethodsList, getWebSocketMethodsList } from '../utils/lists.js'
+import { HTML } from '@brtmvdl/frontend'
+import { getInBrowserMethodsList, getMethodsList, getParamsList, getWebSocketMethodsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
+import { LinkComponent } from './link.component.js'
 
 export class FormHTML extends HTML {
   children = {
@@ -38,7 +39,7 @@ export class FormHTML extends HTML {
   }
 
   createDownloadLink(filename, file) {
-    const link = new nLink()
+    const link = new LinkComponent()
     link.setStyle('background-color', 'rgba(0, 0, 0, 0)')
     link.setStyle('border-radius', 'calc(1rem / 2)')
     link.setStyle('margin', 'calc(1rem / 2) 0rem')

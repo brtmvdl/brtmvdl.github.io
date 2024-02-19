@@ -4,6 +4,6 @@ export class LinkComponent extends nLink {
   onCreate() {
     super.onCreate()
 
-    this.setStyle('color', '#ff9900')
+    this.setStyle('color', '#ffcc00')
   }
 }

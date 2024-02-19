@@ -1,4 +1,4 @@
-import { HTML, nFlex, nLink } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessagesModel } from './models/index.js'
 
