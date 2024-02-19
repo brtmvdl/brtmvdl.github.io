@@ -21,7 +21,6 @@ export class FormHTML extends HTML {
     this.append(this.getSendButton())
     this.append(this.children.inputs.children.apiKey)
     this.append(this.children.inputs.children.secretKey)
-    this.append(this.getSaveButton())
     this.append(this.children.links)
   }
 
@@ -83,8 +82,7 @@ export class FormHTML extends HTML {
     return button
   }
 
-  onSendButtonClick() {
-    const method = this.getMethodValue()
+  onSendButtonClick(method = this.getMethodValue()) {
     this.dispatchEvent('submit', { method, params: this.getParamsValues(method) })
   }
 
@@ -111,12 +109,5 @@ export class FormHTML extends HTML {
 
   getSignatureValue(key, params) {
     return sha256.hmac(key, params.map(([name, value]) => `${name}=${value}`).join('&'))
-  }
-
-  getSaveButton() {
-    const button = new ButtonComponent()
-    button.setText('save as json')
-    button.on('click', () => this.dispatchEvent('save'))
-    return button
   }
 }

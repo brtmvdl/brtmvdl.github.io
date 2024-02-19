@@ -117,7 +117,19 @@ export class openMessage extends MessageCardHTML { }
 
 export class closeMessage extends MessageCardHTML { }
 
-export class downloadMessage extends MessageCardHTML { }
+export class downloadMessage extends MessageCardHTML {
+  getNoneHTML() {
+    const messages = this.data.params.messages
+    const type = 'application/json'
+    const lastModified = Date.now()
+    const filename = `${lastModified}.json`
+    const link = new nLink()
+    link.setAttr('download', filename)
+    link.setText(filename)
+    link.href(URL.createObjectURL(new File([new Blob([JSON.stringify(messages)], { type })], filename, { type, lastModified })))
+    return link
+  }
+}
 
 export class pingMessage extends MessageCardHTML {
   getInputHTML() {

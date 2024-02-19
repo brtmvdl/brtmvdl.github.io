@@ -28,7 +28,7 @@ export class Page extends HTML {
   }
 
   onDownload() {
-    this.addMessage(new MessagesModel('download', { params: { messages: this.state.messages } }))
+    this.addMessage(new MessagesModel('download', { params: { messages: this.state.messages.filter((m) => m.method !== 'download') } }))
   }
 
   getFlex() {
