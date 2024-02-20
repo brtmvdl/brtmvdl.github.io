@@ -5,6 +5,7 @@ export const getMethodsList = () => Array.from([
   ...getInBrowserMethodsList(),
   ...getWebSocketMethodsList(),
   ...getUserDataStreamMethodsList(),
+  ...getRoutinesList(),
 ])
 
 export const getInBrowserMethodsList = () => Array.from([
@@ -52,11 +53,14 @@ export const getWebSocketMethodsList = () => Array.from([
   'myAllocations',
 ])
 
-
 export const getUserDataStreamMethodsList = () => Array.from([
   'userDataStream.start',
   'userDataStream.ping',
   'userDataStream.stop',
+])
+
+export const getRoutinesList = () => Array.from([
+  'download',
 ])
 
 export const getParamsList = (method) => {

@@ -1,13 +1,15 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessagesModel } from './models/messages.model.js'
-
+import { getRoutinesList } from './utils/lists.js'
+import { Routines } from './utils/routines.js'
 import * as config from './utils/config.js'
 
 export class Page extends HTML {
   state = {
-    front: this.getFrontWebSocket(),
+    socket: this.getFrontWebSocket(),
     messages: [],
+    routines: new Routines(),
   }
 
   children = {
@@ -22,19 +24,15 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setEvents()
+    this.setRoutinesEvents()
+    this.setSocketEvents()
     this.setStyles()
     this.append(this.getTopBar())
     this.append(this.getFlex())
   }
 
   getTopBar() {
-    this.children.top_bar.on('download', () => this.onDownload())
     return this.children.top_bar
-  }
-
-  onDownload() {
-    this.addMessage(new MessagesModel('download', { params: { messages: this.state.messages.filter((m) => m.method !== 'download') } }))
   }
 
   getFlex() {
@@ -44,11 +42,15 @@ export class Page extends HTML {
     return flex
   }
 
-  setEvents() {
-    this.state.front.addEventListener('open', (data) => this.onFrontSocketOpen(data))
-    this.state.front.addEventListener('message', (data) => this.onFrontSocketMessage(data))
-    this.state.front.addEventListener('error', (data) => this.onFrontSocketError(data))
-    this.state.front.addEventListener('close', (data) => this.onFrontSocketClose(data))
+  setRoutinesEvents() {
+    this.state.routines.addEventListener('message', ({ message }) => this.addMessage(message))
+  }
+
+  setSocketEvents() {
+    this.state.socket.addEventListener('open', (data) => this.onFrontSocketOpen(data))
+    this.state.socket.addEventListener('message', (data) => this.onFrontSocketMessage(data))
+    this.state.socket.addEventListener('error', (data) => this.onFrontSocketError(data))
+    this.state.socket.addEventListener('close', (data) => this.onFrontSocketClose(data))
   }
 
   setStyles() {
@@ -80,8 +82,8 @@ export class Page extends HTML {
 
   onFrontSocketClose(params) {
     this.addMessage(new MessagesModel('close', { params }))
-    this.state.front = this.getFrontWebSocket()
-    this.setEvents()
+    this.state.socket = this.getFrontWebSocket()
+    this.setSocketEvents()
   }
 
   getFormHTML() {
@@ -91,9 +93,13 @@ export class Page extends HTML {
   }
 
   onFormHtmlSubmit({ value: { method, params } } = {}) {
-    const message = new MessagesModel(method, { params, side: 'input' })
-    this.addMessage(message)
-    this.state.front.send(message.toString())
+    if (getRoutinesList().indexOf(method) === -1) {
+      const message = new MessagesModel(method, { params, side: 'input' })
+      this.addMessage(message)
+      this.state.socket.send(message.toString())
+    } else {
+      this.state.routines.run(method, { params, messages: this.state.messages })
+    }
   }
 
   getMessagesHTML() {
@@ -103,21 +109,5 @@ export class Page extends HTML {
   addMessage(message = new MessagesModel()) {
     this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
-  }
-
-  onBackSocketOpen(data) {
-    return this.onFrontSocketOpen(data)
-  }
-
-  onBackSocketMessage(data) {
-    return this.onFrontSocketMessage({ data: JSON.stringify(data) })
-  }
-
-  onBackSocketError(data) {
-    return this.onFrontSocketError(data)
-  }
-
-  onBackSocketClose(data) {
-    return this.onFrontSocketClose(data)
   }
 }
