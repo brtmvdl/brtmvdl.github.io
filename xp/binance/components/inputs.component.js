@@ -12,7 +12,7 @@ export class TimestampInputTextGroupComponent extends InputTextGroupComponent {
 
 export class InputsComponent extends HTML {
   children = {
-    symbol: new InputTextGroupComponent('symbol'),
+    symbol: this.getSymbolInputTextGroupComponent(),
     limit: new InputTextGroupComponent('limit', 1),
     fromId: new InputTextGroupComponent('fromId', 0),
     interval: new InputTextGroupComponent('interval'),
@@ -25,7 +25,7 @@ export class InputsComponent extends HTML {
     quantity: new InputTextGroupComponent('quantity', 1),
     orderId: new InputTextGroupComponent('orderId'),
     origClientOrderId: new InputTextGroupComponent('origClientOrderId'),
-    cancelReplaceMode: new InputTextGroupComponent('cancelReplaceMode'),  
+    cancelReplaceMode: new InputTextGroupComponent('cancelReplaceMode'),
     cancelOrigClientOrderId: new InputTextGroupComponent('cancelOrigClientOrderId'),
     stopPrice: new InputTextGroupComponent('stopPrice'),
     stopLimitPrice: new InputTextGroupComponent('stopLimitPrice'),
@@ -39,6 +39,12 @@ export class InputsComponent extends HTML {
     signature: new InputTextGroupComponent('signature', 'signature'),
     timestamp: new TimestampInputTextGroupComponent('timestamp'),
     listenKey: new InputTextGroupComponent('listenKey', '', 'password'),
+  }
+
+  getSymbolInputTextGroupComponent() {
+    const component = new InputTextGroupComponent('symbol')
+    component.children.input.on('keyup', () => component.children.input.setValue(component.children.input.getValue().toUpperCase()))
+    return component
   }
 
   getComponent(component = '') {
