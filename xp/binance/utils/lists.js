@@ -59,47 +59,51 @@ export const getUserDataStreamMethodsList = () => Array.from([
   'userDataStream.stop',
 ])
 
-export const getParamsList = () => ({
-  'ping': [],
-  'time': [],
-  'exchangeInfo': ['symbol'],
-  'depth': ['symbol', 'limit'],
-  'trades.recent': ['symbol', 'limit'],
-  'trades.historical': ['symbol', 'fromId', 'limit'],
-  'trades.aggregate': ['symbol', 'fromId', 'limit'],
-  'klines': ['symbol', 'interval', 'startTime', 'limit'],
-  'uiKlines': ['symbol', 'interval', 'startTime', 'limit'],
-  'avgPrice': ['symbol'],
-  'ticker.24hr': ['symbol'],
-  'ticker.tradingDay': ['symbol'],
-  'ticker': ['symbol', 'windowSize'],
-  'ticker.price': ['symbol'],
-  'ticker.book': ['symbol'],
-  'session.logon': [],
-  'session.status': [],
-  'session.logout': [],
-  'order.test': ['symbol', 'side', 'type', 'timeInForce', 'price', 'quantity'],
-  'order.place': ['symbol', 'side', 'type', 'price', 'quantity', 'timeInForce'],
-  'order.status': ['symbol', 'orderId'],
-  'order.cancel': ['symbol', 'origClientOrderId'],
-  'order.cancelReplace': ['symbol', 'cancelReplaceMode', 'cancelOrigClientOrderId', 'side', 'type', 'timeInForce', 'price', 'quantity'],
-  'openOrders.status': ['symbol'],
-  'openOrders.cancelAll': ['symbol'],
-  'orderList.place': ['symbol', 'side', 'price', 'quantity', 'stopPrice', 'stopLimitPrice', 'stopLimitTimeInForce', 'newOrderRespType'],
-  'orderList.status': ['origClientOrderId'],
-  'orderList.cancel': ['symbol', 'orderListId'],
-  'openOrderLists.status': [],
-  'sor.order.place': ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price'],
-  'sor.order.test': ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price'],
-  'account.status': [],
-  'account.commission': ['symbol'],
-  'account.rateLimits.orders': [],
-  'allOrders': ['symbol', 'startTime', 'endTime', 'limit'],
-  'allOrderLists': ['startTime', 'endTime', 'limit'],
-  'myTrades': ['symbol', 'startTime', 'endTime'],
-  'myPreventedMatches': ['symbol', 'orderId'],
-  'myAllocations': ['symbol', 'orderId'],
-  'userDataStream.start': [],
-  'userDataStream.ping': ['listenKey'],
-  'userDataStream.stop': ['listenKey'],
-})
+export const getParamsList = (method) => {
+  switch (method) {
+    case 'ping': return []
+    case 'time': return []
+    case 'exchangeInfo': return ['symbol']
+    case 'depth': return ['symbol', 'limit']
+    case 'trades.recent': return ['symbol', 'limit']
+    case 'trades.historical': return ['symbol', 'fromId', 'limit']
+    case 'trades.aggregate': return ['symbol', 'fromId', 'limit']
+    case 'klines': return ['symbol', 'interval', 'startTime', 'limit']
+    case 'uiKlines': return ['symbol', 'interval', 'startTime', 'limit']
+    case 'avgPrice': return ['symbol']
+    case 'ticker.24hr': return ['symbol']
+    case 'ticker.tradingDay': return ['symbol']
+    case 'ticker': return ['symbol', 'windowSize']
+    case 'ticker.price': return ['symbol']
+    case 'ticker.book': return ['symbol']
+    case 'session.logon': return []
+    case 'session.status': return []
+    case 'session.logout': return []
+    case 'order.test': return ['symbol', 'side', 'type', 'timeInForce', 'price', 'quantity']
+    case 'order.place': return ['symbol', 'side', 'type', 'price', 'quantity', 'timeInForce']
+    case 'order.status': return ['symbol', 'orderId']
+    case 'order.cancel': return ['symbol', 'origClientOrderId']
+    case 'order.cancelReplace': return ['symbol', 'cancelReplaceMode', 'cancelOrigClientOrderId', 'side', 'type', 'timeInForce', 'price', 'quantity']
+    case 'openOrders.status': return ['symbol']
+    case 'openOrders.cancelAll': return ['symbol']
+    case 'orderList.place': return ['symbol', 'side', 'price', 'quantity', 'stopPrice', 'stopLimitPrice', 'stopLimitTimeInForce', 'newOrderRespType']
+    case 'orderList.status': return ['origClientOrderId']
+    case 'orderList.cancel': return ['symbol', 'orderListId']
+    case 'openOrderLists.status': return []
+    case 'sor.order.place': return ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price']
+    case 'sor.order.test': return ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price']
+    case 'account.status': return []
+    case 'account.commission': return ['symbol']
+    case 'account.rateLimits.orders': return []
+    case 'allOrders': return ['symbol', 'startTime', 'endTime', 'limit']
+    case 'allOrderLists': return ['startTime', 'endTime', 'limit']
+    case 'myTrades': return ['symbol', 'startTime', 'endTime']
+    case 'myPreventedMatches': return ['symbol', 'orderId']
+    case 'myAllocations': return ['symbol', 'orderId']
+    case 'userDataStream.start': return []
+    case 'userDataStream.ping': return ['listenKey']
+    case 'userDataStream.stop': return ['listenKey']
+  }
+
+  return []
+}

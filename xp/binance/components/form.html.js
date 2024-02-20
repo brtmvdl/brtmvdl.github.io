@@ -33,7 +33,7 @@ export class FormHTML extends HTML {
 
   onMethodSelectChange() {
     this.children.params.clear()
-    getParamsList()[this.getMethodValue()]?.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    getParamsList(this.getMethodValue()).map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -56,7 +56,7 @@ export class FormHTML extends HTML {
   }
 
   getParamsValues(method = '') {
-    const values = Array.from(getParamsList()[method])?.map((input) => ([input, this.children.inputs.getValue(input)]))
+    const values = getParamsList(method).map((input) => ([input, this.children.inputs.getValue(input)]))
 
     let params = Array.from([])
 
