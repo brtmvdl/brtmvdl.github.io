@@ -28,6 +28,13 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
+    'id': 'foxbit',
+    'title': 'Foxbit',
+    'subtitle': '',
+    'datetime': '2024-02-19',
+    'tags': ['economy'],
+  },
+  {
     'id': 'coins',
     'title': 'Coins',
     'subtitle': '',
