@@ -38,8 +38,8 @@ export class TopBarComponent extends HTML {
   }
 
   getIP() {
-    fetch('http://ip-api.com/json/?fields=61439').then(res => res.json())
-      .then(({ query } = {}) => this.children.ip.setText(`IP: ${query}`))
+    fetch('https://api.ipify.org?format=json').then(res => res.json())
+      .then(({ ip } = {}) => this.children.ip.setText(`IP: ${ip}`))
       .catch((err) => console.error(err))
   }
 }
