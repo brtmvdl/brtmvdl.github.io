@@ -32,7 +32,7 @@ export class Page extends HTML {
   }
 
   getFlex() {
-    const flex = new nFlex()
+    const flex = (window.innerWidth > window.innerHeight) ? new nFlex() : new HTML()
     flex.append(this.getFormHTML())
     flex.append(this.getMessagesHTML())
     return flex
