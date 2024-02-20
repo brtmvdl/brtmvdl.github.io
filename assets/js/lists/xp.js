@@ -24,7 +24,7 @@ export const experiences = [
     'id': 'binance',
     'title': 'Binance',
     'subtitle': '',
-    'datetime': '2024-02',
+    'datetime': '2024-02-20',
     'tags': ['economy'],
   },
   {
