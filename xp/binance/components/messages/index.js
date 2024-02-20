@@ -264,7 +264,7 @@ export class klinesMessage extends MessageCardHTML {
     const input = new HTML()
     input.append(new TextHTML(`Symbol: ${symbol}`))
     input.append(new TextHTML(`Interval: ${interval}`))
-    input.append(new TextHTML(`Start Time: ${startTime}`))
+    input.append(new TextHTML(`Start Time: ${startTime}`, str.timestamp2str(startTime)))
     input.append(new TextHTML(`Limit: ${limit}`))
     return input
   }
@@ -284,31 +284,7 @@ export class klinesMessage extends MessageCardHTML {
   }
 }
 
-export class uiKlinesMessage extends MessageCardHTML {
-  getInputHTML() {
-    const { symbol, interval, startTime, limit } = this.data.params
-    const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`Interval: ${interval}`))
-    input.append(new TextHTML(`Start Time: ${startTime}`))
-    input.append(new TextHTML(`Limit: ${limit}`))
-    return input
-  }
-
-  getOutputHTML() {
-    const output = new HTML()
-    output.append(this.getTableHTML(this.getData()))
-    return output
-  }
-
-  getData() {
-    return Array.from(this.data.params).map((
-      [Open_Time, Open_Price, High_Price, Low_Price, Close_Price, Volume, Close_Time, Quote_Asset_volume, Number_of_trades, Taker_Buy_Base_Asset_volume, Taker_Buy_Quote_Asset_volume, Unused_field_ignore,]
-    ) => (
-      { Open_Time: str.timestamp2str(Open_Time), Open_Price: +Open_Price, High_Price: +High_Price, Low_Price: +Low_Price, Close_Price: +Close_Price, Close_Time: str.timestamp2str(Close_Time), Number_of_trades, }
-    ))
-  }
-}
+export class uiKlinesMessage extends klinesMessage { }
 
 export class avgPriceMessage extends MessageCardHTML {
   getInputHTML() {
