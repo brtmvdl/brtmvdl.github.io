@@ -113,6 +113,12 @@ export class MessageCardHTML extends CardHTML {
 
 export class errorMessage extends MessageCardHTML { }
 
+export class logMessage extends MessageCardHTML {
+  getNoneHTML() {
+    return new TextHTML(JSON.stringify(this.data))
+  }
+}
+
 export class openMessage extends MessageCardHTML { }
 
 export class closeMessage extends MessageCardHTML { }

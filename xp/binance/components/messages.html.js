@@ -28,6 +28,7 @@ export class MessagesHTML extends HTML {
 
   getMessageHTML(data) {
     switch (data.method) {
+      case 'log': return new messages.logMessage(data)
       case 'open': return new messages.openMessage(data)
       case 'close': return new messages.closeMessage(data)
       case 'error': return new messages.errorMessage(data)
