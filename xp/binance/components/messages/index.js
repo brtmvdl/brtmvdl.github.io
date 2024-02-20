@@ -61,15 +61,15 @@ export class MessageCardHTML extends CardHTML {
   }
 
   getNoneHTML() {
-    return new TextHTML('none')
+    return new TextHTML('none message')
   }
 
   getInputHTML() {
-    return new TextHTML('empty input')
+    return new TextHTML('input message')
   }
 
   getOutputHTML() {
-    return new TextHTML('empty output')
+    return new TextHTML('output message')
   }
 
   getErrorHTML() {
@@ -111,17 +111,11 @@ export class MessageCardHTML extends CardHTML {
   }
 }
 
-export class errorMessage extends MessageCardHTML { }
-
 export class logMessage extends MessageCardHTML {
   getNoneHTML() {
     return new TextHTML(JSON.stringify(this.data))
   }
 }
-
-export class openMessage extends MessageCardHTML { }
-
-export class closeMessage extends MessageCardHTML { }
 
 export class downloadMessage extends MessageCardHTML {
   getNoneHTML() {
@@ -483,6 +477,12 @@ export class sessionStatusMessage extends MessageCardHTML {
 export class sessionLogonMessage extends MessageCardHTML { }
 
 export class sessionLogoutMessage extends sessionStatusMessage { }
+
+export class errorMessage extends MessageCardHTML { }
+
+export class openMessage extends MessageCardHTML { }
+
+export class closeMessage extends MessageCardHTML { }
 
 export class orderTestMessage extends MessageCardHTML { }
 

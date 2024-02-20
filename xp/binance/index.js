@@ -1,6 +1,6 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
-import { MessagesModel } from './models/index.js'
+import { MessagesModel } from './models/messages.model.js'
 
 export class Page extends HTML {
   state = {
@@ -65,7 +65,7 @@ export class Page extends HTML {
     const method = this.state.messages.find(({ id }) => id === data.id)?.method
     const params = error ? data.error : data.result
     const side = error ? 'error' : 'output'
-    return new MessagesModel(method, { params, side, limits: data.rateLimits, output: data })
+    return new MessagesModel(method, { params, side, output: data })
   }
 
   onFrontSocketError(data) {
