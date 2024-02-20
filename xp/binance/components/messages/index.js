@@ -1,5 +1,4 @@
 import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
-
 import { HorizontalSeparatorHTML } from '../horizontal.separator.html.js'
 import { CardHeaderHTML } from '../card-header.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
@@ -102,6 +101,7 @@ export class MessageCardHTML extends CardHTML {
   }
 
   getTableHTML(rows = [], ths = null) {
+    if (rows.length === 0) return new HTML()
     const table = new nTable()
     table.setStyle('border', '1px solid #000000')
     table.setStyle('border-collapse', 'collapse')
