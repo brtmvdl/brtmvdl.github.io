@@ -39,15 +39,10 @@ export class DateTimeGroupComponent extends nInputTextGroup {
 
   getInput() {
     const flex = new nFlex()
-    flex.setStyle('width', '15rem')
-    Array.from([
-      this.children.year,
-      this.children.month,
-      this.children.day,
-      this.children.hour,
-      this.children.minute,
-      this.children.second,
-    ]).map((input, ix) => {
+    const inputs = Array.from([this.children.year, this.children.month, this.children.day, this.children.hour, this.children.minute, this.children.second,])
+    inputs.map((input, ix) => {
+      input.setAttr('maxlength', ix == 0 ? 4 : 2)
+      input.on('input', () => input.getValue().length == (ix == 0 ? 4 : 2) ? inputs[ix + 1]?.element.focus() : null)
       input.setStyle('background-color', 'rgba(0, 0, 0, 0)')
       input.setStyle('width', ix === 0 ? '3rem' : '2rem')
       input.setStyle('border-radius', 'calc(1rem / 2)')
@@ -57,7 +52,6 @@ export class DateTimeGroupComponent extends nInputTextGroup {
       input.setStyle('text-align', 'center')
       input.setStyle('color', '#000000')
       input.setStyle('font', 'inherit')
-      input.setValue('')
       flex.append(input)
     })
     return flex
