@@ -2,7 +2,7 @@ import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessagesModel } from './models/messages.model.js'
 
-import * as config from './config.js'
+import * as config from './utils/config.js'
 
 export class Page extends HTML {
   state = {
