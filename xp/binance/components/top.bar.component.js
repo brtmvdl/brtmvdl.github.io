@@ -3,9 +3,7 @@ import { ButtonComponent } from './button.component.js'
 import { LogoComponent } from './logo.component.js'
 
 export class TopBarComponent extends HTML {
-  children = {}
-
-  state = {}
+  children = { ip: new HTML() }
 
   getName() { return 'top-bar-component' }
 
@@ -13,6 +11,7 @@ export class TopBarComponent extends HTML {
     super.onCreate()
     this.setStyles()
     this.append(this.getFlex())
+    this.getIP()
   }
 
   setStyles() {
@@ -33,9 +32,27 @@ export class TopBarComponent extends HTML {
   }
 
   getRight() {
+    const html = new nFlex()
+    html.append(this.getIpHTML())
+    html.append(this.getDownloadButton())
+    return html
+  }
+
+  getIpHTML() {
+    this.children.ip.setStyle('padding', 'calc(1rem / 1) calc(1rem / 2)')
+    return this.children.ip
+  }
+
+  getDownloadButton() {
     const button = new ButtonComponent()
     button.setText('download')
     button.on('click', () => this.dispatchEvent('download'))
     return button
+  }
+
+  getIP() {
+    fetch('http://ip-api.com/json/?fields=61439').then(res => res.json())
+      .then(({ query } = {}) => this.children.ip.setText(`IP: ${query}`))
+      .catch((err) => console.error(err))
   }
 }
