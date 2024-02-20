@@ -458,7 +458,11 @@ export class errorMessage extends MessageCardHTML { }
 
 export class openMessage extends MessageCardHTML { }
 
-export class closeMessage extends MessageCardHTML { }
+export class closeMessage extends MessageCardHTML {
+  getNoneHTML() {
+    return new TextHTML(`Reason: ${this.data.params.reason}`)
+  }
+}
 
 export class orderTestMessage extends MessageCardHTML { }
 

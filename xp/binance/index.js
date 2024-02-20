@@ -2,9 +2,11 @@ import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessagesModel } from './models/messages.model.js'
 
+import * as config from './config.js'
+
 export class Page extends HTML {
   state = {
-    front: new WebSocket('wss://ws-api.binance.com/ws-api/v3'),
+    front: this.getFrontWebSocket(),
     messages: [],
   }
 
@@ -12,6 +14,10 @@ export class Page extends HTML {
     top_bar: new TopBarComponent(),
     form: new FormHTML(),
     messages: new MessagesHTML(),
+  }
+
+  getFrontWebSocket() {
+    return new WebSocket(config.url)
   }
 
   onCreate() {
@@ -72,8 +78,10 @@ export class Page extends HTML {
     this.addMessage(new MessagesModel('error'))
   }
 
-  onFrontSocketClose(data) {
-    this.addMessage(new MessagesModel('close'))
+  onFrontSocketClose(params) {
+    this.addMessage(new MessagesModel('close', { params }))
+    this.state.front = this.getFrontWebSocket()
+    this.setEvents()
   }
 
   getFormHTML() {
