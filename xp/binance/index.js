@@ -71,17 +71,17 @@ export class Page extends HTML {
   getMessageInstance(data) {
     const error = data.status !== 200
     const method = this.state.messages.find(({ id }) => id === data.id)?.method
-    const params = error ? data.error : data.result
+    const input = error ? data.error : data.result
     const side = error ? 'error' : 'output'
-    return new MessagesModel(method, { params, side, output: data })
+    return new MessagesModel(method, { input, side, output: data })
   }
 
   onFrontSocketError(data) {
     this.addMessage(new MessagesModel('error'))
   }
 
-  onFrontSocketClose(params) {
-    this.addMessage(new MessagesModel('close', { params }))
+  onFrontSocketClose(input) {
+    this.addMessage(new MessagesModel('close', { input }))
     this.state.socket = this.getFrontWebSocket()
     this.setSocketEvents()
   }
@@ -92,12 +92,12 @@ export class Page extends HTML {
     return this.children.form
   }
 
-  onFormHtmlSubmit({ value: { method, params } } = {}) {
+  onFormHtmlSubmit({ value: { method, input } } = {}) {
     if (getRoutinesList().indexOf(method) === -1) {
-      const message = new MessagesModel(method, { params, side: 'input' })
+      const message = new MessagesModel(method, { input, side: 'input' })
       this.sendMessage(message)
     } else {
-      this.state.routines.run(method, { params, messages: this.state.messages })
+      this.state.routines.run(method, { input, messages: this.state.messages })
     }
   }
 

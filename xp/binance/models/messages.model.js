@@ -3,22 +3,22 @@ import { JSONableModel } from './jsonable.model.js'
 export class MessagesModel extends JSONableModel {
   id = Date.now()
   method = ''
-  params = {}
+  input = {}
   side = null
   output = null
 
-  constructor(method, { params = {}, side = 'none', output = {} } = {}) {
+  constructor(method, { input = {}, side = 'none', output = {} } = {}) {
     super()
 
     this.method = method
-    this.params = params
+    this.input = input
     this.side = side
     this.output = output
   }
 
   toJSON() {
-    const { id, method, params } = this
-    return { id, method, params }
+    const { id, method, input } = this
+    return { id, method, params: input }
   }
 
   toString() {
