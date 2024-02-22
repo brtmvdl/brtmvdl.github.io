@@ -1,5 +1,6 @@
 import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
 import { HorizontalSeparatorHTML } from '../horizontal.separator.html.js'
+import { ButtonComponent } from '../button.component.js'
 import { CardHeaderHTML } from '../card-header.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
 import { LinkComponent } from '../link.component.js'
@@ -212,7 +213,24 @@ export class depthMessage extends MessageCardHTML {
   }
 }
 
-export class tradesRecentMessage extends MessageCardHTML {
+export class ChartMessageCardHTML extends MessageCardHTML {
+  getBubbleChart(data) {
+    const ctx = this.getContext()
+    new Chart(ctx, { type: 'bubble', data })
+    return HTML.fromElement(ctx)
+  }
+
+  getContext() {
+    return document.createElement('canvas')
+  }
+}
+
+export class tradesRecentMessage extends ChartMessageCardHTML {
+  children = {
+    button: new ButtonComponent(),
+    chart: new HTML(),
+  }
+
   getInputHTML() {
     const { symbol, limit } = this.data.input
     const input = new HTML()
@@ -225,7 +243,25 @@ export class tradesRecentMessage extends MessageCardHTML {
     const output = new HTML()
     const params = Array.from(this.data.input).map(({ id, isBestMatch, isBuyerMaker, price, qty, quoteQty, time }) => ({ id, isBestMatch, isBuyerMaker, price: +price, qty: +qty, quoteQty: +quoteQty, time: str.timestamp2str(time) }))
     output.append(this.getTableHTML(params))
+    output.append(this.getCreateChartButton())
+    output.append(this.getChartHTML())
     return output
+  }
+
+  getCreateChartButton() {
+    this.children.button.setText('create chart')
+    this.children.button.on('click', () => this.onCreateChartButtonClick())
+    return this.children.button
+  }
+
+  onCreateChartButtonClick() {
+    const calc = (n, ix = 1, inc = 2) => n < inc ? ix : calc(n / inc, ix + 1)
+    const result = Array.from(this.data.output.result).map((item, ix) => ({ x: item.time, y: item.price, r: calc(item.qty, 1, 10) }))
+    this.children.chart.append(this.getBubbleChart({ datasets: [{ data: result }] }))
+  }
+
+  getChartHTML() {
+    return this.children.chart
   }
 }
 
