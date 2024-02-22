@@ -1,4 +1,11 @@
-import { MessagesModel } from '../models/messages.model.js'
+import { MessageModel } from '../models/messages.model.js'
+
+export const getRoutinesList = () => Array.from([
+  'download',
+  'time.start',
+  'time.stop',
+  'allOrders',
+]).map((item) => `${item}.routine`)
 
 export class Routines extends EventTarget {
   state = {
@@ -6,34 +13,35 @@ export class Routines extends EventTarget {
   }
 
   run(method, { input, messages = [] } = {}) {
-    switch (method) {
+    switch (this.getMethodName(method)) {
       case 'download': return this.onDownload(messages)
-      case 'time.start.routine': return this.onTimeStart(input, method)
-      case 'time.stop.routine': return this.onTimeStop(input, method)
-      case 'allOrders.routine': return this.onAllOrders(input, method)
+      case 'time.start': return this.onTimeStart(input, method)
+      case 'time.stop': return this.onTimeStop(input, method)
     }
   }
 
+  getMethodName(method) {
+    return method.replace('.routine', '')
+  }
+
   onDownload(messages) {
-    this.dispatchMessage(new MessagesModel('download', { input: { messages: messages.filter((m) => m.method !== 'download') } }))
+    const message = new MessageModel('download', { input: { messages: messages.filter((m) => m.method !== 'download') } })
+    message.setSocket(false)
+    this.dispatchMessage(message)
   }
 
   onTimeStart(input, method) {
-    const id = setInterval(() => this.dispatchMessage(new MessagesModel('time', { side: 'input' })), 1000)
-    this.dispatchMessage(new MessagesModel('time.start', { side: 'input', input: { id } }))
+    const id = setInterval(() => this.dispatchMessage(new MessageModel('time', { side: 'input' })), 1000)
+    this.dispatchMessage(new MessageModel('time.start', { side: 'input', input: { id } }))
     this.state.time = id
   }
 
   onTimeStop(input, method) {
     clearInterval(this.state.time)
-    this.dispatchMessage(new MessagesModel('time.stop', { side: 'input', input: { id: this.state.time } }))
+    this.dispatchMessage(new MessageModel('time.stop', { side: 'input', input: { id: this.state.time } }))
   }
 
-  onAllOrders(input, method) {
-    console.log('onAllOrders', { input, method })
-  }
-
-  dispatchMessage(message) {
+  dispatchMessage(message = new MessageModel()) {
     const event = new Event('message')
     event.message = message
     this.dispatchEvent(event)

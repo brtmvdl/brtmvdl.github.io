@@ -1,4 +1,4 @@
-// 
+import { getRoutinesList } from './routines.js'
 
 export const getMethodsList = () => Array.from([
   'Binance WebSocket API',
@@ -57,13 +57,6 @@ export const getUserDataStreamMethodsList = () => Array.from([
   'userDataStream.start',
   'userDataStream.ping',
   'userDataStream.stop',
-])
-
-export const getRoutinesList = () => Array.from([
-  'download',
-  'time.start.routine',
-  'time.stop.routine',
-  'allOrders.routine',
 ])
 
 export const getParamsList = (method) => {

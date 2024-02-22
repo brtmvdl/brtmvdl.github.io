@@ -1,7 +1,7 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
-import { MessagesModel } from './models/messages.model.js'
-import { getRoutinesList } from './utils/lists.js'
+import { MessageModel } from './models/messages.model.js'
+import { getRoutinesList } from './utils/routines.js'
 import { Routines } from './utils/routines.js'
 import * as config from './utils/config.js'
 
@@ -61,7 +61,7 @@ export class Page extends HTML {
   }
 
   onFrontSocketOpen(data) {
-    this.addMessage(new MessagesModel('open'))
+    this.addMessage(new MessageModel('open'))
   }
 
   onFrontSocketMessage({ data } = {}) {
@@ -73,15 +73,15 @@ export class Page extends HTML {
     const method = this.state.messages.find(({ id }) => id === data.id)?.method
     const input = error ? data.error : data.result
     const side = error ? 'error' : 'output'
-    return new MessagesModel(method, { input, side, output: data })
+    return new MessageModel(method, { input, side, output: data })
   }
 
   onFrontSocketError(data) {
-    this.addMessage(new MessagesModel('error'))
+    this.addMessage(new MessageModel('error'))
   }
 
   onFrontSocketClose(input) {
-    this.addMessage(new MessagesModel('close', { input }))
+    this.addMessage(new MessageModel('close', { input }))
     this.state.socket = this.getFrontWebSocket()
     this.setSocketEvents()
   }
@@ -94,23 +94,25 @@ export class Page extends HTML {
 
   onFormHtmlSubmit({ value: { method, input } } = {}) {
     if (getRoutinesList().indexOf(method) === -1) {
-      const message = new MessagesModel(method, { input, side: 'input' })
+      const message = new MessageModel(method, { input, side: 'input' })
       this.sendMessage(message)
     } else {
       this.state.routines.run(method, { input, messages: this.state.messages })
     }
   }
 
-  sendMessage(message = new MessagesModel()) {
+  sendMessage(message = new MessageModel()) {
     this.addMessage(message)
-    this.state.socket.send(message.toString())
+    if (message.getSocket()) {
+      this.state.socket.send(message.toString())
+    }
   }
 
   getMessagesHTML() {
     return this.children.messages
   }
 
-  addMessage(message = new MessagesModel()) {
+  addMessage(message = new MessageModel()) {
     this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
   }
