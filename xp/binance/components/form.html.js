@@ -48,7 +48,7 @@ export class FormHTML extends HTML {
   }
 
   onSendButtonClick(method = this.getMethodValue()) {
-    this.dispatchEvent('submit', { method, params: this.getParamsValues(method.replace('.routine', '')) })
+    this.dispatchEvent('submit', { method, input: this.getParamsValues(method.replace('.routine', '')) })
   }
 
   getMethodValue() {
