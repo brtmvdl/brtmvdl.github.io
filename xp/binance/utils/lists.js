@@ -61,6 +61,9 @@ export const getUserDataStreamMethodsList = () => Array.from([
 
 export const getRoutinesList = () => Array.from([
   'download',
+  'time.start.routine',
+  'time.stop.routine',
+  'allOrders.routine',
 ])
 
 export const getParamsList = (method) => {

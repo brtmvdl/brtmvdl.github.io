@@ -43,7 +43,7 @@ export class Page extends HTML {
   }
 
   setRoutinesEvents() {
-    this.state.routines.addEventListener('message', ({ message }) => this.addMessage(message))
+    this.state.routines.addEventListener('message', ({ message }) => this.sendMessage(message))
   }
 
   setSocketEvents() {
@@ -95,11 +95,15 @@ export class Page extends HTML {
   onFormHtmlSubmit({ value: { method, params } } = {}) {
     if (getRoutinesList().indexOf(method) === -1) {
       const message = new MessagesModel(method, { params, side: 'input' })
-      this.addMessage(message)
-      this.state.socket.send(message.toString())
+      this.sendMessage(message)
     } else {
       this.state.routines.run(method, { params, messages: this.state.messages })
     }
+  }
+
+  sendMessage(message = new MessagesModel()) {
+    this.addMessage(message)
+    this.state.socket.send(message.toString())
   }
 
   getMessagesHTML() {
