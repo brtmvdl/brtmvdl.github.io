@@ -36,6 +36,7 @@ export class InputsComponent extends HTML {
     recvWindow: new InputTextGroupComponent('recvWindow', 100, 'number'),
     apiKey: new InputTextGroupComponent('apiKey', '', 'password'),
     secretKey: new InputTextGroupComponent('secretKey', '', 'password'),
+    step: new InputTextGroupComponent('step', 0.1, 'number'),
     // signature: new InputTextGroupComponent('signature', 'signature'),
     // timestamp: new TimestampInputTextGroupComponent('timestamp'),
     // listenKey: new InputTextGroupComponent('listenKey', '', 'password'),

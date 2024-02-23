@@ -34,7 +34,7 @@ export class FormHTML extends HTML {
 
   onMethodSelectChange() {
     this.children.params.clear()
-    getParamsList(this.getMethodValue().replace('.routine', '')).map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    getParamsList(this.getMethodValue()).map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -49,7 +49,7 @@ export class FormHTML extends HTML {
   }
 
   onSendButtonClick(method = this.getMethodValue()) {
-    this.dispatchEvent('submit', { method, input: this.getParamsValues(method.replace('.routine', '')) })
+    this.dispatchEvent('submit', { method, input: this.getParamsValues(method) })
   }
 
   getMethodValue() {
