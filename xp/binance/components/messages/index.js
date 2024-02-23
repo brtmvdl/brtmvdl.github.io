@@ -65,11 +65,11 @@ export class MessageCardHTML extends CardHTML {
   }
 
   getInputHTML() {
-    return new TextHTML('input message')
+    return new TextHTML(JSON.stringify(this.data.input))
   }
 
   getOutputHTML() {
-    return new TextHTML('output message')
+    return new TextHTML(JSON.stringify(this.data.output))
   }
 
   getErrorHTML() {
