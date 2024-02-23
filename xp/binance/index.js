@@ -43,7 +43,7 @@ export class Page extends HTML {
   }
 
   setRoutinesEvents() {
-    this.state.routines.addEventListener('message', ({ message }) => this.sendMessage(message))
+    this.state.routines.addEventListener('message', ({ value }) => this.sendMessage(value))
   }
 
   setSocketEvents() {

@@ -4,7 +4,6 @@ export const getRoutinesList = () => Array.from([
   'download',
   'time.start',
   'time.stop',
-  'allOrders',
 ]).map((item) => `${item}.routine`)
 
 export class Routines extends EventTarget {
@@ -43,7 +42,7 @@ export class Routines extends EventTarget {
 
   dispatchMessage(message = new MessageModel()) {
     const event = new Event('message')
-    event.message = message
+    event.value = message
     this.dispatchEvent(event)
   }
 }
