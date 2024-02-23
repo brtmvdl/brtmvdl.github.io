@@ -3,19 +3,9 @@ import { HTML } from '@brtmvdl/frontend'
 import * as messages from './messages/index.js'
 
 export class MessagesHTML extends HTML {
-  children = {
-    list: new HTML(),
-  }
-
   onCreate() {
     super.onCreate()
-    this.setStyles()
     this.setEvents()
-    this.append(this.getListHTML())
-  }
-
-  setStyles() {
-    this.setStyle('padding', '1rem')
   }
 
   setEvents() {
@@ -23,7 +13,7 @@ export class MessagesHTML extends HTML {
   }
 
   onMessage({ value } = {}) {
-    this.children.list.prepend(this.getMessageHTML(value))
+    this.prepend(this.getMessageHTML(value))
   }
 
   getMessageHTML(data) {
@@ -77,9 +67,5 @@ export class MessagesHTML extends HTML {
       case 'userDataStream.stop': return new messages.userDataStreamStopMessage(data)
     }
     return new HTML()
-  }
-
-  getListHTML() {
-    return this.children.list
   }
 }
