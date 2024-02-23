@@ -23,6 +23,7 @@ export class FormHTML extends HTML {
 
   setStyles() {
     this.setStyle('padding', '1rem')
+    this.setStyle('min-width', '6rem')
   }
 
   getEndpointSelect() {
