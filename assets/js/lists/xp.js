@@ -28,6 +28,13 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
+    'id': 'websocket',
+    'title': 'WebSocket',
+    'subtitle': '',
+    'datetime': '2024-02-24',
+    'tags': [],
+  },
+  {
     'id': 'foxbit',
     'title': 'Foxbit',
     'subtitle': '',
