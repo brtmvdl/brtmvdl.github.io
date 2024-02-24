@@ -1,10 +1,10 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
-import { TabsComponent } from './tabs.component.js'
+import { FormComponent } from './form.component.js'
 import { MessagesComponent } from './messages.component.js'
 
 export class ContentComponent extends HTML {
   children = {
-    form: new TabsComponent(),
+    form: new FormComponent(),
     messages: new MessagesComponent(),
   }
 
