@@ -1,6 +1,13 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
+import { TabsComponent } from './tabs.component.js'
+import { MessagesComponent } from './messages.component.js'
 
 export class ContentComponent extends HTML {
+  children = {
+    form: new TabsComponent(),
+    messages: new MessagesComponent(),
+  }
+
   onCreate() {
     super.onCreate()
     this.append(this.getFlex())
@@ -8,20 +15,16 @@ export class ContentComponent extends HTML {
 
   getFlex() {
     const flex = new nFlex()
-    flex.append(this.getLeft())
-    flex.append(this.getRight())
+    flex.append(this.getFormComponent())
+    flex.append(this.getMessagesComponent())
     return flex
   }
 
-  getLeft() {
-    const left = new HTML()
-    left.setText('left')
-    return left
+  getFormComponent() {
+    return this.children.form
   }
 
-  getRight() {
-    const right = new HTML()
-    right.setText('right')
-    return right
+  getMessagesComponent() {
+    return this.children.messages
   }
 }

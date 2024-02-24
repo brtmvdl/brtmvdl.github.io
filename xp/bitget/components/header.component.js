@@ -21,12 +21,14 @@ export class HeaderComponent extends HTML {
 
   getLeft() {
     const left = new HTML()
+    left.setStyle('padding', '1rem')
     left.append(this.getLogoImageLink())
     return left
   }
 
   getLogoImageLink() {
     const link = new nLink()
+    // link.setStyle('padding', '1rem')
     link.href('https://www.bitget.com/api-doc/common/websocket-intro')
     const image = new nImage()
     image.src('./logo.svg')
