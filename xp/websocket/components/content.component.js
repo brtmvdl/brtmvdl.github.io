@@ -22,7 +22,7 @@ export class ContentComponent extends HTML {
   }
 
   addMessage(header, ...messages) {
-    this.children.messages.append(this.createMessageCard(header, ...messages))
+    this.children.messages.prepend(this.createMessageCard(header, ...messages))
   }
 
   createMessageCard(header, ...messages) {
