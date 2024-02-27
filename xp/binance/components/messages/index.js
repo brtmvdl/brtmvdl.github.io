@@ -73,7 +73,7 @@ export class MessageCardHTML extends CardHTML {
   }
 
   getErrorHTML() {
-    const { code, msg } = this.data.output.result
+    const { code, msg } = this.data.output.error
     const error = new HTML()
     error.append(new TextHTML(`Code: ${code}`))
     error.append(new TextHTML(`Message: ${msg}`))
