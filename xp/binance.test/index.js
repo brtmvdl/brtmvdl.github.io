@@ -1,7 +1,8 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormComponent } from './components/form.component.js'
 import { MessagesComponent } from './components/messages.component.js'
-import { MessageModel, OpenMessageModel, CloseMessageModel, ErrorMessageModel, InputMessageModel, OutputMessageModel } from './models/index.js'
+import { MessageModel, OpenMessageModel, CloseMessageModel, ErrorMessageModel, InputMessageModel, OutputMessageModel, TickerPriceInputMessageModel } from './models/index.js'
+import { TextComponent } from './components/text.component.js'
 
 export class Page extends HTML {
   children = {
@@ -24,12 +25,12 @@ export class Page extends HTML {
 
   getFlex() {
     const flex = new nFlex()
-    flex.append(this.getForm())
-    flex.append(this.getMessages())
+    flex.append(this.getFormComponent())
+    flex.append(this.getMessagesComponent())
     return flex
   }
 
-  getForm() {
+  getFormComponent() {
     this.children.form.on('start', () => this.onStart())
     this.children.form.on('stop', () => this.onStop())
     return this.children.form
@@ -37,19 +38,18 @@ export class Page extends HTML {
 
   onStart() {
     this.state.running = true
-    this.state.id = setInterval(() => this.sendTickerPrice(), 500)
+    this.sendTickerPrice() // this.state.id = setInterval(() => , 500)
   }
 
   sendTickerPrice() {
     if (this.state.running) {
       const symbol = this.children.form.children.symbol.getValue()
-      this.sendSocketMessage(new InputMessageModel('ticker.price', { input: { symbol } }))
+      this.sendSocketMessage(new TickerPriceInputMessageModel(symbol))
     }
   }
 
   sendSocketMessage(message = new InputMessageModel()) {
-    this.state.messages.push(message)
-    this.children.messages.dispatchEvent('message', message)
+    this.dispatchMessage(message)
     this.state.socket.send(message.toString())
   }
 
@@ -58,7 +58,7 @@ export class Page extends HTML {
     clearInterval(this.state.id)
   }
 
-  getMessages() {
+  getMessagesComponent() {
     return this.children.messages
   }
 
@@ -70,21 +70,60 @@ export class Page extends HTML {
   }
 
   onSocketOpen(data) {
-    this.children.messages.dispatchEvent('message', new OpenMessageModel(data))
+    this.dispatchMessage(new OpenMessageModel(data))
   }
 
   onSocketClose(data) {
-    this.children.messages.dispatchEvent('message', new CloseMessageModel(data))
+    this.dispatchMessage(new CloseMessageModel(data))
   }
 
   onSocketError(data) {
-    this.children.messages.dispatchEvent('message', new ErrorMessageModel(data))
+    this.dispatchMessage(new ErrorMessageModel(data))
   }
 
   onSocketMessage({ data } = {}) {
     const { id, result: output, rateLimits } = JSON.parse(data)
     const message = new OutputMessageModel(id, this.getMessageMethodById(id), { output, rateLimits })
+    this.dispatchMessage(message)
+    this.responseMessage(message)
+  }
+
+  dispatchMessage(message = new MessageModel()) {
+    this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
+  }
+
+  responseMessage(message = new MessageModel()) {
+    switch (message.method) {
+      case 'ticker.price': return this.responseTickerPriceMessage(message)
+    }
+
+    console.log('responseMessage', message)
+  }
+
+  responseTickerPriceMessage(message) {
+    if (this.mayBuy()) this.buy()
+    this.sendTickerPrice()
+  }
+
+  mayBuy() {
+    const messages = this.getTickerPriceOutputMessages()
+    const prices = messages.map((_, ix) => ix == 0 ? 0 : (messages[ix].output.price - messages[ix - 1].output.price))
+    const sum = prices.reduce((s, p) => s + p, 0)
+    console.log({ sum, prices })
+    return false
+  }
+
+  getTickerPriceOutputMessages() {
+    const last60sec = Date.now() - (1000 * 60)
+    return this.state.messages
+      .filter((m) => m.side == 'output')
+      .filter((m) => m.method == 'ticker.price')
+      .filter(m => m.id > last60sec)
+  }
+
+  buy() {
+    console.log('buy')
   }
 
   getMessageMethodById(id) {

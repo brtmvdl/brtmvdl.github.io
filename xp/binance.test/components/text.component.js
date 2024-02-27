@@ -8,8 +8,8 @@ export class TextComponent extends HTML {
 
   constructor(text, title = '') {
     super()
-    this.text = text
-    this.title = title
+    this.state.text = text
+    this.state.title = title
   }
 
   onCreate() {
