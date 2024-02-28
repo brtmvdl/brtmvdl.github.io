@@ -52,26 +52,21 @@ export class Page extends HTML {
     return this.children.form
   }
 
-  onFormHtmlSubmit({ value: { method, path, query = [], body = [] } } = {}) {
-    console.log('onFormHtmlSubmit', { method, path, query, body })
-    this.getResponse()
+  onFormHtmlSubmit({ value: { method, pathname, query = [], body = [] } } = {}) {
+    console.log('onFormHtmlSubmit', { method, pathname, query, body })
+    this.getResponse({ method, pathname, query, body })
       .then(json => console.log({ json }))
       .catch(err => console.error(err))
   }
 
-  getResponse() {
-    return fetch('https://api.openai.com/v1/audio/speech', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${this.children.form.children.apiKey.getValue()}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        'model': 'tts-1',
-        'input': 'The quick brown fox jumped over the lazy dog.',
-        'voice': 'alloy'
-      })
-    })
+  getResponse({ method, pathname, query, body } = {}) {
+    const apiKey = this.children.form.children.apiKey.getValue()
+    const headers = {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    }
+    console.log('getResponse', { method, pathname, query, headers, body, })
+    return fetch(`https://api.openai.com/v1${pathname}`, { method, headers, body: JSON.stringify(body) }).then(res => res.json())
   }
 
   getMessagesHTML() {
@@ -82,4 +77,5 @@ export class Page extends HTML {
     this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
   }
+
 }

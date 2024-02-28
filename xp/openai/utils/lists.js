@@ -28,13 +28,13 @@ export const getPathList = () => Array.from([
 
 class Request {
   method = null
-  path = null
+  pathname = null
   query_params = []
   body_params = []
 
-  constructor(method, path, query_params = [], body_params = []) {
+  constructor(method, pathname, query_params = [], body_params = []) {
     this.method = method
-    this.path = path
+    this.pathname = pathname
     this.query_params = query_params
     this.body_params = body_params
   }

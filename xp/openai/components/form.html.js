@@ -72,7 +72,7 @@ export class FormHTML extends HTML {
     const request = getRequestByName(this.getRequestValue())
     this.dispatchEvent('submit', {
       method: request.method,
-      path: request.path,
+      pathname: request.pathname,
       query: request.query_params.map((input) => ([input, this.children.query_inputs.getValue(input)])),
       body: request.body_params.map((input) => ([input, this.children.body_inputs.getValue(input)])),
     })
