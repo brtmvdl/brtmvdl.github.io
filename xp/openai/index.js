@@ -66,11 +66,11 @@ export class Page extends HTML {
         Authorization: `Bearer ${this.children.form.children.apiKey.getValue()}`,
         'Content-Type': 'application/json',
       },
-      body: {
+      body: JSON.stringify({
         'model': 'tts-1',
         'input': 'The quick brown fox jumped over the lazy dog.',
         'voice': 'alloy'
-      }
+      })
     })
   }
 
