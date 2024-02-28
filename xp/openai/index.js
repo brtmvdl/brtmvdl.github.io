@@ -52,8 +52,26 @@ export class Page extends HTML {
     return this.children.form
   }
 
-  onFormHtmlSubmit({ value: { path, query = [], body = [] } } = {}) {
-    console.log('onFormHtmlSubmit', { path, query, body })
+  onFormHtmlSubmit({ value: { method, path, query = [], body = [] } } = {}) {
+    console.log('onFormHtmlSubmit', { method, path, query, body })
+    this.getResponse()
+      .then(json => console.log({ json }))
+      .catch(err => console.error(err))
+  }
+
+  getResponse() {
+    return fetch('https://api.openai.com/v1/audio/speech', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${this.children.form.children.apiKey.getValue()}`,
+        'Content-Type': 'application/json',
+      },
+      body: {
+        'model': 'tts-1',
+        'input': 'The quick brown fox jumped over the lazy dog.',
+        'voice': 'alloy'
+      }
+    })
   }
 
   getMessagesHTML() {

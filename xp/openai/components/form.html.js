@@ -1,14 +1,14 @@
 import { HTML } from '@brtmvdl/frontend'
-import { getQueryParamsList, getBodyParamsList, getPathList } from '../utils/lists.js'
-import { SelectComponent } from './select.component.js'
-import { ButtonComponent } from './button.component.js'
+import { getRequestByName, getPathList } from '../utils/lists.js'
 import { BodyInputsComponent, QueryInputsComponent } from './inputs.component.js'
 import { InputTextGroupComponent } from './input-text-group.component.js'
+import { SelectComponent } from './select.component.js'
+import { ButtonComponent } from './button.component.js'
 import { TextHTML } from './text.html.js'
 
 export class FormHTML extends HTML {
   children = {
-    path: new SelectComponent(),
+    request: new SelectComponent(),
     query: new HTML(),
     body: new HTML(),
     query_inputs: new QueryInputsComponent(),
@@ -32,16 +32,17 @@ export class FormHTML extends HTML {
   }
 
   getEndpointSelect() {
-    getPathList().map((endpoint) => this.children.path.addOption(endpoint, endpoint))
-    this.children.path.on('change', () => this.onPathSelectChange())
-    return this.children.path
+    getPathList().map((endpoint) => this.children.request.addOption(endpoint, endpoint))
+    this.children.request.on('change', () => this.onPathSelectChange())
+    return this.children.request
   }
 
-  onPathSelectChange(path = this.getPathValue()) {
+  onPathSelectChange(name = this.getRequestValue()) {
     this.children.query.clear()
     this.children.body.clear()
-    getQueryParamsList(path).map((component) => this.children.query.append(this.children.query_inputs.getComponent(component)))
-    getBodyParamsList(path).map((component) => this.children.body.append(this.children.body_inputs.getComponent(component)))
+    const request = getRequestByName(name)
+    request.body_params.map((component) => this.children.body.append(this.children.body_inputs.getComponent(component)))
+    request.query_params.map((component) => this.children.query.append(this.children.query_inputs.getComponent(component)))
   }
 
   getQueryParamsHTML() {
@@ -67,19 +68,18 @@ export class FormHTML extends HTML {
     return button
   }
 
-  onSendButtonClick(path = this.getPathValue()) {
-    this.dispatchEvent('submit', { path, query: this.getQueryParamsValues(path), body: this.getBodyParamsValues(path) })
+  onSendButtonClick() {
+    const request = getRequestByName(this.getRequestValue())
+    this.dispatchEvent('submit', {
+      method: request.method,
+      path: request.path,
+      query: request.query_params.map((input) => ([input, this.children.query_inputs.getValue(input)])),
+      body: request.body_params.map((input) => ([input, this.children.body_inputs.getValue(input)])),
+    })
   }
 
-  getPathValue() {
-    return this.children.path.getValue()
+  getRequestValue() {
+    return this.children.request.getValue()
   }
 
-  getQueryParamsValues(path = '') {
-    return getQueryParamsList(path).map((input) => ([input, this.children.query_inputs.getValue(input)]))
-  }
-
-  getBodyParamsValues(path = '') {
-    return getBodyParamsList(path).map((input) => ([input, this.children.body_inputs.getValue(input)]))
-  }
 }
