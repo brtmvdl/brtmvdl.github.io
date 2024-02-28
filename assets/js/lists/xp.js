@@ -42,6 +42,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'openai',
+    'title': 'openai',
+    'subtitle': '',
+    'datetime': '',
+    'tags': [],
+  },
+  {
     'id': 'foxbit',
     'title': 'Foxbit',
     'subtitle': '',
