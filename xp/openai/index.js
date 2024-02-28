@@ -59,12 +59,16 @@ export class Page extends HTML {
       .catch(err => console.error(err))
   }
 
-  getResponse({ method, pathname, query, body } = {}) {
+  getResponse({ method, pathname, query = [], body = [], } = {}) {
     const apiKey = this.children.form.children.apiKey.getValue()
     const headers = {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     }
+
+    body = body.reduce((bd, [a, b]) => ({ ...bd, [a]: b }), {})
+    query = query.reduce((q, [a, b]) => ({ ...q, [a]: b }), {})
+
     console.log('getResponse', { method, pathname, query, headers, body, })
     return fetch(`https://api.openai.com/v1${pathname}`, { method, headers, body: JSON.stringify(body) }).then(res => res.json())
   }
