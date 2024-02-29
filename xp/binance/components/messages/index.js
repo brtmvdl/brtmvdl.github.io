@@ -514,7 +514,7 @@ export class orderTestMessage extends MessageCardHTML {
   }
 }
 
-export class orderPlaceMessage extends MessageCardHTML { }
+export class orderPlaceMessage extends orderTestMessage { }
 
 export class orderStatusMessage extends MessageCardHTML { }
 
