@@ -561,8 +561,12 @@ export class accountStatusMessage extends MessageCardHTML {
     html.append(new TextHTML(`Commission Rate (seller): ${commissionRates.seller}`))
     html.append(new TextHTML(`Commission Rate (taker): ${commissionRates.taker}`))
     html.append(new TextHTML(`Balances: `))
-    html.append(this.getTableHTML(balances))
+    html.append(this.getTableHTML(this.removeZerosInBalances(balances)))
     return html
+  }
+
+  removeZerosInBalances(balances = []) {
+    return balances.filter(({ free, locked }) => +free > 0 && +locked > 0)
   }
 }
 
