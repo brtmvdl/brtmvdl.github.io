@@ -38,7 +38,7 @@ export class MessagesComponent extends HTML {
 
   getInputMessageCardComponent(message = new MessageModel()) {
     switch(message.method) {
-      case 'ticker.price': return new input.TickerPriceInputMessageCardComponent(message)
+      case 'klines': return new input.KlinesInputMessageCardComponent(message)
     }
 
     return new MessageCardComponent(message)
@@ -46,7 +46,7 @@ export class MessagesComponent extends HTML {
 
   getOutputMessageCardComponent(message = new MessageModel()) {
     switch(message.method) {
-      case 'ticker.price': return new output.TickerPriceOutputMessageCardComponent(message)
+      case 'klines': return new output.KlinesOutputMessageCardComponent(message)
     }
 
     return new MessageCardComponent(message)

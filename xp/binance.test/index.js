@@ -1,8 +1,7 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormComponent } from './components/form.component.js'
 import { MessagesComponent } from './components/messages.component.js'
-import { MessageModel, OpenMessageModel, CloseMessageModel, ErrorMessageModel, InputMessageModel, OutputMessageModel, TickerPriceInputMessageModel } from './models/index.js'
-import { TextComponent } from './components/text.component.js'
+import { MessageModel, OpenMessageModel, CloseMessageModel, ErrorMessageModel, InputMessageModel, OutputMessageModel, KlinesInputMessageModel } from './models/index.js'
 
 export class Page extends HTML {
   children = {
@@ -38,13 +37,13 @@ export class Page extends HTML {
 
   onStart() {
     this.state.running = true
-    this.sendTickerPrice() // this.state.id = setInterval(() => , 500)
+    this.sendKlines()
   }
 
-  sendTickerPrice() {
+  sendKlines() {
     if (this.state.running) {
       const symbol = this.children.form.children.symbol.getValue()
-      this.sendSocketMessage(new TickerPriceInputMessageModel(symbol))
+      this.sendSocketMessage(new KlinesInputMessageModel(symbol))
     }
   }
 
@@ -88,6 +87,10 @@ export class Page extends HTML {
     this.responseMessage(message)
   }
 
+  getMessageMethodById(id) {
+    return this.state.messages.find((message) => message.id === id)?.method
+  }
+
   dispatchMessage(message = new MessageModel()) {
     this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
@@ -95,38 +98,12 @@ export class Page extends HTML {
 
   responseMessage(message = new MessageModel()) {
     switch (message.method) {
-      case 'ticker.price': return this.responseTickerPriceMessage(message)
+      case 'klines': return this.responseKlinesMessage()
     }
-
-    console.log('responseMessage', message)
   }
 
-  responseTickerPriceMessage(message) {
-    if (this.mayBuy()) this.buy()
-    this.sendTickerPrice()
+  responseKlinesMessage() {
+    setTimeout(() => this.sendKlines(), 500)
   }
 
-  mayBuy() {
-    const messages = this.getTickerPriceOutputMessages()
-    const prices = messages.map((_, ix) => ix == 0 ? 0 : (messages[ix].output.price - messages[ix - 1].output.price))
-    const sum = prices.reduce((s, p) => s + p, 0)
-    console.log({ sum, prices })
-    return false
-  }
-
-  getTickerPriceOutputMessages() {
-    const last60sec = Date.now() - (1000 * 60)
-    return this.state.messages
-      .filter((m) => m.side == 'output')
-      .filter((m) => m.method == 'ticker.price')
-      .filter(m => m.id > last60sec)
-  }
-
-  buy() {
-    console.log('buy')
-  }
-
-  getMessageMethodById(id) {
-    return this.state.messages.find((message) => message.id === id)?.method
-  }
 }
