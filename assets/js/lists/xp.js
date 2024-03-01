@@ -28,6 +28,13 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
+    'id': 'binance-rest-api',
+    'title': 'Binance Rest API',
+    'subtitle': '',
+    'datetime': '2024-03-01',
+    'tags': ['economy'],
+  },
+  {
     'id': 'bitget',
     'title': 'Bitget',
     'subtitle': '',
