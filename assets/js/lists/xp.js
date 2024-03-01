@@ -21,8 +21,8 @@ export const experiences = [
     'tags': ['jobs'],
   },
   {
-    'id': 'binance',
-    'title': 'Binance',
+    'id': 'binance-websocket-api',
+    'title': 'Binance WebSocket API',
     'subtitle': '',
     'datetime': '2024-02-20',
     'tags': ['economy'],
