@@ -1,3 +1,5 @@
 import * as config from './config.js'
 
-export const request = (method, pathname, query, headers, body) => fetch(`${config.url}${pathname}`, { method, query, headers, body }).then(res => res.json())
+const getUrl = (pathname, search = {}) => `${config.url}${pathname}?` + new URLSearchParams(search)
+
+export const request = (method, pathname, query, headers, body) => fetch(getUrl(pathname, query), { method, headers, body }).then(res => res.json())

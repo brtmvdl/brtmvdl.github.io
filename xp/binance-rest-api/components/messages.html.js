@@ -1,5 +1,4 @@
 import { HTML } from '@brtmvdl/frontend'
-
 import * as messages from './messages/index.js'
 
 export class MessagesHTML extends HTML {
@@ -29,6 +28,7 @@ export class MessagesHTML extends HTML {
       case 'download': return new messages.downloadMessage(data)
       case 'ping': return new messages.pingMessage(data)
       case 'System Status (System)': return new messages.SystemStatusMessageCardHTML(data)
+      case 'Kline/Candlestick Data': return new messages.KlineCandlestickDataMessageCardHTML(data)
     }
     return new HTML()
   }

@@ -93,3 +93,5 @@ export class SystemStatusMessageCardHTML extends MessageCardHTML {
     return output
   }
 }
+
+export class KlineCandlestickDataMessageCardHTML extends MessageCardHTML { }
