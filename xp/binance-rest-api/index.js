@@ -45,11 +45,11 @@ export class Page extends HTML {
   }
 
   onFormHtmlSubmit({ value: { endpoint, method, pathname, query, headers, body } } = {}) {
-    console.log(endpoint, method, pathname, query, headers, body)
+    console.log('onFormHtmlSubmit', { endpoint, method, pathname, query, headers, body })
 
-    // API.request(method, pathname, query, headers, body)
-    //   .then((output) => this.addMessage(new MessageModel(endpoint, { input: { method, pathname, query, headers, body }, output })))
-    //   .catch((error) => this.addMessage(new MessageModel(endpoint, { error })))
+    API.request(method, pathname, query, headers, body)
+      .then((output) => this.addMessage(new MessageModel(endpoint, { input: { method, pathname, query, headers, body }, output })))
+      .catch((error) => this.addMessage(new MessageModel(endpoint, { error })))
   }
 
   addMessage(message = new MessageModel()) {

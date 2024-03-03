@@ -6,10 +6,15 @@ export class MessagesHTML extends HTML {
   onCreate() {
     super.onCreate()
     this.setEvents()
+    this.setStyles()
   }
 
   setEvents() {
     this.on('message', (data) => this.onMessage(data))
+  }
+
+  setStyles() {
+    this.setStyle('padding', '1rem')
   }
 
   onMessage({ value } = {}) {
@@ -17,10 +22,13 @@ export class MessagesHTML extends HTML {
   }
 
   getMessageHTML(data) {
+    console.log('getMessageHTML', { data })
+
     switch (data.method) {
       case 'log': return new messages.logMessage(data)
       case 'download': return new messages.downloadMessage(data)
       case 'ping': return new messages.pingMessage(data)
+      case 'System Status (System)': return new messages.SystemStatusMessageCardHTML(data)
     }
     return new HTML()
   }
