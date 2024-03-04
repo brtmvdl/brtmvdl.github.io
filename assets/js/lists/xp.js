@@ -35,6 +35,13 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
+    'id': 'buy-coins',
+    'title': 'Buy coins',
+    'subtitle': '',
+    'datetime': '2024-03-04',
+    'tags': ['economy'],
+  },
+  {
     'id': 'bitget',
     'title': 'Bitget',
     'subtitle': '',
