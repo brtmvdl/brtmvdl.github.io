@@ -6,6 +6,7 @@ export class MessagesHTML extends HTML {
   onCreate() {
     super.onCreate()
     this.setEvents()
+    this.setStyle('padding', '1rem')
   }
 
   setEvents() {

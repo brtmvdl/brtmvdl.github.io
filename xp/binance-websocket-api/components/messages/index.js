@@ -566,7 +566,7 @@ export class accountStatusMessage extends MessageCardHTML {
   }
 
   removeZerosInBalances(balances = []) {
-    return balances.filter(({ free, locked }) => +free > 0 && +locked > 0)
+    return balances.filter(({ free, locked }) => +free > 0 || +locked > 0)
   }
 }
 
