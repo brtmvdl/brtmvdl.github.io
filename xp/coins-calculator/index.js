@@ -1,4 +1,4 @@
-import { HTML, nFlex, nSpan, nInput } from '@brtmvdl/frontend'
+import { HTML, nH1, nLink, nButton, nFlex, nSpan, nInput } from '@brtmvdl/frontend'
 
 class SpanComponent extends nSpan {
   text = ''
@@ -44,11 +44,13 @@ class nInputComponent extends nInput {
 
 export class Page extends HTML {
   children = {
+    symbol: new nInputComponent(),
     buy_quantity_input: new nInputComponent('number'),
     buy_price_input: new nInputComponent('number'),
     sell_price_input: new nInputComponent('number'),
     gain_price: new SpanComponent(),
     gain_percent: new SpanComponent(),
+    links: new HTML(),
   }
 
   state = {
@@ -59,8 +61,9 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    // this.setStyle('width', '20rem')
+    this.setStyle('padding', '1rem')
     this.setStyle('margin', '0 auto')
+    this.append(this.getTitleH1())
     this.appendFlex('When', this.getSymbolInput())
     this.appendFlex('is in', this.getBuyPriceInput())
     this.appendFlex('buy', this.getBuyQuantityInput())
@@ -68,21 +71,28 @@ export class Page extends HTML {
     this.appendFlex('we get', new HTML())
     this.appendFlex('in price', this.getGainPriceHTML())
     this.appendFlex('in percent', this.getGainPercentHTML())
+    this.append(this.getExportButton())
+    this.append(this.children.links)
   }
 
+  getTitleH1() {
+    const h1 = new nH1()
+    h1.setText('Coins Calculator')
+    h1.setStyle('margin', '0rem')
+    return h1
+  }
 
   appendFlex(text = '', component = new HTML()) {
     const flex = new nFlex()
-    flex.setStyle('margin', '1rem')
+    flex.setStyle('margin', '1rem 0rem')
     flex.append(new SpanComponent(text))
     flex.append(component)
     this.append(flex)
   }
 
   getSymbolInput() {
-    const input = new nInputComponent()
-    input.setPlaceholder('symbol')
-    return input
+    this.children.symbol.setPlaceholder('symbol')
+    return this.children.symbol
   }
 
   getBuyQuantityInput() {
@@ -112,24 +122,58 @@ export class Page extends HTML {
   }
 
   calcGains() {
-    this.calcGainPrice()
-    this.calcGainPercent()
+    this.children.gain_price.setText(this.getPrice())
+    this.children.gain_percent.setText(this.getPercent() + '%')
   }
 
-  calcGainPrice() {
+  getPrice() {
     const sell_price = this.children.sell_price_input.getValue()
     const buy_quantity = this.children.buy_quantity_input.getValue()
     const buy_price = this.children.buy_price_input.getValue()
-    const price = ((sell_price * buy_quantity / buy_price) - buy_quantity).toFixed(4)
-    this.children.gain_price.setText(price)
+    return ((sell_price * buy_quantity / buy_price) - buy_quantity).toFixed(4)
   }
 
-  calcGainPercent() {
-    const sell_price = this.children.sell_price_input.getValue()
+  getPercent() {
+    const price = this.getPrice()
     const buy_quantity = this.children.buy_quantity_input.getValue()
-    const buy_price = this.children.buy_price_input.getValue()
-    const price = ((sell_price * buy_quantity / buy_price) - buy_quantity).toFixed(4)
-    const percent = (100 * price / buy_quantity).toFixed(4)
-    this.children.gain_percent.setText(percent + '%')
+    return (100 * price / buy_quantity).toFixed(4)
+  }
+
+  getExportButton() {
+    const button = new nButton()
+    button.setText('export')
+    button.on('click', () => this.children.links.append(this.createDownloadLink(
+      this.children.symbol.getValue(),
+      this.children.sell_price_input.getValue(),
+      this.children.buy_quantity_input.getValue(),
+      this.children.buy_price_input.getValue(),
+      this.getPrice(),
+      this.getPercent(),
+    )))
+    button.setContainerStyle('width', '100%')
+    button.setStyle('border-radius', 'calc(1rem / 4)')
+    button.setStyle('background-color', '#000000')
+    button.setStyle('box-sizing', 'border-box')
+    button.setStyle('display', 'inline-block')
+    button.setStyle('text-align', 'center')
+    button.setStyle('color', '#ffffff')
+    button.setStyle('padding', '1rem')
+    button.setStyle('border', 'none')
+    button.setStyle('width', '100%')
+    return button
+  }
+
+  createDownloadLink(symbol, sell_price, buy_quantity, buy_price, price, percent, filename = `${Date.now()}.json`) {
+    const type = 'application/json'
+    const lastModified = Date.now()
+    const link = new nLink()
+    link.setAttr('download', filename)
+    link.href(URL.createObjectURL(new File([new Blob([JSON.stringify({ symbol, sell_price, buy_quantity, buy_price, price, percent })], { type })], filename, { type, lastModified })))
+    link.setText(filename)
+    link.setStyle('box-sizing', 'border-box')
+    link.setStyle('display', 'inline-block')
+    link.setStyle('padding', '1rem 0rem')
+    link.setStyle('width', '100%')
+    return link
   }
 }
