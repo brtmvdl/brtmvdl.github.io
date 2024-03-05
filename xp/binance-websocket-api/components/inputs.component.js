@@ -1,14 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
-
 import { InputTextGroupComponent } from './input-text-group.component.js'
 import { DateTimeGroupComponent } from './datetime.group.component.js'
-
-export class TimestampInputTextGroupComponent extends InputTextGroupComponent {
-  onCreate() {
-    super.onCreate()
-    setInterval(() => this.children.input.setValue(Date.now()), 100)
-  }
-}
 
 export class InputsComponent extends HTML {
   children = {
