@@ -35,10 +35,10 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
-    'id': 'buy-coins',
-    'title': 'Buy coins',
+    'id': 'coins-calculator',
+    'title': 'Coins Calculator',
     'subtitle': '',
-    'datetime': '2024-03-04',
+    'datetime': '2024-03-05',
     'tags': ['economy'],
   },
   {
