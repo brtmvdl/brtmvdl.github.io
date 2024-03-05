@@ -28,7 +28,17 @@ class nInputComponent extends nInput {
 
   onCreate() {
     super.onCreate()
+    this.setStyles()
     this.setAttr('type', this.type)
+  }
+
+  setStyles() {
+    this.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) rgba(0, 0, 0, 0.5)')
+    this.setStyle('border-radius', 'calc(1rem / 4)')
+    this.setStyle('margin', 'calc(-1rem / 4)')
+    this.setStyle('padding', 'calc(1rem / 4)')
+    this.setStyle('outline', 'none')
+    this.setStyle('border', 'none')
   }
 }
 
@@ -49,7 +59,7 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setStyle('width', '20rem')
+    // this.setStyle('width', '20rem')
     this.setStyle('margin', '0 auto')
     this.appendFlex('When', this.getSymbolInput())
     this.appendFlex('is in', this.getBuyPriceInput())
