@@ -42,6 +42,13 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
+    'id': 'newsapi',
+    'title': 'News API',
+    'subtitle': '',
+    'datetime': '2024-03-06',
+    'tags': [],
+  },
+  {
     'id': 'bitget',
     'title': 'Bitget',
     'subtitle': '',
