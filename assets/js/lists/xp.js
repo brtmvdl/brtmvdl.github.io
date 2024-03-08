@@ -230,11 +230,18 @@ export const experiences = [
     'datetime': '2024-02-18',
     'tags': [],
   },
+  // {
+  //   'id': 'home-workout',
+  //   'title': 'Home Workout',
+  //   'subtitle': '',
+  //   'datetime': '2024-02-15',
+  //   'tags': [],
+  // },
   {
-    'id': 'home-workout',
-    'title': 'Home Workout',
+    'id': 'workout',
+    'title': 'Workout',
     'subtitle': '',
-    'datetime': '2024-02-15',
+    'datetime': '2024-03-08',
     'tags': [],
   },
   {
