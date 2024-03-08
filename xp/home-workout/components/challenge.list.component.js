@@ -1,6 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
 import { padLeft, secondsToMinutes } from '../../../assets/js/utils/str.js'
-import * as FLOW from '../../../assets/js/utils/flow.js'
 
 export class ChallengeListComponent extends HTML {
   item = null
@@ -76,4 +75,5 @@ export class ChallengeListComponent extends HTML {
 
     return this.children.total
   }
+
 }
