@@ -1,0 +1,16 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "title": "Treino (manhã)",
+      "level": 2,
+      "workouts": [0, 1, 0, 2, 3, 2, 3, 1, 0, 2, 3, 2, 3, 1, 0, 2, 3, 2, 3, 0]
+    },
+    {
+      "id": 2,
+      "title": "Abs advanced",
+      "level": 3,
+      "workouts": []
+    }
+  ]
+}

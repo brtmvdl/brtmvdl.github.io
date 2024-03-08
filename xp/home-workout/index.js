@@ -1,5 +1,5 @@
 import { HTML, nImage, nError, nFlex, nH1, nLink, nH2 } from '@brtmvdl/frontend'
-import { ChallengeList } from './components/challenge-list.js'
+import { ChallengeListComponent } from './components/challenge.list.component.js'
 import * as API from './utils/api.js'
 
 import { padLeft } from './../../assets/js/utils/str.js'
@@ -95,7 +95,7 @@ export class Page extends HTML {
       .then((res) => {
         this.children.challengesList.clear()
         res.get('list')
-          .map((item) => new ChallengeList(item))
+          .map((item) => new ChallengeListComponent(item))
           .map((challenge) => this.children.challengesList.append(challenge))
       })
       .catch((err) => this.children.errorMessage.setText(err.message))

@@ -1,8 +1,8 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
-import { padLeft, secondsToMinutes } from './../../../assets/js/utils/str.js'
-import * as FLOW from '../../../../assets/js/utils/flow.js'
+import { HTML } from '@brtmvdl/frontend'
+import { padLeft, secondsToMinutes } from '../../../assets/js/utils/str.js'
+import * as FLOW from '../../../assets/js/utils/flow.js'
 
-export class ChallengeList extends HTML {
+export class ChallengeListComponent extends HTML {
   item = null
 
   children = {
@@ -72,12 +72,7 @@ export class ChallengeList extends HTML {
 
     const [t, w] = workouts.reduce(([time, workout], w) => ([time + w.time, workout + (w.workouts || 0)]), [0, 0])
 
-    this.children.total.setText(
-      [
-        `${secondsToMinutes(t)} min`,
-        `${w} workouts`,
-      ].join(' - ')
-    )
+    this.children.total.setText([`${secondsToMinutes(t)} min`, `${w} workouts`,].join(' - '))
 
     return this.children.total
   }

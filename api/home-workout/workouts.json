@@ -1,0 +1,28 @@
+{
+  "list": [
+    {
+      "id": 0,
+      "title": "Esperar (30 sec)",
+      "time": 30,
+      "workouts": null
+    },
+    {
+      "id": 1,
+      "title": "Pular cordas",
+      "time": 60,
+      "workouts": null
+    },
+    {
+      "id": 2,
+      "title": "Alogamento de quadríceps",
+      "time": 20,
+      "workouts": null
+    },
+    {
+      "id": 3,
+      "title": "Esperar (10 sec)",
+      "time": 10,
+      "workouts": null
+    }
+  ]
+}
