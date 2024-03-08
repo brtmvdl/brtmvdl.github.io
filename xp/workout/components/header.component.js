@@ -1,9 +1,16 @@
-import { HTML, nLink, nH1 } from '@brtmvdl/frontend'
+import { HTML, nFlex, nLink, nH1, nButton } from '@brtmvdl/frontend'
 
 export class HeaderComponent extends HTML {
   onCreate() {
     super.onCreate()
-    this.append(this.getLogoLink())
+    this.append(this.getFlex())
+  }
+
+  getFlex() {
+    const flex = new nFlex()
+    flex.append(this.getLogoLink())
+    flex.append(this.getButton())
+    return flex
   }
 
   getLogoLink() {
@@ -19,5 +26,14 @@ export class HeaderComponent extends HTML {
     title.setStyle('margin', '1rem')
     title.setText('Workout')
     return title
+  }
+
+  getButton() {
+    const button = new nButton()
+    button.setStyle('margin', '1rem')
+    button.setStyle('padding', '1rem')
+    button.setText('start')
+    button.on('click', () => console.log('click'))
+    return button
   }
 }
