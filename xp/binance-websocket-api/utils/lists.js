@@ -41,8 +41,8 @@ export const getWebSocketMethodsList = () => Array.from([
   'orderList.place',
   'orderList.cancel',
   'openOrderLists.status',
-  'sor.order.place',
-  'sor.order.test',
+  // 'sor.order.place',
+  // 'sor.order.test',
   'account.status',
   'account.commission',
   'account.rateLimits.orders',
@@ -66,10 +66,10 @@ export const getParamsList = (method) => {
     case 'exchangeInfo': return ['symbol']
     case 'depth': return ['symbol', 'limit']
     case 'trades.recent': return ['symbol', 'limit']
-    case 'trades.historical': return ['symbol', 'fromId', 'limit']
-    case 'trades.aggregate': return ['symbol', 'fromId', 'limit']
-    case 'klines': return ['symbol', 'interval', 'startTime', 'limit']
-    case 'uiKlines': return ['symbol', 'interval', 'startTime', 'limit']
+    case 'trades.historical': return ['symbol', 'limit', 'fromId']
+    case 'trades.aggregate': return ['symbol', 'limit', 'fromId']
+    case 'klines': return ['symbol', 'limit', 'interval', 'startTime']
+    case 'uiKlines': return ['symbol', 'limit', 'interval', 'startTime']
     case 'avgPrice': return ['symbol']
     case 'ticker.24hr': return ['symbol']
     case 'ticker.tradingDay': return ['symbol']
@@ -79,19 +79,19 @@ export const getParamsList = (method) => {
     case 'session.logon': return []
     case 'session.status': return []
     case 'session.logout': return []
-    case 'order.test': return ['symbol', 'side', 'type', 'timeInForce', 'price', 'quantity']
-    case 'order.place': return ['symbol', 'side', 'type', 'price', 'quantity', 'timeInForce']
+    case 'order.test': return ['symbol', 'side', 'type', 'timeInForce', 'quantity', 'price']
+    case 'order.place': return ['symbol', 'side', 'type', 'timeInForce', 'quantity', 'price']
     case 'order.status': return ['symbol', 'orderId']
     case 'order.cancel': return ['symbol', 'origClientOrderId']
-    case 'order.cancelReplace': return ['symbol', 'cancelReplaceMode', 'cancelOrigClientOrderId', 'side', 'type', 'timeInForce', 'price', 'quantity']
+    case 'order.cancelReplace': return ['symbol', 'side', 'type', 'timeInForce', 'quantity', 'price', 'cancelReplaceMode', 'cancelOrigClientOrderId']
     case 'openOrders.status': return ['symbol']
     case 'openOrders.cancelAll': return ['symbol']
-    case 'orderList.place': return ['symbol', 'side', 'price', 'quantity', 'stopPrice', 'stopLimitPrice', 'stopLimitTimeInForce', 'newOrderRespType']
+    case 'orderList.place': return ['symbol', 'side', 'quantity', 'price', 'stopPrice', 'stopLimitPrice', 'stopLimitTimeInForce', 'newOrderRespType']
     case 'orderList.status': return ['origClientOrderId']
     case 'orderList.cancel': return ['symbol', 'orderListId']
     case 'openOrderLists.status': return []
-    case 'sor.order.place': return ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price']
-    case 'sor.order.test': return ['symbol', 'side', 'type', 'quantity', 'timeInForce', 'price']
+    // case 'sor.order.place': return ['symbol', 'side', 'type', 'timeInForce', 'quantity', 'price']
+    // case 'sor.order.test': return ['symbol', 'side', 'type', 'timeInForce', 'quantity', 'price']
     case 'account.status': return []
     case 'account.commission': return ['symbol']
     case 'account.rateLimits.orders': return []
