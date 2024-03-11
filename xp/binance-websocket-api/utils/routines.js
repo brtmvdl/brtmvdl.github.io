@@ -24,7 +24,7 @@ export class Routines extends EventTarget {
   }
 
   onDownload(messages) {
-    const message = new MessageModel('download', { input: { messages: messages.filter((m) => m.method !== 'download') } })
+    const message = new MessageModel('download', { input: { messages: messages.filter((m) => m.method !== 'download').map(m => m.asJSON()) } })
     message.setSocket(false)
     this.dispatchMessage(message)
   }
