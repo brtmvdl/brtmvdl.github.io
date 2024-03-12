@@ -217,6 +217,13 @@ export const experiences = [
     'tags': ['game'],
   },
   {
+    'id': 'vestibular',
+    'title': 'vestibular',
+    'subtitle': '',
+    'datetime': '2024-03-12',
+    'tags': [],
+  },
+  {
     'id': 'projects',
     'title': 'Projects',
     'subtitle': '',
