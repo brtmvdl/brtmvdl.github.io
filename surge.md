@@ -24,7 +24,7 @@ https://debian-brtmvdl.surge.sh
 
 https://youchat-brtmvdl.surge.sh
 
-https://vestibular-brtmvdl.surge.sh
+<!-- https://vestibular-brtmvdl.surge.sh -->
 
 https://study-brtmvdl.surge.sh
 
