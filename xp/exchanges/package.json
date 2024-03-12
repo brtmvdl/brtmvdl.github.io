@@ -1,0 +1,8 @@
+{
+  "name": "frontend-sample",
+  "version": "2023.11.04",
+  "license": "MIT",
+  "dependencies": {
+    "@brtmvdl/frontend": "^1.0.11"
+  }
+}
