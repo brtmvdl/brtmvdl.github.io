@@ -28,6 +28,13 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
+    'id': 'discord-websocket-api',
+    'title': 'Discord WS API',
+    'subtitle': '',
+    'datetime': '2024-03-14',
+    'tags': [],
+  },
+  {
     'id': 'binance-rest-api',
     'title': 'Binance Rest API',
     'subtitle': '',
