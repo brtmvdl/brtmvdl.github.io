@@ -1,3 +1,5 @@
+import { HTML } from '@brtmvdl/frontend'
+import { MessageModel } from '../../models/messages.model.js'
 import { CardHeaderHTML } from '../card-header.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
 import { CardBodyHTML } from '../card-body.html.js'
@@ -5,16 +7,16 @@ import { CardHTML } from '../card.html.js'
 import { getDateNow } from '../../utils/datetime.js'
 
 export class MessageCardHTML extends CardHTML {
-  data = null
+  message = null
 
-  constructor(data) {
+  constructor(message = new MessageModel()) {
     super()
-    this.data = data
+    this.message = message
   }
 
   onCreate() {
     super.onCreate()
-    this.setAttr('id', this.data.id)
+    this.setAttr('id', this.message.id)
     this.append(this.getHeaderHTML())
     this.append(this.getBodyHTML())
     this.append(this.getFooterHTML())
@@ -22,13 +24,13 @@ export class MessageCardHTML extends CardHTML {
 
   getHeaderHTML() {
     const header = new CardHeaderHTML()
-    header.setText(this.data.method)
+    header.setText(this.message.name)
     return header
   }
 
   getBodyHTML() {
     const body = new CardBodyHTML()
-    body.setText(JSON.stringify(this.data))
+    body.setText(JSON.stringify(this.message))
     return body
   }
 
@@ -40,10 +42,48 @@ export class MessageCardHTML extends CardHTML {
 
 }
 
-export class logMessage extends MessageCardHTML { }
+export class NoBodyMessage extends MessageCardHTML {
+  getBodyHTML() { return new HTML() }
+}
 
-export class openMessage extends MessageCardHTML { }
+export class SocketMessage extends NoBodyMessage { }
 
-export class closeMessage extends MessageCardHTML { }
+export class openMessage extends SocketMessage { }
 
-export class errorMessage extends MessageCardHTML { }
+export class closeMessage extends SocketMessage { }
+
+export class errorMessage extends SocketMessage { }
+
+export class HeartbeatInputMessage extends SocketMessage {
+  getHeaderHTML() {
+    const header = new CardHeaderHTML()
+    header.setText('Heartbeat')
+    return header
+  }
+}
+
+export class HeartbeatOutputMessage extends HeartbeatInputMessage {
+  getBodyHTML() {
+    const body = new CardBodyHTML()
+    body.setText(`Heartbeat Interval: ${this.message.data.heartbeat_interval}`)
+    return body
+  }
+}
+
+export class SimpleHeaderMessage extends NoBodyMessage {
+  header = 'simple header'
+
+  getHeaderHTML() {
+    const header = new CardHeaderHTML()
+    header.setText(this.header)
+    return header
+  }
+}
+
+export class HeartbeatACKMessage extends SimpleHeaderMessage {
+  header = 'Heartbeat ACK'
+}
+
+export class IdentifyMessage extends SimpleHeaderMessage {
+  header = 'Identify'
+}

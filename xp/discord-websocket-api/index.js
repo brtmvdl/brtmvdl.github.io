@@ -94,8 +94,8 @@ export class Page extends HTML {
   }
 
   addMessage(message = new MessageModel()) {
-    console.log('message', { message })
     this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
   }
+
 }

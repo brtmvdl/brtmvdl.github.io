@@ -1,5 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
-
+import { MessageModel } from '../models/messages.model.js'
 import * as messages from './messages/index.js'
 
 export class MessagesHTML extends HTML {
@@ -14,16 +14,36 @@ export class MessagesHTML extends HTML {
   }
 
   onMessage({ value } = {}) {
+    console.log('onMessage', { value })
+
     this.prepend(this.getMessageHTML(value))
   }
 
-  getMessageHTML(data) {
-    switch (data.method) {
-      case 'log': return new messages.logMessage(data)
-      case 'open': return new messages.openMessage(data)
-      case 'close': return new messages.closeMessage(data)
-      case 'error': return new messages.errorMessage(data)
+  getMessageHTML(message = new MessageModel()) {
+    if (message.side == 'socket') return this.getSocketSideMessage(message)
+
+    switch (message.opcode) {
+      case 0: return this.getMessageByName(message)
+      case 1: return new messages.HeartbeatInputMessage(message)
+      case 2: return new messages.IdentifyMessage(message)
+      case 10: return new messages.HeartbeatOutputMessage(message)
+      case 11: return new messages.HeartbeatACKMessage(message)
     }
-    return new HTML()
+
+    return new messages.MessageCardHTML()
+  }
+
+  getSocketSideMessage(message = new MessageModel()) {
+    switch (message.name) {
+      case 'open': return new messages.openMessage(message)
+      case 'close': return new messages.closeMessage(message)
+      case 'error': return new messages.errorMessage(message)
+    }
+
+    return new messages.MessageCardHTML()
+  }
+
+  getMessageByName(message) {
+    return new messages.MessageCardHTML()
   }
 }
