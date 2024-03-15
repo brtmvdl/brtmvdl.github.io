@@ -2,42 +2,32 @@ import { JSONableModel } from './jsonable.model.js'
 
 export class MessageModel extends JSONableModel {
   id = Date.now()
-  method = ''
-  input = null
   side = null
-  output = null
-  socket = false
+  opcode = null
+  data = {}
+  sequence_number = 0
+  name = ''
 
-  constructor(method, { input = {}, side = 'none', output = {}, socket = true } = {}) {
+  constructor(opcode, { side = 'none', data = {}, sequence_number = 0, name = '' } = {}) {
     super()
 
-    this.method = method
-    this.input = input
+    this.opcode = opcode
     this.side = side
-    this.output = output
-    this.socket = socket
+    this.data = data
+    this.sequence_number = sequence_number
+    this.name = name
   }
 
-  setSocket(socket = true) {
-    this.socket = socket
-  }
-
-  getSocket() {
-    return this.socket
+  maySocket() {
+    return true
   }
 
   toJSON() {
-    const { id, method, input } = this
-    return { id, method, params: input }
+    const { opcode, data, sequence_number, name } = this
+    return { op: opcode, d: data, s: sequence_number, t: name }
   }
 
   toString() {
     return JSON.stringify(this.toJSON())
   }
-
-  asJSON() {
-    const { id, method, side, input, output } = this
-    return { id, method, side, input, output }
-  }
-
 }

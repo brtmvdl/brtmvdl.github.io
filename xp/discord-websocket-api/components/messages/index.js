@@ -2,6 +2,7 @@ import { CardHeaderHTML } from '../card-header.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
 import { CardBodyHTML } from '../card-body.html.js'
 import { CardHTML } from '../card.html.js'
+import { getDateNow } from '../../utils/datetime.js'
 
 export class MessageCardHTML extends CardHTML {
   data = null
@@ -21,19 +22,28 @@ export class MessageCardHTML extends CardHTML {
 
   getHeaderHTML() {
     const header = new CardHeaderHTML()
-    header.setText('header')
+    header.setText(this.data.method)
     return header
   }
 
   getBodyHTML() {
     const body = new CardBodyHTML()
-    body.setText('body')
+    body.setText(JSON.stringify(this.data))
     return body
   }
 
   getFooterHTML() {
     const footer = new CardFooterHTML()
-    footer.setText('footer')
+    footer.setText(getDateNow())
     return footer
   }
+
 }
+
+export class logMessage extends MessageCardHTML { }
+
+export class openMessage extends MessageCardHTML { }
+
+export class closeMessage extends MessageCardHTML { }
+
+export class errorMessage extends MessageCardHTML { }

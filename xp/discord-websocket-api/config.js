@@ -1,7 +1,5 @@
 // 
 
-export const apiKey = ''
+export const discordToken = ''
 
-export const secretKey = ''
-
-export const url = 'wss://ws-api.binance.com/ws-api/v3'
+export const url = 'wss://gateway.discord.gg/?v=10&encoding=json'

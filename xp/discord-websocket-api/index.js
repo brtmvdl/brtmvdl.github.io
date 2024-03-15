@@ -1,15 +1,12 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessageModel } from './models/messages.model.js'
-import { getRoutinesList } from './utils/routines.js'
-import { Routines } from './utils/routines.js'
 import * as config from './config.js'
 
 export class Page extends HTML {
   state = {
     socket: this.getFrontWebSocket(),
     messages: [],
-    routines: new Routines(),
   }
 
   children = {
@@ -24,7 +21,6 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setRoutinesEvents()
     this.setSocketEvents()
     this.setStyles()
     this.append(this.getTopBar())
@@ -40,10 +36,6 @@ export class Page extends HTML {
     flex.append(this.getFormHTML())
     flex.append(this.getMessagesHTML())
     return flex
-  }
-
-  setRoutinesEvents() {
-    this.state.routines.addEventListener('message', ({ value }) => this.sendMessage(value))
   }
 
   setSocketEvents() {
@@ -92,18 +84,14 @@ export class Page extends HTML {
     return this.children.form
   }
 
-  onFormHtmlSubmit({ value: { method, input } } = {}) {
-    if (getRoutinesList().indexOf(method) === -1) {
-      const message = new MessageModel(method, { input, side: 'input' })
-      this.sendMessage(message)
-    } else {
-      this.state.routines.run(method, { input, messages: this.state.messages })
-    }
+  onFormHtmlSubmit({ value: { opcode, data } } = {}) {
+    const message = new MessageModel(opcode, { data, side: 'input' })
+    this.sendMessage(message)
   }
 
   sendMessage(message = new MessageModel()) {
     this.addMessage(message)
-    if (message.getSocket()) {
+    if (message.maySocket()) {
       this.state.socket.send(message.toString())
     }
   }
