@@ -15,5 +15,9 @@ class WebSocketEvent {
 }
 
 export const getOpCodeList = () => ({
+  'Heartbeat': new WebSocketEvent(1),
   'Identify': new WebSocketEvent(2, ['token', 'properties', 'intents']),
+  'Presence Update': new WebSocketEvent(3),
+  'Voice State Update': new WebSocketEvent(4),
+  'Resume': new WebSocketEvent(6),
 })

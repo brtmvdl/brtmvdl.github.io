@@ -5,10 +5,10 @@ export class MessageModel extends JSONableModel {
   side = null
   opcode = null
   data = {}
-  sequence_number = 0
   name = ''
+  sequence_number = 0
 
-  constructor(opcode, { side = 'none', data = {}, sequence_number = 0, name = '' } = {}) {
+  constructor(side, opcode, data, name = null, sequence_number = null) {
     super()
 
     this.opcode = opcode
@@ -30,4 +30,10 @@ export class MessageModel extends JSONableModel {
   toString() {
     return JSON.stringify(this.toJSON())
   }
+
+  asJSON() {
+    const { side, opcode, data, name, sequence_number } = this
+    return { side, opcode, data, name, sequence_number }
+  }
+
 }

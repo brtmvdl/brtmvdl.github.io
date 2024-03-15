@@ -32,7 +32,7 @@ export class FormHTML extends HTML {
 
   onEventSelectChange() {
     this.children.params.clear()
-    getOpCodeList()[this.getEventValue()].params.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    getOpCodeList()[this.children.event.getValue()].params.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -52,20 +52,12 @@ export class FormHTML extends HTML {
     this.dispatchEvent('submit', { opcode, data })
   }
 
-  getEventOpCode() {
-    return null
+  getEventOpCode(event = this.children.event.getValue()) {
+    return getOpCodeList()[event].opcode
   }
 
-  getEventData() {
-    return null
-  }
-
-  getEventValue() {
-    return this.children.event.getValue()
-  }
-
-  getParamsValues(method = '') {
-    const values = getEventsList(method).map((input) => ([input, this.children.inputs.getValue(input)]))
+  getEventData(event = this.children.event.getValue()) {
+    const values = Array.from(getOpCodeList()[event].params).map((input) => ([input, this.children.inputs.getValue(input)]))
     return Array.from(values).reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
   }
 }

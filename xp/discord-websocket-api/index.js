@@ -53,27 +53,20 @@ export class Page extends HTML {
   }
 
   onFrontSocketOpen(data) {
-    this.addMessage(new MessageModel('open'))
+    this.addMessage(new MessageModel('socket', -1, null, 'open'))
   }
 
-  onFrontSocketMessage({ data } = {}) {
-    this.addMessage(this.getMessageInstance(JSON.parse(data)))
-  }
-
-  getMessageInstance(data) {
-    const error = data.status !== 200
-    const method = this.state.messages.find(({ id }) => id === data.id)?.method
-    const input = error ? data.error : data.result
-    const side = error ? 'error' : 'output'
-    return new MessageModel(method, { input, side, output: data })
+  onFrontSocketMessage(ev) {
+    const { op: opcode, d: data, s, t: name } = JSON.parse(ev.data)
+    this.addMessage(new MessageModel('output', opcode, data, name, s))
   }
 
   onFrontSocketError(data) {
-    this.addMessage(new MessageModel('error'))
+    this.addMessage(new MessageModel('socket', -1, null, 'error'))
   }
 
   onFrontSocketClose(input) {
-    this.addMessage(new MessageModel('close', { input }))
+    this.addMessage(new MessageModel('socket', -1, null, 'close'))
     this.state.socket = this.getFrontWebSocket()
     this.setSocketEvents()
   }
@@ -85,7 +78,7 @@ export class Page extends HTML {
   }
 
   onFormHtmlSubmit({ value: { opcode, data } } = {}) {
-    const message = new MessageModel(opcode, { data, side: 'input' })
+    const message = new MessageModel('input', opcode, data)
     this.sendMessage(message)
   }
 
@@ -101,6 +94,7 @@ export class Page extends HTML {
   }
 
   addMessage(message = new MessageModel()) {
+    console.log('message', { message })
     this.state.messages.push(message)
     this.children.messages.dispatchEvent('message', message)
   }
