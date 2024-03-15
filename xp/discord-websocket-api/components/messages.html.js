@@ -13,7 +13,7 @@ export class MessagesHTML extends HTML {
     this.on('message', (data) => this.onMessage(data))
   }
 
-  onMessage({ value } = {}) {
+  onMessage({ value = new MessageModel() } = {}) {
     console.log('onMessage', { value })
 
     this.prepend(this.getMessageHTML(value))
