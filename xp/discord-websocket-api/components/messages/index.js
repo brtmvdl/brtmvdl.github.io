@@ -87,3 +87,23 @@ export class HeartbeatACKMessage extends SimpleHeaderMessage {
 export class IdentifyMessage extends SimpleHeaderMessage {
   header = 'Identify'
 }
+
+export class GuildCreateMessage extends SimpleHeaderMessage {
+  header = 'GUILD_CREATE'
+}
+
+export class ReadyMessage extends SimpleHeaderMessage {
+  header = 'READY'
+}
+
+export class MessageCreateMessage extends SimpleHeaderMessage {
+  header = 'MESSAGE_CREATE'
+}
+
+export class VoiceStateUpdateMessage extends SimpleHeaderMessage {
+  header = 'VOICE_STATE_UPDATE'
+}
+
+export class TypingStartMessage extends SimpleHeaderMessage {
+  header = 'TYPING_START'
+}

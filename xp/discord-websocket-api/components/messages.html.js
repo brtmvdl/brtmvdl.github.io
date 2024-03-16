@@ -43,7 +43,15 @@ export class MessagesHTML extends HTML {
     return new messages.MessageCardHTML()
   }
 
-  getMessageByName(message) {
+  getMessageByName(message = new MessageModel()) {
+    switch (message.name) {
+      case 'GUILD_CREATE': return new messages.GuildCreateMessage(message)
+      case 'READY': return new messages.ReadyMessage(message)
+      case 'VOICE_STATE_UPDATE': return new messages.VoiceStateUpdateMessage(message)
+      case 'TYPING_START': return new messages.TypingStartMessage(message)
+      case 'MESSAGE_CREATE': return new messages.MessageCreateMessage(message)
+    }
+
     return new messages.MessageCardHTML()
   }
 }

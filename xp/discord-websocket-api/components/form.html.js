@@ -32,7 +32,7 @@ export class FormHTML extends HTML {
 
   onEventSelectChange() {
     this.children.params.clear()
-    getOpCodeList()[this.children.event.getValue()].params.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    getOpCodeList()[this.children.event.getValue()]?.params.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
