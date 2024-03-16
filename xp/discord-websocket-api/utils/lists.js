@@ -1,3 +1,4 @@
+// 
 
 export const getEventsList = () => Array.from([
   'Discord WebSocket API',
@@ -20,4 +21,5 @@ export const getOpCodeList = () => ({
   'Presence Update': new WebSocketEvent(3),
   'Voice State Update': new WebSocketEvent(4),
   'Resume': new WebSocketEvent(6),
+  'Request Guild Members': new WebSocketEvent(8),
 })
