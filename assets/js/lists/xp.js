@@ -91,6 +91,13 @@ export const experiences = [
     'tags': ['economy'],
   },
   {
+    'id': 'foxbit-websocket-api',
+    'title': 'Foxbit WebSocket API',
+    'subtitle': '',
+    'datetime': '2024-03-18',
+    'tags': ['economy'],
+  },
+  {
     'id': 'coins',
     'title': 'Coins',
     'subtitle': '',

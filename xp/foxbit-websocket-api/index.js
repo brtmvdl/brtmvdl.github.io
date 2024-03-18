@@ -1,15 +1,15 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
-import { MessageModel } from './models/messages.model.js'
-import { getRoutinesList } from './utils/routines.js'
-import { Routines } from './utils/routines.js'
+import { SocketMessageModel } from './models/socket.message.model.js'
+import { MessageModel } from './models/message.model.js'
+
 import * as config from './utils/config.js'
 
 export class Page extends HTML {
   state = {
     socket: this.getFrontWebSocket(),
     messages: [],
-    routines: new Routines(),
+    sequenceNumber: 0,
   }
 
   children = {
@@ -24,7 +24,6 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setRoutinesEvents()
     this.setSocketEvents()
     this.setStyles()
     this.append(this.getTopBar())
@@ -40,10 +39,6 @@ export class Page extends HTML {
     flex.append(this.getFormHTML())
     flex.append(this.getMessagesHTML())
     return flex
-  }
-
-  setRoutinesEvents() {
-    this.state.routines.addEventListener('message', ({ value }) => this.sendMessage(value))
   }
 
   setSocketEvents() {
@@ -64,16 +59,8 @@ export class Page extends HTML {
     this.addMessage(new MessageModel('open'))
   }
 
-  onFrontSocketMessage({ data } = {}) {
-    this.addMessage(this.getMessageInstance(JSON.parse(data)))
-  }
-
-  getMessageInstance(data) {
-    const error = data.status !== 200
-    const method = this.state.messages.find(({ id }) => id === data.id)?.method
-    const input = error ? data.error : data.result
-    const side = error ? 'error' : 'output'
-    return new MessageModel(method, { input, side, output: data })
+  onFrontSocketMessage(data) {
+    console.log('onFrontSocketMessage', { data })
   }
 
   onFrontSocketError(data) {
@@ -88,22 +75,17 @@ export class Page extends HTML {
 
   getFormHTML() {
     this.children.form.on('submit', (data) => this.onFormHtmlSubmit(data))
-    this.children.form.on('save', (data) => this.children.form.dispatchEvent('messages', this.state.messages))
     return this.children.form
   }
 
-  onFormHtmlSubmit({ value: { method, input } } = {}) {
-    if (getRoutinesList().indexOf(method) === -1) {
-      const message = new MessageModel(method, { input, side: 'input' })
-      this.sendMessage(message)
-    } else {
-      this.state.routines.run(method, { input, messages: this.state.messages })
-    }
+  onFormHtmlSubmit({ value: { Endpoint, Payload } } = {}) {
+    this.sendMessage(new SocketMessageModel(Endpoint, Payload))
   }
 
   sendMessage(message = new MessageModel()) {
     this.addMessage(message)
-    if (message.getSocket()) {
+    if (message.Socket) {
+      message.SequenceNumber = ++this.state.sequenceNumber
       this.state.socket.send(message.toString())
     }
   }
