@@ -2,7 +2,7 @@ import { JSONableModel } from './jsonable.model.js'
 
 export class MessageModel extends JSONableModel {
   Id = Date.now()
-  Socket = false
+  Side = 'none'
 
   MessageType = null
   SequenceNumber = null

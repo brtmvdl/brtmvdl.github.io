@@ -30,7 +30,7 @@ export class MessageCardHTML extends CardHTML {
 
   getBodyHTML() {
     const body = new CardBodyHTML()
-    body.setText('body')
+    body.setText(JSON.stringify(this.data))
     return body
   }
 
@@ -79,3 +79,33 @@ export class logMessage extends MessageCardHTML { }
 export class openMessage extends emptyMessage { }
 
 export class closeMessage extends emptyMessage { }
+
+export class subscribeLevel1Message extends MessageCardHTML {
+  getBodyHTML() {
+    const { OMSId, InstrumentId, MarketId, BestBid, BestOffer, LastTradedPx, LastTradedQty, LastTradeTime, SessionOpen, SessionHigh, SessionLow, SessionClose, Volume, CurrentDayVolume, CurrentDayNumTrades, CurrentDayPxChange, Rolling24HrVolume, Rolling24NumTrades, Rolling24HrPxChange, TimeStamp, } = this.data.Payload
+    const body = new CardBodyHTML()
+    body.append(new TextHTML(`OMSId: ${OMSId}`))
+    body.append(new TextHTML(`InstrumentId: ${InstrumentId}`))
+    body.append(new TextHTML(`MarketId: ${MarketId}`))
+    body.append(new TextHTML(`BestBid: ${BestBid}`))
+    body.append(new TextHTML(`BestOffer: ${BestOffer}`))
+    body.append(new TextHTML(`LastTradedPx: ${LastTradedPx}`))
+    body.append(new TextHTML(`LastTradedQty: ${LastTradedQty}`))
+    body.append(new TextHTML(`LastTradeTime: ${LastTradeTime}`))
+    body.append(new TextHTML(`SessionOpen: ${SessionOpen}`))
+    body.append(new TextHTML(`SessionHigh: ${SessionHigh}`))
+    body.append(new TextHTML(`SessionLow: ${SessionLow}`))
+    body.append(new TextHTML(`SessionClose: ${SessionClose}`))
+    body.append(new TextHTML(`Volume: ${Volume}`))
+    body.append(new TextHTML(`CurrentDayVolume: ${CurrentDayVolume}`))
+    body.append(new TextHTML(`CurrentDayNumTrades: ${CurrentDayNumTrades}`))
+    body.append(new TextHTML(`CurrentDayPxChange: ${CurrentDayPxChange}`))
+    body.append(new TextHTML(`Rolling24HrVolume: ${Rolling24HrVolume}`))
+    body.append(new TextHTML(`Rolling24NumTrades: ${Rolling24NumTrades}`))
+    body.append(new TextHTML(`Rolling24HrPxChange: ${Rolling24HrPxChange}`))
+    body.append(new TextHTML(`TimeStamp: ${TimeStamp}`, str.datetime2str(TimeStamp)))
+    return body
+  }
+}
+
+export class unsubscribeLevel1Message extends MessageCardHTML { }

@@ -23,6 +23,8 @@ export class MessagesHTML extends HTML {
       case 'log': return new messages.logMessage(data)
       case 'open': return new messages.openMessage(data)
       case 'close': return new messages.closeMessage(data)
+      case 'SubscribeLevel1': return new messages.subscribeLevel1Message(data)
+      case 'UnsubscribeLevel1': return new messages.unsubscribeLevel1Message(data)
     }
     return new HTML()
   }

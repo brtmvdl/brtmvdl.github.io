@@ -1,7 +1,7 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { SocketMessageModel } from './models/socket.message.model.js'
-import { MessageModel } from './models/message.model.js'
+import { InputMessageModel, MessageModel, OutputMessageModel } from './models/index.js'
 
 import * as config from './utils/config.js'
 
@@ -56,19 +56,23 @@ export class Page extends HTML {
   }
 
   onFrontSocketOpen(data) {
-    this.addMessage(new MessageModel('open'))
+    this.addMessage(new SocketMessageModel('open'))
   }
 
-  onFrontSocketMessage(data) {
-    console.log('onFrontSocketMessage', { data })
+  onFrontSocketMessage({ data } = {}) {
+    this.addMessage(this.getSocketMessageModel(JSON.parse(data)))
+  }
+
+  getSocketMessageModel({ m: MessageType, i: SequenceNumber, n: Endpoint, o: Payload } = {}) {
+    return new OutputMessageModel(Endpoint, JSON.parse(Payload), MessageType, SequenceNumber)
   }
 
   onFrontSocketError(data) {
-    this.addMessage(new MessageModel('error'))
+    this.addMessage(new SocketMessageModel('error'))
   }
 
   onFrontSocketClose(input) {
-    this.addMessage(new MessageModel('close', { input }))
+    this.addMessage(new SocketMessageModel('close', { input }))
     this.state.socket = this.getFrontWebSocket()
     this.setSocketEvents()
   }
@@ -79,12 +83,12 @@ export class Page extends HTML {
   }
 
   onFormHtmlSubmit({ value: { Endpoint, Payload } } = {}) {
-    this.sendMessage(new SocketMessageModel(Endpoint, Payload))
+    this.sendMessage(new InputMessageModel(Endpoint, Payload))
   }
 
   sendMessage(message = new MessageModel()) {
     this.addMessage(message)
-    if (message.Socket) {
+    if (message.Side == 'input') {
       message.SequenceNumber = ++this.state.sequenceNumber
       this.state.socket.send(message.toString())
     }
