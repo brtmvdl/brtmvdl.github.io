@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { ArcballControls } from 'three/addons/controls/ArcballControls.js';
+import { ArcballControls } from 'three/addons/controls/ArcballControls.js'
 import { planesInCube } from './constants.js'
 
 const __ = {
@@ -64,8 +64,8 @@ Array.from(Array(3)).map((_x, x) => {
       )
 
       square.userData['position'] = [x, y, z].map((ix) => (ix - 1) * 1.1)
+      square.userData['xyz'] = { x, y, z }
       square.position.set(...[x, y, z].map((ix) => (ix - 1) * 1.1))
-
       cube.add(square)
     })
   })
@@ -86,11 +86,7 @@ const moves = {
   'front': () => console.log('front'),
   'back': () => console.log('back'),
   'left': () => console.log('left'),
-  'right': () => {
-    Array.from(cube.children).filter((_, ix) => ix === 0).map((square, ix) => {
-      console.log({ square, ix })
-    })
-  },
+  'right': () => console.log('right'),
   'up': () => console.log('up'),
   'down': () => console.log('down'),
   // reverses
