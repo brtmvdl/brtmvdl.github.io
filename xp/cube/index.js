@@ -1,17 +1,16 @@
 import * as THREE from 'three'
-import { ArcballControls } from 'three/addons/controls/ArcballControls.js'
 import { planesInCube } from './constants.js'
 
 const __ = {
   getWidth: () => window.innerWidth,
   getHeight: () => window.innerHeight,
   getSide: () => THREE.DoubleSide,
-  // getPI: () => Math.PI / 2,
 }
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, __.getWidth() / __.getHeight(), 1e-1, 1e4)
-camera.position.set(+7.5, +7.5, +7.5)
+camera.position.set(+5.0, +5.0, +3.0)
+camera.lookAt(+0.0, +0.0, +0.0)
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(__.getWidth(), __.getHeight())
@@ -71,10 +70,7 @@ Array.from(Array(3)).map((_x, x) => {
   })
 })
 
-const controls = new ArcballControls(camera, renderer.domElement, scene)
-
 const animate = () => {
-  controls.update()
   renderer.render(scene, camera)
   requestAnimationFrame(animate)
 }
@@ -110,6 +106,4 @@ const keysFunctions = {
 window.addEventListener('keydown', ({ key, shiftKey }) => {
   const fn = (shiftKey ? '_' : '') + keysFunctions[key.toLocaleLowerCase()]
   moves[fn]?.()
-
-  if (key === 'Escape') controls.reset()
 })
