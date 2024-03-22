@@ -6,7 +6,7 @@ const __ = {
   getWidth: () => window.innerWidth,
   getHeight: () => window.innerHeight,
   getSide: () => THREE.DoubleSide,
-  getPI: () => Math.PI / 2,
+  // getPI: () => Math.PI / 2,
 }
 
 const scene = new THREE.Scene()
@@ -84,22 +84,22 @@ animate()
 const moves = {
   // normals
   'front': () => console.log('front'),
-  'back': () => { },
-  'left': () => { },
+  'back': () => console.log('back'),
+  'left': () => console.log('left'),
   'right': () => {
     Array.from(cube.children).filter((_, ix) => ix === 0).map((square, ix) => {
       console.log({ square, ix })
     })
   },
-  'up': () => { },
-  'down': () => { },
+  'up': () => console.log('up'),
+  'down': () => console.log('down'),
   // reverses
-  '_front': () => { },
-  '_back': () => console.log('back reverse'),
-  '_left': () => { },
-  '_right': () => { },
-  '_up': () => { },
-  '_down': () => { },
+  '_front': () => console.log('_front'),
+  '_back': () => console.log('_back'),
+  '_left': () => console.log('_left'),
+  '_right': () => console.log('_right'),
+  '_up': () => console.log('_up'),
+  '_down': () => console.log('_down'),
 }
 
 const keysFunctions = {
