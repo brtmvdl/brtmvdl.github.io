@@ -1,6 +1,8 @@
 import * as THREE from 'three'
 import { planesInCube } from './constants.js'
 
+import { fixDecimals } from '../../assets/js/utils/numbers.js'
+
 const __ = {
   getWidth: () => window.innerWidth,
   getHeight: () => window.innerHeight,
@@ -50,6 +52,8 @@ const createSquare = (...colors) => {
 const cube = new THREE.Group()
 scene.add(cube)
 
+const m = (n = 1) => fixDecimals(n * 1.1)
+
 Array.from(Array(3)).map((_x, x) => {
   Array.from(Array(3)).map((_y, y) => {
     Array.from(Array(3)).map((_z, z) => {
@@ -62,9 +66,9 @@ Array.from(Array(3)).map((_x, x) => {
         0xffff00,
       )
 
-      square.userData['position'] = [x, y, z].map((ix) => (ix - 1) * 1.1)
+      square.userData['position'] = [x, y, z].map((ix) => m(ix - 1))
       square.userData['xyz'] = { x, y, z }
-      square.position.set(...[x, y, z].map((ix) => (ix - 1) * 1.1))
+      square.position.set(...[x, y, z].map((ix) => m(ix - 1)))
       cube.add(square)
     })
   })
