@@ -35,6 +35,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'twitch-websocket-api',
+    'title': 'Twitch WS API',
+    'subtitle': '',
+    'datetime': '2024-04-04',
+    'tags': [],
+  },
+  {
     'id': 'binance-rest-api',
     'title': 'Binance Rest API',
     'subtitle': '',
