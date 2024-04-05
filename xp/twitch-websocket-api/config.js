@@ -1,9 +1,7 @@
+// 
 
-export const connections = {
-  public: {
-    url: 'wss://ws.bitget.com/v2/ws/public',
-  },
-  private: {
-    url: 'wss://ws.bitget.com/v2/ws/private'
-  },
-}
+export const url = ''
+
+export const client_id = ''
+
+export const client_secret = ''
