@@ -20,7 +20,7 @@
 <body>
   <script>
     window.fbAsyncInit = function () {
-      FB.init({ appId: '1132850457706291', cookie: true, xfbml: true, version: 'v18.0' });
+      FB.init({ appId: '1132850457706291', cookie: true, xfbml: true, version: 'v19.0' });
       FB.AppEvents.logPageView();
     };
 
@@ -38,10 +38,10 @@
     import { HTML, nButton, nH1 } from '@brtmvdl/frontend'
     import { Page } from './index.js'
 
-    window.fbAsyncInit = () => ([
-      FB.init({ appId: '1076664787000278', cookie: true, xfbml: true, version: 'v18.0' }),
-      FB.AppEvents.logPageView()
-    ])
+    // window.fbAsyncInit = () => ([
+      // FB.init({ appId: '1132850457706291', cookie: true, xfbml: true, version: 'v19.0' }),
+      // FB.AppEvents.logPageView()
+    // ])
 
     HTML.fromElement(document.body).append(new Page())
     HTML.fromId('app').setStyle('margin', '0rem')
