@@ -17,14 +17,11 @@ class TextHTML extends HTML {
 export class Page extends HTML {
   children = {
     title: new HTML(),
-    login_status_button: new nButton(),
-    login_button: new nButton(),
     responses: new HTML(),
   }
 
   onCreate() {
-    this.append(this.getLoginStatusButton())
-    this.append(this.getLoginButton())
+    this.append(this.getButtonsFlex())
     this.append(this.getResponses())
   }
 
@@ -33,24 +30,41 @@ export class Page extends HTML {
     return this.children.title
   }
 
-  getLoginStatusButton() {
-    this.children.login_status_button.setText('Get Login Status')
-    this.children.login_status_button.on('click', () => FB.getLoginStatus((resp) => this.onFacebookLoginStatus(resp)))
-    return this.children.login_status_button
+  getButtonsFlex() {
+    const html = new HTML()
+    html.append(this.getLoginButton())
+    html.append(this.getLogoutButton())
+    html.append(this.getLoginStatusButton())
+    html.append(this.getPublishStatusMessageButton())
+    return html
   }
 
-  onFacebookLoginStatus(resp) {
-    this.appendResponse('Get Login Status', resp)
+  getLoginStatusButton() {
+    const button = new nButton()
+    button.setText('Get Login Status')
+    button.on('click', () => FB.getLoginStatus((resp) => this.appendResponse('Get Login Status', resp)))
+    return button
   }
 
   getLoginButton() {
-    this.children.login_button.setText('Login')
-    this.children.login_button.on('click', () => FB.login((resp) => this.onFacebookLogin(resp)))
-    return this.children.login_button
+    const button = new nButton()
+    button.setText('Login')
+    button.on('click', () => FB.login((resp) => this.appendResponse('Login', resp)))
+    return button
   }
 
-  onFacebookLogin(resp) {
-    this.appendResponse('Login', resp)
+  getLogoutButton() {
+    const button = new nButton()
+    button.setText('Logout')
+    button.on('click', () => FB.logout((resp) => this.appendResponse('Logout', resp)))
+    return button
+  }
+
+  getPublishStatusMessageButton() {
+    const button = new nButton()
+    button.setText('Publish a status message')
+    button.on('click', () => FB.api('/me/feed', 'post', { message: 'Now is ' + (new Date()).toString() }, (resp) => this.appendResponse('Publish a status message', resp)))
+    return button
   }
 
   appendResponse(name, resp = {}) {
