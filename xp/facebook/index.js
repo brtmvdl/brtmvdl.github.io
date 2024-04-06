@@ -35,14 +35,26 @@ export class Page extends HTML {
 
   getLoginStatusButton() {
     this.children.login_status_button.setText('Get Login Status')
-    this.children.login_status_button.on('click', () => FB.getLoginStatus((resp) => this.children.responses.append(new TextHTML(JSON.stringify({ name: 'Get Login Status', resp })))))
+    this.children.login_status_button.on('click', () => FB.getLoginStatus((resp) => this.onFacebookLoginStatus(resp)))
     return this.children.login_status_button
+  }
+
+  onFacebookLoginStatus(resp) {
+    this.appendResponse('Get Login Status', resp)
   }
 
   getLoginButton() {
     this.children.login_button.setText('Login')
-    this.children.login_button.on('click', () => FB.login((resp) => this.children.responses.append(new TextHTML(JSON.stringify({ name: 'Login', resp })))))
+    this.children.login_button.on('click', () => FB.login((resp) => this.onFacebookLogin(resp)))
     return this.children.login_button
+  }
+
+  onFacebookLogin(resp) {
+    this.appendResponse('Login', resp)
+  }
+
+  appendResponse(name, resp = {}) {
+    this.children.responses.append(new TextHTML(JSON.stringify({ name, resp })))
   }
 
   getResponses() {
