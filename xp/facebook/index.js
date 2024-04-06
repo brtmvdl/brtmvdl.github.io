@@ -54,7 +54,9 @@ export class Page extends HTML {
   }
 
   appendResponse(name, resp = {}) {
-    this.children.responses.append(new TextHTML(JSON.stringify({ name, resp })))
+    const str = JSON.stringify({ name, resp }, null, 4)
+    const html = new TextHTML(str)
+    this.children.responses.append(html)
   }
 
   getResponses() {
