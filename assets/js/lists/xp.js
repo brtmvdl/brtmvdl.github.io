@@ -42,6 +42,13 @@ export const experiences = [
     'tags': [],
   },
   {
+    'id': 'twitch',
+    'title': 'Twitch API',
+    'subtitle': '',
+    'datetime': '2024-04-09',
+    'tags': [],
+  },
+  {
     'id': 'binance-rest-api',
     'title': 'Binance Rest API',
     'subtitle': '',
