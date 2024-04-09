@@ -50,6 +50,7 @@ export class Page extends HTML {
   onCreate() {
     this.append(new TitleComponent('Twitch API', 'https://dev.twitch.tv/docs/api/get-started/'))
     this.append(this.getButtonsFlex())
+    this.append(this.getNickInput())
     this.append(this.getChannelInput())
     this.append(this.getMessageInput())
     this.append(this.getSendButton())
@@ -76,18 +77,16 @@ export class Page extends HTML {
   }
 
   getSendPassMessageButton() {
-    const pass = this.state.access_token
-    return this.createSendMessageButton('send pass', () => `PASS oauth:${pass}`)
+    return this.createSendMessageButton('send pass', () => `PASS oauth:${this.state.access_token}`)
   }
 
   getSendNickMessageButton() {
-    const nick = this.children.nick.children.input.getValue()
-    return this.createSendMessageButton('send nick', () => `NICK ${nick}`)
+    return this.createSendMessageButton('send nick', () => `NICK ${this.children.nick.children.input.getValue()}`)
   }
 
   getNickInput() {
-    this.children.nick.children.label.setText('Nick')
-    this.children.nick.children.input.setPlaceholder('Nick')
+    this.children.nick.children.label.setText('nick')
+    this.children.nick.children.input.setPlaceholder('nick')
     return this.children.nick
   }
 
@@ -98,8 +97,8 @@ export class Page extends HTML {
   }
 
   getMessageInput() {
-    this.children.message.children.label.setText('Message')
-    this.children.message.children.input.setPlaceholder('Message')
+    this.children.message.children.label.setText('message')
+    this.children.message.children.input.setPlaceholder('message')
     return this.children.message
   }
 
@@ -130,4 +129,5 @@ export class Page extends HTML {
     console.log({ message })
     this.state.socket.send(message)
   }
+
 }
