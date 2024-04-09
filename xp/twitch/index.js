@@ -1,12 +1,10 @@
 import { HTML, nButton, nInputTextGroup } from '@brtmvdl/frontend'
 import { TitleComponent } from './components/title.js'
-import { FormComponent } from './components/form.js'
 
 export class Page extends HTML {
   children = {
     client_id: new nInputTextGroup(),
     access_token: new nInputTextGroup(),
-    form: new FormComponent(),
   }
 
   onCreate() {
