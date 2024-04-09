@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitch</title>
+  <meta name="google-adsense-account" content="ca-pub-8803365396237758">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758" crossorigin="anonymous"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@brtmvdl/frontend": "https://cdn.jsdelivr.net/npm/@brtmvdl/frontend@2.0.1/src/index.js"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module">
+    import { HTML, nButton, nH1 } from '@brtmvdl/frontend'
+    import { Page } from './index.js'
+
+    HTML.fromElement(document.body).append(new Page())
+    HTML.fromId('app').setStyle('margin', '0rem')
+
+</script>
+</body>
+
+</html>
