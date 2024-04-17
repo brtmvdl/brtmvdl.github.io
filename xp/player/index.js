@@ -20,6 +20,17 @@ scene.background = COLORS.YELLOW
 
 const pi = (n) => Math.PI * n
 
+const camera = new THREE.PerspectiveCamera(45, __.getAspect())
+camera.position.set(+80.0, +80.0, +80.0)
+
+const renderer = new THREE.WebGLRenderer({ precision: 'lowp' })
+renderer.setSize(__.getWidth(), __.getHeight())
+document.body.appendChild(renderer.domElement)
+
+document.body.style.margin = '0'
+
+//
+
 const plane = new THREE.Mesh(
   new THREE.PlaneGeometry(+100.0, +100.0),
   new THREE.MeshBasicMaterial({
@@ -30,14 +41,7 @@ const plane = new THREE.Mesh(
 plane.rotation.set(pi(0.5), pi(1), 0)
 scene.add(plane)
 
-const camera = new THREE.PerspectiveCamera(45, __.getAspect())
-camera.position.set(+80.0, +80.0, +80.0)
-
-const renderer = new THREE.WebGLRenderer({ precision: 'lowp' })
-renderer.setSize(__.getWidth(), __.getHeight())
-document.body.appendChild(renderer.domElement)
-
-document.body.style.margin = '0'
+//
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
