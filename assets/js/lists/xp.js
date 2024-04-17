@@ -175,6 +175,13 @@ export const experiences = [
     'tags': ['3D'],
   },
   {
+    'id': 'player',
+    'title': 'Player',
+    'subtitle': '',
+    'datetime': '2024-04-16',
+    'tags': ['3D'],
+  },
+  {
     'id': 'clock',
     'title': 'Clock',
     'subtitle': '',
