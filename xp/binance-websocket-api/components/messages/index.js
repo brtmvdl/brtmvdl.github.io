@@ -213,19 +213,7 @@ export class depthMessage extends MessageCardHTML {
   }
 }
 
-export class ChartMessageCardHTML extends MessageCardHTML {
-  getBubbleChart(data) {
-    const ctx = this.getContext()
-    new Chart(ctx, { type: 'bubble', data })
-    return HTML.fromElement(ctx)
-  }
-
-  getContext() {
-    return document.createElement('canvas')
-  }
-}
-
-export class tradesRecentMessage extends ChartMessageCardHTML {
+export class tradesRecentMessage extends MessageCardHTML {
   children = {
     button: new ButtonComponent(),
     chart: new HTML(),
@@ -257,7 +245,6 @@ export class tradesRecentMessage extends ChartMessageCardHTML {
   onCreateChartButtonClick() {
     const calc = (n, ix = 1, inc = 2) => n < inc ? ix : calc(n / inc, ix + 1)
     const result = Array.from(this.data.output.result).map((item, ix) => ({ x: item.time, y: item.price, r: calc(item.qty, 1, 10) }))
-    this.children.chart.append(this.getBubbleChart({ datasets: [{ data: result }] }))
   }
 
   getChartHTML() {

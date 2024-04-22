@@ -74,6 +74,6 @@ export class FormHTML extends HTML {
   }
 
   getSignatureValue(key, params) {
-    return sha256.hmac(key, params.map(([name, value]) => `${name}=${value}`).join('&'))
+    return sha256.hmac(key, params.map(([name, value]) => `${name}=${value}`).join('&')) // https://www.binance.com/en/support/faq/how-to-generate-an-ed25519-key-pair-to-send-api-requests-on-binance-6b9a63f1e3384cf48a2eedb82767a69a
   }
 }
