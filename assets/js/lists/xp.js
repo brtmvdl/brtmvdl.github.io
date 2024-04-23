@@ -147,22 +147,8 @@ export const experiences = [
     'tags': ['login'],
   },
   {
-    'id': 'google',
-    'title': 'Google',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['login'],
-  },
-  {
     'id': 'linkedin',
     'title': 'Linkedin',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['login'],
-  },
-  {
-    'id': 'youtube',
-    'title': 'Youtube',
     'subtitle': '',
     'datetime': '',
     'tags': ['login'],
