@@ -12,9 +12,9 @@ export const token_uri = 'https://oauth2.googleapis.com/token'
 
 export const auth_uri = 'https://accounts.google.com/o/oauth2/auth'
 
-export const client_id = '387615697147-eefdeuk5mgaadcrnap1c4dl7j1rqn0sg.apps.googleusercontent.com'
+export const client_id = ''
 
-export const client_secret = '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'
+export const client_secret = ''
 
 export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1/certs'
 
