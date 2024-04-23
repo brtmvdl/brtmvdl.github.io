@@ -1,4 +1,4 @@
-const redirect_uri =  'https://brtmvdl.github.io/pages/login/' // window.location.toString()
+const redirect_uri = 'https://brtmvdl.github.io/oauth/youtube/' // window.location.toString()
 
 export const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'
 
