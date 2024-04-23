@@ -9,13 +9,13 @@ export class Page extends HTML {
 
   getTitle() {
     const html = new HTML()
-    html.setTitle('title')
+    html.setText('title')
     return html
   }
 
   getButtons() {
     const html = new HTML()
-    html.setTitle('buttons')
+    html.setText('buttons')
     return html
   }
 }
