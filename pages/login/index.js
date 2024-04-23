@@ -6,6 +6,6 @@ const access_token = searchParams.get('access_token')
 
 console.log({ access_token })
 
-localStorage.setItem('youtube.token', access_token)
+localStorage.setItem('credentials.token', access_token)
 
 document.write(`access_token: ${access_token}`)
