@@ -1,17 +1,36 @@
 import { HTML, nInput, nButton } from '@brtmvdl/frontend'
 import { FormComponent } from '../../assets/js/components/form.component.js'
 import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
+import * as LOCAL from '../../assets/js/utils/local.js'
+import * as FLOW from '../../assets/js/utils/flow.js'
 
 export class Page extends HTML {
   children = {
     google_form: new FormComponent(),
   }
 
+  state = {
+    hash_params: new URLSearchParams(window.location.hash.substr('1')),
+  }
+
   onCreate() {
     super.onCreate()
-    this.append(this.getTitle())
-    this.append(this.getButtons())
-    this.append(this.getGoogleForm())
+    if (this.hasAccessToken()) {
+      LOCAL.set(['access_token'], this.getAccessToken())
+      FLOW.goTo('/?access_token=1')
+    } else {
+      this.append(this.getTitle())
+      this.append(this.getButtons())
+      this.append(this.getGoogleForm())
+    }
+  }
+
+  hasAccessToken() {
+    return this.state.hash_params.has('access_token')
+  }
+
+  getAccessToken() {
+    return this.state.hash_params.get('access_token')
   }
 
   getTitle() {
@@ -51,5 +70,4 @@ export class Page extends HTML {
 
     return this.children.google_form
   }
-
 }
