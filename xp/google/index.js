@@ -19,28 +19,10 @@ const title = new nH1()
 title.setText('Google Login')
 app.append(title)
 
-const form = new nForm()
-form.setAttr('method', 'GET')
-form.setAttr('action', GOOGLE.auth_uri)
-app.append(form)
-
-Object.keys(GOOGLE).filter((key) => (typeof GOOGLE[key]) === 'string').map((key) => {
-  const input = new nInput()
-  input.setAttr('type', 'hidden')
-  input.setAttr('name', key)
-  input.setValue(GOOGLE[key])
-  form.append(input)
-})
-
 const link = new nLink()
 link.href(GOOGLE.redirect_uri)
 link.setText('Login')
 app.append(link)
-
-const btnLogin = new nButton()
-btnLogin.setText('login')
-btnLogin.on('click', () => form.submit())
-app.append(btnLogin)
 
 const btnErase = new nButton()
 btnErase.setText('erase')
