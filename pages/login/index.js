@@ -1,4 +1,4 @@
-import { HTML, nInput, nButton } from '@brtmvdl/frontend'
+import { HTML, nH1, nInput, nButton } from '@brtmvdl/frontend'
 import { FormComponent } from '../../assets/js/components/form.component.js'
 import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
 import * as LOCAL from '../../assets/js/utils/local.js'
@@ -34,9 +34,9 @@ export class Page extends HTML {
   }
 
   getTitle() {
-    const html = new HTML()
-    html.setText('login')
-    return html
+    const h1 = new nH1()
+    h1.setText('login')
+    return h1
   }
 
   getButtons() {
@@ -46,13 +46,17 @@ export class Page extends HTML {
   }
 
   getGoogleLoginButton() {
-    return this.createButton('google login', () => this.children.google_form.submit())
+    return this.createButton('google', () => this.children.google_form.submit())
   }
 
   createButton(text, onclick = (() => { })) {
     const button = new nButton()
     button.setText(text)
     button.on('click', () => onclick())
+    button.setStyle('border', 'none')
+    button.setStyle('padding', '1rem')
+    button.setStyle('color', '#ffffff')
+    button.setStyle('background-color', '#000000')
     return button
   }
 
