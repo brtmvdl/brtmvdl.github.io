@@ -1,4 +1,4 @@
-import { HTML, nButton } from '@brtmvdl/frontend'
+import { HTML, nH1, nButton } from '@brtmvdl/frontend'
 import * as LOCAL from '../../assets/js/utils/local.js'
 
 export class Page extends HTML {
@@ -9,9 +9,9 @@ export class Page extends HTML {
   }
 
   getTitle() {
-    const html = new HTML()
-    html.setText('Youtube')
-    return html
+    const h1 = new nH1()
+    h1.setText('Youtube')
+    return h1
   }
 
   getButtons() {
@@ -25,6 +25,10 @@ export class Page extends HTML {
     const button = new nButton()
     button.setText(text)
     button.on('click', () => onclick())
+    button.setStyle('border', 'none')
+    button.setStyle('padding', '1rem')
+    button.setStyle('color', '#ffffff')
+    button.setStyle('background-color', '#000000')
     return button
   }
 
@@ -47,9 +51,7 @@ export class Page extends HTML {
   requestAPI(method, pathname, body = null) {
     const url = `https://www.googleapis.com/youtube/v3${pathname}`
     const headers = { Authorization: `Bearer ${LOCAL.get(['access_token'])}` }
-    fetch(url, { body, headers, method })
+    return fetch(url, { body, headers, method })
       .then((res) => res.json())
-      .then((json) => console.log({ json }))
-      .catch((err) => console.error(err))
   }
 }
