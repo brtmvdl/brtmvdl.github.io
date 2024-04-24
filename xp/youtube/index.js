@@ -23,7 +23,6 @@ export class Page extends HTML {
   getButtons() {
     const html = new HTML()
     html.append(this.getVideosListButton())
-    html.append(this.getVideosRatingButton())
     return html
   }
 
@@ -58,4 +57,5 @@ export class Page extends HTML {
   getVideos() {
     return this.children.videos
   }
+
 }
