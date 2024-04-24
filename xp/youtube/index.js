@@ -1,11 +1,17 @@
 import { HTML, nH1, nButton } from '@brtmvdl/frontend'
+import { VideoComponent } from './components/video.component.js'
 import * as LOCAL from '../../assets/js/utils/local.js'
 
 export class Page extends HTML {
+  children = {
+    videos: new HTML(),
+  }
+
   onCreate() {
     super.onCreate()
     this.append(this.getTitle())
     this.append(this.getButtons())
+    this.append(this.getVideos())
   }
 
   getTitle() {
@@ -38,6 +44,8 @@ export class Page extends HTML {
 
   listVideos() {
     this.requestAPI('GET', '/videos?myRating=like')
+      .then(({ items }) => Array.from(items).map((item) => this.children.videos.append(new VideoComponent(item))))
+      .catch((err) => console.error(err))
   }
 
   getVideosRatingButton() {
@@ -46,6 +54,8 @@ export class Page extends HTML {
 
   getVideosRating(id = '') {
     this.requestAPI('GET', `/videos/getRating?id=${id}`)
+      .then((json) => console.log({ json }))
+      .catch((err) => console.error(err))
   }
 
   requestAPI(method, pathname, body = null) {
@@ -53,5 +63,9 @@ export class Page extends HTML {
     const headers = { Authorization: `Bearer ${LOCAL.get(['access_token'])}` }
     return fetch(url, { body, headers, method })
       .then((res) => res.json())
+  }
+
+  getVideos() {
+    return this.children.videos
   }
 }
