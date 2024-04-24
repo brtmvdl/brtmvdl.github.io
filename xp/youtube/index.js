@@ -48,16 +48,6 @@ export class Page extends HTML {
       .catch((err) => console.error(err))
   }
 
-  getVideosRatingButton() {
-    return this.createButton('get videos rating', () => this.getVideosRating())
-  }
-
-  getVideosRating(id = '') {
-    this.requestAPI('GET', `/videos/getRating?id=${id}`)
-      .then((json) => console.log({ json }))
-      .catch((err) => console.error(err))
-  }
-
   requestAPI(method, pathname, body = null) {
     const url = `https://www.googleapis.com/youtube/v3${pathname}`
     const headers = { Authorization: `Bearer ${LOCAL.get(['access_token'])}` }
