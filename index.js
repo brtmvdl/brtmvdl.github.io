@@ -1,7 +1,7 @@
 import { HTML, nFlex, nH1, nImage, nLink } from '@brtmvdl/frontend'
 
 import { Container } from './assets/js/components/container.js'
-import { experiences } from './assets/js/lists/xp.js'
+import { experiences } from './assets/js/lists/projects.js'
 
 export class Socials extends nFlex {
   onCreate() {
@@ -72,13 +72,13 @@ class Experience extends HTML {
   }
 
   getHref() {
-    return `/xp/${this.state.id}/`
+    return `/projects/${this.state.id}/`
   }
 
   getImageHTML() {
     const link = new nLink2()
     link.href(this.getHref())
-    this.children.image.src(`/xp/${this.state.id}/image.jpg`)
+    this.children.image.src(`${this.getHref()}image.jpg`)
     return link.append(this.children.image)
   }
 
