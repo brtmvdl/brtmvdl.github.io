@@ -42,7 +42,7 @@ export class Page extends HTML {
   }
 
   listVideos() {
-    this.requestAPI('GET', '/videos?myRating=like')
+    this.requestAPI('GET', '/videos?myRating=like&maxResults=50')
       .then(({ items }) => Array.from(items).map((item) => this.children.videos.append(new VideoComponent(item))))
       .catch((err) => console.error(err))
   }
