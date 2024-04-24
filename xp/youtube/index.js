@@ -1,17 +1,17 @@
-import { HTML, nH1, nButton } from '@brtmvdl/frontend'
-import { VideoComponent } from './components/video.component.js'
+import { HTML, nFlex, nH1, nButton, nInput } from '@brtmvdl/frontend'
 import * as LOCAL from '../../assets/js/utils/local.js'
 
 export class Page extends HTML {
   children = {
-    videos: new HTML(),
+    title: new nInput(),
+    videos: new nFlex(),
   }
 
   onCreate() {
     super.onCreate()
     this.append(this.getTitle())
+    this.append(this.getTitleInput())
     this.append(this.getButtons())
-    this.append(this.getVideos())
   }
 
   getTitle() {
@@ -20,9 +20,14 @@ export class Page extends HTML {
     return h1
   }
 
+  getTitleInput() {
+    this.children.title.setPlaceholder('title')
+    return this.children.title
+  }
+
   getButtons() {
     const html = new HTML()
-    html.append(this.getVideosListButton())
+    html.append(this.getInsertLiveStreamsButton())
     return html
   }
 
@@ -37,25 +42,30 @@ export class Page extends HTML {
     return button
   }
 
-  getVideosListButton() {
-    return this.createButton('list videos', () => this.listVideos())
+  getInsertLiveStreamsButton() {
+    return this.createButton('insert live stream', () => this.insertLiveStream())
   }
 
-  listVideos() {
-    this.requestAPI('GET', '/videos?myRating=like&maxResults=50')
-      .then(({ items }) => Array.from(items).map((item) => this.children.videos.append(new VideoComponent(item))))
+  insertLiveStream() {
+    const title = this.children.title.getValue()
+    this.requestAPI('POST', '/liveStreams?part=id,snippet,cdn,contentDetails,status', {
+      snippet: { title },
+      cdn: {
+        format: '',
+        ingestionType: 'rtmp',
+        resolution: 'variable',
+        frameRate: 'variable',
+      },
+      contentDetails: { isReusable: false }
+    })
+      .then((res) => console.log({ res }))
       .catch((err) => console.error(err))
   }
 
   requestAPI(method, pathname, body = null) {
     const url = `https://www.googleapis.com/youtube/v3${pathname}`
     const headers = { Authorization: `Bearer ${LOCAL.get(['access_token'])}` }
-    return fetch(url, { body, headers, method })
-      .then((res) => res.json())
+    body = body && JSON.stringify(body)
+    return fetch(url, { body, headers, method }).then((res) => res.json())
   }
-
-  getVideos() {
-    return this.children.videos
-  }
-
 }
