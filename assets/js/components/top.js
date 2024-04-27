@@ -2,6 +2,7 @@ import { HTML } from '@brtmvdl/frontend'
 
 export class Top extends HTML {
   onCreate() {
+    super.onCreate()
     this.setText('brtmvdl')
     this.setStyles()
   }
@@ -13,5 +14,4 @@ export class Top extends HTML {
     this.setStyle('padding', '1rem')
     this.setStyle('color', '#ffffff')
   }
-
 }

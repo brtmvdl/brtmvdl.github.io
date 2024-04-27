@@ -1,5 +1,4 @@
 import { HTML } from '@brtmvdl/frontend'
-
 import { Top } from './top.js'
 
 export class Container extends HTML {
@@ -9,6 +8,7 @@ export class Container extends HTML {
   }
 
   onCreate() {
+    super.onCreate()
     this.append(new Top())
     this.append(this.getContent())
   }
