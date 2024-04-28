@@ -10,8 +10,9 @@ export class Page extends HTML {
   onCreate() {
     super.onCreate()
     this.append(this.getTitle())
+    this.append(this.getListMyVideosButton())
     this.append(this.getTitleInput())
-    this.append(this.getButtons())
+    this.append(this.getInsertLiveStreamsButton())
   }
 
   getTitle() {
@@ -25,12 +26,6 @@ export class Page extends HTML {
     return this.children.title
   }
 
-  getButtons() {
-    const html = new HTML()
-    html.append(this.getInsertLiveStreamsButton())
-    return html
-  }
-
   createButton(text, onclick = (() => { })) {
     const button = new nButton()
     button.setText(text)
@@ -40,6 +35,17 @@ export class Page extends HTML {
     button.setStyle('color', '#ffffff')
     button.setStyle('background-color', '#000000')
     return button
+  }
+
+  getListMyVideosButton() {
+    return this.createButton('list my videos', () => this.listMyVideos())
+  }
+
+  listMyVideos() {
+    const access_token = this.getAccessToken()
+    this.requestAPI('GET', `/videos?chart=mostPopular&maxResults=50`)
+      .then((res) => console.log({ res }))
+      .catch((err) => console.error(err))
   }
 
   getInsertLiveStreamsButton() {
@@ -64,8 +70,12 @@ export class Page extends HTML {
 
   requestAPI(method, pathname, body = null) {
     const url = `https://www.googleapis.com/youtube/v3${pathname}`
-    const headers = { Authorization: `Bearer ${LOCAL.get(['access_token'])}` }
+    const headers = { Authorization: `Bearer ${this.getAccessToken()}` }
     body = body && JSON.stringify(body)
     return fetch(url, { body, headers, method }).then((res) => res.json())
+  }
+
+  getAccessToken() {
+    return LOCAL.get(['access_token'])
   }
 }
