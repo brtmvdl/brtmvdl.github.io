@@ -6,29 +6,19 @@ export class MessageModel extends JSONableModel {
   input = null
   side = null
   output = null
-  socket = false
 
-  constructor(method, { input = {}, side = 'none', output = {}, socket = true } = {}) {
+  constructor(method, { input = {}, output = {}, side = 'none' } = {}) {
     super()
 
     this.method = method
     this.input = input
-    this.side = side
     this.output = output
-    this.socket = socket
-  }
-
-  setSocket(socket = true) {
-    this.socket = socket
-  }
-
-  getSocket() {
-    return this.socket
+    this.side = side
   }
 
   toJSON() {
-    const { id, method, input } = this
-    return { id, method, params: input }
+    const { id, method, input, output, side } = this
+    return { id, method, input, output, side }
   }
 
   toString() {
@@ -36,8 +26,6 @@ export class MessageModel extends JSONableModel {
   }
 
   asJSON() {
-    const { id, method, side, input, output } = this
-    return { id, method, side, input, output }
+    return this.toJSON()
   }
-
 }

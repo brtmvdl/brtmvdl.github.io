@@ -1,15 +1,10 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessageModel } from './models/messages.model.js'
-import { getRoutinesList } from './utils/routines.js'
-import { Routines } from './utils/routines.js'
-import * as config from './utils/config.js'
 
 export class Page extends HTML {
   state = {
-    socket: this.getFrontWebSocket(),
     messages: [],
-    routines: new Routines(),
   }
 
   children = {
@@ -18,14 +13,8 @@ export class Page extends HTML {
     messages: new MessagesHTML(),
   }
 
-  getFrontWebSocket() {
-    return new WebSocket(config.url)
-  }
-
   onCreate() {
     super.onCreate()
-    this.setRoutinesEvents()
-    this.setSocketEvents()
     this.setStyles()
     this.append(this.getTopBar())
     this.append(this.getFlex())
@@ -40,17 +29,6 @@ export class Page extends HTML {
     flex.append(this.getFormHTML())
     flex.append(this.getMessagesHTML())
     return flex
-  }
-
-  setRoutinesEvents() {
-    this.state.routines.addEventListener('message', ({ value }) => this.sendMessage(value))
-  }
-
-  setSocketEvents() {
-    this.state.socket.addEventListener('open', (data) => this.onFrontSocketOpen(data))
-    this.state.socket.addEventListener('message', (data) => this.onFrontSocketMessage(data))
-    this.state.socket.addEventListener('error', (data) => this.onFrontSocketError(data))
-    this.state.socket.addEventListener('close', (data) => this.onFrontSocketClose(data))
   }
 
   setStyles() {
@@ -82,8 +60,6 @@ export class Page extends HTML {
 
   onFrontSocketClose(input) {
     this.addMessage(new MessageModel('close', { input }))
-    this.state.socket = this.getFrontWebSocket()
-    this.setSocketEvents()
   }
 
   getFormHTML() {
@@ -93,19 +69,15 @@ export class Page extends HTML {
   }
 
   onFormHtmlSubmit({ value: { method, input } } = {}) {
-    if (getRoutinesList().indexOf(method) === -1) {
-      const message = new MessageModel(method, { input, side: 'input' })
-      this.sendMessage(message)
-    } else {
-      this.state.routines.run(method, { input, messages: this.state.messages })
-    }
+    const message = new MessageModel(method, { input, side: 'input' })
+    this.sendMessage(message)
   }
 
   sendMessage(message = new MessageModel()) {
     this.addMessage(message)
-    if (message.getSocket()) {
-      this.state.socket.send(message.toString())
-    }
+    const request = message.getRequest()
+    const url = new URL(request.search, request.url)
+    fetch(url, { method: request.method, headers: request.headers, body: request.body })
   }
 
   getMessagesHTML() {

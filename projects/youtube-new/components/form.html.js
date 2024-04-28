@@ -17,8 +17,6 @@ export class FormHTML extends HTML {
     this.append(this.getEndpointSelect())
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
-    this.append(this.children.inputs.children.apiKey)
-    this.append(this.children.inputs.children.secretKey)
   }
 
   setStyles() {
