@@ -19,13 +19,15 @@ export const token_uri = 'https://oauth2.googleapis.com/token'
 export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1/certs'
 
 export const redirect_uris = [
-  'https://brtmvdl.github.io/pages/login/'
+  'https://brtmvdl.github.io/pages/login/',
+  'http://localhost:8080/pages/login/',
 ]
 
 export const javascript_origins = [
-  'https://brtmvdl.github.io'
+  'https://brtmvdl.github.io',
+  'http://localhost:8080',
 ]
 
-export const redirect_uri = redirect_uris[0]
+export const redirect_uri = redirect_uris[1]
 
 export const GOOGLE = { scope, response_type, client_id, project_id, auth_uri, token_uri, auth_provider_x509_cert_url, redirect_uri }
