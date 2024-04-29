@@ -1,7 +1,9 @@
-import { HTML, nFlex, nLink } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '@brtmvdl/frontend'
 import { ContainerComponent } from './container.component.js'
+import { LinkComponent } from './link.component.js'
 
 export class HeaderComponent extends ContainerComponent {
+
   getName() {
     return 'header-component'
   }
@@ -19,12 +21,10 @@ export class HeaderComponent extends ContainerComponent {
   }
 
   createLink(text, href = '') {
-    const link = new nLink()
+    const link = new LinkComponent()
     link.setText(text)
     link.href(href)
-    link.setStyle('margin', '1rem 0rem 1rem 0rem')
     link.setStyle('padding', '1rem 0rem 1rem 0rem')
-    link.setStyle('display', 'inline-block')
     return link
   }
 

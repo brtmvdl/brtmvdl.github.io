@@ -12,7 +12,8 @@ export class PageComponent extends HTML {
   }
 
   setStyles() {
-    return new HTML()
+    this.setContainerStyle('background-color', '#000000')
+    this.setContainerStyle('color', '#ffffff')
   }
 
   getBodyComponent() {
