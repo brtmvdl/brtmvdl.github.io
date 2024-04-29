@@ -31,9 +31,15 @@ export class HeaderComponent extends ContainerComponent {
 
   getRight() {
     const flex = new nFlex()
-    flex.append(this.createLink('blog', '/blog/'))
-    flex.append(this.createLink('projects', '/projects/'))
-    flex.append(this.createLink('products', '/products/'))
+    Array.from([
+      this.createLink('blog', '/blog/'),
+      this.createLink('projects', '/projects/'),
+      this.createLink('products', '/products/'),
+    ]).map((link) => {
+      link.setStyle('margin', '1rem 1rem 1rem 0rem')
+      link.setStyle('padding', '1rem 0rem 0rem 0rem')
+      flex.append(link)
+    })
     return flex
   }
 }

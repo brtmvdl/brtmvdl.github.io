@@ -1,3 +1,3 @@
-import { HTML } from '@brtmvdl/frontend'
+import { ContainerComponent } from './container.component.js'
 
-export class BodyComponent extends HTML { }
+export class BodyComponent extends ContainerComponent { }
