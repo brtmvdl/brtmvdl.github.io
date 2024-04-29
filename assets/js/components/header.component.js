@@ -22,6 +22,9 @@ export class HeaderComponent extends ContainerComponent {
     const link = new nLink()
     link.setText(text)
     link.href(href)
+    link.setStyle('margin', '1rem 0rem 1rem 0rem')
+    link.setStyle('padding', '1rem 0rem 1rem 0rem')
+    link.setStyle('display', 'inline-block')
     return link
   }
 
@@ -36,8 +39,7 @@ export class HeaderComponent extends ContainerComponent {
       this.createLink('projects', '/projects/'),
       this.createLink('services', '/services/'),
     ]).map((link) => {
-      link.setStyle('margin', '1rem 1rem 1rem 0rem')
-      link.setStyle('padding', '1rem 0rem 0rem 0rem')
+      link.setStyle('padding', '1rem 0rem 1rem 1rem')
       flex.append(link)
     })
     return flex
