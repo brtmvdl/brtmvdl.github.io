@@ -34,7 +34,7 @@ export class HeaderComponent extends ContainerComponent {
     Array.from([
       this.createLink('blog', '/blog/'),
       this.createLink('projects', '/projects/'),
-      this.createLink('products', '/products/'),
+      this.createLink('services', '/services/'),
     ]).map((link) => {
       link.setStyle('margin', '1rem 1rem 1rem 0rem')
       link.setStyle('padding', '1rem 0rem 0rem 0rem')
