@@ -1,10 +1,18 @@
 ## Social & donate
 
-[Donate](https://link.mercadopago.com.br/brtmvdl)
+[E-mail](mailto:br.tmvdl@gmail.com)
+
+[Github](https://github.com/brtmvdl)
+
+[Linkedin](https://www.linkedin.com/in/brtmvdl/)
+
+[Twitter](https://twitter.com/brtmvdl)
 
 [Telegram](https://t.me/+KRmg5MlqgMk0MTg5)
 
 [Discord](https://discord.gg/2zWpWBgmPj)
+
+[Donate](https://link.mercadopago.com.br/brtmvdl)
 
 ## [Blog (posts)](/blog/)
 
