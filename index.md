@@ -6,11 +6,11 @@
 
 [Discord](https://discord.gg/2zWpWBgmPj)
 
-## Blog (posts)
+## [Blog (posts)](/blog/)
 
-[What is Linux?](/blog/what-is-linux/index.md)
+[What is Linux?](/blog/what-is-linux/)
 
-## Projects
+## [Projects](/projects/index.md)
 
 [Binance Websocket API](/projects/binance-websocket-api/)
 
