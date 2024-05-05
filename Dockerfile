@@ -1,3 +1,1 @@
-FROM nginx:alpine-slim
-
-COPY . /usr/share/nginx/html
+FROM nginx:alpine
