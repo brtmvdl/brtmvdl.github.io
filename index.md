@@ -1,3 +1,5 @@
+[Vittae](./pages/curriculum/index.html)
+
 ## Social & donate
 
 [E-mail](mailto:br.tmvdl@gmail.com)
