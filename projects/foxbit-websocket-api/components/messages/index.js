@@ -55,6 +55,37 @@ export class MessageCardHTML extends CardHTML {
     footer.append(new TextHTML(str.datetime2str(this.data.id)), this.data.id)
     return footer
   }
+
+  createTableByObjects(data = []) {
+    return this.createTable(
+      Array.from(data).map((obj) => Object.keys(obj).map((key) => obj[key])),
+      Object.keys(data[0]),
+    )
+  }
+
+  createTable(data = [], headers = []) {
+    const table = new nTable()
+
+    const tr1 = new nTr()
+    Array.from(headers).map((tr) => {
+      const td = new nTd()
+      td.setText(tr)
+      tr1.append(td)
+    })
+    table.append(tr1)
+
+    Array.from(data).map((line) => {
+      const tr2 = new nTr()
+      Array.from(line).map((text) => {
+        const td = new nTd()
+        td.setText(text)
+        tr2.append(td)
+      })
+      table.append(tr2)
+    })
+
+    return table
+  }
 }
 
 export class tableMessage extends MessageCardHTML {
@@ -119,7 +150,13 @@ export class GetInstrumentMessage extends MessageCardHTML {
   }
 }
 
-export class GetInstrumentsMessage extends MessageCardHTML { }
+export class GetInstrumentsMessage extends MessageCardHTML {
+  getOutputBodyHTML() {
+    const body = new CardBodyHTML()
+    body.append(this.createTableByObjects(this.data.Payload))
+    return body
+  }
+}
 
 export class GetProductsMessage extends MessageCardHTML { }
 
