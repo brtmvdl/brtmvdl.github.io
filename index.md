@@ -24,93 +24,93 @@
 
 ## [projects](/projects/index.md)
 
-[airplane](/projects/airplane/index.html)
+[airplane (alpha)](/projects/airplane/index.html)
 
-[anagram](/projects/anagram/index.html)
+[anagram (alpha)](/projects/anagram/index.html)
 
-[audio recorder](/projects/audio-recorder/index.html)
+[audio recorder (alpha)](/projects/audio-recorder/index.html)
 
-[binance rest api](/projects/binance-rest-api/index.html)
+[binance rest api (staging)](/projects/binance-rest-api/index.html)
 
-[binance test 2](/projects/binance-test-2/index.html)
+[binance test 2 (alpha)](/projects/binance-test-2/index.html)
 
-[binance test](/projects/binance-test/index.html)
+[binance test (alpha)](/projects/binance-test/index.html)
 
 [binance websocket api](/projects/binance-websocket-api/index.html)
 
-[bitcoin](/projects/bitcoin/index.html)
+[bitcoin (beta)](/projects/bitcoin/index.html)
 
-[bitcointoyou](/projects/bitcointoyou/index.html)
+[bitcointoyou (alpha)](/projects/bitcointoyou/index.html)
 
-[bitget](/projects/bitget/index.html)
+[bitget (alpha)](/projects/bitget/index.html)
 
 [busy](/projects/busy/index.html)
 
 [calculator](/projects/calculator/index.html)
 
-[coinext](/projects/coinext/index.html)
+[coinext (alpha)](/projects/coinext/index.md)
 
-[coins calculator](/projects/coins-calculator/index.html)
+[coins calculator (beta)](/projects/coins-calculator/index.html)
 
-[coins](/projects/coins/index.html)
+[coins (beta)](/projects/coins/index.html)
 
-[discord websocket api](/projects/discord-websocket-api/index.html)
+[discord websocket api (beta)](/projects/discord-websocket-api/index.html)
 
-[exchanges](/projects/exchanges/index.html)
+[exchanges (alpha)](/projects/exchanges/index.html)
 
-[facebook](/projects/facebook/index.html)
+[facebook (alpha)](/projects/facebook/index.html)
 
-[foxbit websocket api](/projects/foxbit-websocket-api/index.html)
+[foxbit websocket api (beta)](/projects/foxbit-websocket-api/index.html)
 
-[foxbit](/projects/foxbit/index.html)
+[foxbit (beta)](/projects/foxbit/index.html)
 
 [frontend](/projects/frontend/index.html)
 
-[github](/projects/github/index.html)
+[github (alpha)](/projects/github/index.html)
 
-[home workout](/projects/home-workout/index.html)
+[home workout (beta)](/projects/home-workout/index.html)
 
-[linkedin](/projects/linkedin/index.html)
+[linkedin (alpha)](/projects/linkedin/index.html)
 
-[market](/projects/market/index.html)
+[market (alpha)](/projects/market/index.html)
 
 [math](/projects/math/index.html)
 
-[mercadobitcoin](/projects/mercadobitcoin/index.html)
+[mercadobitcoin (alpha)](/projects/mercadobitcoin/index.html)
 
-[newsapi](/projects/newsapi/index.html)
+[newsapi (alpha)](/projects/newsapi/index.md)
 
 [nume](/projects/nume/index.html)
 
-[openai](/projects/openai/index.html)
+[openai (alpha)](/projects/openai/index.html)
 
-[phone number](/projects/phone-number/index.html)
+[phone number (beta)](/projects/phone-number/index.html)
 
-[player](/projects/player/index.html)
+[player (alpha)](/projects/player/index.html)
 
-[projects](/projects/projects/index.html)
+[projects (beta)](/projects/projects/index.html)
 
-[screen capture api](/projects/screen-capture-api/index.html)
+[screen capture api (alpha)](/projects/screen-capture-api/index.html)
 
-[socket](/projects/socket/index.html)
+[socket (alpha)](/projects/socket/index.html)
 
-[speed match](/projects/speed-match/index.html)
+[speed match (beta)](/projects/speed-match/index.html)
 
-[spot](/projects/spot/index.html)
+[spot (alpha)](/projects/spot/index.html)
 
-[twitch websocket api](/projects/twitch-websocket-api/index.html)
+[twitch websocket api (beta)](/projects/twitch-websocket-api/index.html)
 
-[twitch](/projects/twitch/index.html)
+[twitch (alpha)](/projects/twitch/index.html)
 
-[twitter](/projects/twitter/index.html)
+[twitter (alpha)](/projects/twitter/index.html)
 
-[vestibular](/projects/vestibular/index.html)
+[vestibular (alpha)](/projects/vestibular/index.html)
 
 [websocket](/projects/websocket/index.html)
 
-[workout](/projects/workout/index.html)
+[workout (alpha)](/projects/workout/index.html)
 
-[youtube](/projects/youtube/index.html)
+[youtube (beta)](/projects/youtube/index.html)
 
 ## license
 
