@@ -1,29 +1,29 @@
-[Vittae](./pages/curriculum/index.html)
+[curriculum](./pages/curriculum/index.html)
 
-## Social & donate
+[donate](https://link.mercadopago.com.br/brtmvdl)
 
-[E-mail](mailto:br.tmvdl@gmail.com)
+## social & donate
 
-[Github](https://github.com/brtmvdl)
+[e-mail](mailto:br.tmvdl@gmail.com)
 
-[Linkedin](https://www.linkedin.com/in/brtmvdl/)
+[github](https://github.com/brtmvdl)
 
-[Twitter](https://twitter.com/brtmvdl)
+[linkedin](https://www.linkedin.com/in/brtmvdl/)
 
-[Telegram](https://t.me/+KRmg5MlqgMk0MTg5)
+[twitter](https://twitter.com/brtmvdl)
 
-[Discord](https://discord.gg/2zWpWBgmPj)
+[telegram](https://t.me/+KRmg5MlqgMk0MTg5)
 
-[Donate](https://link.mercadopago.com.br/brtmvdl)
+[discord](https://discord.gg/2zWpWBgmPj)
 
-## [Blog (posts)](/blog/)
+## [blog](/blog/index.md)
 
-[What is Linux?](/blog/what-is-linux/)
+[what is linux?](/blog/what-is-linux/index.md)
 
-## [Projects](/projects/index.md)
+## [projects](/projects/index.md)
 
-[Binance Websocket API](/projects/binance-websocket-api/)
+[binance websocket api](/projects/binance-websocket-api/index.html)
 
-## License
+## license
 
-[MIT](./LICENSE.md)
+[MIT License](./LICENSE.md)
