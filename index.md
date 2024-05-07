@@ -1,8 +1,10 @@
 [curriculum](./pages/curriculum/index.html)
 
+## donate
+
 [donate](https://link.mercadopago.com.br/brtmvdl)
 
-## social & donate
+## social
 
 [e-mail](mailto:br.tmvdl@gmail.com)
 
