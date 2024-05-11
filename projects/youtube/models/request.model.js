@@ -5,10 +5,10 @@ export class RequestModel extends JSONableModel {
   method = 'GET'
   pathname = ''
   query = []
-  headers = new Headers()
-  body = {}
+  headers = []
+  body = []
 
-  constructor(name = 'request', method = 'GET', pathname = '', { query = [], headers = new Headers(), body = {} } = {}) {
+  constructor(name = 'request', method = 'GET', pathname = '', { query = [], headers = [], body = [] } = {}) {
     super()
     this.name = name
     this.method = method
