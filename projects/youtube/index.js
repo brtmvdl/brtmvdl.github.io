@@ -1,6 +1,7 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
 import { MessageModel } from './models/messages.model.js'
+import * as API from './utils/api.js'
 
 export class Page extends HTML {
   state = {
@@ -44,14 +45,17 @@ export class Page extends HTML {
     return this.children.form
   }
 
-  onFormHtmlSubmit({ value: { method, input } } = {}) {
-    const message = new MessageModel(method, { input, side: 'input' })
+  onFormHtmlSubmit({ value: { request, query, body, headers } } = {}) {
+    console.log({ request, query, body, headers })
+    const message = new MessageModel(request, { query, body, headers })
     this.sendMessage(message)
   }
 
   sendMessage(message = new MessageModel()) {
     this.addMessage(message)
-    console.log('send message', message)
+    API.sendMessage(message)
+      .then((json) => console.log(json))
+      .catch((err) => console.error(err))
   }
 
   getMessagesHTML() {
