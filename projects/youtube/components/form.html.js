@@ -1,12 +1,14 @@
 import { HTML } from '@brtmvdl/frontend'
-import { getMethodsList } from '../utils/lists.js'
+import { getRequestList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
 
+import * as Local from '../../../assets/js/utils/local.js'
+
 export class FormHTML extends HTML {
   children = {
-    method: new SelectComponent(),
+    request: new SelectComponent(),
     params: new HTML(),
     inputs: new InputsComponent(),
   }
@@ -14,11 +16,10 @@ export class FormHTML extends HTML {
   onCreate() {
     super.onCreate()
     this.setStyles()
-    this.append(this.getEndpointSelect())
+    this.append(this.getRequestSelect())
     this.append(this.getParamsHTML())
     this.append(this.getSendButton())
     this.append(this.children.inputs.children.apiKey)
-    this.append(this.children.inputs.children.secretKey)
   }
 
   setStyles() {
@@ -26,16 +27,16 @@ export class FormHTML extends HTML {
     this.setStyle('min-width', '6rem')
   }
 
-  getEndpointSelect() {
-    getMethodsList().map(({ name: endpoint }) => this.children.method.addOption(endpoint, endpoint))
-    this.children.method.on('change', () => this.onMethodSelectChange())
-    return this.children.method
+  getRequestSelect() {
+    getRequestList().map(({ name: endpoint }) => this.children.request.addOption(endpoint, endpoint))
+    this.children.request.on('change', () => this.onRequestSelectChange())
+    return this.children.request
   }
 
-  onMethodSelectChange() {
-    const name = this.children.method.getValue()
+  onRequestSelectChange() {
+    const name = this.children.request.getValue()
     this.children.params.clear()
-    getMethodsList().find((method) => method.name == name)?.query.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    this.getRequestByName(name)?.query.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -49,17 +50,46 @@ export class FormHTML extends HTML {
     return button
   }
 
-  onSendButtonClick(method = this.getMethodValue()) {
-    this.dispatchEvent('submit', { method, input: this.getParamsValues(method) })
+  onSendButtonClick(name = this.getRequestValue()) {
+    const request = this.getRequestByName(name)
+    const query = this.getQueryValues(name)
+    const body = this.getBodyValues(name)
+    const headers = this.getHeadersValues(name)
+    this.dispatchEvent('submit', { request, query, body, headers })
   }
 
-  getMethodValue() {
-    return this.children.method.getValue()
+  getRequestValue() {
+    return this.children.request.getValue()
   }
 
-  getParamsValues(name = '') {
-    return getMethodsList().find((method) => method.name == name)?.query
+  getAccessToken() {
+    return Local.get(['access_token'])
+  }
+
+  getQueryValues(name = '') {
+    return { access_token: this.getAccessToken(), ...this.getValues(this.getRequestByName(name)?.query) }
+  }
+
+  getBodyValues(name) {
+    const request = this.getRequestByName(name)
+    if (['HEAD', 'GET'].indexOf(request.method) != -1) return null
+    return this.getValues(request?.body)
+  }
+
+  getHeadersValues(name) {
+    const access_token = this.getAccessToken()
+    const request = this.getRequestByName(name)
+    if (['HEAD', 'GET'].indexOf(request.method) != -1) return {}
+    return { Authorization: `Bearer ${access_token}` }
+  }
+
+  getValues(list = []) {
+    return Array.from(list)
       .map((input) => ([input, this.children.inputs.getValue(input)]))
       .reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
+  }
+
+  getRequestByName(name) {
+    return getRequestList().find((method) => method.name == name)
   }
 }
