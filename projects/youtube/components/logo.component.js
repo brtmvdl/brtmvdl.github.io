@@ -21,7 +21,9 @@ export class LogoComponent extends HTML {
   getImage() {
     const image = new nImage()
     image.src('./logo.png')
-    image.setAttt('logo')
+    image.setAttr('logo')
+    image.setStyle('width', '100%')
+    image.setStyle('max-height', '4rem')
     return image
   }
 }
