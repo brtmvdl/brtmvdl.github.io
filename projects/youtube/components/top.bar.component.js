@@ -1,8 +1,16 @@
-import { HTML, nFlex, nImage } from '@brtmvdl/frontend'
+import { HTML, nFlex, nInput } from '@brtmvdl/frontend'
 import { LogoComponent } from './logo.component.js'
+import { ButtonComponent } from './button.component.js'
+import { FormComponent } from './form.component.js'
+
+import { GOOGLE } from './../../../assets/js/utils/googleusercontent.js'
 
 export class TopBarComponent extends HTML {
-  children = { ip: new HTML() }
+  children = {
+    ip: new HTML(),
+    login: new HTML(),
+    form: new FormComponent(),
+  }
 
   getName() { return 'top-bar-component' }
 
@@ -29,7 +37,31 @@ export class TopBarComponent extends HTML {
   }
 
   getRight() {
-    return this.getIpHTML()
+    const flex = new nFlex()
+    flex.append(this.getForm())
+    flex.append(this.getIpHTML())
+    return flex
+  }
+
+  getForm() {
+    this.children.form.setAttr('method', 'GET')
+    this.children.form.setAttr('action', GOOGLE.auth_uri)
+    this.children.form.append(this.getLoginButton())
+    Object.keys(GOOGLE).filter((key) => (typeof GOOGLE[key]) === 'string').map((key) => {
+      const input = new nInput()
+      input.setAttr('type', 'hidden')
+      input.setAttr('name', key)
+      input.setValue(GOOGLE[key])
+      this.children.form.append(input)
+    })
+    return this.children.form
+  }
+
+  getLoginButton() {
+    const button = new ButtonComponent()
+    button.setText('login')
+    button.on('click', () => this.children.form.submit())
+    return button
   }
 
   getIpHTML() {

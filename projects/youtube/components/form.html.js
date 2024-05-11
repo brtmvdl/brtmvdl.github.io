@@ -1,5 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
-import { getMethodsList, getParamsList, getWebSocketMethodsList } from '../utils/lists.js'
+import { getMethodsList } from '../utils/lists.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
@@ -27,14 +27,15 @@ export class FormHTML extends HTML {
   }
 
   getEndpointSelect() {
-    getMethodsList().map((endpoint) => this.children.method.addOption(endpoint, endpoint))
+    getMethodsList().map(({ name: endpoint }) => this.children.method.addOption(endpoint, endpoint))
     this.children.method.on('change', () => this.onMethodSelectChange())
     return this.children.method
   }
 
   onMethodSelectChange() {
+    const name = this.children.method.getValue()
     this.children.params.clear()
-    getParamsList(this.getMethodValue()).map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
+    getMethodsList().find((method) => method.name == name)?.query.map((component) => this.children.params.append(this.children.inputs.getComponent(component)))
   }
 
   getParamsHTML() {
@@ -56,24 +57,9 @@ export class FormHTML extends HTML {
     return this.children.method.getValue()
   }
 
-  getParamsValues(method = '') {
-    const values = getParamsList(method).map((input) => ([input, this.children.inputs.getValue(input)]))
-
-    let params = Array.from([])
-
-    if (getWebSocketMethodsList().indexOf(method) !== -1) {
-      values.push(['apiKey', this.children.inputs.getValue('apiKey')])
-      values.push(['timestamp', Date.now()])
-      params = values.sort(([a], [b]) => a.localeCompare(b))
-      params.push(['signature', this.getSignatureValue(this.children.inputs.getValue('secretKey'), params)])
-    } else {
-      params = values.sort(([a], [b]) => a.localeCompare(b))
-    }
-
-    return params.reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
-  }
-
-  getSignatureValue(key, params) {
-    return sha256.hmac(key, params.map(([name, value]) => `${name}=${value}`).join('&')) // https://www.binance.com/en/support/faq/how-to-generate-an-ed25519-key-pair-to-send-api-requests-on-binance-6b9a63f1e3384cf48a2eedb82767a69a
+  getParamsValues(name = '') {
+    return getMethodsList().find((method) => method.name == name)?.query
+      .map((input) => ([input, this.children.inputs.getValue(input)]))
+      .reduce((values, [name, value]) => ({ ...values, [name]: value }), {})
   }
 }
