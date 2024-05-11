@@ -28,6 +28,6 @@ export const javascript_origins = [
   'http://localhost:8080',
 ]
 
-export const redirect_uri = redirect_uris[1]
+export const redirect_uri = redirect_uris[0]
 
 export const GOOGLE = { scope, response_type, client_id, project_id, auth_uri, token_uri, auth_provider_x509_cert_url, redirect_uri }
