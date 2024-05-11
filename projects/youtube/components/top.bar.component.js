@@ -38,30 +38,8 @@ export class TopBarComponent extends HTML {
 
   getRight() {
     const flex = new nFlex()
-    flex.append(this.getForm())
     flex.append(this.getIpHTML())
     return flex
-  }
-
-  getForm() {
-    this.children.form.setAttr('method', 'GET')
-    this.children.form.setAttr('action', GOOGLE.auth_uri)
-    this.children.form.append(this.getLoginButton())
-    Object.keys(GOOGLE).filter((key) => (typeof GOOGLE[key]) === 'string').map((key) => {
-      const input = new nInput()
-      input.setAttr('type', 'hidden')
-      input.setAttr('name', key)
-      input.setValue(GOOGLE[key])
-      this.children.form.append(input)
-    })
-    return this.children.form
-  }
-
-  getLoginButton() {
-    const button = new ButtonComponent()
-    button.setText('login')
-    button.on('click', () => this.children.form.submit())
-    return button
   }
 
   getIpHTML() {
