@@ -14,8 +14,6 @@
 
 [twitter](https://twitter.com/brtmvdl)
 
-[telegram](https://t.me/+KRmg5MlqgMk0MTg5)
-
 [discord](https://discord.gg/2zWpWBgmPj)
 
 ## [blog](/blog/index.md)
