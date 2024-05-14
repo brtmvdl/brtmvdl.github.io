@@ -82,6 +82,8 @@
 
 [openai (alpha)](/projects/openai/index.html)
 
+[olx (alpha)](/projects/olx/index.html)
+
 [phone number (beta)](/projects/phone-number/index.html)
 
 [player (alpha)](/projects/player/index.html)
