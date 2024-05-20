@@ -1,4 +1,4 @@
-[curriculum](./pages/curriculum/index.html)
+[curriculum](./pages/curriculum/)
 
 ## donate
 
@@ -16,101 +16,101 @@
 
 [discord](https://discord.gg/2zWpWBgmPj)
 
-## [blog](/blog/index.md)
+## [blog](/blog/)
 
-[what is linux?](/blog/what-is-linux/index.md)
+[what is linux?](/blog/what-is-linux/)
 
-## [projects](/projects/index.md)
+## [projects](/projects/)
 
-[airplane (alpha)](/projects/airplane/index.html)
+[airplane (alpha)](/projects/airplane/)
 
-[anagram (alpha)](/projects/anagram/index.html)
+[anagram (alpha)](/projects/anagram/)
 
-[audio recorder (alpha)](/projects/audio-recorder/index.html)
+[audio recorder (alpha)](/projects/audio-recorder/)
 
-[binance rest api (staging)](/projects/binance-rest-api/index.html)
+[binance rest api (staging)](/projects/binance-rest-api/)
 
-[binance test 2 (alpha)](/projects/binance-test-2/index.html)
+[binance test 2 (alpha)](/projects/binance-test-2/)
 
-[binance test (alpha)](/projects/binance-test/index.html)
+[binance test (alpha)](/projects/binance-test/)
 
-[binance websocket api](/projects/binance-websocket-api/index.html)
+[binance websocket api](/projects/binance-websocket-api/)
 
-[bitcoin (beta)](/projects/bitcoin/index.html)
+[bitcoin (beta)](/projects/bitcoin/)
 
-[bitcointoyou (alpha)](/projects/bitcointoyou/index.html)
+[bitcointoyou (alpha)](/projects/bitcointoyou/)
 
-[bitget (alpha)](/projects/bitget/index.html)
+[bitget (alpha)](/projects/bitget/)
 
-[busy](/projects/busy/index.html)
+[busy](/projects/busy/)
 
-[calculator](/projects/calculator/index.html)
+[calculator](/projects/calculator/)
 
-[coinext (alpha)](/projects/coinext/index.md)
+[coinext (alpha)](/projects/coinext/)
 
-[coins calculator (beta)](/projects/coins-calculator/index.html)
+[coins calculator (beta)](/projects/coins-calculator/)
 
-[coins (beta)](/projects/coins/index.html)
+[coins (beta)](/projects/coins/)
 
-[discord websocket api (beta)](/projects/discord-websocket-api/index.html)
+[discord websocket api (beta)](/projects/discord-websocket-api/)
 
-[exchanges (alpha)](/projects/exchanges/index.html)
+[exchanges (alpha)](/projects/exchanges/)
 
-[facebook (alpha)](/projects/facebook/index.html)
+[facebook (alpha)](/projects/facebook/)
 
-[foxbit websocket api (beta)](/projects/foxbit-websocket-api/index.html)
+[foxbit websocket api (beta)](/projects/foxbit-websocket-api/)
 
-[foxbit (beta)](/projects/foxbit/index.html)
+[foxbit (beta)](/projects/foxbit/)
 
-[frontend](/projects/frontend/index.html)
+[frontend](/projects/frontend/)
 
-[github (alpha)](/projects/github/index.html)
+[github (alpha)](/projects/github/)
 
-[home workout (beta)](/projects/home-workout/index.html)
+[home workout (beta)](/projects/home-workout/)
 
-[linkedin (alpha)](/projects/linkedin/index.html)
+[linkedin (alpha)](/projects/linkedin/)
 
-[market (alpha)](/projects/market/index.html)
+[market (alpha)](/projects/market/)
 
-[math](/projects/math/index.html)
+[math](/projects/math/)
 
-[mercadobitcoin (alpha)](/projects/mercadobitcoin/index.html)
+[mercadobitcoin (alpha)](/projects/mercadobitcoin/)
 
-[newsapi (alpha)](/projects/newsapi/index.md)
+[newsapi (alpha)](/projects/newsapi/)
 
-[nume](/projects/nume/index.html)
+[nume](/projects/nume/)
 
-[openai (alpha)](/projects/openai/index.html)
+[openai (alpha)](/projects/openai/)
 
-[olx (alpha)](/projects/olx/index.html)
+[olx (alpha)](/projects/olx/)
 
-[phone number (beta)](/projects/phone-number/index.html)
+[phone number (beta)](/projects/phone-number/)
 
-[player (alpha)](/projects/player/index.html)
+[player (alpha)](/projects/player/)
 
-[projects (beta)](/projects/projects/index.html)
+[projects (beta)](/projects/projects/)
 
-[screen capture api (alpha)](/projects/screen-capture-api/index.html)
+[screen capture api (alpha)](/projects/screen-capture-api/)
 
-[socket (alpha)](/projects/socket/index.html)
+[socket (alpha)](/projects/socket/)
 
-[speed match (beta)](/projects/speed-match/index.html)
+[speed match (beta)](/projects/speed-match/)
 
-[spot (alpha)](/projects/spot/index.html)
+[spot (alpha)](/projects/spot/)
 
-[twitch websocket api (beta)](/projects/twitch-websocket-api/index.html)
+[twitch websocket api (beta)](/projects/twitch-websocket-api/)
 
-[twitch (alpha)](/projects/twitch/index.html)
+[twitch (alpha)](/projects/twitch/)
 
-[twitter (alpha)](/projects/twitter/index.html)
+[twitter (alpha)](/projects/twitter/)
 
-[vestibular (alpha)](/projects/vestibular/index.html)
+[vestibular (alpha)](/projects/vestibular/)
 
-[websocket](/projects/websocket/index.html)
+[websocket](/projects/websocket/)
 
-[workout (alpha)](/projects/workout/index.html)
+[workout (alpha)](/projects/workout/)
 
-[youtube (beta)](/projects/youtube/index.html)
+[youtube (beta)](/projects/youtube/)
 
 ## license
 
