@@ -32,7 +32,7 @@ export class InputTextGroupComponent extends nInputTextGroup {
 
   setInputStyles() {
     this.children.input.setAttr('type', this.state.type)
-    this.children.input.setText(this.state.text)
+    this.children.input.setValue(this.state.text)
     this.children.input.setStyle('padding', 'calc(1rem / 4)')
     this.children.input.setStyle('margin', 'calc(1rem / 4)')
   }

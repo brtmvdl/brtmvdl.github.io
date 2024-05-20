@@ -2,15 +2,41 @@ import { HTML } from '@brtmvdl/frontend'
 import { HeaderComponent } from './components/header.component.js'
 import { InputTextGroupComponent } from './components/input.text.group.component.js'
 import { ButtonComponent } from './components/button.component.js'
+import { padLeft } from '../../assets/js/utils/str.js'
 
 export class Page extends HTML {
   children = {
-    apiKey: new InputTextGroupComponent('api key', '', 'password'),
-    query: new InputTextGroupComponent('query'),
-    from: new InputTextGroupComponent('from'),
-    to: new InputTextGroupComponent('to'),
-    sortBy: new InputTextGroupComponent('sort by'),
+    apiKey: new InputTextGroupComponent('api key', this.getDefaultApiKey(), 'password'),
+    query: new InputTextGroupComponent('query', this.getDefaultQuery()),
+    from: new InputTextGroupComponent('from', this.getDefaultFrom()),
+    to: new InputTextGroupComponent('to', this.getDefaultTo()),
+    sortBy: new InputTextGroupComponent('sort by', this.getDefaultsortBy()),
     results: new HTML(),
+  }
+
+  getDefaultApiKey() {
+    return ''
+  }
+
+  getDefaultQuery() {
+    return 'Apple'
+  }
+
+  getDateString(offset = 0) {
+    const date = new Date(Date.now() - offset)
+    return [date.getFullYear(), date.getMonth() + 1, date.getDate()].map((d) => padLeft(d, 2, '0')).join('-')
+  }
+
+  getDefaultFrom() {
+    return this.getDateString(1000 * 60 * 60 * 24 * 7) // 7 days
+  }
+
+  getDefaultTo() {
+    return this.getDateString()
+  }
+
+  getDefaultsortBy() {
+    return 'popularity'
   }
 
   onCreate() {
