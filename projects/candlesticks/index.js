@@ -2,20 +2,7 @@ import { HTML } from '@brtmvdl/frontend'
 import { HeaderComponent } from './components/header.component.js'
 import { FooterComponent } from './components/footer.component.js'
 import { BodyComponent } from './components/body.component.js'
-import { OrderModel } from './models/order.model.js'
 import * as Local from '../../assets/js/utils/local.js'
-
-class BuyModel extends OrderModel {
-  constructor(symbol, quoteOrderQty = 100) {
-    super('buy', symbol, quoteOrderQty)
-  }
-}
-
-class SellModel extends OrderModel {
-  constructor(symbol, quoteOrderQty = 100) {
-    super('sell', symbol, quoteOrderQty)
-  }
-}
 
 export class Page extends HTML {
   children = {
@@ -43,35 +30,58 @@ export class Page extends HTML {
   }
 
   getHeader() {
+    this.children.header.on('update', ({ value: data }) => this.onHeaderUpdate(data))
     return this.children.header
   }
 
+  onHeaderUpdate(data) {
+    this.update({ header: data })
+  }
+
   getBody() {
+    this.children.body.on('update', ({ value: data }) => this.onBodyUpdate(data))
     return this.children.body
   }
 
+  onBodyUpdate(data = {}) {
+    this.update({ body: data })
+  }
+
   getFooter() {
-    this.children.footer.on('buy', () => this.buy())
-    this.children.footer.on('sell', () => this.sell())
+    this.children.footer.on('buy', () => this.onFooterBuy())
+    this.children.footer.on('sell', () => this.onFooterSell())
+    this.children.footer.on('update', ({ value: data }) => this.onFooterUpdate(data))
     return this.children.footer
   }
 
-  buy() {
+  onFooterBuy() {
     this.saveMove({ side: 'buy' })
   }
 
-  sell() {
+  onFooterSell() {
     this.saveMove({ side: 'sell' })
+  }
+
+  onFooterUpdate(data = {}) {
+    this.update({ footer: data })
   }
 
   saveMove(params = {}) {
     Local.add(['orders'], {
-      symbol: this.children.header.children.symbol.getValue(),
-      type: 'MARKET',
-      quoteOrderQty: 100,
+      symbol: this.children.header.getSymbol(),
+      type: 'LIMIT',
+      quantity: this.children.header.getQuantity(),
+      price: this.children.body.getPrice(),
+      timeInForce: 'GTC',
       timestamp: Date.now(),
       ...params
     })
     this.dispatchEvent('update')
+  }
+
+  update({ header = {}, body = {}, footer = {} } = {}) {
+    this.children.header.dispatchEvent('input', header)
+    this.children.body.dispatchEvent('input', body)
+    this.children.footer.dispatchEvent('input', footer)
   }
 }

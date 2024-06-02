@@ -5,7 +5,7 @@ class TableHTML extends nTable {
   constructor(data = [], headers = []) {
     super()
     this.data = data
-    this.headers = headers.length ? headers : Object.keys(this.data[0])
+    this.headers = headers.length ? headers : Object.keys(this.data?.[0] || {})
   }
 
   onCreate() {
@@ -48,6 +48,7 @@ export class FooterComponent extends HTML {
     this.setStyles()
     this.setEvents()
     this.append(this.getFlex())
+    this.updateMoves()
   }
 
   setStyles() {
@@ -59,8 +60,13 @@ export class FooterComponent extends HTML {
   }
 
   onUpdate() {
+    this.updateMoves()
+  }
+
+  updateMoves() {
     this.children.moves.clear()
-    this.children.moves.append(new TableHTML(Local.get(['orders'], [])))
+    const table = new TableHTML(Local.get(['orders'], []) || [])
+    this.children.moves.append(table)
   }
 
   getFlex() {
