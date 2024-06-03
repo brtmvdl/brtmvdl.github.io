@@ -26,6 +26,7 @@ export class Page extends HTML {
 
   setStyles() {
     this.setStyle('margin', '0 auto')
+    this.setStyle('height', '20rem')
     this.setStyle('width', '20rem')
   }
 
@@ -65,5 +66,4 @@ export class Page extends HTML {
   getIMC(weight = 1, height = 1) {
     return (weight / (height * height)).toFixed(4)
   }
-
 }
