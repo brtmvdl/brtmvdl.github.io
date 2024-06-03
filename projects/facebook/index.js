@@ -49,7 +49,7 @@ export class Page extends HTML {
   getLoginButton() {
     const button = new nButton()
     button.setText('Login')
-    button.on('click', () => FB.login((resp) => this.appendResponse('Login', resp)))
+    button.on('click', () => FB.login((resp) => this.appendResponse('Login', resp), { scope: 'email,user_likes,publish_actions,publish_to_groups,pages_manage_posts'}))
     return button
   }
 
