@@ -1,3 +1,5 @@
+# [Tarsis Lima](/)
+
 [curriculum](./pages/curriculum/)
 
 ## donate
@@ -16,11 +18,11 @@
 
 [discord](https://discord.gg/2zWpWBgmPj)
 
-## [blog](/blog/)
+## blog
 
 [what is linux?](/blog/what-is-linux/)
 
-## [projects](/projects/)
+## projects
 
 [airplane (alpha)](/projects/airplane/)
 
