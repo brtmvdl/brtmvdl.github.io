@@ -24,11 +24,19 @@
 
 [airplane (alpha)](/projects/airplane/)
 
+[ajax-in-aws (alpha)](/projects/ajax-in-aws/)
+
 [anagram (alpha)](/projects/anagram/)
+
+[apex-charts (alpha)](/projects/apex-charts/)
 
 [audio recorder (alpha)](/projects/audio-recorder/)
 
+[backend (alpha)](/projects/backend/)
+
 [binance rest api (staging)](/projects/binance-rest-api/)
+
+[binance (alpha)](/projects/binance/)
 
 [binance test 2 (alpha)](/projects/binance-test-2/)
 
@@ -44,7 +52,13 @@
 
 [busy](/projects/busy/)
 
+[buy-coins (alpha)](/projects/buy-coins/)
+
 [calculator](/projects/calculator/)
+
+[candlesticks (alpha)](/projects/candlesticks/)
+
+[clock (alpha)](/projects/clock/)
 
 [coinext (alpha)](/projects/coinext/)
 
@@ -52,7 +66,13 @@
 
 [coins (beta)](/projects/coins/)
 
+[cube (alpha)](/projects/cube/)
+
+[database (alpha)](/projects/database/)
+
 [discord websocket api (beta)](/projects/discord-websocket-api/)
+
+[drawer (alpha)](/projects/drawer/)
 
 [exchanges (alpha)](/projects/exchanges/)
 
@@ -66,7 +86,11 @@
 
 [github (alpha)](/projects/github/)
 
+[gmail (alpha)](/projects/gmail/)
+
 [home workout (beta)](/projects/home-workout/)
+
+[imc (alpha)](/projects/imc/)
 
 [linkedin (alpha)](/projects/linkedin/)
 
@@ -86,9 +110,15 @@
 
 [phone number (beta)](/projects/phone-number/)
 
+[piano (alpha)](/projects/piano/)
+
 [player (alpha)](/projects/player/)
 
 [projects (beta)](/projects/projects/)
+
+[projects.next (alpha)](/projects/projects.next/)
+
+[requestidlecallback (alpha)](/projects/requestidlecallback/)
 
 [screen capture api (alpha)](/projects/screen-capture-api/)
 
@@ -99,6 +129,8 @@
 [spot (alpha)](/projects/spot/)
 
 [twitch websocket api (beta)](/projects/twitch-websocket-api/)
+
+[three.js-sample (alpha)](/projects/three.js-sample/)
 
 [twitch (alpha)](/projects/twitch/)
 
