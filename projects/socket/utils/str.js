@@ -1,9 +1,3 @@
-// 
-
-export const padLeft = (text = '', length = 1, pad = ' ') => {
-  while (text.toString().length < length) text = pad.toString() + text.toString()
-  return text.toString()
-}
 
 export const timestamp2str = (timestamp = Date.now()) => {
   const date = new Date(timestamp)

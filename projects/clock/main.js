@@ -109,10 +109,6 @@ renderer.setAnimationLoop(() => {
   renderer.render(scene, camera)
 })
 
-const padLeft = (text, length = 1, pad = ' ') => {
-  while (text.toString().length < length) text = pad + text
-  return text
-}
 
 const title = document.getElementsByTagName('title').item(0)
 
