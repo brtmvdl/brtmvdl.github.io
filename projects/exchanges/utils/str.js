@@ -21,7 +21,9 @@ export const fixDecimals = (num) => {
     .replace(/000000.*/ig, '')
 }
 
-export const price2string = (price = 0) => {
+export const price2string = (price = 0, coin = '') => {
   const [bills, cents] = price.toString().split('.')
-  return `${bills},${fixDecimals(padRight(cents, 2, '0'))}`
+  return [coin, `${bills},${fixDecimals(padRight(cents, 2, '0'))}`]
+    .filter((text) => text.length > 0)
+    .join(' ')
 }
