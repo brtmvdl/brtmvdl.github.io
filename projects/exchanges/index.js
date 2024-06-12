@@ -2,24 +2,7 @@ import { HTML, nH1, nH2, nTable, nTr, nTd } from '@brtmvdl/frontend'
 import * as Local from './utils/local.js'
 import { price2string } from './utils/str.js'
 import { percent } from './utils/math.js'
-
-class nTd2 extends nTd {
-  onCreate() {
-    this.setStyle('padding-bottom', '1rem')
-  }
-}
-
-const createTdText = (text = '') => {
-  const td = new nTd2()
-  td.setText(text)
-  return td
-}
-
-const createTdHTML = (html = new HTML()) => {
-  const td = new nTd2()
-  td.append(html)
-  return td
-}
+import { createTdHTML, createTdText } from './components/index.js'
 
 export class Page extends HTML {
   state = {
@@ -208,8 +191,6 @@ export class Page extends HTML {
     this.children.buys_table.append(value)
 
     const buys = Array.from(Local.get(['buys'], []))
-
-    console.log({ buys })
 
     buys.map(({ symbol, price }) => {
       const value = new nTr()
