@@ -3,6 +3,7 @@ import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { InputComponent } from './components/input.component.js'
 import { ButtonComponent } from './components/button.component.js'
 import { TextHTML } from './components/text.component.js'
+import * as str from '../../assets/js/utils/str.js'
 
 export class Page extends HTML {
   children = {
@@ -22,7 +23,7 @@ export class Page extends HTML {
   }
 
   createId() {
-    return (this.getDatetime()).replace(/\W+/ig, '')
+    return (this.getDatetime()).replace(/\W+/ig, '').replace(/.+T/, '')
   }
 
   onCreate() {
@@ -38,9 +39,7 @@ export class Page extends HTML {
     this.state.peer.on('error', (err) => console.error('error', err))
 
     this.state.peer.on('connection', (conn) => {
-      // console.log('connection', conn)
-      conn.on('data', (data) => console.log('data', data))
-      // conn.on('open', () => console.log('open'))
+      conn.on('data', (data) => this.addMessages(conn.peer, data))
     })
 
     this.state.peer.on('call', (call) => {
@@ -76,22 +75,16 @@ export class Page extends HTML {
 
   onConnectButtonClick() {
     const peer_id = this.children.peer_input.getValue()
+
     console.log('connect click', peer_id)
 
     const conn = this.state.peer.connect(peer_id)
 
-    conn.on('error', (err) => console.log('error', peer_id, err))
+    conn.on('open', () => conn.send(`Hello, i am ${peer_id}!`))
 
-    conn.on('open', () => {
-      console.log('open', peer_id)
+    conn.on('data', (data) => this.addMessages(`message: ${peer_id}`, data))
 
-      conn.on('data', (data) => {
-        console.log('Received', data)
-      })
-
-      conn.send(`Hello, i am ${peer_id}!`)
-    })
-
+    conn.on('error', (err) => this.addMessages(`error: ${peer_id}`, err.message))
   }
 
   getMessagesHTML() {
@@ -127,20 +120,12 @@ export class Page extends HTML {
     this.children.text_input.setValue('')
   }
 
-  onSend({ value: data } = {}) {
-    this.addMessage(data.toString())
-    this.state.socket.send(data)
-  }
-
-  addMessage(message) {
-    this.children.messages.prepend(this.createMessageCard('message', message.toString()))
-  }
-
-  createMessageCard(header, ...messages) {
+  addMessages(header, ...messages) {
     const card = new HTML()
     card.append(new TextHTML(header))
     Array.from(messages).map((message) => card.append(new TextHTML(message)))
     Array.from([Date.now()]).map((footer) => card.append(new TextHTML(footer, str.timestamp2str(footer))))
     this.children.messages.prepend(card)
   }
+
 }
