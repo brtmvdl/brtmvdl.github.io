@@ -1,8 +1,6 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
-import { InputComponent } from './components/input.component.js'
-import { ButtonComponent } from './components/button.component.js'
-import { TextHTML } from './components/text.component.js'
+import { ButtonComponent, TextHTML, InputComponent } from './components/index.js'
 import * as str from '../../assets/js/utils/str.js'
 
 export class Page extends HTML {
@@ -96,6 +94,7 @@ export class Page extends HTML {
 
   createFlex(component1, component2) {
     const html = new nFlex()
+    html.setStyle('padding', '1rem')
     html.append(component1.setContainerStyle('width', '80%'))
     html.append(component2.setContainerStyle('width', '20%'))
     return html
