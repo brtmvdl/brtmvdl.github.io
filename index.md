@@ -110,6 +110,8 @@
 
 [olx (alpha)](/projects/olx/)
 
+[peerjs (beta)](/projects/peerjs/)
+
 [phone number (beta)](/projects/phone-number/)
 
 [piano (alpha)](/projects/piano/)
