@@ -80,7 +80,10 @@ export class Page extends HTML {
 
     const conn = this.state.peer.connect(peer_id)
 
-    conn.on('open', () => conn.send(`Hello, i am ${peer_id}!`))
+    conn.on('open', () => {
+      this.state.conns.push(conn)
+      conn.send(`Hello, i am ${peer_id}!`)
+    })
 
     conn.on('data', (data) => this.addMessages(`message: ${peer_id}`, data))
 
@@ -111,11 +114,9 @@ export class Page extends HTML {
   }
 
   onSendButtonClick() {
-    console.log('send click')
-
     const message = this.children.text_input.getValue()
 
-    Object.keys(this.state.peer.connections).map((conn) => console.log(conn, this.state.peer.connections[conn]))
+    Array.from(this.state.conns).map((conn) => console.log(conn.send(message)))
 
     this.children.text_input.setValue('')
   }
@@ -127,5 +128,4 @@ export class Page extends HTML {
     Array.from([Date.now()]).map((footer) => card.append(new TextHTML(footer, str.timestamp2str(footer))))
     this.children.messages.prepend(card)
   }
-
 }
