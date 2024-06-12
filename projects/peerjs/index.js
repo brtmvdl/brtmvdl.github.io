@@ -1,6 +1,6 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
-import { ButtonComponent, TextHTML, InputComponent } from './components/index.js'
+import { ButtonComponent, TextHTML, InputComponent, MessageCardComponent } from './components/index.js'
 import * as str from '../../assets/js/utils/str.js'
 
 export class Page extends HTML {
@@ -89,6 +89,7 @@ export class Page extends HTML {
   }
 
   getMessagesHTML() {
+    this.children.messages.setStyle('padding', '1rem')
     return this.children.messages
   }
 
@@ -114,17 +115,11 @@ export class Page extends HTML {
 
   onSendButtonClick() {
     const message = this.children.text_input.getValue()
-
     Array.from(this.state.conns).map((conn) => console.log(conn.send(message)))
-
     this.children.text_input.setValue('')
   }
 
   addMessages(header, ...messages) {
-    const card = new HTML()
-    card.append(new TextHTML(header))
-    Array.from(messages).map((message) => card.append(new TextHTML(message)))
-    Array.from([Date.now()]).map((footer) => card.append(new TextHTML(footer, str.timestamp2str(footer))))
-    this.children.messages.prepend(card)
+    this.children.messages.prepend(new MessageCardComponent(header, ...messages))
   }
 }
