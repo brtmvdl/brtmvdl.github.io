@@ -14,7 +14,7 @@ export class Page extends HTML {
   children = {
     ip: new HTML(),
     src_input: new InputComponent('src', 'projects'),
-    key_input: new InputComponent('key', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'),
+    key_input: new InputComponent('key', 'ebcb13f044794a24b8f1511008312127'),
     language_select: new SelectComponent('languages'),
     messages: new HTML(),
   }
