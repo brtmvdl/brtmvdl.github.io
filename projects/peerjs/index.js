@@ -45,16 +45,6 @@ export class Page extends HTML {
       })
     })
 
-    this.state.peer.on('call', (call) => {
-      navigator.mediaDevices.getUserMedia(
-        { video: true, audio: true },
-        (stream) => {
-          call.answer(stream)
-          call.on('stream', (remoteStream) => console.log('stream', 'remoteStream', remoteStream))
-        },
-        (err) => console.error('error', err),
-      )
-    })
   }
 
   getPeerIdHTML() {
