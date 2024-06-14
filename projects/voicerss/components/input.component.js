@@ -1,5 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 import { nInput } from './input.js'
+import { nLabel } from './label.js'
 
 export class InputComponent extends HTML {
   state = {
@@ -8,7 +9,7 @@ export class InputComponent extends HTML {
   }
 
   children = {
-    label: new HTML(),
+    label: new nLabel(),
     input: new nInput(),
   }
 
@@ -26,6 +27,7 @@ export class InputComponent extends HTML {
 
   getLabel() {
     this.children.label.setText(this.state.label)
+    this.children.label.setStyle('padding', 'calc(1rem / 4)')
     return this.children.label
   }
 

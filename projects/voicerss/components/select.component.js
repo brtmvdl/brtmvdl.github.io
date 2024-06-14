@@ -1,4 +1,6 @@
-import { HTML, nSelect } from '@brtmvdl/frontend'
+import { HTML } from '@brtmvdl/frontend'
+import { nSelect } from './select.js'
+import { nLabel } from './label.js'
 
 export class SelectComponent extends HTML {
   state = {
@@ -13,7 +15,7 @@ export class SelectComponent extends HTML {
   }
 
   children = {
-    label: new HTML(),
+    label: new nLabel(),
     select: new nSelect(),
   }
 

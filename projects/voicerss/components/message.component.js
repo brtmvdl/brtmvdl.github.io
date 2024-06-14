@@ -1,8 +1,9 @@
 import { HTML } from '@brtmvdl/frontend'
 import { MessageModel } from '../models/message.model.js'
+import { TextComponent } from '../../../assets/js/components/text.component.js'
 
 export class MessageComponent extends HTML {
-  message = null
+  message = new MessageModel()
 
   constructor(message = new MessageModel()) {
     super()
@@ -11,7 +12,10 @@ export class MessageComponent extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setText('message component')
+    if (this.message.text) this.append(this.getTextHTML(this.message.text))
   }
 
+  getTextHTML(text = this.message.text) {
+    return new TextComponent(text)
+  }
 }

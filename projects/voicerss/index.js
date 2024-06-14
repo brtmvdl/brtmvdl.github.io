@@ -1,19 +1,18 @@
-import { HTML, nFlex, nImage, nLink, nButton, nSelect } from '@brtmvdl/frontend'
+import { HTML, nFlex, nImage, nLink } from '@brtmvdl/frontend'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import { AudioMessageComponent } from './components/audio.message.component.js'
 import { MessageComponent } from './components/message.component.js'
 import { SelectComponent } from './components/select.component.js'
 import { InputComponent } from './components/input.component.js'
+import { nButton } from './components/button.js'
 import { AudioMessageModel } from './models/audio.message.model.js'
 import { MessageModel } from './models/message.model.js'
-import { createButton } from './functions.js'
 import { getLanguages } from './languages.js'
-
-import { TextComponent } from '../../assets/js/components/text.component.js'
 
 export class Page extends HTML {
   children = {
     ip: new HTML(),
-    src_input: new InputComponent('src', 'projects'),
+    src_input: new InputComponent('src', 'project ' + Date.now().toString()),
     key_input: new InputComponent('key', 'ebcb13f044794a24b8f1511008312127'),
     language_select: new SelectComponent('languages'),
     messages: new HTML(),
@@ -27,42 +26,33 @@ export class Page extends HTML {
 
   getHeader() {
     const flex = new nFlex()
-    flex.append(this.getLogoLink().setContainerStyle('width', '20%'))
-    flex.append(this.getIpHTML().setContainerStyle('width', '80%'))
+    flex.append(this.getLeftHeaderHTML().setContainerStyle('width', '20%'))
+    flex.append(this.getRightHeaderHTML().setContainerStyle('width', '80%'))
     return flex
   }
 
-  getLogoLink() {
-    const link = new nLink()
-    link.href('https://voicerss.org/')
-    link.setAttr('_new', true)
+  getLeftHeaderHTML() {
+    const html = new HTML()
     const image = new nImage()
     image.setStyle('width', 'calc(100% - 1rem)')
     image.src('./logo.png')
     image.alt('logo')
+    const link = new nLink()
+    link.href('https://voicerss.org/')
+    link.setAttr('_new', true)
     link.append(image)
-    return link
+    html.append(link)
+    return html.append(link)
   }
 
-  getIpHTML() {
-    const html = new nFlex()
-    html.append(this.getDownloadButton())
-    html.append(this.getIpText())
-    return html
-  }
-
-  getDownloadButton() {
-    return createButton('download')
-  }
-
-  getIpText() {
+  getRightHeaderHTML() {
     return new HTML()
   }
 
   getBody() {
     const html = new nFlex()
-    html.append(this.getForm())
-    html.append(this.getMessages())
+    html.append(this.getForm().setContainerStyle('width', '20%'))
+    html.append(this.getMessages().setContainerStyle('width', '80%'))
     return html
   }
 
@@ -96,17 +86,20 @@ export class Page extends HTML {
   }
 
   getSendButton() {
-    return createButton('send', () => this.onSendButtonClick())
+    return new nButton('send', () => this.onSendButtonClick())
   }
 
   onSendButtonClick() {
+    this.addAudioMessage()
+  }
+
+  addAudioMessage() {
     const key = this.children.key_input.getValue()
     const src = this.children.src_input.getValue()
     const hl = this.children.language_select.getValue()
     const search = new URLSearchParams({ key, src, hl })
     const url = `http://api.voicerss.org/?${search.toString()}`
-
-    this.addMessage(new AudioMessageModel(url))
+    this.addMessage(new AudioMessageModel(url, src))
   }
 
   addMessage(message = new MessageModel()) {
@@ -114,15 +107,15 @@ export class Page extends HTML {
   }
 
   parseMessage(message = new MessageModel()) {
-    switch (message.type) {
-      case null: return new MessageComponent(message)
-      case 'audio': return new AudioMessageComponent(message)
+    if (message.type = 'audio') {
+      return new AudioMessageComponent(message)
     }
 
     return new TextComponent(message.type)
   }
 
   getMessages() {
+    this.children.messages.setStyle('text-align', 'right')
     return this.children.messages
   }
 }

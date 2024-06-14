@@ -1,9 +1,22 @@
 import * as FRONTEND from '@brtmvdl/frontend'
 
-export class nInput extends FRONTEND.nInput {
+export class nButton extends FRONTEND.nButton {
+  state = {
+    text: '',
+    onclick: (() => { }),
+  }
+
+  constructor(text, onclick = (() => console.log('click'))) {
+    super()
+    this.state.text = text
+    this.state.onclick = onclick
+  }
+
   onCreate() {
     super.onCreate()
     this.setStyles()
+    this.setText(this.state.text)
+    this.on('click', () => this.state.onclick?.())
   }
 
   setStyles() {
@@ -12,6 +25,7 @@ export class nInput extends FRONTEND.nInput {
     this.setStyle('margin', 'calc(1rem / 4)')
     this.setStyle('outline', 'none')
     this.setStyle('border', 'none')
-    this.setStyle('width', 'auto')
+    this.setStyle('width', '100%')
   }
+
 }

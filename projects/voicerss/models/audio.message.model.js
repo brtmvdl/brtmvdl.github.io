@@ -2,16 +2,16 @@ import { MessageModel } from './message.model.js'
 
 export class AudioMessageModel extends MessageModel {
   type = 'audio'
-
   url = ''
 
-  constructor(url) {
-    super()
+  constructor(url, text = '') {
+    super(text)
     this.url = url
   }
 
   toJSON() {
-    const { url, type } = this
-    return { url, type }
+    const { url, type, text } = this
+    return { url, type, text }
   }
+
 }

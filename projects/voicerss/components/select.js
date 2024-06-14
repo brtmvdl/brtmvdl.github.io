@@ -1,6 +1,6 @@
 import * as FRONTEND from '@brtmvdl/frontend'
 
-export class nInput extends FRONTEND.nInput {
+export class nSelect extends FRONTEND.nSelect {
   onCreate() {
     super.onCreate()
     this.setStyles()
@@ -12,6 +12,6 @@ export class nInput extends FRONTEND.nInput {
     this.setStyle('margin', 'calc(1rem / 4)')
     this.setStyle('outline', 'none')
     this.setStyle('border', 'none')
-    this.setStyle('width', 'auto')
   }
+
 }
