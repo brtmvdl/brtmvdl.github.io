@@ -140,6 +140,8 @@
 
 [twitter (alpha)](/projects/twitter/)
 
+[voicerss (beta)](/projects/voicerss/)
+
 [vestibular (alpha)](/projects/vestibular/)
 
 [websocket](/projects/websocket/)
