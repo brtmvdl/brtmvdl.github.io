@@ -1,4 +1,5 @@
 import { HTML, nH2, nFlex, nButton } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
 
 export class Page extends HTML {
   children = {
@@ -83,9 +84,7 @@ export class Page extends HTML {
   }
 
   createButton(char) {
-    const button = new HTML()
-    button.setText(char)
-    button.on('click', () => this.onButtonClick(char))
+    const button = new ButtonComponent(char, () => this.onButtonClick(char))
     button.setStyle('background-color', '#000000')
     button.setStyle('margin', 'calc(1rem / 2)')
     button.setStyle('display', 'inline-block')
@@ -116,4 +115,5 @@ export class Page extends HTML {
     const input = this.children.input.getText() || ''
     this.children.input.setText(input + char)
   }
+
 }

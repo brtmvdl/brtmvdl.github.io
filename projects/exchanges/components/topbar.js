@@ -1,4 +1,5 @@
 import { HTML, nFlex, nLink } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import * as COLORS from '../colors.js'
 import { links } from '../constants.js'
 
@@ -118,12 +119,10 @@ export class TopBar extends HTML {
     this.append(this.getSearch())
   }
 
-  createButton(name, ev = (() => { })) {
-    const html = new HTML()
-    html.setText(name)
-    html.setContainerStyle('padding', '1rem')
-    html.on('click', () => ev({}))
-    return html
+  createButton(text, onclick = (() => { })) {
+    const button = new ButtonComponent(text, onclick)
+    button.setContainerStyle('padding', '1rem')
+    return button
   }
 
   getMenuButton() {

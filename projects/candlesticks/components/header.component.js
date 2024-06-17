@@ -13,7 +13,6 @@ export class HeaderComponent extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setEvents()
     this.setStyle('padding', '1rem')
     this.append(this.getFlex())
   }

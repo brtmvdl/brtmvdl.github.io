@@ -1,4 +1,5 @@
 import { HTML, nFlex, nButton, nTable, nTr, nTd } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import * as Local from '../../../assets/js/utils/local.js'
 
 class TableHTML extends nTable {
@@ -90,9 +91,7 @@ export class FooterComponent extends HTML {
   }
 
   createButton(text, onclick = (() => { }), color = '#000000') {
-    const button = new nButton()
-    button.setText(text)
-    button.on('click', () => onclick())
+    const button = new ButtonComponent(text, onclick)
     button.setStyle('background-color', color)
     button.setStyle('color', '#ffffff')
     button.setStyle('border', 'none')
@@ -106,4 +105,5 @@ export class FooterComponent extends HTML {
   getSellButton() {
     return this.createButton('sell', () => this.dispatchEvent('sell'), '#cc0000')
   }
+
 }

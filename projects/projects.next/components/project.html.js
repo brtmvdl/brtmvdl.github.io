@@ -1,4 +1,5 @@
 import { HTML, nInputText, nSelect, nFlex } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { EndpointModel } from '../models/endpoint.model.js'
 import { EndpointHTML } from './endpoint.html.js'
 
@@ -51,10 +52,8 @@ export class ProjectHTML extends HTML {
   }
 
   createButton(text, onclick = (() => { })) {
-    const button = new HTML()
+    const button = new ButtonComponent(text, onclick)
     button.setStyle('cursor', 'pointer')
-    button.setText(text)
-    button.on('click', () => onclick())
     return button
   }
 
@@ -92,4 +91,5 @@ export class ProjectHTML extends HTML {
       // services: Array.from(this.state.services).map((service) => service.getValue()),
     }
   }
+
 }

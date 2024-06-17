@@ -1,5 +1,7 @@
 import * as config from './config.js'
 
+import { request } from '../../assets/js/utils/ajax.js'
+
 class Response {
   responseText = null
   body = null
@@ -32,19 +34,7 @@ class ErrorResponse extends Response {
   type = 'network'
 }
 
-const api = (method = 'GET', url = '', headers = {}, data = {}) => {
-  return new Promise((s, f) => {
-    const xhr = new XMLHttpRequest()
-    xhr.open(method, url, true)
-    Array.from(headers).map(([key, value = '']) => xhr.setRequestHeader(key, value))
-
-    const onComplete = () => xhr.status === 200 ? s(new SuccessResponse(xhr)) : f(new ErrorResponse(xhr))
-    xhr.onload = () => onComplete()
-    xhr.onerror = () => onComplete()
-
-    xhr.send(JSON.stringify(data))
-  })
-}
+const api = (method = 'GET', url = '', headers = {}, data = {}) => request(method, url, data, headers)
 
 const url = (paths) => [config.URL_BASE, ...paths].join('/')
 

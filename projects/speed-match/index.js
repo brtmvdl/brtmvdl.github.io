@@ -1,5 +1,7 @@
 import { HTML, nH1, nButton, nFlex } from '@brtmvdl/frontend'
 
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+
 const LETTERS = ['X', 'X', 'B', 'B', 'Y', 'Y', 'D', 'D', 'Z', 'Z']
 
 HTML.fromElement(document.body)
@@ -77,18 +79,13 @@ class Game {
     color = null,
     onClick = null,
   } = {}) {
-    const button = new nButton()
-    button.setText(text)
+    const button = new ButtonComponent(text, onClick)
 
     button.setStyle('padding', '1rem')
 
     if (color) {
       button.setStyle('background-color', color)
       button.setStyle('color', '#FFFFFF')
-    }
-
-    if (typeof onClick === 'function') {
-      button.on('click', () => onClick())
     }
 
     return button

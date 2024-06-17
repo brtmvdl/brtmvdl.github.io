@@ -36,6 +36,8 @@
 
 [backend (alpha)](/projects/backend/)
 
+[ball (alpha)](/projects/ball/)
+
 [binance rest api (staging)](/projects/binance-rest-api/)
 
 [binance (alpha)](/projects/binance/)

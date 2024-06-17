@@ -70,9 +70,7 @@ export class ProjectHeader extends nFlex {
   }
 
   createButton(text, onclick = (() => { })) {
-    const button = new HTML()
-    button.setText(text)
-    button.on('click', () => onclick())
+    const button = new ButtonComponent(text, onclick)
     button.setStyle('cursor', 'pointer')
     return button
   }

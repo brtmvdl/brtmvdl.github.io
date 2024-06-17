@@ -1,8 +1,10 @@
 import { HTML, nH1, nInput, nButton } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { FormComponent } from '../../assets/js/components/form.component.js'
 import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
 import * as LOCAL from '../../assets/js/utils/local.js'
 import * as FLOW from '../../assets/js/utils/flow.js'
+import * as API from '../../assets/js/utils/api.js'
 
 export class Page extends HTML {
   children = {
@@ -22,6 +24,7 @@ export class Page extends HTML {
       this.append(this.getTitle())
       this.append(this.getButtons())
       this.append(this.getGoogleForm())
+      this.append(this.getTwitterLoginButton())
     }
   }
 
@@ -49,10 +52,22 @@ export class Page extends HTML {
     return this.createButton('google', () => this.children.google_form.submit())
   }
 
+  getTwitterLoginButton() {
+    return this.createButton('twitter', () => this.onTwitterLogin())
+  }
+
+  onTwitterLogin() {
+    API.twitter.oauth.request_token()
+      .then((res) => this.onRequestToken(res))
+      .catch((err) => console.error(err))
+  }
+
+  onRequestToken(res) {
+    console.log({ res })
+  }
+
   createButton(text, onclick = (() => { })) {
-    const button = new nButton()
-    button.setText(text)
-    button.on('click', () => onclick())
+    const button = new ButtonComponent(text, onclick)
     button.setStyle('border', 'none')
     button.setStyle('padding', '1rem')
     button.setStyle('color', '#ffffff')
@@ -74,4 +89,5 @@ export class Page extends HTML {
 
     return this.children.google_form
   }
+
 }

@@ -1,4 +1,6 @@
-import { HTML, nButton, nSelect, nFlex } from '@brtmvdl/frontend'
+import { HTML, nSelect, nFlex } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+
 import {
   MessageModel,
   OpenMessageModel,
@@ -79,7 +81,7 @@ export class Page extends HTML {
   }
 
   getStartButton() {
-    return this.createButton('start', () => this.startRunning())
+    return new ButtonComponent('start', () => this.startRunning())
   }
 
   startRunning() {
@@ -108,22 +110,14 @@ export class Page extends HTML {
   }
 
   getStopButton() {
-    return this.createButton('stop', () => this.stopRunning())
+    return new ButtonComponent('stop', () => this.stopRunning())
   }
 
   stopRunning() {
     this.state.running = false
   }
 
-  createButton(text, onclick = (() => { })) {
-    const button = new nButton()
-    button.setText(text)
-    button.on('click', () => onclick())
-    return button
-  }
-
   getMessagesComponent() {
     return this.children.messages
   }
-
 }

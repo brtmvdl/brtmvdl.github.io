@@ -31,8 +31,12 @@ export class Response {
     return headers
   }
 
+  getResponseText() {
+    return this.xhr.responseText
+  }
+
   getData() {
-    return JSON.parse(this.xhr.responseText)
+    return JSON.parse(this.getResponseText())
   }
 
   get(key) {
