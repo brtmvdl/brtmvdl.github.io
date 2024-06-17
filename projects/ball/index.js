@@ -28,7 +28,7 @@ let text = 'three.js',
   font = undefined,
 
   fontName = 'optimer', // helvetiker, optimer, gentilis, droid sans, droid serif
-  fontWeight = 'bold'; // normal bol
+  fontWeight = 'bold' // normal bol
 
 const depth = 20,
   size = 70,
@@ -179,8 +179,35 @@ function init() {
 
       refreshText()
 
+    },
+    openControls: function () {
+      const url = new URL(window.location)
+
+      url.pathname = './projects/ball/controls.html'
+
+      url.searchParams.append('id', peer.id)
+
+      window.open(url)
     }
   }
+
+  //
+
+  const peer = new Peer()
+
+  peer.on('connection', function (conn) {
+    console.log('connection', { conn })
+
+    conn.on('data', function (data) {
+      console.log('data', { data })
+    })
+  })
+
+  peer.on('open', () => console.log('open'))
+  
+  peer.on('error', () => console.log('error'))
+  
+  peer.on('close', () => console.log('close'))
 
   //
 
@@ -190,6 +217,7 @@ function init() {
   gui.add(params, 'changeFont').name('change font')
   gui.add(params, 'changeWeight').name('change weight')
   gui.add(params, 'changeBevel').name('change bevel')
+  gui.add(params, 'openControls').name('open controls')
   gui.open()
 
   //

@@ -23,9 +23,9 @@
 
   <script type="module">
     import { HTML } from '@brtmvdl/frontend'
-    import './index.js'
-
+    import { Page } from './controls.js'
     HTML.fromElement(document.body).setStyle('margin', '0')
+    HTML.fromElement(document.body).append(new Page())
   </script>
 </body>
 
