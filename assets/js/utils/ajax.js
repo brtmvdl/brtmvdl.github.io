@@ -1,9 +1,11 @@
 import { Response } from './http.js'
 
-export const request = (method = 'GET', url = '', body = {}) => {
+export const request = (method = 'GET', url = '', body = {}, headers = {}) => {
   return new Promise((res, rej) => {
     const xhr = new XMLHttpRequest()
     xhr.open(method, url, true)
+
+    Object.keys(headers).map((h) => xhr.setRequestHeader(h, headers[h]))
 
     const onComplete = () => xhr.status === 200 ? res(new Response(xhr)) : rej(new Response(xhr))
     xhr.onload = () => onComplete()
