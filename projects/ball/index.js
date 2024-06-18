@@ -200,6 +200,8 @@ function init() {
 
     conn.on('data', function (data) {
       console.log('data', { data })
+
+      params[data]?.()
     })
   })
 
