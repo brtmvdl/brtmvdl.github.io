@@ -28,23 +28,23 @@
 
 [ajax-in-aws (alpha)](/projects/ajax-in-aws/)
 
-[aliexpress](/projects/aliexpress-api/)
+[aliexpress (alpha)](/projects/aliexpress-api/)
 
 [anagram (alpha)](/projects/anagram/)
 
-[anthropic](/projects/anthropic-api/)
+[anthropic (alpha)](/projects/anthropic-api/)
 
 [apex-charts (alpha)](/projects/apex-charts/)
 
 [audio recorder (alpha)](/projects/audio-recorder/)
 
-[autentique](/projects/autentique-api/)
+[autentique (alpha)](/projects/autentique-api/)
 
 [backend (alpha)](/projects/backend/)
 
 [ball (alpha)](/projects/ball/)
 
-[binance](/projects/binance-api/)
+[binance (alpha)](/projects/binance-api/)
 
 [binance rest api (staging)](/projects/binance-rest-api/)
 
@@ -54,39 +54,39 @@
 
 [binance test (alpha)](/projects/binance-test/)
 
-[binance websocket api](/projects/binance-websocket-api/)
+[binance websocket api (alpha)](/projects/binance-websocket-api/)
 
 [bitcoin (beta)](/projects/bitcoin/)
 
 [bitcointoyou (alpha)](/projects/bitcointoyou/)
 
-[bitget](/projects/bitget-api/)
+[bitget (alpha)](/projects/bitget-api/)
 
 [bitget (alpha)](/projects/bitget/)
 
-[brasil](/projects/brasil-api/)
+[brasil (alpha)](/projects/brasil-api/)
 
-[busy](/projects/busy/)
+[busy (alpha)](/projects/busy/)
 
 [buy-coins (alpha)](/projects/buy-coins/)
 
-[bybit](/projects/bybit-api/)
+[bybit (alpha)](/projects/bybit-api/)
 
-[calculator](/projects/calculator/)
+[calculator (alpha)](/projects/calculator/)
 
 [candlesticks (alpha)](/projects/candlesticks/)
 
 [clock (alpha)](/projects/clock/)
 
-[cloudflare](/projects/cloudflare-api/)
+[cloudflare (alpha)](/projects/cloudflare-api/)
 
-[coinbase](/projects/coinbase-api/)
+[coinbase (alpha)](/projects/coinbase-api/)
 
 [coinext (alpha)](/projects/coinext/)
 
 [coins calculator (beta)](/projects/coins-calculator/)
 
-[coins.latest](/projects/coins.latest/)
+[coins.latest (alpha)](/projects/coins.latest/)
 
 [coins (beta)](/projects/coins/)
 
@@ -100,75 +100,75 @@
 
 [exchanges (alpha)](/projects/exchanges/)
 
-[expaybrasil](/projects/expaybrasil-api/)
+[expaybrasil (alpha)](/projects/expaybrasil-api/)
 
-[facebook](/projects/facebook-api/)
+[facebook (alpha)](/projects/facebook-api/)
 
 [facebook (alpha)](/projects/facebook/)
 
-[firebase](/projects/firebase-api/)
+[firebase (alpha)](/projects/firebase-api/)
 
-[foxbit](/projects/foxbit-api/)
+[foxbit (alpha)](/projects/foxbit-api/)
 
 [foxbit websocket api (beta)](/projects/foxbit-websocket-api/)
 
 [foxbit (beta)](/projects/foxbit/)
 
-[frontend](/projects/frontend/)
+[frontend (alpha)](/projects/frontend/)
 
-[github](/projects/github-api/)
+[github (alpha)](/projects/github-api/)
 
 [github (alpha)](/projects/github/)
 
 [gmail (alpha)](/projects/gmail/)
 
-[google](/projects/google-api/)
+[google (alpha)](/projects/google-api/)
 
 [home workout (beta)](/projects/home-workout/)
 
-[hotmart](/projects/hotmart-api/)
+[hotmart (alpha)](/projects/hotmart-api/)
 
-[ibparque](/projects/ibparque/)
+[ibparque (alpha)](/projects/ibparque/)
 
 [imc (alpha)](/projects/imc/)
 
-[kraken](/projects/kraken-api/)
+[kraken (alpha)](/projects/kraken-api/)
 
-[kucoin](/projects/kucoin-api/)
+[kucoin (alpha)](/projects/kucoin-api/)
 
-[linkedin](/projects/linkedin-api/)
+[linkedin (alpha)](/projects/linkedin-api/)
 
 [linkedin (alpha)](/projects/linkedin/)
 
-<!-- [luxfacta](/projects/luxfacta/) -->
+<!-- [luxfacta (alpha)](/projects/luxfacta/) -->
 
-[lyrics](/projects/lyrics-api/)
+[lyrics (alpha)](/projects/lyrics-api/)
 
-[makersuite](/projects/makersuite-api/)
+[makersuite (alpha)](/projects/makersuite-api/)
 
 [market (alpha)](/projects/market/)
 
-[math](/projects/math/)
+[math (alpha)](/projects/math/)
 
 [mercadobitcoin (alpha)](/projects/mercadobitcoin/)
 
-[mercadopago](/projects/mercadopago-api/)
+[mercadopago (alpha)](/projects/mercadopago-api/)
 
-[microsoft](/projects/microsoft-api/)
+[microsoft (alpha)](/projects/microsoft-api/)
 
-[musixmatch](/projects/musixmatch-api/)
+[musixmatch (alpha)](/projects/musixmatch-api/)
 
 [newsapi (alpha)](/projects/newsapi/)
 
-[nume.latest](/projects/nume.latest/)
+[nume.latest (alpha)](/projects/nume.latest/)
 
-[nume](/projects/nume/)
+[nume (alpha)](/projects/nume/)
 
 [openai (alpha)](/projects/openai/)
 
 [olx (alpha)](/projects/olx/)
 
-[openai](/projects/openai/)
+[openai (alpha)](/projects/openai/)
 
 [peerjs (beta)](/projects/peerjs/)
 
@@ -176,7 +176,7 @@
 
 [piano (alpha)](/projects/piano/)
 
-[planow](/projects/planow/)
+[planow (alpha)](/projects/planow/)
 
 [player (alpha)](/projects/player/)
 
@@ -184,7 +184,7 @@
 
 [projects.next (alpha)](/projects/projects.next/)
 
-[rdap](/projects/rdap-api/)
+[rdap (alpha)](/projects/rdap-api/)
 
 [requestidlecallback (alpha)](/projects/requestidlecallback/)
 
@@ -196,33 +196,33 @@
 
 [spot (alpha)](/projects/spot/)
 
-[sumup](/projects/sumup-api/)
+[sumup (alpha)](/projects/sumup-api/)
 
 [twitch websocket api (beta)](/projects/twitch-websocket-api/)
 
-[telegram](/projects/telegram-api/)
+[telegram (alpha)](/projects/telegram-api/)
 
 [three.js-sample (alpha)](/projects/three.js-sample/)
 
-[tradingeconomics](/projects/tradingeconomics-api/)
+[tradingeconomics (alpha)](/projects/tradingeconomics-api/)
 
 [twitch (alpha)](/projects/twitch/)
 
-[twitter](/projects/twitter-api/)
+[twitter (alpha)](/projects/twitter-api/)
 
 [twitter (alpha)](/projects/twitter/)
 
-[udemy](/projects/udemy-api/)
+[udemy (alpha)](/projects/udemy-api/)
 
-[unique](/projects/unique-api/)
+[unique (alpha)](/projects/unique-api/)
 
-[unsplash](/projects/unsplash-api/)
+[unsplash (alpha)](/projects/unsplash-api/)
 
 [voicerss (beta)](/projects/voicerss/)
 
 [vestibular (alpha)](/projects/vestibular/)
 
-[websocket](/projects/websocket/)
+[websocket (alpha)](/projects/websocket/)
 
 [workout (alpha)](/projects/workout/)
 
