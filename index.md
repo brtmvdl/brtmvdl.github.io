@@ -30,7 +30,7 @@
 
 [aliexpress (alpha)](/projects/aliexpress-api/)
 
-[anagram (alpha)](/projects/anagram/)
+[anagram](/projects/anagram/)
 
 [anthropic (alpha)](/projects/anthropic-api/)
 
@@ -50,17 +50,11 @@
 
 [binance (alpha)](/projects/binance/)
 
-[binance test 2 (alpha)](/projects/binance-test-2/)
-
-[binance test (alpha)](/projects/binance-test/)
-
 [binance websocket api (alpha)](/projects/binance-websocket-api/)
 
 [bitcoin (beta)](/projects/bitcoin/)
 
 [bitcointoyou (alpha)](/projects/bitcointoyou/)
-
-[bitget (alpha)](/projects/bitget-api/)
 
 [bitget (alpha)](/projects/bitget/)
 
@@ -85,8 +79,6 @@
 [coinext (alpha)](/projects/coinext/)
 
 [coins calculator (beta)](/projects/coins-calculator/)
-
-[coins.latest (alpha)](/projects/coins.latest/)
 
 [coins (beta)](/projects/coins/)
 
