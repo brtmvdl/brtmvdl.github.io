@@ -126,8 +126,8 @@ export class Page extends HTML {
 
   onSendButtonClick() {
     const { method, url, query } = getMethod(this.children.method_select.getValue())
-    console.log('on Send Button Click', url + '?' + q, { method, mode: 'no-cors', headers: this.getHeaders() })
     const q = Array.from(query).map((q) => [q, this.children.inputs.children[q].children.input.getValue()].join('=')).join('&')
+    console.log('on Send Button Click', url + '?' + q, { method, mode: 'no-cors', headers: this.getHeaders() })
     fetch(url + '?' + q, { method, mode: 'no-cors', headers: this.getHeaders() }).then((res) => console.log(res.text())).catch((err) => console.error(err))
   }
 
