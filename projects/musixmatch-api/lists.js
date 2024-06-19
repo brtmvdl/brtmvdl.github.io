@@ -1,6 +1,6 @@
 import { RequestModel } from '../../assets/js/models/request.model.js'
 
-const url = (path = '') => `http://api.musixmatch.com/ws/1.1/${path}`
+const url = (path = '') => `https://api.musixmatch.com/ws/1.1/${path}`
 
 export const getMethodsList = () => Array.from([
   new RequestModel('Musixmatch'),
