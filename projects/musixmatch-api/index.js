@@ -7,7 +7,7 @@ import { getMethodsList, getMethodQuery, getMethod } from './lists.js'
 
 class InputsComponent {
   children = {
-    apikey: new InputComponent('apikey', '', 'password'),
+    apikey: new InputComponent('apikey', '26b4d8590f68cb916cb0437cabe44b2a', 'password'),
     album_id: new InputComponent('album_id', ''),
     album_mbid: new InputComponent('album_mbid'),
     artist_id: new InputComponent('artist_id', ''),
@@ -128,7 +128,9 @@ export class Page extends HTML {
     const { method, url, query } = getMethod(this.children.method_select.getValue())
     const q = Array.from(query).map((q) => [q, this.children.inputs.children[q].children.input.getValue()].join('=')).join('&')
     console.log('on Send Button Click', url + '?' + q, { method, mode: 'no-cors', headers: this.getHeaders() })
-    fetch(url + '?' + q, { method, mode: 'no-cors', headers: this.getHeaders() }).then((res) => console.log(res.text())).catch((err) => console.error(err))
+    fetch(url + '?' + q, { method, mode: 'no-cors', headers: this.getHeaders() })
+      .then((res) => res.text()).then((res) => console.log('res', Date.now(), res))
+      .catch((err) => console.error(err))
   }
 
   getBodyRightComponent() {
