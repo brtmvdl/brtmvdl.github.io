@@ -1,5 +1,6 @@
-import { HTML, nFlex, nImage, nLink } from '@brtmvdl/frontend'
+import { HTML, nFlex, nImage } from '@brtmvdl/frontend'
 import { getLinksList } from '../lists/links.js'
+import { createLink } from '../utils/components.js'
 
 export class HeaderComponent extends HTML {
   onCreate() {
@@ -14,22 +15,12 @@ export class HeaderComponent extends HTML {
     return flex
   }
 
-  createLink(text, href = '') {
-    const link = new nLink() 
-    link.href(href)
-    if (text) link.setText(text)
-    link.setStyle('display', 'inline-block')
-    link.setStyle('margin', '1rem 0rem')
-    link.setStyle('padding', '1rem')
-    return link
-  }
-
   getLeft() {
-    return this.createLink('brtmvdl', '/?' + Date.now())
+    return createLink('brtmvdl', '/?' + Date.now())
   }
 
   createImageLink(src, href = '') {
-    const link = this.createLink(null, href)
+    const link = createLink(null, href)
     link.append(this.createImage(src))
     return link
   }
@@ -42,8 +33,7 @@ export class HeaderComponent extends HTML {
 
   getRight() {
     const html = new nFlex()
-    Array.from(getLinksList()).map(([a, b]) => html.append(this.createLink(a, b)))
+    Array.from(getLinksList()).map(([a, b]) => html.append(createLink(a, b)))
     return html
   }
-
 }
