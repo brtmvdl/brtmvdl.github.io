@@ -1,331 +1,311 @@
 export const experiences = [
   {
-    'id': 'luxfacta',
-    'title': 'Luxfacta',
-    'subtitle': 'Programador',
-    'dates': ['2014-03', '2017-09'],
-    'tags': ['jobs'],
+    'id': 'drawer'
   },
   {
-    'id': 'planow',
-    'title': 'Plano W',
-    'subtitle': 'Programador',
-    'dates': ['2013-04', '2013-09'],
-    'tags': ['jobs'],
+    'id': 'nume.latest'
   },
   {
-    'id': 'ibparque',
-    'title': 'Igreja Batista do Parque',
-    'subtitle': 'Programador',
-    'dates': ['2011', '2014'],
-    'tags': ['jobs'],
+    'id': 'airplane'
   },
   {
-    'id': 'binance-websocket-api',
-    'title': 'Binance WebSocket API',
-    'subtitle': '',
-    'datetime': '2024-02-20',
-    'tags': ['economy'],
+    'id': 'exchanges'
   },
   {
-    'id': 'discord-websocket-api',
-    'title': 'Discord WS API',
-    'subtitle': '',
-    'datetime': '2024-03-14',
-    'tags': [],
+    'id': 'olx'
   },
   {
-    'id': 'twitch-websocket-api',
-    'title': 'Twitch WS API',
-    'subtitle': '',
-    'datetime': '2024-04-04',
-    'tags': [],
+    'id': 'ajax-in-aws'
   },
   {
-    'id': 'twitch',
-    'title': 'Twitch API',
-    'subtitle': '',
-    'datetime': '2024-04-09',
-    'tags': [],
+    'id': 'expaybrasil-api'
   },
   {
-    'id': 'binance-rest-api',
-    'title': 'Binance Rest API',
-    'subtitle': '',
-    'datetime': '2024-03-01',
-    'tags': ['economy'],
+    'id': 'openai'
   },
   {
-    'id': 'coins-calculator',
-    'title': 'Coins Calculator',
-    'subtitle': '',
-    'datetime': '2024-03-05',
-    'tags': ['economy'],
+    'id': 'aliexpress-api'
   },
   {
-    'id': 'exchanges',
-    'title': 'Exchanges',
-    'subtitle': '',
-    'datetime': '2024-03-12',
-    'tags': ['economy'],
+    'id': 'facebook'
   },
   {
-    'id': 'newsapi',
-    'title': 'News API',
-    'subtitle': '',
-    'datetime': '2024-03-06',
-    'tags': [],
+    'id': 'openai-api'
   },
   {
-    'id': 'bitget',
-    'title': 'Bitget',
-    'subtitle': '',
-    'datetime': '2024-02-27',
-    'tags': ['economy'],
+    'id': 'anagram'
   },
   {
-    'id': 'websocket',
-    'title': 'WebSocket',
-    'subtitle': '',
-    'datetime': '2024-02-24',
-    'tags': [],
+    'id': 'facebook-api'
   },
   {
-    'id': 'openai',
-    'title': 'openai',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
+    'id': 'peerjs'
   },
   {
-    'id': 'foxbit',
-    'title': 'Foxbit',
-    'subtitle': '',
-    'datetime': '2024-02-19',
-    'tags': ['economy'],
+    'id': 'anthropic-api'
   },
   {
-    'id': 'foxbit-websocket-api',
-    'title': 'Foxbit WebSocket API',
-    'subtitle': '',
-    'datetime': '2024-03-18',
-    'tags': ['economy'],
+    'id': 'firebase-api'
   },
   {
-    'id': 'coins',
-    'title': 'Coins',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['economy'],
+    'id': 'phone-number'
   },
   {
-    'id': 'twitter',
-    'title': 'Twitter',
-    'subtitle': '',
-    'datetime': '2024-02-11',
-    'tags': ['login'],
+    'id': 'apex-charts'
   },
   {
-    'id': 'facebook',
-    'title': 'Facebook',
-    'subtitle': '',
-    'datetime': '2024-02-10',
-    'tags': ['login'],
+    'id': 'foxbit'
   },
   {
-    'id': 'gmail',
-    'title': 'Gmail',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['login'],
+    'id': 'piano'
   },
   {
-    'id': 'github',
-    'title': 'GitHub',
-    'subtitle': '',
-    'datetime': '2024-02-14',
-    'tags': ['login'],
+    'id': 'audio-recorder'
   },
   {
-    'id': 'linkedin',
-    'title': 'Linkedin',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['login'],
+    'id': 'foxbit-api'
   },
   {
-    'id': 'piano',
-    'title': 'Piano',
-    'subtitle': '',
-    'datetime': '2023-12',
-    'tags': ['3D'],
+    'id': 'planow'
   },
   {
-    'id': 'player',
-    'title': 'Player',
-    'subtitle': '',
-    'datetime': '2024-04-16',
-    'tags': ['3D'],
+    'id': 'autentique-api'
   },
   {
-    'id': 'clock',
-    'title': 'Clock',
-    'subtitle': '',
-    'datetime': '2023-07',
-    'tags': ['3D'],
+    'id': 'foxbit-websocket-api'
   },
   {
-    'id': 'cube',
-    'title': 'Cube',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['3D'],
+    'id': 'player'
   },
   {
-    'id': 'three.js-sample',
-    'title': 'Three.js Sample',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['3D'],
+    'id': 'backend'
   },
   {
-    'id': 'airplane',
-    'title': 'Airplane',
-    'subtitle': '',
-    'datetime': '2023-04',
-    'tags': ['3D'],
+    'id': 'frontend'
   },
   {
-    'id': 'drawer',
-    'title': 'Drawer',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['2D'],
+    'id': 'projects'
   },
   {
-    'id': 'frontend',
-    'title': '@brtmvdl/frontend',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['library'],
+    'id': 'ball'
   },
   {
-    'id': 'backend',
-    'title': '@brtmvdl/backend',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['library'],
+    'id': 'github'
   },
   {
-    'id': 'database',
-    'title': '@brtmvdl/database',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['library'],
+    'id': 'projects.next'
   },
   {
-    'id': 'speed-match',
-    'title': 'Speed Match',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['game'],
+    'id': 'binance'
   },
   {
-    'id': 'nume',
-    'title': 'Nume',
-    'subtitle': '',
-    'datetime': '',
-    'tags': ['game'],
+    'id': 'github-api'
   },
   {
-    'id': 'vestibular',
-    'title': 'vestibular',
-    'subtitle': '',
-    'datetime': '2024-03-12',
-    'tags': [],
+    'id': 'rdap-api'
   },
   {
-    'id': 'projects',
-    'title': 'Projects',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
+    'id': 'binance-api'
   },
   {
-    'id': 'busy',
-    'title': 'Busy',
-    'subtitle': '',
-    'datetime': '2024-02-12',
-    'tags': [],
+    'id': 'gmail'
   },
   {
-    'id': 'apex-charts',
-    'title': 'ApexCharts (candlestick)',
-    'subtitle': '',
-    'datetime': '2024-02-18',
-    'tags': [],
-  },
-  // {
-  //   'id': 'home-workout',
-  //   'title': 'Home Workout',
-  //   'subtitle': '',
-  //   'datetime': '2024-02-15',
-  //   'tags': [],
-  // },
-  {
-    'id': 'workout',
-    'title': 'Workout',
-    'subtitle': '',
-    'datetime': '2024-03-08',
-    'tags': [],
+    'id': 'requestidlecallback'
   },
   {
-    'id': 'audio-recorder',
-    'title': 'Audio Recorder',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
+    'id': 'binance-rest-api'
   },
   {
-    'id': 'anagram',
-    'title': 'Anagram',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
+    'id': 'google-api'
   },
   {
-    'id': 'calculator',
-    'title': 'Calculator',
-    'subtitle': '',
-    'datetime': '2024-02-13',
-    'tags': [],
+    'id': 'screen-capture-api'
   },
   {
-    'id': 'market',
-    'title': 'Market',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
+    'id': 'binance-test'
   },
   {
-    'id': 'phone-number',
-    'title': 'Phone Number',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
+    'id': 'home-workout'
   },
   {
-    'id': 'screen-capture-api',
-    'title': 'Screen Capture API',
-    'subtitle': '',
-    'datetime': '',
-    'tags': [],
+    'id': 'socket'
   },
   {
-    'id': 'bitcoin',
-    'title': 'Bitcoin',
-    'subtitle': '',
-    'datetime': '2024-02-14',
-    'tags': ['economy'],
+    'id': 'binance-test-2'
+  },
+  {
+    'id': 'hotmart-api'
+  },
+  {
+    'id': 'speed-match'
+  },
+  {
+    'id': 'binance-websocket-api'
+  },
+  {
+    'id': 'ibparque'
+  },
+  {
+    'id': 'spot'
+  },
+  {
+    'id': 'bitcoin'
+  },
+  {
+    'id': 'imc'
+  },
+  {
+    'id': 'sumup-api'
+  },
+  {
+    'id': 'bitcointoyou'
+  },
+  {
+    'id': 'index.html'
+  },
+  {
+    'id': 'telegram-api'
+  },
+  {
+    'id': 'bitget'
+  },
+  {
+    'id': 'index.js'
+  },
+  {
+    'id': 'three.js-sample'
+  },
+  {
+    'id': 'brasil-api'
+  },
+  {
+    'id': 'kraken-api'
+  },
+  {
+    'id': 'tradingeconomics-api'
+  },
+  {
+    'id': 'busy'
+  },
+  {
+    'id': 'kucoin-api'
+  },
+  {
+    'id': 'twitch'
+  },
+  {
+    'id': 'buy-coins'
+  },
+  {
+    'id': 'linkedin'
+  },
+  {
+    'id': 'twitch-websocket-api'
+  },
+  {
+    'id': 'bybit-api'
+  },
+  {
+    'id': 'linkedin-api'
+  },
+  {
+    'id': 'twitter'
+  },
+  {
+    'id': 'calculator'
+  },
+  {
+    'id': 'luxfacta'
+  },
+  {
+    'id': 'twitter-api'
+  },
+  {
+    'id': 'candlesticks'
+  },
+  {
+    'id': 'lyrics-api'
+  },
+  {
+    'id': 'udemy-api'
+  },
+  {
+    'id': 'clock'
+  },
+  {
+    'id': 'makersuite-api'
+  },
+  {
+    'id': 'unique-api'
+  },
+  {
+    'id': 'cloudflare-api'
+  },
+  {
+    'id': 'market'
+  },
+  {
+    'id': 'unsplash-api'
+  },
+  {
+    'id': 'coinbase-api'
+  },
+  {
+    'id': 'math'
+  },
+  {
+    'id': 'vestibular'
+  },
+  {
+    'id': 'coinext'
+  },
+  {
+    'id': 'mercadobitcoin'
+  },
+  {
+    'id': 'voicerss'
+  },
+  {
+    'id': 'coins'
+  },
+  {
+    'id': 'mercadopago-api'
+  },
+  {
+    'id': 'voicerss-api'
+  },
+  {
+    'id': 'coins-calculator'
+  },
+  {
+    'id': 'microsoft-api'
+  },
+  {
+    'id': 'websocket'
+  },
+  {
+    'id': 'cube'
+  },
+  {
+    'id': 'musixmatch-api'
+  },
+  {
+    'id': 'workout'
+  },
+  {
+    'id': 'database'
+  },
+  {
+    'id': 'newsapi'
+  },
+  {
+    'id': 'youtube'
+  },
+  {
+    'id': 'discord-websocket-api'
+  },
+  {
+    'id': 'nume'
   },
 ]
