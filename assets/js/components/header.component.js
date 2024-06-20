@@ -1,19 +1,13 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
-import { ContainerComponent } from './container.component.js'
-import { LinkComponent } from './link.component.js'
+import { HTML, nFlex, nImage, nLink } from '@brtmvdl/frontend'
+import { getLinksList } from '../lists/links.js'
 
-export class HeaderComponent extends ContainerComponent {
-
-  getName() {
-    return 'header-component'
-  }
-
+export class HeaderComponent extends HTML {
   onCreate() {
     super.onCreate()
-    this.append(this.getContainer())
+    this.append(this.getFlex())
   }
 
-  getContainer() {
+  getFlex() {
     const flex = new nFlex()
     flex.append(this.getLeft())
     flex.append(this.getRight())
@@ -21,27 +15,35 @@ export class HeaderComponent extends ContainerComponent {
   }
 
   createLink(text, href = '') {
-    const link = new LinkComponent()
-    link.setText(text)
+    const link = new nLink() 
     link.href(href)
-    link.setStyle('padding', '1rem 0rem 1rem 0rem')
+    if (text) link.setText(text)
+    link.setStyle('display', 'inline-block')
+    link.setStyle('margin', '1rem 0rem')
+    link.setStyle('padding', '1rem')
     return link
   }
 
   getLeft() {
-    return this.createLink('index', '/?' + Date.now())
+    return this.createLink('brtmvdl', '/?' + Date.now())
+  }
+
+  createImageLink(src, href = '') {
+    const link = this.createLink(null, href)
+    link.append(this.createImage(src))
+    return link
+  }
+
+  createImage(src) {
+    const image = new nImage()
+    image.src(src)
+    return image
   }
 
   getRight() {
-    const flex = new nFlex()
-    Array.from([
-      this.createLink('blog', '/blog/'),
-      this.createLink('projects', '/projects/'),
-      this.createLink('services', '/services/'),
-    ]).map((link) => {
-      link.setStyle('padding', '1rem 0rem 1rem 1rem')
-      flex.append(link)
-    })
-    return flex
+    const html = new nFlex()
+    Array.from(getLinksList()).map(([a, b]) => html.append(this.createLink(a, b)))
+    return html
   }
+
 }
