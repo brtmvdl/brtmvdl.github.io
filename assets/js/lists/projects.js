@@ -3,9 +3,6 @@ export const experiences = [
     'id': 'drawer'
   },
   {
-    'id': 'nume.latest'
-  },
-  {
     'id': 'airplane'
   },
   {
