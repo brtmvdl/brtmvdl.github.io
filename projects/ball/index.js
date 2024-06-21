@@ -1,6 +1,4 @@
 import { qrcode } from '../../assets/js/utils/functions.js'
-import { uuid } from '../../assets/js/utils/functions.js'
-
 import * as THREE from 'three'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
@@ -8,8 +6,6 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 
 THREE.Cache.enabled = true
-
-const PEER_ID = uuid()
 
 let container
 
@@ -20,40 +16,31 @@ let group, textMesh1, textMesh2, textGeo, materials
 let firstLetter = true
 
 let text = 'three.js',
-
   bevelEnabled = true,
-
   font = undefined,
-
   fontName = 'optimer', // helvetiker, optimer, gentilis, droid sans, droid serif
   fontWeight = 'bold' // normal bol
 
 const depth = 20,
   size = 70,
   hover = 30,
-
   curveSegments = 4,
-
   bevelThickness = 2,
   bevelSize = 1.5
 
 const mirror = true
 
 const fontMap = {
-
   'helvetiker': 0,
   'optimer': 1,
   'gentilis': 2,
   'droid/droid_sans': 3,
   'droid/droid_serif': 4
-
 }
 
 const weightMap = {
-
   'regular': 0,
   'bold': 1
-
 }
 
 const reverseFontMap = []
@@ -64,58 +51,62 @@ for (const i in weightMap) reverseWeightMap[weightMap[i]] = i
 
 let targetRotation = 0
 let targetRotationOnPointerDown = 0
-
 let pointerX = 0
 let pointerXOnPointerDown = 0
-
 let windowHalfX = window.innerWidth / 2
-
 let fontIndex = 1
 
-const peer = new Peer(PEER_ID)
+const peer = new Peer()
 
 peer.on('connection', function (conn) {
-  console.log('connection', { conn })
+  console.log('peer connection', { conn })
 
   conn.on('open', function (open) {
-    console.log('open', { open })
+    console.log('conn open', { open })
   })
 
   conn.on('close', function (close) {
-    console.log('close', { close })
+    console.log('conn close', { close })
   })
 
   conn.on('error', function (error) {
-    console.log('error', { error })
+    console.log('conn error', { error })
   })
 
   conn.on('data', function (data) {
-    console.log('data', { data })
+    console.log('conn data', { data })
+
+    params[data]?.()
   })
 })
 
-const getControlsUrl = (id) => {
+peer.on('open', () => {
+  console.log('peer open')
+  createQrcodeImage(peer.id)
+})
+
+peer.on('error', () => console.log('peer error'))
+
+peer.on('close', () => console.log('peer close'))
+
+const createQrcodeImage = (id) => {
+  const image = document.createElement('img')
   const url = new URL(window.location)
   url.pathname = `/projects/ball/controls.html?id=${id}`
-  return url.toString()
-}
-
-const createImage = (id) => {
-  const image = document.createElement('img')
-  image.src = qrcode(getControlsUrl(id))
+  const qrcode_url = url.toString()
+  console.log({ qrcode_url })
+  image.src = qrcode(qrcode_url)
   image.style.position = 'fixed'
   image.style.left = '1rem'
   image.style.bottom = '1rem'
-  return image  
+  document.body.append(image)
 }
 
 init()
 
 function init() {
-
   container = document.createElement('div')
   document.body.appendChild(container)
-  document.body.append(createImage(PEER_ID))
 
   // CAMERA
 
@@ -229,26 +220,6 @@ function init() {
 
   //
 
-  const peer = new Peer()
-
-  peer.on('connection', function (conn) {
-    console.log('connection', { conn })
-
-    conn.on('data', function (data) {
-      console.log('data', { data })
-
-      params[data]?.()
-    })
-  })
-
-  peer.on('open', () => console.log('open'))
-  
-  peer.on('error', () => console.log('error'))
-  
-  peer.on('close', () => console.log('close'))
-
-  //
-
   const gui = new GUI()
 
   gui.add(params, 'changeColor').name('change color')
@@ -265,25 +236,18 @@ function init() {
 }
 
 function onWindowResize() {
-
   windowHalfX = window.innerWidth / 2
-
   camera.aspect = window.innerWidth / window.innerHeight
   camera.updateProjectionMatrix()
-
   renderer.setSize(window.innerWidth, window.innerHeight)
-
 }
 
 //
 
 function onDocumentKeyDown(event) {
-
   if (firstLetter) {
-
     firstLetter = false
     text = ''
-
   }
 
   const keyCode = event.keyCode
@@ -291,151 +255,99 @@ function onDocumentKeyDown(event) {
   // backspace
 
   if (keyCode == 8) {
-
     event.preventDefault()
-
     text = text.substring(0, text.length - 1)
     refreshText()
-
     return false
-
   }
-
 }
 
 function onDocumentKeyPress(event) {
-
   const keyCode = event.which
-
   // backspace
-
   if (keyCode == 8) {
-
     event.preventDefault()
-
   } else {
-
     const ch = String.fromCharCode(keyCode)
     text += ch
-
     refreshText()
-
   }
-
 }
 
 function loadFont() {
-
   const loader = new FontLoader()
   loader.load('fonts/' + fontName + '_' + fontWeight + '.typeface.json', function (response) {
-
     font = response
-
     refreshText()
-
   })
-
 }
 
 function createText() {
 
   textGeo = new TextGeometry(text, {
-
     font: font,
-
     size: size,
     depth: depth,
     curveSegments: curveSegments,
-
     bevelThickness: bevelThickness,
     bevelSize: bevelSize,
     bevelEnabled: bevelEnabled
-
   })
 
   textGeo.computeBoundingBox()
 
   const centerOffset = - 0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x)
-
   textMesh1 = new THREE.Mesh(textGeo, materials)
-
   textMesh1.position.x = centerOffset
   textMesh1.position.y = hover
   textMesh1.position.z = 0
-
   textMesh1.rotation.x = 0
   textMesh1.rotation.y = Math.PI * 2
-
   group.add(textMesh1)
 
   if (mirror) {
-
     textMesh2 = new THREE.Mesh(textGeo, materials)
-
     textMesh2.position.x = centerOffset
     textMesh2.position.y = - hover
     textMesh2.position.z = depth
-
     textMesh2.rotation.x = Math.PI
     textMesh2.rotation.y = Math.PI * 2
-
     group.add(textMesh2)
-
   }
-
 }
 
 function refreshText() {
-
   group.remove(textMesh1)
   if (mirror) group.remove(textMesh2)
-
   if (!text) return
-
   createText()
-
 }
 
 function onPointerDown(event) {
-
   if (event.isPrimary === false) return
-
   pointerXOnPointerDown = event.clientX - windowHalfX
   targetRotationOnPointerDown = targetRotation
-
   document.addEventListener('pointermove', onPointerMove)
   document.addEventListener('pointerup', onPointerUp)
-
 }
 
 function onPointerMove(event) {
-
   if (event.isPrimary === false) return
-
   pointerX = event.clientX - windowHalfX
-
   targetRotation = targetRotationOnPointerDown + (pointerX - pointerXOnPointerDown) * 0.02
-
 }
 
 function onPointerUp() {
-
   if (event.isPrimary === false) return
-
   document.removeEventListener('pointermove', onPointerMove)
   document.removeEventListener('pointerup', onPointerUp)
-
 }
 
 //
 
 function animate() {
-
   group.rotation.y += (targetRotation - group.rotation.y) * 0.05
-
   camera.lookAt(cameraTarget)
-
   renderer.clear()
   renderer.render(scene, camera)
-
 }
