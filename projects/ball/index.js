@@ -187,7 +187,7 @@ function init() {
     openControls: function () {
       const url = new URL(window.location)
 
-      url.pathname = './projects/ball/controls.html'
+      url.pathname = './projects/ball/controls1.html'
 
       url.searchParams.append('id', peer.id)
 
