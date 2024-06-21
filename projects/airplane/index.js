@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { qrcode } from '../../assets/js/utils/functions.js'
 
 const __ = {
@@ -26,7 +25,6 @@ camera.position.set(+10.0, +10.0, +0.0)
 const renderer = new THREE.WebGLRenderer({ precision: 'lowp' })
 renderer.setSize(__.getWidth(), __.getHeight())
 document.body.appendChild(renderer.domElement)
-
 document.body.style.margin = '0'
 
 const image = document.createElement('img')
@@ -36,10 +34,6 @@ image.style.left = '1rem'
 image.style.bottom = '1rem'
 document.body.append(image)
 
-const controls = new OrbitControls(camera, renderer.domElement);
-
 renderer.setAnimationLoop(() => {
-  controls.update()
-
   renderer.render(scene, camera)
 })
