@@ -13,10 +13,7 @@ const __ = {
   }
 }
 
-const COLORS = {
-  YELLOW: 0xFFFF00,
-  WHITE: 0xFFFFFF,
-}
+const COLORS = { YELLOW: 0xFFFF00, WHITE: 0xFFFFFF, }
 
 const scene = new THREE.Scene()
 
@@ -34,6 +31,9 @@ document.body.style.margin = '0'
 
 const image = document.createElement('img')
 image.src = qrcode(__.getControlsUrl())
+image.style.position = 'fixed'
+image.style.left = '1rem'
+image.style.bottom = '1rem'
 document.body.append(image)
 
 const controls = new OrbitControls(camera, renderer.domElement);
