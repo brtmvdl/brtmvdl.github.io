@@ -138,6 +138,16 @@ function init() {
   //
 
   const params = {
+    write: function (_text) {
+      text = ''
+      refreshText()
+      Array.from((_text).split()).map((letter, ix) => {
+        setTimeout(() => {
+          text += letter
+          refreshText()
+        }, (ix * 500))
+      })
+    },
     changeColor: function () {
 
       pointLight.color.setHSL(Math.random(), 1, 0.5)
@@ -219,16 +229,23 @@ function init() {
       console.log('conn error', { error })
     })
 
-    conn.on('data', function (data) {
-      console.log('conn data', { data })
+    conn.on('data', function ({ text, fn } = {}) {
+      console.log('conn data', { text, fn })
 
-      params[data]?.()
+      if (params[fn]) {
+        params[fn]()
+        return
+      } else {
+        params.write(text)
+      }
     })
   })
 
   peer.on('open', () => {
     console.log('peer open')
-    createQrcodeImage(peer.id)
+    const PEER_ID = peer.id
+    console.log({ PEER_ID })
+    createQrcodeImage(PEER_ID)
   })
 
   peer.on('error', () => console.log('peer error'))
