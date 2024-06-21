@@ -56,39 +56,6 @@ let pointerXOnPointerDown = 0
 let windowHalfX = window.innerWidth / 2
 let fontIndex = 1
 
-const peer = new Peer()
-
-peer.on('connection', function (conn) {
-  console.log('peer connection', { conn })
-
-  conn.on('open', function (open) {
-    console.log('conn open', { open })
-  })
-
-  conn.on('close', function (close) {
-    console.log('conn close', { close })
-  })
-
-  conn.on('error', function (error) {
-    console.log('conn error', { error })
-  })
-
-  conn.on('data', function (data) {
-    console.log('conn data', { data })
-
-    params[data]?.()
-  })
-})
-
-peer.on('open', () => {
-  console.log('peer open')
-  createQrcodeImage(peer.id)
-})
-
-peer.on('error', () => console.log('peer error'))
-
-peer.on('close', () => console.log('peer close'))
-
 const createQrcodeImage = (id) => {
   const image = document.createElement('img')
   const url = new URL(window.location)
@@ -232,6 +199,41 @@ function init() {
   //
 
   window.addEventListener('resize', onWindowResize)
+
+  //
+
+  const peer = new Peer()
+
+  peer.on('connection', function (conn) {
+    console.log('peer connection', { conn })
+
+    conn.on('open', function (open) {
+      console.log('conn open', { open })
+    })
+
+    conn.on('close', function (close) {
+      console.log('conn close', { close })
+    })
+
+    conn.on('error', function (error) {
+      console.log('conn error', { error })
+    })
+
+    conn.on('data', function (data) {
+      console.log('conn data', { data })
+
+      params[data]?.()
+    })
+  })
+
+  peer.on('open', () => {
+    console.log('peer open')
+    createQrcodeImage(peer.id)
+  })
+
+  peer.on('error', () => console.log('peer error'))
+
+  peer.on('close', () => console.log('peer close'))
 
 }
 
