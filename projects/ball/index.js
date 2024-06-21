@@ -1,4 +1,4 @@
-import { HTML, nLink } from '@brtmvdl/frontend'
+import { qrcode } from '../../assets/js/utils/functions.js'
 import { uuid } from '../../assets/js/utils/functions.js'
 
 import * as THREE from 'three'
@@ -7,11 +7,9 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 
-// const id = uuid()
-// console.log({ id })
-// const peer = new Peer(id)
-
 THREE.Cache.enabled = true
+
+const PEER_ID = uuid()
 
 let container
 
@@ -74,12 +72,50 @@ let windowHalfX = window.innerWidth / 2
 
 let fontIndex = 1
 
+const peer = new Peer(PEER_ID)
+
+peer.on('connection', function (conn) {
+  console.log('connection', { conn })
+
+  conn.on('open', function (open) {
+    console.log('open', { open })
+  })
+
+  conn.on('close', function (close) {
+    console.log('close', { close })
+  })
+
+  conn.on('error', function (error) {
+    console.log('error', { error })
+  })
+
+  conn.on('data', function (data) {
+    console.log('data', { data })
+  })
+})
+
+const getControlsUrl = (id) => {
+  const url = new URL(window.location)
+  url.pathname = `/projects/ball/controls.html?id=${id}`
+  return url.toString()
+}
+
+const createImage = (id) => {
+  const image = document.createElement('img')
+  image.src = qrcode(getControlsUrl(id))
+  image.style.position = 'fixed'
+  image.style.left = '1rem'
+  image.style.bottom = '1rem'
+  return image  
+}
+
 init()
 
 function init() {
 
   container = document.createElement('div')
   document.body.appendChild(container)
+  document.body.append(createImage(PEER_ID))
 
   // CAMERA
 
