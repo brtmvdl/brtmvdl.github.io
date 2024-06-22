@@ -1,7 +1,11 @@
 import { qrcode } from '../../assets/js/utils/functions.js'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 
+// functions
+
 const urlParam = (param) => (new URL(window.location)).searchParams.get(param)
+
+// game
 
 const canvas = document.createElement('canvas')
 canvas.width = window.innerWidth + 'px'
@@ -14,6 +18,8 @@ const update = () => {
 }
 
 requestAnimationFrame(update)
+
+// connections
 
 const peer = new Peer()
 
@@ -35,7 +41,7 @@ peer.on('open', () => {
       console.log({ error })
     })
 
-    conn.send({ header: 'hello', body: null })
+    conn.send({ header: 'hello', body: peer.id })
   })
 
 })
