@@ -4,7 +4,7 @@ import { CardHeaderComponent } from '../card.header.component.js'
 import { CardBodyComponent } from '../card.body.component.js'
 import { CardFooterComponent } from '../card.footer.component.js'
 import { TextComponent } from '../text.component.js'
-import * as str from '../../utils/str.js'
+import * as str from '../../../../assets/js/utils/str.js'
 
 export class MessageComponent extends CardComponent {
   data = null

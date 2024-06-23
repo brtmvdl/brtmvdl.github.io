@@ -6,7 +6,7 @@ import { LinkComponent } from '../link.component.js'
 import { CardBodyHTML } from '../card-body.html.js'
 import { CardHTML } from '../card.html.js'
 import { TextHTML } from '../text.html.js'
-import * as str from '../../utils/str.js'
+import * as str from '../../../../assets/js/utils/str.js'
 
 export class MessageCardHTML extends CardHTML {
   data = null
