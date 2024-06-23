@@ -18,9 +18,14 @@ export class SelectComponent extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.setEvents()
     this.append(this.getLabel())
     this.append(this.getInput())
     this.append(this.getError())
+  }
+
+  setEvents() {
+    this.children.input.on('change', () => this.dispatchEvent('change'))
   }
 
   getLabel() {
@@ -43,4 +48,10 @@ export class SelectComponent extends HTML {
   getValue() {
     return this.getInput().getValue()
   }
+
+  addOption(key, value = '') {
+    this.children.input.addOption(key, value)
+    return this
+  }
+
 }
