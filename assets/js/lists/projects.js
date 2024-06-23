@@ -1,308 +1,411 @@
+
 export const experiences = [
   {
-    'id': 'drawer'
+    'id': 'drawer',
+    'step': null,
   },
   {
-    'id': 'airplane'
+    'id': 'airplane',
+    'step': null,
   },
   {
-    'id': 'exchanges'
+    'id': 'exchanges',
+    'step': null,
   },
   {
-    'id': 'olx'
+    'id': 'olx',
+    'step': null,
   },
   {
-    'id': 'ajax-in-aws'
+    'id': 'ajax-in-aws',
+    'step': null,
   },
   {
-    'id': 'expaybrasil-api'
+    'id': 'expaybrasil-api',
+    'step': null,
   },
   {
-    'id': 'openai'
+    'id': 'openai',
+    'step': null,
   },
   {
-    'id': 'aliexpress-api'
+    'id': 'aliexpress-api',
+    'step': null,
   },
   {
-    'id': 'facebook'
+    'id': 'facebook',
+    'step': null,
   },
   {
-    'id': 'openai-api'
+    'id': 'openai-api',
+    'step': null,
   },
   {
-    'id': 'anagram'
+    'id': 'anagram',
+    'step': null,
   },
   {
-    'id': 'facebook-api'
+    'id': 'facebook-api',
+    'step': null,
   },
   {
-    'id': 'peerjs'
+    'id': 'peerjs',
+    'step': null,
   },
   {
-    'id': 'anthropic-api'
+    'id': 'anthropic-api',
+    'step': null,
   },
   {
-    'id': 'firebase-api'
+    'id': 'firebase-api',
+    'step': null,
   },
   {
-    'id': 'phone-number'
+    'id': 'phone-number',
+    'step': null,
   },
   {
-    'id': 'apex-charts'
+    'id': 'apex-charts',
+    'step': null,
   },
   {
-    'id': 'foxbit'
+    'id': 'foxbit',
+    'step': 'beta',
   },
   {
-    'id': 'piano'
+    'id': 'piano',
+    'step': null,
   },
   {
-    'id': 'audio-recorder'
+    'id': 'audio-recorder',
+    'step': null,
   },
   {
-    'id': 'foxbit-api'
+    'id': 'foxbit-api',
+    'step': null,
   },
   {
-    'id': 'planow'
+    'id': 'planow',
+    'step': null,
   },
   {
-    'id': 'autentique-api'
+    'id': 'autentique-api',
+    'step': null,
   },
   {
-    'id': 'foxbit-websocket-api'
+    'id': 'foxbit-websocket-api',
+    'step': null,
   },
   {
-    'id': 'player'
+    'id': 'player',
+    'step': null,
   },
   {
-    'id': 'backend'
+    'id': 'backend',
+    'step': null,
   },
   {
-    'id': 'frontend'
+    'id': 'frontend',
+    'step': null,
   },
   {
-    'id': 'projects'
+    'id': 'projects',
+    'step': null,
   },
   {
-    'id': 'ball'
+    'id': 'ball',
+    'step': null,
   },
   {
-    'id': 'github'
+    'id': 'github',
+    'step': null,
   },
   {
-    'id': 'projects.next'
+    'id': 'projects.next',
+    'step': null,
   },
   {
-    'id': 'binance'
+    'id': 'binance',
+    'step': null,
   },
   {
-    'id': 'github-api'
+    'id': 'github-api',
+    'step': null,
   },
   {
-    'id': 'rdap-api'
+    'id': 'rdap-api',
+    'step': null,
   },
   {
-    'id': 'binance-api'
+    'id': 'binance-api',
+    'step': null,
   },
   {
-    'id': 'gmail'
+    'id': 'gmail',
+    'step': null,
   },
   {
-    'id': 'requestidlecallback'
+    'id': 'requestidlecallback',
+    'step': null,
   },
   {
-    'id': 'binance-rest-api'
+    'id': 'binance-rest-api',
+    'step': null,
   },
   {
-    'id': 'google-api'
+    'id': 'google-api',
+    'step': null,
   },
   {
-    'id': 'screen-capture-api'
+    'id': 'screen-capture-api',
+    'step': null,
   },
   {
-    'id': 'binance-test'
+    'id': 'binance-test',
+    'step': null,
   },
   {
-    'id': 'home-workout'
+    'id': 'home-workout',
+    'step': null,
   },
   {
-    'id': 'socket'
+    'id': 'socket',
+    'step': null,
   },
   {
-    'id': 'binance-test-2'
+    'id': 'binance-test-2',
+    'step': null,
   },
   {
-    'id': 'hotmart-api'
+    'id': 'hotmart-api',
+    'step': null,
   },
   {
-    'id': 'speed-match'
+    'id': 'speed-match',
+    'step': null,
   },
   {
-    'id': 'binance-websocket-api'
+    'id': 'binance-websocket-api',
+    'step': null,
   },
   {
-    'id': 'ibparque'
+    'id': 'ibparque',
+    'step': null,
   },
   {
-    'id': 'spot'
+    'id': 'spot',
+    'step': null,
   },
   {
-    'id': 'bitcoin'
+    'id': 'bitcoin',
+    'step': null,
   },
   {
-    'id': 'imc'
+    'id': 'imc',
+    'step': null,
   },
   {
-    'id': 'sumup-api'
+    'id': 'sumup-api',
+    'step': null,
   },
   {
-    'id': 'bitcointoyou'
+    'id': 'bitcointoyou',
+    'step': null,
   },
   {
-    'id': 'index.html'
+    'id': 'index.html',
+    'step': null,
   },
   {
-    'id': 'telegram-api'
+    'id': 'telegram-api',
+    'step': null,
   },
   {
-    'id': 'bitget'
+    'id': 'bitget',
+    'step': null,
   },
   {
-    'id': 'index.js'
+    'id': 'index.js',
+    'step': null,
   },
   {
-    'id': 'three.js-sample'
+    'id': 'three.js-sample',
+    'step': null,
   },
   {
-    'id': 'brasil-api'
+    'id': 'brasil-api',
+    'step': null,
   },
   {
-    'id': 'kraken-api'
+    'id': 'kraken-api',
+    'step': null,
   },
   {
-    'id': 'tradingeconomics-api'
+    'id': 'tradingeconomics-api',
+    'step': null,
   },
   {
-    'id': 'busy'
+    'id': 'busy',
+    'step': null,
   },
   {
-    'id': 'kucoin-api'
+    'id': 'kucoin-api',
+    'step': null,
   },
   {
-    'id': 'twitch'
+    'id': 'twitch',
+    'step': null,
   },
   {
-    'id': 'buy-coins'
+    'id': 'buy-coins',
+    'step': null,
   },
   {
-    'id': 'linkedin'
+    'id': 'linkedin',
+    'step': null,
   },
   {
-    'id': 'twitch-websocket-api'
+    'id': 'twitch-websocket-api',
+    'step': null,
   },
   {
-    'id': 'bybit-api'
+    'id': 'bybit-api',
+    'step': null,
   },
   {
-    'id': 'linkedin-api'
+    'id': 'linkedin-api',
+    'step': null,
   },
   {
-    'id': 'twitter'
+    'id': 'twitter',
+    'step': null,
   },
   {
-    'id': 'calculator'
+    'id': 'calculator',
+    'step': null,
   },
   {
-    'id': 'luxfacta'
+    'id': 'luxfacta',
+    'step': null,
   },
   {
-    'id': 'twitter-api'
+    'id': 'twitter-api',
+    'step': null,
   },
   {
-    'id': 'candlesticks'
+    'id': 'candlesticks',
+    'step': null,
   },
   {
-    'id': 'lyrics-api'
+    'id': 'lyrics-api',
+    'step': null,
   },
   {
-    'id': 'udemy-api'
+    'id': 'udemy-api',
+    'step': null,
   },
   {
-    'id': 'clock'
+    'id': 'clock',
+    'step': null,
   },
   {
-    'id': 'makersuite-api'
+    'id': 'makersuite-api',
+    'step': null,
   },
   {
-    'id': 'unique-api'
+    'id': 'unique-api',
+    'step': null,
   },
   {
-    'id': 'cloudflare-api'
+    'id': 'cloudflare-api',
+    'step': null,
   },
   {
-    'id': 'market'
+    'id': 'market',
+    'step': null,
   },
   {
-    'id': 'unsplash-api'
+    'id': 'unsplash-api',
+    'step': null,
   },
   {
-    'id': 'coinbase-api'
+    'id': 'coinbase-api',
+    'step': null,
   },
   {
-    'id': 'math'
+    'id': 'math',
+    'step': null,
   },
   {
-    'id': 'vestibular'
+    'id': 'vestibular',
+    'step': null,
   },
   {
-    'id': 'coinext'
+    'id': 'coinext',
+    'step': null,
   },
   {
-    'id': 'mercadobitcoin'
+    'id': 'mercadobitcoin',
+    'step': null,
   },
   {
-    'id': 'voicerss'
+    'id': 'voicerss',
+    'step': null,
   },
   {
-    'id': 'coins'
+    'id': 'coins',
+    'step': null,
   },
   {
-    'id': 'mercadopago-api'
+    'id': 'mercadopago-api',
+    'step': null,
   },
   {
-    'id': 'voicerss-api'
+    'id': 'voicerss-api',
+    'step': null,
   },
   {
-    'id': 'coins-calculator'
+    'id': 'coins-calculator',
+    'step': null,
   },
   {
-    'id': 'microsoft-api'
+    'id': 'microsoft-api',
+    'step': null,
   },
   {
-    'id': 'websocket'
+    'id': 'websocket',
+    'step': null,
   },
   {
-    'id': 'cube'
+    'id': 'cube',
+    'step': null,
   },
   {
-    'id': 'musixmatch-api'
+    'id': 'musixmatch-api',
+    'step': null,
   },
   {
-    'id': 'workout'
+    'id': 'workout',
+    'step': null,
   },
   {
-    'id': 'database'
+    'id': 'database',
+    'step': null,
   },
   {
-    'id': 'newsapi'
+    'id': 'newsapi',
+    'step': null,
   },
   {
-    'id': 'youtube'
+    'id': 'youtube',
+    'step': null,
   },
   {
-    'id': 'discord-websocket-api'
+    'id': 'discord-websocket-api',
+    'step': null,
   },
   {
-    'id': 'nume'
+    'id': 'nume',
+    'step': null,
   },
 ]

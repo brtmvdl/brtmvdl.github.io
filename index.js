@@ -25,7 +25,7 @@ export class Page extends HTML {
     html.append(createTitle('Products'))
     Array.from(products).map(({ id }) => html.append(createLink(id, `/products/${id}/`)))
     html.append(createTitle('Projects'))
-    Array.from(experiences).map(({ id }) => html.append(createLink(id, `/projects/${id}/`)))
+    Array.from(experiences).map(({ id, step }) => html.append(createLink(id + (step ? ` (${step})` : ''), `/projects/${id}/`)))
     return html
   }
 }
