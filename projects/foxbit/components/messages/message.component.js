@@ -4,7 +4,7 @@ import { CardHeaderComponent } from '../card.header.component.js'
 import { CardBodyComponent } from '../card.body.component.js'
 import { CardFooterComponent } from '../card.footer.component.js'
 import { TextComponent } from '../text.component.js'
-import * as str from '../../../../assets/js/utils/str.js'
+import { timestamp2str } from '../../../../assets/js/utils/str.js'
 
 export class MessageComponent extends CardComponent {
   data = null
@@ -60,7 +60,7 @@ export class MessageComponent extends CardComponent {
 
   getFooterHTML() {
     const now = Date.now()
-    const timestamp = str.timestamp2str(now)
+    const timestamp = timestamp2str(now)
     return new TextComponent(now, timestamp)
   }
 
