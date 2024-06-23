@@ -2,10 +2,9 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
+import { padLeft } from '../../assets/js/utils/str.js'
 
-document.body.style.margin = '0em'
-
-const helvetiker = '../../assets/libs/three/examples/fonts/helvetiker_regular.typeface.json'
+const helvetiker = '../../assets/fonts/helvetiker_regular.typeface.json'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500)
@@ -16,6 +15,7 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
+document.body.style.margin = '0em'
 
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.update()

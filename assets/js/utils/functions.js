@@ -9,3 +9,7 @@ export const months = {
 }
 
 export const monthName = (month, language = 'enus') => months[language]?.[month - 1]
+
+export const steps = ['alpha', 'beta', 'staging']
+
+export const stepName = (step, prefix = '', suffix = '') => (step in steps) ? (prefix + steps[step] + suffix) : ''

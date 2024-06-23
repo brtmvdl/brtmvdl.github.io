@@ -1,8 +1,10 @@
 import { HTML, nH1, nLink } from '@brtmvdl/frontend'
 import { HeaderComponent } from './assets/js/components/header.component.js'
 import { FooterComponent } from './assets/js/components/footer.component.js'
+
 import { products, experiences } from './assets/js/lists/index.js'
 import { createLink, createTitle } from './assets/js/utils/components.js'
+import { stepName } from './assets/js/utils/functions.js'
 
 export class Page extends HTML {
   onCreate() {
@@ -25,7 +27,7 @@ export class Page extends HTML {
     html.append(createTitle('Products'))
     Array.from(products).map(({ id }) => html.append(createLink(id, `/products/${id}/`)))
     html.append(createTitle('Projects'))
-    Array.from(experiences).map(({ id, step }) => html.append(createLink(id + (step ? ` (${step})` : ''), `/projects/${id}/`)))
+    Array.from(experiences).map(({ id, step }) => html.append(createLink(id + stepName(step, ' (', ') '), `/projects/${id}/`)))
     return html
   }
 }

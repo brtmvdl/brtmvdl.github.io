@@ -2,410 +2,402 @@
 export const experiences = [
   {
     'id': 'drawer',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'airplane',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'exchanges',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'olx',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'ajax-in-aws',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'expaybrasil-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'openai',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'aliexpress-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'facebook',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'openai-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'anagram',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'facebook-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'peerjs',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'anthropic-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'firebase-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'phone-number',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'apex-charts',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'foxbit',
-    'step': 'beta',
+    'step': 2,
   },
   {
     'id': 'piano',
-    'step': null,
+    'step': 2,
   },
   {
     'id': 'audio-recorder',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'foxbit-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'planow',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'autentique-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'foxbit-websocket-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'player',
-    'step': null,
+    'step': 1,
   },
   {
     'id': 'backend',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'frontend',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'projects',
-    'step': null,
+    'step': 1,
   },
   {
     'id': 'ball',
-    'step': null,
+    'step': 2,
   },
   {
     'id': 'github',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'projects.next',
-    'step': null,
+    'step': 1,
   },
   {
     'id': 'binance',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'github-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'rdap-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'binance-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'gmail',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'requestidlecallback',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'binance-rest-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'google-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'screen-capture-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'binance-test',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'home-workout',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'socket',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'binance-test-2',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'hotmart-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'speed-match',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'binance-websocket-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'ibparque',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'spot',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'bitcoin',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'imc',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'sumup-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'bitcointoyou',
-    'step': null,
-  },
-  {
-    'id': 'index.html',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'telegram-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'bitget',
-    'step': null,
-  },
-  {
-    'id': 'index.js',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'three.js-sample',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'brasil-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'kraken-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'tradingeconomics-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'busy',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'kucoin-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'twitch',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'buy-coins',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'linkedin',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'twitch-websocket-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'bybit-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'linkedin-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'twitter',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'calculator',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'luxfacta',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'twitter-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'candlesticks',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'lyrics-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'udemy-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'clock',
-    'step': null,
+    'step': 2,
   },
   {
     'id': 'makersuite-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'unique-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'cloudflare-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'market',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'unsplash-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'coinbase-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'math',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'vestibular',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'coinext',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'mercadobitcoin',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'voicerss',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'coins',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'mercadopago-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'voicerss-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'coins-calculator',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'microsoft-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'websocket',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'cube',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'musixmatch-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'workout',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'database',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'newsapi',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'youtube',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'discord-websocket-api',
-    'step': null,
+    'step': 0,
   },
   {
     'id': 'nume',
-    'step': null,
+    'step': 0,
   },
 ]
