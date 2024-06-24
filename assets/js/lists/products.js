@@ -1,13 +1,11 @@
-// 
-
-export const products = [
+export default [
   {
-    id: 'meetings'
+    "id": "meetings"
   },
   {
-    id: 'disco-rigido'
+    "id": "disco-rigido"
   },
   {
-    id: 'automacao-binance'
-  },
+    "id": "automacao-binance"
+  }
 ]
