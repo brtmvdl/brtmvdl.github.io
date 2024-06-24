@@ -41,8 +41,8 @@ export class Page extends HTML {
 
   getFlex() {
     const flex = new nFlex()
-    flex.append(this.getFormHTML())
-    flex.append(this.getMessagesHTML())
+    flex.append(this.getFormHTML().setContainerStyle('width', '10%'))
+    flex.append(this.getMessagesHTML().setContainerStyle('width', '89%'))
     return flex
   }
 

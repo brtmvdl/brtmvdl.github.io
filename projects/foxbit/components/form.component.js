@@ -52,26 +52,27 @@ export class FormComponent extends HTML {
     const method = this.getRequestMethod(req)
     const headers = this.getRequestHeaders(req)
     const body = this.getRequestBody(req)
-    return fetch(url.toString(), { method, headers, body })
+    return fetch(url.toString(), { method, headers, body }).then((res) => res.json())
   }
 
   getRequestUrl(req = new RequestModel()) {
-    const url = new URL(req.getUrl())
+    const url = new URL(['https://api.foxbit.com.br/rest/v3', req.getUrl()].join(''))
     const search = new URLSearchParams(this.reduceParams(req.params))
     Object.keys(search).map((key) => url.searchParams.set(key, search.get(key)))
     return url.toString()
   }
 
   getRequestMethod(req = new RequestModel()) {
-    return null
+    return req.method
   }
 
   getRequestHeaders(req = new RequestModel()) {
-    return null
+    return this.reduceParams(req.headers)
   }
 
   getRequestBody(req = new RequestModel()) {
-    return null
+    if (req.method == 'GET') return null
+    else return this.reduceParams(req.body)
   }
 
   reduceParams(params = []) {
