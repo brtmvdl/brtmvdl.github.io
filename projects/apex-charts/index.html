@@ -4,38 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Candlestick</title>
+  <title>Apex Charts</title>
+  <meta name="google-adsense-account" content="ca-pub-8803365396237758">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
   <div id="chart"></div>
-  <script>
+  <script type="module">
     const searchParams = (param, def = '') => { const url = new URL(window.location); return url.searchParams.get(param) || def }
 
-    const chart = new ApexCharts(document.querySelector("#chart"), { chart: { type: 'candlestick' }, series: [{ data: [] }] })
-    chart.render()
+    const chart = document.getElementById('chart')
+    chart.style.height = window.innerHeight
+    chart.style.width = window.innerWidth
+
+    const apexCharts = new ApexCharts(chart, { chart: { type: 'candlestick' }, series: [{ data: [] }] })
+    apexCharts.render()
 
     const run = () => {
       fetch(`https://api4.binance.com/api/v3/klines?symbol=${searchParams('symbol', 'BNBBRL')}&interval=${searchParams('interval', '1m')}&limit=${searchParams('limit', 100)}`)
         .then((res) => res.json())
         .then((data) => Array.from(data).map(([Open_Time, Open_Price, High_Price, Low_Price, Close_Price]) => ([+Open_Time, +Open_Price, +High_Price, +Low_Price, +Close_Price])))
         .then((data) => [data, console.log({ data })][0])
-        .then((data) => chart.updateSeries([{ data }]))
+        .then((data) => apexCharts.updateSeries([{ data }]))
         .then(() => run())
     }
 
     run()
 
-    const padLeft = (text, length = 1, pad = '0') => {
-      while (text.toString().length < length) text = pad.toString() + text.toString()
-      return text.toString()
-    }
-
-    const getDate = (day) => {
-      const date = new Date(2024, 1, day)
-      return `${date.getFullYear()}-${padLeft(date.getMonth() + 1, 2, '0')}-${padLeft(date.getDay(), 2, '0')}`
-    }
   </script>
 </body>
 
