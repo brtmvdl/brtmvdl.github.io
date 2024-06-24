@@ -12,19 +12,11 @@ export default [
     "step": 0
   },
   {
-    "id": "olx",
-    "step": 0
-  },
-  {
     "id": "ajax-in-aws",
     "step": 0
   },
   {
     "id": "expaybrasil-api",
-    "step": 0
-  },
-  {
-    "id": "openai",
     "step": 0
   },
   {
@@ -94,10 +86,6 @@ export default [
   {
     "id": "foxbit-websocket-api",
     "step": 0
-  },
-  {
-    "id": "player",
-    "step": 1
   },
   {
     "id": "backend",
