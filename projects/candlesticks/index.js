@@ -13,16 +13,10 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setStyles()
     this.setEvents()
     this.append(this.getHeader())
     this.append(this.getBody())
     this.append(this.getFooter())
-  }
-
-  setStyles() {
-    this.setStyle('background-color', '#003399')
-    this.setStyle('color', '#ffffff')
   }
 
   setEvents() {

@@ -1,8 +1,10 @@
 import { HTML } from '@brtmvdl/frontend'
-import { ScreenHTML, AmountInputComponent, CoinSelectComponent, PriceComponent, DatetimeComponent, BuyButtonComponent, HistoryComponent } from './components/index.js'
+import { AmountInputComponent, CoinSelectComponent, PriceComponent, DatetimeComponent, BuyButtonComponent, HistoryComponent } from './components/index.js'
 import * as Local from '../../assets/js/utils/local.js'
 
-export class Page extends ScreenHTML {
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+
+export class Page extends HTML {
   state = {
     coin: 'BTCBRL',
     price: 0,
@@ -13,7 +15,7 @@ export class Page extends ScreenHTML {
     coin: new CoinSelectComponent(),
     price: new PriceComponent(),
     datetime: new DatetimeComponent(),
-    buy: new BuyButtonComponent(),
+    buy: new ButtonComponent('Buy (BRL 100)', () => this.onBuyButtonClick()),
     history: new HistoryComponent(),
   }
 
@@ -60,7 +62,6 @@ export class Page extends ScreenHTML {
   }
 
   getBuyButtonComponent() {
-    this.children.buy.on('click', () => this.onBuyButtonClick())
     return this.children.buy
   }
 

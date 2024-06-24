@@ -1,4 +1,5 @@
 import { HTML, nFlex, nInput, nButton } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 
 export class EndpointHTML extends HTML {
 
@@ -29,9 +30,6 @@ export class EndpointHTML extends HTML {
   }
 
   getDeleteButton() {
-    const button = new nButton()
-    button.setText('delete')
-    button.on('click', () => console.log('delete'))
-    return button
+    return new ButtonComponent('delete', () => console.log('delete'))
   }
 }

@@ -12,7 +12,7 @@ export class CardBodyHTML extends HTML {
     this.setContainerStyle('border-bottom', '1px solid rgba(0, 0, 0, 0.176)')
     this.setStyle('padding', 'calc(1rem / 2)')
     this.setStyle('box-sizing', 'border-box')
-    this.setStyle('color', 'rgb(33, 37, 41)')
+    // this.setStyle('color', 'rgb(33, 37, 41)')
     this.setStyle('text-size-adjust', '100%')
     this.setStyle('text-align', 'start')
     this.setStyle('display', 'block')

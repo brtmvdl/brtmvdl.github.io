@@ -13,7 +13,7 @@ export class SelectComponent extends nSelect {
     this.setStyle('margin', 'calc(1rem / 2) 0rem')
     this.setStyle('border', '#000000 solid 1px')
     this.setStyle('box-sizing', 'border-box')
-    this.setStyle('color', '#000000')
+    // this.setStyle('color', '#000000')
     this.setStyle('font', 'inherit')
     this.setStyle('width', '100%')
   }

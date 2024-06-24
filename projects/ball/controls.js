@@ -1,7 +1,7 @@
 import { HTML } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
-import { createButton } from '../../assets/js/utils/components.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
 
 export class Page extends HTML {
   state = {
@@ -65,27 +65,15 @@ export class Page extends HTML {
   }
 
   getSendButton() {
-    return this.getButton('send', () => {
+    return new ButtonComponent('send', () => {
       const text = this.children.input.children.input.getValue()
-      console.log({ text })
       this.sendMessage({ text })
       this.children.input.children.input.setValue('')
     })
   }
 
   getChangeColorButton() {
-    return this.getButton('changeColor', () => this.sendMessage({ fn: 'changeColor' }))
-  }
-
-  getButton(text, onclick = (() => { })) {
-    const button = createButton(text, () => onclick())
-    button.setStyle('margin', '1rem 1rem 0rem 1rem')
-    button.setStyle('background-color', '#000000')
-    button.setStyle('border-radius', '1rem')
-    button.setStyle('color', '#ffffff')
-    button.setStyle('padding', '1rem')
-    button.setStyle('border', 'none')
-    return button
+    return new ButtonComponent('changeColor', () => this.sendMessage({ fn: 'changeColor' }))
   }
 
   sendMessage(message = {}) {

@@ -120,9 +120,7 @@ export class TopBar extends HTML {
   }
 
   createButton(text, onclick = (() => { })) {
-    const button = new ButtonComponent(text, onclick)
-    button.setContainerStyle('padding', '1rem')
-    return button
+    return new ButtonComponent(text, onclick)
   }
 
   getMenuButton() {

@@ -1,11 +1,13 @@
-import { HTML, nH1, nInputText, nButton, nFlex } from '@brtmvdl/frontend'
+import { HTML, nH1, nFlex } from '@brtmvdl/frontend'
 import * as Local from '../../assets/js/utils/local.js'
 import { TextComponent } from '../../../../assets/js/components/text.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { InputComponent } from '../../assets/js/components/input.component.js'
 
 export class Page extends HTML {
   children = {
-    input: new nInputText(),
-    button: new nButton(),
+    input: new InputComponent('Am i doing?'),
+    button: new ButtonComponent('save', () => this.onButtonClick()),
     list: new HTML(),
   }
 
@@ -37,27 +39,25 @@ export class Page extends HTML {
 
   getForm() {
     const flex = new nFlex()
-    flex.setStyle('margin', '1rem 0rem 0rem 0rem')
-    flex.append(this.getInput().setContainerStyle('width', '80%'))
+    flex.append(this.getInput().setContainerStyle('width', '79%'))
     flex.append(this.getButton().setContainerStyle('width', '20%'))
     return flex
   }
 
   getInput() {
     this.children.input.setStyle('width', '100%')
-    this.children.input.setPlaceholder('Am i doing?')
     return this.children.input
   }
 
   getButton() {
     this.children.button.setStyle('width', '100%')
-    this.children.button.setText('save')
-    this.children.button.on('click', () => {
-      this.appendTask(this.children.input.getValue())
-      this.updateList()
-      this.clearInput()
-    })
     return this.children.button
+  }
+
+  onButtonClick() {
+    this.appendTask(this.children.input.getValue())
+    this.updateList()
+    this.clearInput()
   }
 
   appendTask(title) {
@@ -94,4 +94,5 @@ export class Page extends HTML {
     this.children.list.setStyle('margin', '1rem 0rem 0rem 0rem')
     return this.children.list
   }
+
 }

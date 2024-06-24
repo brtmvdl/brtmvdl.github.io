@@ -14,7 +14,7 @@ export class CardHTML extends HTML {
     this.setStyle('margin', '0rem 0rem 1rem 0rem')
     this.setStyle('overflow-wrap', 'break-word')
     this.setStyle('text-size-adjust', '100%')
-    this.setStyle('color', 'rgb(33, 37, 41)')
+    // this.setStyle('color', 'rgb(33, 37, 41)')
     this.setStyle('box-sizing', 'border-box')
     this.setStyle('flex-direction', 'column')
     this.setStyle('text-align', 'start')

@@ -47,7 +47,7 @@ class nCell extends HTML {
     this.setStyle('display', 'inline-block')
     this.setStyle('text-align', 'center')
     this.setStyle('font-size', '2rem')
-    this.setStyle('color', '#fff')
+    // this.setStyle('color', '#fff')
     this.setStyle('margin', `1rem`)
   }
 }

@@ -2,6 +2,8 @@ import { HTML, COLORS, nFlex, nImage, nInput, nSelect } from '@brtmvdl/frontend'
 import { Logger } from '../utils/logger.js'
 import { CONTRACTS } from '../utils/constansts.js'
 
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
+
 export class ProjectHeader extends nFlex {
   logger = new Logger('Project Header')
 
@@ -69,17 +71,11 @@ export class ProjectHeader extends nFlex {
     return this.children.contract
   }
 
-  createButton(text, onclick = (() => { })) {
-    const button = new ButtonComponent(text, onclick)
-    button.setStyle('cursor', 'pointer')
-    return button
-  }
-
   getDelButton() {
-    return this.createButton('delete', () => this.dispatchEvent('deleteproject', this) )
+    return new ButtonComponent('delete', () => this.dispatchEvent('deleteproject', this) )
   }
 
   getPlusButton() {
-    return this.createButton('plus', () => this.dispatchEvent('createendpoint', this))
+    return new ButtonComponent('plus', () => this.dispatchEvent('createendpoint', this))
   }
 }

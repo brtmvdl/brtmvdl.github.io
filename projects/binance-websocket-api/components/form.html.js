@@ -1,7 +1,7 @@
 import { HTML } from '@brtmvdl/frontend'
 import { getMethodsList, getParamsList, getWebSocketMethodsList } from '../utils/lists.js'
-import { SelectComponent } from './select.component.js'
-import { ButtonComponent } from './button.component.js'
+import { SelectComponent } from '../../../assets/js/components/select.component.js'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { InputsComponent } from './inputs.component.js'
 
 export class FormHTML extends HTML {
@@ -16,7 +16,7 @@ export class FormHTML extends HTML {
     this.setStyles()
     this.append(this.getEndpointSelect())
     this.append(this.getParamsHTML())
-    this.append(this.getSendButton())
+    this.append(new ButtonComponent('send', () => this.onSendButtonClick()))
     this.append(this.children.inputs.children.apiKey)
     this.append(this.children.inputs.children.secretKey)
   }
@@ -39,13 +39,6 @@ export class FormHTML extends HTML {
 
   getParamsHTML() {
     return this.children.params
-  }
-
-  getSendButton() {
-    const button = new ButtonComponent()
-    button.setText('send')
-    button.on('click', () => this.onSendButtonClick())
-    return button
   }
 
   onSendButtonClick(method = this.getMethodValue()) {

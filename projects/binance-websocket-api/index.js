@@ -1,5 +1,6 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
-import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
+import { FormHTML, MessagesHTML } from './components/index.js'
+import { TopBarComponent } from '../../assets/js/components/top.bar.component.js'
 import { MessageModel } from './models/messages.model.js'
 import { getRoutinesList } from './utils/routines.js'
 import { Routines } from './utils/routines.js'

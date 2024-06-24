@@ -51,18 +51,12 @@ export class ProjectHTML extends HTML {
     return this.children.contract
   }
 
-  createButton(text, onclick = (() => { })) {
-    const button = new ButtonComponent(text, onclick)
-    button.setStyle('cursor', 'pointer')
-    return button
-  }
-
   getDeleteButton() {
-    return this.createButton('delete', () => this.dispatchEvent('delete'))
+    return new ButtonComponent('delete', () => this.dispatchEvent('delete'))
   }
 
   getCreateButton() {
-    return this.createButton('create', () => this.addEndpoint(new EndpointModel()))
+    return new ButtonComponent('create', () => this.addEndpoint(new EndpointModel()))
   }
 
   getBody() {

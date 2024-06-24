@@ -1,6 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 import { InputComponent } from '../../../assets/js/components/input.component.js'
-import { DateTimeGroupComponent } from './datetime.group.component.js'
+import { DateTimeGroupComponent } from '../../../assets/js/components/datetime.group.component.js'
 
 export class InputsComponent extends HTML {
   children = {

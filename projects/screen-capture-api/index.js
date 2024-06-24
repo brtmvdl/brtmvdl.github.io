@@ -7,7 +7,7 @@ import { GOOGLE } from './../../assets/js/utils/googleusercontent.js'
 class nScreenButton extends nButton {
   onCreate() {
     this.setStyle('background-color', '#000000')
-    this.setStyle('color', '#ffffff')
+    // this.setStyle('color', '#ffffff')
     this.setStyle('padding', '1rem')
     this.setStyle('margin', '1rem')
     this.setStyle('border', 'none')

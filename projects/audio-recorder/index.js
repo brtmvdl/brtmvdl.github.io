@@ -1,32 +1,36 @@
-import { HTML, nButton, nLink } from '@brtmvdl/frontend'
+import { HTML, nLink } from '@brtmvdl/frontend'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
+import { LinkComponent } from '../../assets/js/components/link.component.js'
 
 export class Page extends HTML {
   state = {
-    isPlaying: false,
-    mediaRecorder: null,
+    is_playing: false,
+    media_recorder: null,
   }
 
   children = {
-    button: new nButton(),
+    button: new ButtonComponent('play', () => this.onButtonClick()),
     records: new HTML(),
   }
 
   onCreate() {
     super.onCreate()
-    this.append(this.getTitleHTML())
-    this.append(this.getPlayButton())
-    this.append(this.getRecordsHTML())
+    this.append(this.getBox())
   }
 
-  getTitleHTML() {
+  getBox() {
     const html = new HTML()
-    html.setText('Audio')
+    html.setStyle('text-align', 'center')
+    html.setStyle('margin', '0 auto')
+    html.setStyle('width', '20rem')
+    html.append(new TextComponent('Audio'))
+    html.append(this.getPlayButton())
+    html.append(this.getRecordsHTML())
     return html
   }
 
   getPlayButton() {
-    this.setButtonText('Play')
-    this.children.button.on('click', () => this.onButtonClick())
     return this.children.button
   }
 
@@ -35,7 +39,7 @@ export class Page extends HTML {
   }
 
   onButtonClick() {
-    if (this.state.isPlaying = !this.state.isPlaying) {
+    if (this.state.is_playing = !this.state.is_playing) {
       this.startRecord()
       this.setButtonText('Stop')
     } else {
@@ -50,8 +54,12 @@ export class Page extends HTML {
 
   startRecord() {
     this.getUserMedia()
-      .then((data) => this.onUserMedia(data))
+      .then((stream) => this.onUserMedia(stream))
       .catch((err) => console.error(err))
+  }
+
+  stopRecording() {
+    this.state.media_recorder?.stop()
   }
 
   getUserMedia() {
@@ -64,32 +72,24 @@ export class Page extends HTML {
   }
 
   createMediaRecorder(stream) {
-    this.state.mediaRecorder = new MediaRecorder(stream)
+    this.state.media_recorder = new MediaRecorder(stream)
   }
 
   startMediaRecorder() {
-    if (this.state.mediaRecorder) {
-      this.state.mediaRecorder.start()
-      this.state.mediaRecorder.addEventListener('dataavailable', (data) => this.onMediaRecorderDataAvailable(data))
+    if (this.state.media_recorder) {
+      this.state.media_recorder.start()
+      this.state.media_recorder.addEventListener('dataavailable', (data) => this.onMediaRecorderDataAvailable(data))
     }
   }
 
-  onMediaRecorderDataAvailable(ev) {
-    const url = window.URL.createObjectURL(ev.data)
+  onMediaRecorderDataAvailable({ data } = {}) {
+    const url = window.URL.createObjectURL(data)
     this.children.records.append(this.createLinkElement(url, Date.now() + '.webm'))
   }
 
   createLinkElement(url, name) {
-    const link = new nLink()
-    link.href(url)
-    link.setText(name)
+    const link = new LinkComponent(name, url)
     link.setAttr('download', name)
     return link
-  }
-
-  stopRecording() {
-    if (this.state.mediaRecorder) {
-      this.state.mediaRecorder.stop()
-    }
   }
 }

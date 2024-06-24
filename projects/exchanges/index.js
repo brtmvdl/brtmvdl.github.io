@@ -2,7 +2,32 @@ import { HTML, nH1, nH2, nTable, nTr, nTd } from '@brtmvdl/frontend'
 import * as Local from './utils/local.js'
 import { price2string } from './utils/str.js'
 import { percent } from './utils/math.js'
-import { createTdHTML, createTdText } from './components/index.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+
+class TdComponent extends HTML {
+  getTagName() { return 'td' }
+
+  hasContainer () { return false }
+
+  children = { component: new HTML() }
+
+  constructor(component = new HTML()) {
+    super()
+    this.children.component = component
+  }
+
+  onCreate() {
+    super.onCreate()
+    this.append(this.children.component)
+  }
+}
+
+class TdTextComponent extends TdComponent {
+  constructor(text = '') {
+    super(new TextComponent(text))
+  }
+}
 
 export class Page extends HTML {
   state = {
@@ -113,23 +138,23 @@ export class Page extends HTML {
     const value = new nTr()
     value.setStyle('margin-bottom', '1rem')
 
-    value.append(createTdText('symbol'))
+    value.append(new TdTextComponent('symbol'))
 
-    value.append(createTdText('price'))
+    value.append(new TdTextComponent('price'))
 
-    value.append(createTdText('price10'))
-    value.append(createTdText('diff10'))
-    value.append(createTdText('percent10'))
+    value.append(new TdTextComponent('price10'))
+    value.append(new TdTextComponent('diff10'))
+    value.append(new TdTextComponent('percent10'))
 
-    value.append(createTdText('price30'))
-    value.append(createTdText('diff30'))
-    value.append(createTdText('percent30'))
+    value.append(new TdTextComponent('price30'))
+    value.append(new TdTextComponent('diff30'))
+    value.append(new TdTextComponent('percent30'))
 
-    value.append(createTdText('price60'))
-    value.append(createTdText('diff60'))
-    value.append(createTdText('percent60'))
+    value.append(new TdTextComponent('price60'))
+    value.append(new TdTextComponent('diff60'))
+    value.append(new TdTextComponent('percent60'))
 
-    value.append(createTdText(''))
+    value.append(new TdTextComponent(''))
 
     this.children.prices_table.append(value)
 
@@ -137,29 +162,27 @@ export class Page extends HTML {
       const value = new nTr()
       value.setStyle('margin', '1rem')
 
-      value.append(createTdText(symbol))
+      value.append(new TdTextComponent(symbol))
 
-      value.append(createTdText(`${price2string(price)}`))
+      value.append(new TdTextComponent(`${price2string(price)}`))
 
       const price10 = this.getPrice(symbol, 10)
-      value.append(createTdText(price2string(price10)))
-      value.append(createTdText(price2string(price - price10)))
-      value.append(createTdText(percent(price, price10)))
+      value.append(new TdTextComponent(price2string(price10)))
+      value.append(new TdTextComponent(price2string(price - price10)))
+      value.append(new TdTextComponent(percent(price, price10)))
 
       const price30 = this.getPrice(symbol, 30)
-      value.append(createTdText(price2string(price30)))
-      value.append(createTdText(price2string(price - price30)))
-      value.append(createTdText(percent(price, price30)))
+      value.append(new TdTextComponent(price2string(price30)))
+      value.append(new TdTextComponent(price2string(price - price30)))
+      value.append(new TdTextComponent(percent(price, price30)))
 
       const price60 = this.getPrice(symbol, 60)
-      value.append(createTdText(price2string(price60)))
-      value.append(createTdText(price2string(price - price60)))
-      value.append(createTdText(percent(price, price60)))
+      value.append(new TdTextComponent(price2string(price60)))
+      value.append(new TdTextComponent(price2string(price - price60)))
+      value.append(new TdTextComponent(percent(price, price60)))
 
       const buy_button = new HTML()
-      buy_button.setText('Buy BRL 100')
-      buy_button.on('click', () => this.buy(100, symbol, price))
-      value.append(createTdHTML(buy_button))
+      value.append(new TdComponent(new ButtonComponent('Buy BRL 100', () => this.buy(100, symbol, price))))
 
       this.children.prices_table.append(value)
     })
@@ -180,13 +203,13 @@ export class Page extends HTML {
     const value = new nTr()
     value.setStyle('margin-bottom', '1rem')
 
-    value.append(createTdText('symbol'))
+    value.append(new TdTextComponent('symbol'))
 
-    value.append(createTdText('price'))
+    value.append(new TdTextComponent('price'))
 
-    value.append(createTdText('diff'))
+    value.append(new TdTextComponent('diff'))
 
-    value.append(createTdText(''))
+    value.append(new TdTextComponent(''))
 
     this.children.buys_table.append(value)
 
@@ -196,16 +219,14 @@ export class Page extends HTML {
       const value = new nTr()
       value.setStyle('margin', '1rem')
 
-      value.append(createTdText(symbol))
+      value.append(new TdTextComponent(symbol))
 
-      value.append(createTdText(price))
+      value.append(new TdTextComponent(price))
 
-      value.append(createTdText(price2string(this.getSymbolPrice(symbol) - price)))
+      value.append(new TdTextComponent(price2string(this.getSymbolPrice(symbol) - price)))
 
       const buy_button = new HTML()
-      buy_button.setText('Sell')
-      buy_button.on('click', () => this.sell(datetime))
-      value.append(createTdHTML(buy_button))
+      value.append(new TdComponent(new ButtonComponent('Sell', () => this.sell(datetime))))
 
       this.children.buys_table.append(value)
     })

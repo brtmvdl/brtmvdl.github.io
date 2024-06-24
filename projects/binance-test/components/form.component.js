@@ -1,12 +1,12 @@
 import { HTML } from '@brtmvdl/frontend'
 import { InputComponent } from '../../../assets/js/components/input.component.js'
-import { ButtonComponent } from './button.component.js'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 
 export class FormComponent extends HTML {
   children = {
-    quote: new InputComponent(),
-    symbol: new InputComponent(),
-    button: new ButtonComponent(),
+    quote: new InputComponent('quote'),
+    symbol: new InputComponent('symbol'),
+    button: new ButtonComponent('start', () => this.onButtonClick()),
   }
 
   onCreate() {
@@ -17,21 +17,15 @@ export class FormComponent extends HTML {
   }
 
   getQuoteInput() {
-    this.children.quote.children.label.setText('quote')
-    this.children.quote.children.input.setPlaceholder('quote')
     return this.children.quote
   }
 
   getSymbolInput() {
-    this.children.symbol.children.label.setText('symbol')
-    this.children.symbol.children.input.setPlaceholder('symbol')
     this.children.symbol.children.input.on('input', () => this.children.symbol.children.input.setValue(this.children.symbol.children.input.getValue().toUpperCase()))
     return this.children.symbol
   }
 
   getButton() {
-    this.children.button.setText('start')
-    this.children.button.on('click', () => this.onButtonClick())
     return this.children.button
   }
 

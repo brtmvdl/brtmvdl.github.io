@@ -1,16 +1,12 @@
 import { HTML, nFlex, nInput } from '@brtmvdl/frontend'
 import { FormComponent } from './form.component.js'
 
-import { GOOGLE } from './../../../assets/js/utils/googleusercontent.js'
-
 export class TopBarComponent extends HTML {
   children = {
     ip: new HTML(),
     login: new HTML(),
     form: new FormComponent(),
   }
-
-  getName() { return 'top-bar-component' }
 
   onCreate() {
     super.onCreate()

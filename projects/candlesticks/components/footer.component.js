@@ -90,20 +90,12 @@ export class FooterComponent extends HTML {
     return right
   }
 
-  createButton(text, onclick = (() => { }), color = '#000000') {
-    const button = new ButtonComponent(text, onclick)
-    button.setStyle('background-color', color)
-    button.setStyle('color', '#ffffff')
-    button.setStyle('border', 'none')
-    return button
-  }
-
   getBuyButton() {
-    return this.createButton('buy', () => this.dispatchEvent('buy'), '#00cc00')
+    return new ButtonComponent('buy', () => this.dispatchEvent('buy'))
   }
 
   getSellButton() {
-    return this.createButton('sell', () => this.dispatchEvent('sell'), '#cc0000')
+    return new ButtonComponent('sell', () => this.dispatchEvent('sell'))
   }
 
 }
