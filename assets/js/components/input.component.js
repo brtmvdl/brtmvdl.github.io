@@ -36,6 +36,7 @@ export class InputComponent extends HTML {
     this.children.input.setPlaceholder(this.state.label)
     this.children.input.setValue(this.state.value)
     this.children.input.setAttr('type', this.state.type)
+    this.children.input.setStyle('margin', 'calc(1rem / 4) 0rem')
     this.children.input.setStyle('padding', 'calc(1rem / 4)')
     this.children.input.setStyle('box-sizing', 'border-box')
     this.children.input.setStyle('width', '100%')
