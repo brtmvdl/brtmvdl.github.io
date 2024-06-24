@@ -1,21 +1,21 @@
 import { HTML } from '@brtmvdl/frontend'
 
 export class TextComponent extends HTML {
-  text = null
-  title = null
+  state = {
+    text: '',
+    title: '',
+  }
 
-  constructor(text = '', title = null) {
+  constructor(text, title = '') {
     super()
-    this.text = text
-    this.title = title
+    this.state.text = text
+    this.state.title = title
   }
 
   onCreate() {
     super.onCreate()
-    this.setText(this.text)
-    if (this.title) {
-      this.setAttr('title', this.title)
-    }
+    this.setText(this.state.text)
+    this.setAttr('title', this.state.title)
     this.setStyle('padding', 'calc(1rem / 4)')
   }
 }

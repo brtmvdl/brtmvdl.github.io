@@ -1,9 +1,17 @@
 import { HTML, nImage, nFlex } from '@brtmvdl/frontend'
 import { LinkComponent } from './link.component.js'
 import { ButtonComponent } from './button.component.js'
-import * as config from '../config.js'
 
 export class TopComponent extends HTML {
+  state = {
+    url: '',
+  }
+
+  constructor(url = '') {
+    super()
+    this.state.url = url
+  }
+
   onCreate() {
     super.onCreate()
     this.append(this.getFlex())
@@ -24,10 +32,10 @@ export class TopComponent extends HTML {
 
   getLogoLink() {
     const link = new LinkComponent()
-    link.href(config.URL)
+    link.href(this.state.url)
     const image = new nImage()
     image.setStyle('max-height', '3rem')
-    image.src('./foxbit.svg')
+    image.src('./logo.png')
     link.append(image)
     return link
   }
