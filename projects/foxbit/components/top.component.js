@@ -1,6 +1,6 @@
 import { HTML, nImage, nFlex } from '@brtmvdl/frontend'
-import { ButtonComponent } from './button.component.js'
-import { LinkComponent } from './link.component.js'
+import { LinkComponent } from '../../../assets/js/components/link.component.js'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import * as config from '../config.js'
 
 export class TopComponent extends HTML {
@@ -39,9 +39,7 @@ export class TopComponent extends HTML {
   }
 
   getDownloadButton() {
-    const button = new ButtonComponent()
-    button.setText('download')
-    button.on('click', () => this.dispatchEvent('download'))
-    return button
+    return new ButtonComponent('download', () => this.dispatchEvent('download'))
   }
+
 }

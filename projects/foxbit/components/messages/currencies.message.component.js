@@ -1,6 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 import { MessageComponent } from './message.component.js'
-import { TextComponent } from '../text.component.js'
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 
 export class CurrenciesMessageComponent extends MessageComponent {
   getRequestHTML() {

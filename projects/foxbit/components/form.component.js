@@ -1,14 +1,14 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
-import { SelectComponent } from './select.component.js'
-import { ButtonComponent } from './button.component.js'
-import { InputsComponent } from './inputs.component.js'
+import { RequestModel } from '../../../assets/js/models/request.model.js'
+import { SelectComponent } from '../../../assets/js/components/select.component.js'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
+import { InputsComponent } from '../../../assets/js/components/inputs.component.js'
 import { getRequestsList } from '../utils/list.js'
 
 export class FormComponent extends HTML {
   children = {
     requests_select: new SelectComponent(),
     input_list: new HTML(),
-    send_button: new ButtonComponent(),
     inputs: new InputsComponent(),
   }
 
@@ -37,16 +37,45 @@ export class FormComponent extends HTML {
   }
 
   getSendButton() {
-    this.children.send_button.setText('send')
-    this.children.send_button.on('click', () => this.onSendButtonClick())
-    return this.children.send_button
+    return new ButtonComponent('send', () => this.onSendButtonClick())
   }
 
   onSendButtonClick() {
     const request = getRequestsList().find((req) => req.name == this.getRequestsSelectValue())
-    request.call()
+    this.callAPI(request)
       .then((response) => this.dispatchEvent('response', { request, response }))
       .catch((error) => this.dispatchEvent('error', { request, error }))
+  }
+
+  callAPI(req = new RequestModel()) {
+    const url = this.getRequestUrl(req)
+    const method = this.getRequestMethod(req)
+    const headers = this.getRequestHeaders(req)
+    const body = this.getRequestBody(req)
+    return fetch(url.toString(), { method, headers, body })
+  }
+
+  getRequestUrl(req = new RequestModel()) {
+    const url = new URL(req.getUrl())
+    const search = new URLSearchParams(this.reduceParams(req.params))
+    Object.keys(search).map((key) => url.searchParams.set(key, search.get(key)))
+    return url.toString()
+  }
+
+  getRequestMethod(req = new RequestModel()) {
+    return null
+  }
+
+  getRequestHeaders(req = new RequestModel()) {
+    return null
+  }
+
+  getRequestBody(req = new RequestModel()) {
+    return null
+  }
+
+  reduceParams(params = []) {
+    return Array.from(params).reduce((params, key) => ({ ...params, [key]: this.children.inputs.getValue(key) }), {})
   }
 
   getRequestsSelectValue() {

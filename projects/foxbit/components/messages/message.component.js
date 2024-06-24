@@ -3,7 +3,7 @@ import { CardComponent } from '../card.component.js'
 import { CardHeaderComponent } from '../card.header.component.js'
 import { CardBodyComponent } from '../card.body.component.js'
 import { CardFooterComponent } from '../card.footer.component.js'
-import { TextComponent } from '../text.component.js'
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 import { timestamp2str } from '../../../../assets/js/utils/str.js'
 
 export class MessageComponent extends CardComponent {

@@ -1,12 +1,12 @@
-import { RequestsInputModel } from '../models/requests.input.model.js'
+import { RequestModel } from '../../../assets/js/models/request.model.js'
 
 export const getRequestsList = () => ([
-  new RequestsInputModel('List currencies', 'GET', '/currencies', [], []),
-  new RequestsInputModel('List markets', 'GET', '/', [], []),
-  new RequestsInputModel('Get a market quotation', 'GET', '/', [], []),
-  new RequestsInputModel('Get order book', 'GET', '/', [], []),
-  new RequestsInputModel('Get candles', 'GET', '/', [], []),
-  new RequestsInputModel('Get candlesticks', 'GET', '/', [], []),
-  new RequestsInputModel('List banks', 'GET', '/', [], []),
-  new RequestsInputModel('Get current time', 'GET', '/', [], []),
+  new RequestModel('List currencies', 'GET', '/currencies'),
+  new RequestModel('List markets', 'GET', '/markets'),
+  new RequestModel('Get a market quotation', 'GET', '/markets/quotes'),
+  new RequestModel('Get order book', 'GET', '/markets/{market_symbol}/orderbook'),
+  new RequestModel('Get candles'),
+  new RequestModel('Get candlesticks', 'GET', '/markets/{market_symbol}/candlesticks'),
+  new RequestModel('List banks', 'GET', '/banks'),
+  new RequestModel('Get current time', 'GET', '/system/time'),
 ])
