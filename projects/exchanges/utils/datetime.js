@@ -1,4 +1,4 @@
-import { padLeft } from '../utils/str.js'
+import { padLeft } from '../../../assets/js/utils/str.js'
 
 export const getNow = () => Date.now().toString()
 
