@@ -1,11 +1,11 @@
 import { HTML } from '@brtmvdl/frontend'
-import { InputTextGroupComponent } from './input.text.group.component.js'
+import { InputComponent } from '../../../assets/js/components/input.component.js'
 import { ButtonComponent } from './button.component.js'
 
 export class FormComponent extends HTML {
   children = {
-    quote: new InputTextGroupComponent(),
-    symbol: new InputTextGroupComponent(),
+    quote: new InputComponent(),
+    symbol: new InputComponent(),
     button: new ButtonComponent(),
   }
 

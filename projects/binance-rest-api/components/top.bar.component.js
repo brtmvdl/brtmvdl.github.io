@@ -1,10 +1,7 @@
-import { HTML, nFlex, nImage } from '@brtmvdl/frontend'
-import { LogoComponent } from './logo.component.js'
+import { HTML, nFlex, nLink, nImage } from '@brtmvdl/frontend'
 
 export class TopBarComponent extends HTML {
   children = { ip: new HTML() }
-
-  getName() { return 'top-bar-component' }
 
   onCreate() {
     super.onCreate()
@@ -25,7 +22,12 @@ export class TopBarComponent extends HTML {
   }
 
   getLeft() {
-    return new LogoComponent()
+    const link = new nLink()
+    link.href('https://binance-docs.github.io/apidocs/spot/en/#change-log')
+    const image = new nImage()
+    image.src('logo.png')
+    link.append(image)
+    return link
   }
 
   getRight() {

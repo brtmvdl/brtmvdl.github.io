@@ -6,7 +6,7 @@ import { CardFooterHTML } from '../card-footer.html.js'
 import { LinkComponent } from '../link.component.js'
 import { KeyValueHTML } from '../key-value.html.js'
 import { CardBodyHTML } from '../card-body.html.js'
-import { TextHTML } from '../text.html.js'
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 import { CardHTML } from '../card.html.js'
 import * as str from '../../../../assets/js/utils/str.js'
 
@@ -30,12 +30,12 @@ export class MessageCardHTML extends CardHTML {
   getHeaderHTML() {
     const header = new CardHeaderHTML()
     const flex = new nFlex()
-    const method = new TextHTML(this.data.method)
+    const method = new TextComponent(this.data.method)
     const link = new LinkComponent()
     link.href('#' + (this.data.side == 'output' ? this.data.output.id : this.data.id))
     link.append(method)
     flex.append(link)
-    flex.append(new TextHTML(this.data.side))
+    flex.append(new TextComponent(this.data.side))
     header.append(flex)
     return header
   }
@@ -61,29 +61,29 @@ export class MessageCardHTML extends CardHTML {
   }
 
   getNoneHTML() {
-    return new TextHTML('none message')
+    return new TextComponent('none message')
   }
 
   getInputHTML() {
-    return new TextHTML(JSON.stringify(this.data.input))
+    return new TextComponent(JSON.stringify(this.data.input))
   }
 
   getOutputHTML() {
-    return new TextHTML(JSON.stringify(this.data.output.result))
+    return new TextComponent(JSON.stringify(this.data.output.result))
   }
 
   getErrorHTML() {
     const { code, msg } = this.data.output.error
     const error = new HTML()
-    error.append(new TextHTML(`Code: ${code}`))
-    error.append(new TextHTML(`Message: ${msg}`))
+    error.append(new TextComponent(`Code: ${code}`))
+    error.append(new TextComponent(`Message: ${msg}`))
     return error
   }
 
   getFooterHTML() {
     const { id } = this.data.input
     const footer = new CardFooterHTML()
-    footer.append(new TextHTML(str.timestamp2str(id)))
+    footer.append(new TextComponent(str.timestamp2str(id)))
     return footer
   }
 
@@ -114,7 +114,7 @@ export class MessageCardHTML extends CardHTML {
 
 export class logMessage extends MessageCardHTML {
   getNoneHTML() {
-    return new TextHTML(JSON.stringify(this.data))
+    return new TextComponent(JSON.stringify(this.data))
   }
 }
 
@@ -149,14 +149,14 @@ export class timeMessage extends MessageCardHTML {
 
   getOutputHTML() {
     const { serverTime } = this.data.output.result
-    return new TextHTML(`Server Time: ${str.timestamp2str(serverTime)}`)
+    return new TextComponent(`Server Time: ${str.timestamp2str(serverTime)}`)
   }
 }
 
 export class exchangeInfoMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol } = this.data.input
-    return new TextHTML(`Symbol: ${symbol}`)
+    return new TextComponent(`Symbol: ${symbol}`)
   }
 
   getOutputHTML() {
@@ -183,7 +183,7 @@ export class exchangeInfoMessage extends MessageCardHTML {
     output.append(new KeyValueHTML('isSpotTradingAllowed', symbol['isSpotTradingAllowed']))
     output.append(new KeyValueHTML('ocoAllowed', symbol['ocoAllowed']))
     output.append(new KeyValueHTML('orderTypes', symbol['orderTypes']))
-    Array.from(['permissions:']).concat(symbol['permissions']).map((perm) => output.append(new TextHTML(perm)))
+    Array.from(['permissions:']).concat(symbol['permissions']).map((perm) => output.append(new TextComponent(perm)))
 
     return output
   }
@@ -194,19 +194,19 @@ export class depthMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, limit } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`Limit: ${limit}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Limit: ${limit}`))
     return input
   }
 
   getOutputHTML() {
     const { asks, bids } = this.data.output.result
     const output = new HTML()
-    output.append(new TextHTML('Asks'))
+    output.append(new TextComponent('Asks'))
     output.append(new HorizontalSeparatorHTML())
     output.append(this.getTableHTML(asks, ['Price', 'Quantity']))
     output.append(new HorizontalSeparatorHTML())
-    output.append(new TextHTML('Bids'))
+    output.append(new TextComponent('Bids'))
     output.append(new HorizontalSeparatorHTML())
     output.append(this.getTableHTML(bids, ['Price', 'Quantity']))
     return output
@@ -222,8 +222,8 @@ export class tradesRecentMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, limit } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`Limit: ${limit}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Limit: ${limit}`))
     return input
   }
 
@@ -256,9 +256,9 @@ export class tradesHistoricalMessage extends tradesRecentMessage {
   getInputHTML() {
     const { symbol, fromId, limit } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`From id: ${fromId}`))
-    input.append(new TextHTML(`Limit: ${limit}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`From id: ${fromId}`))
+    input.append(new TextComponent(`Limit: ${limit}`))
     return input
   }
 }
@@ -267,8 +267,8 @@ export class tradesAggregateMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, limit } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`Limit: ${limit}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Limit: ${limit}`))
     return input
   }
 
@@ -285,10 +285,10 @@ export class klinesMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, interval, startTime, limit } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`Interval: ${interval}`))
-    input.append(new TextHTML(`Start Time: ${startTime}`, str.timestamp2str(startTime)))
-    input.append(new TextHTML(`Limit: ${limit}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Interval: ${interval}`))
+    input.append(new TextComponent(`Start Time: ${startTime}`, str.timestamp2str(startTime)))
+    input.append(new TextComponent(`Limit: ${limit}`))
     return input
   }
 
@@ -313,16 +313,16 @@ export class avgPriceMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
     return input
   }
 
   getOutputHTML() {
     const { mins, price, closeTime } = this.data.output.result
     const html = new HTML()
-    html.append(new TextHTML(`Average price interval: ${mins}mins`))
-    html.append(new TextHTML(`Average price: ${+price}`))
-    html.append(new TextHTML(`Last trade time: ${closeTime}`, str.timestamp2str(closeTime)))
+    html.append(new TextComponent(`Average price interval: ${mins}mins`))
+    html.append(new TextComponent(`Average price: ${+price}`))
+    html.append(new TextComponent(`Last trade time: ${closeTime}`, str.timestamp2str(closeTime)))
     return html
   }
 }
@@ -331,34 +331,34 @@ export class ticker24hrMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
     return input
   }
 
   getOutputHTML() {
     const { symbol, priceChange, priceChangePercent, weightedAvgPrice, prevClosePrice, lastPrice, lastQty, bidPrice, askPrice, bidQty, askQty, openPrice, highPrice, lowPrice, volume, quoteVolume, openTime, closeTime, firstId, lastId, count } = this.data.output.result
     const html = new HTML()
-    html.append((new TextHTML(`Symbol: ${symbol}`)))
-    html.append((new TextHTML(`Price Change: ${+priceChange}`)))
-    html.append((new TextHTML(`Price Change Percent: ${+priceChangePercent}`)))
-    html.append((new TextHTML(`Weighted Average Price: ${+weightedAvgPrice}`)))
-    html.append((new TextHTML(`Previous Close Price: ${+prevClosePrice}`)))
-    html.append((new TextHTML(`Last Price: ${+lastPrice}`)))
-    html.append((new TextHTML(`Last  Quantity: ${+lastQty}`)))
-    html.append((new TextHTML(`Bid Price: ${+bidPrice}`)))
-    html.append((new TextHTML(`Bid Quantity: ${+bidQty}`)))
-    html.append((new TextHTML(`Ask Price: ${+askPrice}`)))
-    html.append((new TextHTML(`Ask Quantity: ${+askQty}`)))
-    html.append((new TextHTML(`Open Price: ${+openPrice}`)))
-    html.append((new TextHTML(`High Price: ${+highPrice}`)))
-    html.append((new TextHTML(`Low Price: ${+lowPrice}`)))
-    html.append((new TextHTML(`Volume: ${+volume}`)))
-    html.append((new TextHTML(`Quote Volume: ${+quoteVolume}`)))
-    html.append((new TextHTML(`Open Time: ${openTime}`, str.timestamp2str(openTime))))
-    html.append((new TextHTML(`Close Time: ${closeTime}`, str.timestamp2str(closeTime))))
-    html.append((new TextHTML(`First Id: ${firstId}`)))
-    html.append((new TextHTML(`Last Id: ${lastId}`)))
-    html.append((new TextHTML(`Count: ${count}`)))
+    html.append((new TextComponent(`Symbol: ${symbol}`)))
+    html.append((new TextComponent(`Price Change: ${+priceChange}`)))
+    html.append((new TextComponent(`Price Change Percent: ${+priceChangePercent}`)))
+    html.append((new TextComponent(`Weighted Average Price: ${+weightedAvgPrice}`)))
+    html.append((new TextComponent(`Previous Close Price: ${+prevClosePrice}`)))
+    html.append((new TextComponent(`Last Price: ${+lastPrice}`)))
+    html.append((new TextComponent(`Last  Quantity: ${+lastQty}`)))
+    html.append((new TextComponent(`Bid Price: ${+bidPrice}`)))
+    html.append((new TextComponent(`Bid Quantity: ${+bidQty}`)))
+    html.append((new TextComponent(`Ask Price: ${+askPrice}`)))
+    html.append((new TextComponent(`Ask Quantity: ${+askQty}`)))
+    html.append((new TextComponent(`Open Price: ${+openPrice}`)))
+    html.append((new TextComponent(`High Price: ${+highPrice}`)))
+    html.append((new TextComponent(`Low Price: ${+lowPrice}`)))
+    html.append((new TextComponent(`Volume: ${+volume}`)))
+    html.append((new TextComponent(`Quote Volume: ${+quoteVolume}`)))
+    html.append((new TextComponent(`Open Time: ${openTime}`, str.timestamp2str(openTime))))
+    html.append((new TextComponent(`Close Time: ${closeTime}`, str.timestamp2str(closeTime))))
+    html.append((new TextComponent(`First Id: ${firstId}`)))
+    html.append((new TextComponent(`Last Id: ${lastId}`)))
+    html.append((new TextComponent(`Count: ${count}`)))
     return html
   }
 }
@@ -367,28 +367,28 @@ export class tickerTradingDayMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
     return input
   }
 
   getOutputHTML() {
     const { symbol, priceChange, priceChangePercent, weightedAvgPrice, prevClosePrice, lastPrice, lastQty, bidPrice, askPrice, bidQty, askQty, openPrice, highPrice, lowPrice, volume, quoteVolume, openTime, closeTime, firstId, lastId, count } = this.data.output.result
     const html = new HTML()
-    html.append((new TextHTML(`Symbol: ${symbol}`)))
-    html.append((new TextHTML(`Price Change: ${+priceChange}`)))
-    html.append((new TextHTML(`Price Change Percent: ${+priceChangePercent}`)))
-    html.append((new TextHTML(`Weighted Average Price: ${+weightedAvgPrice}`)))
-    html.append((new TextHTML(`Last Price: ${+lastPrice}`)))
-    html.append((new TextHTML(`Open Price: ${+openPrice}`)))
-    html.append((new TextHTML(`High Price: ${+highPrice}`)))
-    html.append((new TextHTML(`Low Price: ${+lowPrice}`)))
-    html.append((new TextHTML(`Volume: ${+volume}`)))
-    html.append((new TextHTML(`Quote Volume: ${+quoteVolume}`)))
-    html.append((new TextHTML(`Open Time: ${openTime}`, str.timestamp2str(openTime))))
-    html.append((new TextHTML(`Close Time: ${closeTime}`, str.timestamp2str(closeTime))))
-    html.append((new TextHTML(`First Id: ${firstId}`)))
-    html.append((new TextHTML(`Last Id: ${lastId}`)))
-    html.append((new TextHTML(`Count: ${count}`)))
+    html.append((new TextComponent(`Symbol: ${symbol}`)))
+    html.append((new TextComponent(`Price Change: ${+priceChange}`)))
+    html.append((new TextComponent(`Price Change Percent: ${+priceChangePercent}`)))
+    html.append((new TextComponent(`Weighted Average Price: ${+weightedAvgPrice}`)))
+    html.append((new TextComponent(`Last Price: ${+lastPrice}`)))
+    html.append((new TextComponent(`Open Price: ${+openPrice}`)))
+    html.append((new TextComponent(`High Price: ${+highPrice}`)))
+    html.append((new TextComponent(`Low Price: ${+lowPrice}`)))
+    html.append((new TextComponent(`Volume: ${+volume}`)))
+    html.append((new TextComponent(`Quote Volume: ${+quoteVolume}`)))
+    html.append((new TextComponent(`Open Time: ${openTime}`, str.timestamp2str(openTime))))
+    html.append((new TextComponent(`Close Time: ${closeTime}`, str.timestamp2str(closeTime))))
+    html.append((new TextComponent(`First Id: ${firstId}`)))
+    html.append((new TextComponent(`Last Id: ${lastId}`)))
+    html.append((new TextComponent(`Count: ${count}`)))
     return html
   }
 }
@@ -397,29 +397,29 @@ export class tickerMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol, windowSize } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`Window Size: ${windowSize}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Window Size: ${windowSize}`))
     return input
   }
 
   getOutputHTML() {
     const { symbol, priceChange, priceChangePercent, weightedAvgPrice, lastPrice, openPrice, highPrice, lowPrice, volume, quoteVolume, openTime, closeTime, firstId, lastId, count } = this.data.output.result
     const html = new HTML()
-    html.append((new TextHTML(`Symbol: ${symbol}`)))
-    html.append((new TextHTML(`Price Change: ${+priceChange}`)))
-    html.append((new TextHTML(`Price Change Percent: ${+priceChangePercent}`)))
-    html.append((new TextHTML(`Weighted Average Price: ${+weightedAvgPrice}`)))
-    html.append((new TextHTML(`Last Price: ${+lastPrice}`)))
-    html.append((new TextHTML(`Open Price: ${+openPrice}`)))
-    html.append((new TextHTML(`High Price: ${+highPrice}`)))
-    html.append((new TextHTML(`Low Price: ${+lowPrice}`)))
-    html.append((new TextHTML(`Volume: ${+volume}`)))
-    html.append((new TextHTML(`Quote Volume: ${+quoteVolume}`)))
-    html.append((new TextHTML(`Open Time: ${openTime}`, str.timestamp2str(openTime))))
-    html.append((new TextHTML(`Close Time: ${closeTime}`, str.timestamp2str(closeTime))))
-    html.append((new TextHTML(`First Id: ${firstId}`)))
-    html.append((new TextHTML(`Last Id: ${lastId}`)))
-    html.append((new TextHTML(`Count: ${count}`)))
+    html.append((new TextComponent(`Symbol: ${symbol}`)))
+    html.append((new TextComponent(`Price Change: ${+priceChange}`)))
+    html.append((new TextComponent(`Price Change Percent: ${+priceChangePercent}`)))
+    html.append((new TextComponent(`Weighted Average Price: ${+weightedAvgPrice}`)))
+    html.append((new TextComponent(`Last Price: ${+lastPrice}`)))
+    html.append((new TextComponent(`Open Price: ${+openPrice}`)))
+    html.append((new TextComponent(`High Price: ${+highPrice}`)))
+    html.append((new TextComponent(`Low Price: ${+lowPrice}`)))
+    html.append((new TextComponent(`Volume: ${+volume}`)))
+    html.append((new TextComponent(`Quote Volume: ${+quoteVolume}`)))
+    html.append((new TextComponent(`Open Time: ${openTime}`, str.timestamp2str(openTime))))
+    html.append((new TextComponent(`Close Time: ${closeTime}`, str.timestamp2str(closeTime))))
+    html.append((new TextComponent(`First Id: ${firstId}`)))
+    html.append((new TextComponent(`Last Id: ${lastId}`)))
+    html.append((new TextComponent(`Count: ${count}`)))
     return html
   }
 }
@@ -428,15 +428,15 @@ export class tickerPriceMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
     return input
   }
 
   getOutputHTML() {
     const { symbol, price } = this.data.output.result
     const output = new HTML()
-    output.append(new TextHTML(`Symbol: ${symbol}`))
-    output.append(new TextHTML(`Price: ${+price}`))
+    output.append(new TextComponent(`Symbol: ${symbol}`))
+    output.append(new TextComponent(`Price: ${+price}`))
     return output
   }
 }
@@ -445,18 +445,18 @@ export class tickerBookMessage extends MessageCardHTML {
   getInputHTML() {
     const { symbol } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
     return input
   }
 
   getOutputHTML() {
     const { symbol, bidPrice, bidQty, askPrice, askQty } = this.data.output.result
     const html = new HTML()
-    html.append((new TextHTML(`Symbol: ${symbol}`)))
-    html.append((new TextHTML(`Bid Price: ${+bidPrice}`)))
-    html.append((new TextHTML(`Bid Quantity: ${+bidQty}`)))
-    html.append((new TextHTML(`Ask Price: ${+askPrice}`)))
-    html.append((new TextHTML(`Ask Quantity: ${+askQty}`)))
+    html.append((new TextComponent(`Symbol: ${symbol}`)))
+    html.append((new TextComponent(`Bid Price: ${+bidPrice}`)))
+    html.append((new TextComponent(`Bid Quantity: ${+bidQty}`)))
+    html.append((new TextComponent(`Ask Price: ${+askPrice}`)))
+    html.append((new TextComponent(`Ask Quantity: ${+askQty}`)))
     return html
   }
 }
@@ -465,10 +465,10 @@ export class sessionStatusMessage extends MessageCardHTML {
   getOutputHTML() {
     const { authorizedSince, connectedSince, returnRateLimits, serverTime } = this.data.output.result
     const html = new HTML()
-    html.append(new TextHTML(`Authorized Since: ${authorizedSince}`, str.timestamp2str(authorizedSince)))
-    html.append(new TextHTML(`Connected Since: ${connectedSince}`, str.timestamp2str(connectedSince)))
-    html.append(new TextHTML(`Return Rate Limits: ${returnRateLimits}`))
-    html.append(new TextHTML(`Server Time: ${serverTime}`, str.timestamp2str(serverTime)))
+    html.append(new TextComponent(`Authorized Since: ${authorizedSince}`, str.timestamp2str(authorizedSince)))
+    html.append(new TextComponent(`Connected Since: ${connectedSince}`, str.timestamp2str(connectedSince)))
+    html.append(new TextComponent(`Return Rate Limits: ${returnRateLimits}`))
+    html.append(new TextComponent(`Server Time: ${serverTime}`, str.timestamp2str(serverTime)))
     return html
   }
 }
@@ -483,7 +483,7 @@ export class openMessage extends MessageCardHTML { }
 
 export class closeMessage extends MessageCardHTML {
   getNoneHTML() {
-    return new TextHTML(`Reason: ${this.data.input.reason}`)
+    return new TextComponent(`Reason: ${this.data.input.reason}`)
   }
 }
 
@@ -491,12 +491,12 @@ export class orderTestMessage extends MessageCardHTML {
   getInputHTML() {
     const { apiKey, price, quantity, side, symbol, timeInForce, timestamp, type, signature } = this.data.input
     const input = new HTML()
-    input.append(new TextHTML(`Symbol: ${symbol}`))
-    input.append(new TextHTML(`Side: ${side}`))
-    input.append(new TextHTML(`Type: ${type}`))
-    input.append(new TextHTML(`Time In Force: ${timeInForce}`))
-    input.append(new TextHTML(`Price: ${price}`))
-    input.append(new TextHTML(`Quantity: ${quantity}`))
+    input.append(new TextComponent(`Symbol: ${symbol}`))
+    input.append(new TextComponent(`Side: ${side}`))
+    input.append(new TextComponent(`Type: ${type}`))
+    input.append(new TextComponent(`Time In Force: ${timeInForce}`))
+    input.append(new TextComponent(`Price: ${price}`))
+    input.append(new TextComponent(`Quantity: ${quantity}`))
     return input
   }
 }
@@ -529,25 +529,25 @@ export class accountStatusMessage extends MessageCardHTML {
   getOutputHTML() {
     const { makerCommission, takerCommission, buyerCommission, sellerCommission, canTrade, canWithdraw, canDeposit, brokered, requireSelfTradePrevention, preventSor, updateTime, accountType, uid, balances, permissions, commissionRates, } = this.data.output.result
     const html = new HTML()
-    html.append(new TextHTML(`UID: ${uid}`))
-    html.append(new TextHTML(`Account Type: ${accountType}`))
-    html.append(new TextHTML(`Maker Commission: ${makerCommission}`))
-    html.append(new TextHTML(`Taker Commission: ${takerCommission}`))
-    html.append(new TextHTML(`Buyer Commission: ${buyerCommission}`))
-    html.append(new TextHTML(`Seller Commission: ${sellerCommission}`))
-    html.append(new TextHTML(`Can Trade: ${canTrade}`))
-    html.append(new TextHTML(`Can Withdraw: ${canWithdraw}`))
-    html.append(new TextHTML(`Can Deposit: ${canDeposit}`))
-    html.append(new TextHTML(`Brokered: ${brokered}`))
-    html.append(new TextHTML(`Require Self Trade Prevention: ${requireSelfTradePrevention}`))
-    html.append(new TextHTML(`Prevent Sor: ${preventSor}`))
-    html.append(new TextHTML(`Update Time: ${updateTime}`, str.timestamp2str(updateTime)))
-    html.append(new TextHTML(`Permissions: ${permissions}`))
-    html.append(new TextHTML(`Commission Rate (buyer): ${commissionRates.buyer}`))
-    html.append(new TextHTML(`Commission Rate (maker): ${commissionRates.maker}`))
-    html.append(new TextHTML(`Commission Rate (seller): ${commissionRates.seller}`))
-    html.append(new TextHTML(`Commission Rate (taker): ${commissionRates.taker}`))
-    html.append(new TextHTML(`Balances: `))
+    html.append(new TextComponent(`UID: ${uid}`))
+    html.append(new TextComponent(`Account Type: ${accountType}`))
+    html.append(new TextComponent(`Maker Commission: ${makerCommission}`))
+    html.append(new TextComponent(`Taker Commission: ${takerCommission}`))
+    html.append(new TextComponent(`Buyer Commission: ${buyerCommission}`))
+    html.append(new TextComponent(`Seller Commission: ${sellerCommission}`))
+    html.append(new TextComponent(`Can Trade: ${canTrade}`))
+    html.append(new TextComponent(`Can Withdraw: ${canWithdraw}`))
+    html.append(new TextComponent(`Can Deposit: ${canDeposit}`))
+    html.append(new TextComponent(`Brokered: ${brokered}`))
+    html.append(new TextComponent(`Require Self Trade Prevention: ${requireSelfTradePrevention}`))
+    html.append(new TextComponent(`Prevent Sor: ${preventSor}`))
+    html.append(new TextComponent(`Update Time: ${updateTime}`, str.timestamp2str(updateTime)))
+    html.append(new TextComponent(`Permissions: ${permissions}`))
+    html.append(new TextComponent(`Commission Rate (buyer): ${commissionRates.buyer}`))
+    html.append(new TextComponent(`Commission Rate (maker): ${commissionRates.maker}`))
+    html.append(new TextComponent(`Commission Rate (seller): ${commissionRates.seller}`))
+    html.append(new TextComponent(`Commission Rate (taker): ${commissionRates.taker}`))
+    html.append(new TextComponent(`Balances: `))
     html.append(this.getTableHTML(this.removeZerosInBalances(balances)))
     return html
   }

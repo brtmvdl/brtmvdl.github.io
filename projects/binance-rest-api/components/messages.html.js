@@ -21,8 +21,6 @@ export class MessagesHTML extends HTML {
   }
 
   getMessageHTML(data) {
-    console.log('getMessageHTML', { data })
-
     switch (data.method) {
       case 'log': return new messages.logMessage(data)
       case 'download': return new messages.downloadMessage(data)

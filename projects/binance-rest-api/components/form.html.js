@@ -1,16 +1,15 @@
 import { HTML } from '@brtmvdl/frontend'
-import { getEndpointsList, getEndpointsRequest } from '../utils/lists.js'
-import { SelectComponent } from './select.component.js'
-import { ButtonComponent } from './button.component.js'
-import { TitleComponent } from './title.component.js'
+import { getEndpointsList } from '../utils/lists.js'
+import { SelectComponent } from '../../../assets/js/components/select.component.js'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
+import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { QueryParamsComponent } from './query.params.component.js'
 import { HeadersParamsComponent } from './headers.params.component.js'
 import { BodyParamsComponent } from './body.params.component.js'
-import { TextHTML } from './text.html.js'
 
 export class FormHTML extends HTML {
   children = {
-    endpoint: new SelectComponent(),
+    endpoint: new SelectComponent('endpoint'),
     query: new HTML(),
     headers: new HTML(),
     body: new HTML(),
@@ -35,17 +34,21 @@ export class FormHTML extends HTML {
   }
 
   getEndpointSelect() {
-    getEndpointsList().map((endpoint) => this.children.endpoint.addOption(endpoint, endpoint))
+    getEndpointsList().map(({ name: endpoint }) => this.children.endpoint.addOption(endpoint, endpoint))
     this.children.endpoint.on('change', () => this.onMethodSelectChange())
     return this.children.endpoint
   }
 
   onMethodSelectChange() {
     const endpoint = this.getEndpointValue()
-    const request = getEndpointsRequest(endpoint)
+    const request = this.getEndpointsRequest(endpoint)
     this.appendQueryParams(request.query)
     this.appendHeadersParams(request.headers)
     this.appendBodyParams(request.body)
+  }
+
+  getEndpointsRequest(endpoint) {
+    return getEndpointsList().find((e) => e.name === endpoint)
   }
 
   appendQueryParams(params = []) {
@@ -53,7 +56,7 @@ export class FormHTML extends HTML {
     if (Array.from(params).length > 0) {
       Array.from(params).map((component) => this.children.query.append(this.children.query_params.getComponent(component)))
     } else {
-      this.children.query.append(new TextHTML('no inputs'))
+      this.children.query.append(new TextComponent('no inputs'))
     }
   }
 
@@ -62,7 +65,7 @@ export class FormHTML extends HTML {
     if (Array.from(params).length > 0) {
       Array.from(params).map((component) => this.children.headers.append(this.children.headers_params.getComponent(component)))
     } else {
-      this.children.headers.append(new TextHTML('no inputs'))
+      this.children.headers.append(new TextComponent('no inputs'))
     }
   }
 
@@ -71,44 +74,41 @@ export class FormHTML extends HTML {
     if (Array.from(params).length > 0) {
       Array.from(params).map((component) => this.children.body.append(this.children.body_params.getComponent(component)))
     } else {
-      this.children.body.append(new TextHTML('no inputs'))
+      this.children.body.append(new TextComponent('no inputs'))
     }
   }
 
   getQueryParams() {
     const html = new HTML()
-    html.append(new TitleComponent('Query'))
+    html.append(new TextComponent('Query'))
     html.append(this.children.query)
     return html
   }
 
   getHeadersParams() {
     const html = new HTML()
-    html.append(new TitleComponent('Headers'))
+    html.append(new TextComponent('Headers'))
     html.append(this.children.headers)
     return html
   }
 
   getBodyParams() {
     const html = new HTML()
-    html.append(new TitleComponent('Body'))
+    html.append(new TextComponent('Body'))
     html.append(this.children.body)
     return html
   }
 
   getSendButton() {
-    const button = new ButtonComponent()
-    button.setText('send')
-    button.on('click', () => this.onSendButtonClick())
-    return button
+    return new ButtonComponent('send', () => this.onSendButtonClick())
   }
 
   onSendButtonClick(endpoint = this.getEndpointValue()) {
-    const { method, pathname, query, headers, body } = getEndpointsRequest(endpoint)
+    const { method, url, query, headers, body } = this.getEndpointsRequest(endpoint)
     this.dispatchEvent('submit', {
       endpoint,
       method,
-      pathname,
+      url,
       query: this.getQueryValues(query),
       headers: this.getHeadersValues(headers),
       body: this.getBodyValues(body),

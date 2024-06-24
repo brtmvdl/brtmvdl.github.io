@@ -3,7 +3,7 @@ import { CardHTML } from '../card.html.js'
 import { CardHeaderHTML } from '../card-header.html.js'
 import { CardBodyHTML } from '../card-body.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
-import { TextHTML } from '../text.html.js'
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 
 export class MessageCardHTML extends CardHTML {
   data = null
@@ -23,7 +23,7 @@ export class MessageCardHTML extends CardHTML {
 
   getHeaderHTML() {
     const header = new CardHeaderHTML()
-    header.append(new TextHTML(this.data.method))
+    header.append(new TextComponent(this.data.method))
     return header
   }
 
@@ -49,7 +49,7 @@ export class MessageCardHTML extends CardHTML {
 
   getOutputHTML() {
     const output = new CardBodyHTML()
-    output.append(new TextHTML(JSON.stringify(this.data.output)))
+    output.append(new TextComponent(JSON.stringify(this.data.output)))
     return output
   }
 
@@ -88,8 +88,8 @@ export class SystemStatusMessageCardHTML extends MessageCardHTML {
   getOutputHTML() {
     const { status, msg } = this.data.output
     const output = new CardBodyHTML()
-    output.append(new TextHTML(`Status: ${status}`))
-    output.append(new TextHTML(`Msg: ${msg}`))
+    output.append(new TextComponent(`Status: ${status}`))
+    output.append(new TextComponent(`Msg: ${msg}`))
     return output
   }
 }
