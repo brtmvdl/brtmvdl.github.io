@@ -1,7 +1,8 @@
 import { HTML, nButton } from '@brtmvdl/frontend'
-import { FACEBOOK } from './facebook.js' // https://www.facebook.com/v20.0/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}&state={state-param}
+import { TextComponent } from '../../assets/js/components/text.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
 
-import { TextComponent } from '../../../../assets/js/components/text.component.js'
+import { FACEBOOK } from './facebook.js' // https://www.facebook.com/v20.0/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}&state={state-param}
 
 export class Page extends HTML {
   children = {
@@ -21,39 +22,11 @@ export class Page extends HTML {
 
   getButtonsFlex() {
     const html = new HTML()
-    html.append(this.getLoginButton())
-    html.append(this.getLogoutButton())
-    html.append(this.getLoginStatusButton())
-    html.append(this.getPublishStatusMessageButton())
+    this.append(new ButtonComponent('Login', () => FB.login((resp) => this.appendResponse('Login', resp), { scope: 'email,user_likes' })))
+    this.append(new ButtonComponent('Get Login Status', () => FB.getLoginStatus((resp) => this.appendResponse('Get Login Status', resp))))
+    this.append(new ButtonComponent('Publish a status message', () => FB.api('/me/feed', 'post', { message: 'Now is ' + (new Date()).toString() }, (resp) => this.appendResponse('Publish a status message', resp))))
+    this.append(new ButtonComponent('Logout', () => FB.logout((resp) => this.appendResponse('Logout', resp))))
     return html
-  }
-
-  getLoginStatusButton() {
-    const button = new nButton()
-    button.setText('Get Login Status')
-    button.on('click', () => FB.getLoginStatus((resp) => this.appendResponse('Get Login Status', resp)))
-    return button
-  }
-
-  getLoginButton() {
-    const button = new nButton()
-    button.setText('Login')
-    button.on('click', () => FB.login((resp) => this.appendResponse('Login', resp), { scope: 'email,user_likes' }))
-    return button
-  }
-
-  getLogoutButton() {
-    const button = new nButton()
-    button.setText('Logout')
-    button.on('click', () => FB.logout((resp) => this.appendResponse('Logout', resp)))
-    return button
-  }
-
-  getPublishStatusMessageButton() {
-    const button = new nButton()
-    button.setText('Publish a status message')
-    button.on('click', () => FB.api('/me/feed', 'post', { message: 'Now is ' + (new Date()).toString() }, (resp) => this.appendResponse('Publish a status message', resp)))
-    return button
   }
 
   appendResponse(name, resp = {}) {
@@ -65,5 +38,4 @@ export class Page extends HTML {
   getResponses() {
     return this.children.responses
   }
-
 }
