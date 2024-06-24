@@ -1,18 +1,21 @@
 import { HTML, nLink, nButton, nInputTextGroup } from '@brtmvdl/frontend'
-import { client_id, access_token } from './config.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { InputComponent } from '../../assets/js/components/input.component.js'
+import { LinkComponent } from '../../assets/js/components/link.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as Local from '../../assets/js/utils/local.js'
 import * as Flow from '../../assets/js/utils/flow.js'
-import { TextComponent } from '../../../../assets/js/components/text.component.js'
+import { client_id } from './config.js'
 
 export class Page extends HTML {
   children = {
     responses: new HTML(),
-    access_token: new nInputTextGroup(),
+    access_token: new InputComponent('access token'),
   }
 
   onCreate() {
     super.onCreate()
-    this.append(this.getTitleHTML())
+    this.append(new TextComponent('GitHub Oauth 2.0 Login'))
     this.append(this.getLoginLink())
     this.append(this.getTokensLink())
     this.append(this.getAccessTokenInput())
@@ -21,37 +24,20 @@ export class Page extends HTML {
     this.setOauthCode()
   }
 
-  getTitleHTML() {
-    const html = new HTML()
-    html.setText('GitHub Oauth 2.0 Login')
-    return html
-  }
-
   getLoginLink() {
-    const link = new nLink()
-    link.setText('login')
-    link.href(`https://github.com/login/oauth/authorize?scope=user:email&client_id=${client_id}`)
-    return link
+    return new LinkComponent('login', `https://github.com/login/oauth/authorize?scope=user:email&client_id=${client_id}`)
   }
 
   getTokensLink() {
-    const link = new nLink()
-    link.setText('settings/tokens')
-    link.href('https://github.com/settings/tokens?type=beta')
-    return link
+    return new LinkComponent('settings/tokens', 'https://github.com/settings/tokens?type=beta')
   }
 
   getAccessTokenInput() {
-    this.children.access_token.children.label.setText('access token')
-    this.children.access_token.children.input.setPlaceholder('access_token')
     return this.children.access_token
   }
 
   getApiUserButton() {
-    const button = new nButton()
-    button.setText('api.github.com/user')
-    button.on('click', () => this.onApiUserButton())
-    return button
+    return new ButtonComponent('api.github.com/user', () => this.onApiUserButton())
   }
 
   onApiUserButton() {
@@ -79,4 +65,5 @@ export class Page extends HTML {
       Flow.goTo('index.html')
     }
   }
+
 }
