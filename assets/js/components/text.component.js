@@ -16,7 +16,6 @@ export class TextComponent extends HTML {
     if (this.title) {
       this.setAttr('title', this.title)
     }
-    this.setStyle('margin', '1rem 0rem')
-    this.setStyle('padding', '1rem')
+    this.setStyle('padding', 'calc(1rem / 4)')
   }
 }

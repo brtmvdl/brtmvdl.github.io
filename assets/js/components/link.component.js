@@ -18,8 +18,6 @@ export class LinkComponent extends nLink {
     this.href(this.state.href)
     this.setStyle('text-decoration', 'none')
     this.setStyle('display', 'inline-block')
-    this.setStyle('margin', '1rem 0rem')
-    this.setStyle('padding', '1rem')
+    this.setStyle('padding', 'calc(1rem / 4)')
   }
-
 }
