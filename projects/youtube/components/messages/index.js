@@ -3,7 +3,7 @@ import { CardHeaderHTML } from '../card-header.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
 import { CardBodyHTML } from '../card-body.html.js'
 import { CardHTML } from '../card.html.js'
-import { TextHTML } from '../text.html.js'
+import { TextComponent } from '../../../assets/js/components/text.component.js'
 import * as str from '../../../../assets/js/utils/str.js'
 
 export class MessageCardHTML extends CardHTML {
@@ -24,19 +24,19 @@ export class MessageCardHTML extends CardHTML {
 
   getHeaderHTML() {
     const header = new CardHeaderHTML()
-    header.append(new TextHTML('header'))
+    header.append(new TextComponent('header'))
     return header
   }
 
   getBodyHTML() {
     const body = new CardBodyHTML()
-    body.append(new TextHTML('body'))
+    body.append(new TextComponent('body'))
     return body
   }
 
   getFooterHTML() {
     const footer = new CardFooterHTML()
-    footer.append(new TextHTML('footer'))
+    footer.append(new TextComponent('footer'))
     return footer
   }
 

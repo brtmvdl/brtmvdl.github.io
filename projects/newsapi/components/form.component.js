@@ -1,15 +1,15 @@
 import { HTML } from '@brtmvdl/frontend'
-import { InputTextGroupComponent } from './input.text.group.component.js'
+import { InputComponent } from '../../../assets/js/components/input.component.js'
 import { ButtonComponent } from './button.component.js'
 import { padLeft } from '../../../assets/js/utils/str.js'
 
 export class FormComponent extends HTML {
   children = {
-    apiKey: new InputTextGroupComponent('api key', this.getDefaultApiKey(), 'password'),
-    query: new InputTextGroupComponent('query', this.getDefaultQuery()),
-    from: new InputTextGroupComponent('from', this.getDefaultFrom()),
-    to: new InputTextGroupComponent('to', this.getDefaultTo()),
-    sortBy: new InputTextGroupComponent('sort by', this.getDefaultsortBy()),
+    apiKey: new InputComponent('api key', this.getDefaultApiKey(), 'password'),
+    query: new InputComponent('query', this.getDefaultQuery()),
+    from: new InputComponent('from', this.getDefaultFrom()),
+    to: new InputComponent('to', this.getDefaultTo()),
+    sortBy: new InputComponent('sort by', this.getDefaultsortBy()),
   }
 
   getDefaultApiKey() {

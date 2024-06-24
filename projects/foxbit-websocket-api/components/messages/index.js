@@ -2,7 +2,7 @@ import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
 import { CardHeaderHTML } from '../card-header.html.js'
 import { CardFooterHTML } from '../card-footer.html.js'
 import { CardBodyHTML } from '../card-body.html.js'
-import { TextHTML } from '../text.html.js'
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 import { CardHTML } from '../card.html.js'
 
 import * as str from '../../../../assets/js/utils/str.js'
@@ -52,7 +52,7 @@ export class MessageCardHTML extends CardHTML {
 
   getFooterHTML() {
     const footer = new CardFooterHTML()
-    footer.append(new TextHTML(str.datetime2str(this.data.id)), this.data.id)
+    footer.append(new TextComponent(str.datetime2str(this.data.id)), this.data.id)
     return footer
   }
 
@@ -145,7 +145,7 @@ export class GetInstrumentMessage extends MessageCardHTML {
   getInputBodyHTML() {
     const { InstrumentId } = this.data.Payload
     const body = new CardBodyHTML()
-    body.append(new TextHTML(`InstrumentId: ${InstrumentId}`))
+    body.append(new TextComponent(`InstrumentId: ${InstrumentId}`))
     return body
   }
 }
@@ -170,26 +170,26 @@ export class SubscribeLevel1Message extends MessageCardHTML {
   getBodyHTML() {
     const { OMSId, InstrumentId, MarketId, BestBid, BestOffer, LastTradedPx, LastTradedQty, LastTradeTime, SessionOpen, SessionHigh, SessionLow, SessionClose, Volume, CurrentDayVolume, CurrentDayNumTrades, CurrentDayPxChange, Rolling24HrVolume, Rolling24NumTrades, Rolling24HrPxChange, TimeStamp, } = this.data.Payload
     const body = new CardBodyHTML()
-    body.append(new TextHTML(`OMSId: ${OMSId}`))
-    body.append(new TextHTML(`InstrumentId: ${InstrumentId}`))
-    body.append(new TextHTML(`MarketId: ${MarketId}`))
-    body.append(new TextHTML(`BestBid: ${BestBid}`))
-    body.append(new TextHTML(`BestOffer: ${BestOffer}`))
-    body.append(new TextHTML(`LastTradedPx: ${LastTradedPx}`))
-    body.append(new TextHTML(`LastTradedQty: ${LastTradedQty}`))
-    body.append(new TextHTML(`LastTradeTime: ${LastTradeTime}`))
-    body.append(new TextHTML(`SessionOpen: ${SessionOpen}`))
-    body.append(new TextHTML(`SessionHigh: ${SessionHigh}`))
-    body.append(new TextHTML(`SessionLow: ${SessionLow}`))
-    body.append(new TextHTML(`SessionClose: ${SessionClose}`))
-    body.append(new TextHTML(`Volume: ${Volume}`))
-    body.append(new TextHTML(`CurrentDayVolume: ${CurrentDayVolume}`))
-    body.append(new TextHTML(`CurrentDayNumTrades: ${CurrentDayNumTrades}`))
-    body.append(new TextHTML(`CurrentDayPxChange: ${CurrentDayPxChange}`))
-    body.append(new TextHTML(`Rolling24HrVolume: ${Rolling24HrVolume}`))
-    body.append(new TextHTML(`Rolling24NumTrades: ${Rolling24NumTrades}`))
-    body.append(new TextHTML(`Rolling24HrPxChange: ${Rolling24HrPxChange}`))
-    body.append(new TextHTML(`TimeStamp: ${TimeStamp}`, str.datetime2str(TimeStamp)))
+    body.append(new TextComponent(`OMSId: ${OMSId}`))
+    body.append(new TextComponent(`InstrumentId: ${InstrumentId}`))
+    body.append(new TextComponent(`MarketId: ${MarketId}`))
+    body.append(new TextComponent(`BestBid: ${BestBid}`))
+    body.append(new TextComponent(`BestOffer: ${BestOffer}`))
+    body.append(new TextComponent(`LastTradedPx: ${LastTradedPx}`))
+    body.append(new TextComponent(`LastTradedQty: ${LastTradedQty}`))
+    body.append(new TextComponent(`LastTradeTime: ${LastTradeTime}`))
+    body.append(new TextComponent(`SessionOpen: ${SessionOpen}`))
+    body.append(new TextComponent(`SessionHigh: ${SessionHigh}`))
+    body.append(new TextComponent(`SessionLow: ${SessionLow}`))
+    body.append(new TextComponent(`SessionClose: ${SessionClose}`))
+    body.append(new TextComponent(`Volume: ${Volume}`))
+    body.append(new TextComponent(`CurrentDayVolume: ${CurrentDayVolume}`))
+    body.append(new TextComponent(`CurrentDayNumTrades: ${CurrentDayNumTrades}`))
+    body.append(new TextComponent(`CurrentDayPxChange: ${CurrentDayPxChange}`))
+    body.append(new TextComponent(`Rolling24HrVolume: ${Rolling24HrVolume}`))
+    body.append(new TextComponent(`Rolling24NumTrades: ${Rolling24NumTrades}`))
+    body.append(new TextComponent(`Rolling24HrPxChange: ${Rolling24HrPxChange}`))
+    body.append(new TextComponent(`TimeStamp: ${TimeStamp}`, str.datetime2str(TimeStamp)))
     return body
   }
 }

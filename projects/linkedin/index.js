@@ -1,21 +1,9 @@
 import { HTML, nH2, nLink, nButton } from '@brtmvdl/frontend'
 import * as config from './config.js'
 
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
+
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
-
-class TextHTML extends HTML {
-  text = null
-
-  constructor(text = null) {
-    super()
-    this.text = text
-  }
-
-  onCreate() {
-    super.onCreate()
-    this.setText(this.text)
-  }
-}
 
 export class Page extends HTML {
   children = {
@@ -60,7 +48,7 @@ export class Page extends HTML {
 
   onCodeButtonClick() {
     const url = new URL(window.location)
-    this.append(new TextHTML(url.searchParams.get('code')))
+    this.append(new TextComponent(url.searchParams.get('code')))
   }
 
   getTextsHTML() {

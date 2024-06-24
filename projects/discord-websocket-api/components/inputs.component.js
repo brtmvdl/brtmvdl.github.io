@@ -1,10 +1,10 @@
 import { HTML } from '@brtmvdl/frontend'
-import { InputTextGroupComponent } from './input-text-group.component.js'
+import { InputComponent } from '../../../assets/js/components/input.component.js'
 import * as config from '../config.js'
 
 export class InputsComponent extends HTML {
   children = {
-    token: new InputTextGroupComponent('token', config.token, 'password'),
+    token: new InputComponent('token', config.token, 'password'),
   }
 
   getComponent(component = '') {

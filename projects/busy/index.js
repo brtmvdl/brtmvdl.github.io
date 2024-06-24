@@ -1,19 +1,6 @@
 import { HTML, nH1, nInputText, nButton, nFlex } from '@brtmvdl/frontend'
 import * as Local from '../../assets/js/utils/local.js'
-
-class TextHTML extends HTML {
-  text = null
-
-  constructor(text = '') {
-    super()
-    this.text = text
-  }
-
-  onCreate() {
-    super.onCreate()
-    this.setText(this.text)
-  }
-}
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 
 export class Page extends HTML {
   children = {
@@ -83,7 +70,7 @@ export class Page extends HTML {
     this.children.list.clear()
     Local.get(['tasks'], []).map(({ title, datetime }) => {
       const flex = new nFlex()
-      flex.append(new TextHTML(title))
+      flex.append(new TextComponent(title))
       flex.append(this.getDateTimeHTML(datetime))
       this.children.list.prepend(flex)
     })
@@ -100,7 +87,7 @@ export class Page extends HTML {
   getDateTimeHTML(datetime = Date.now()) {
     const date = new Date(datetime)
     const text = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-    return new TextHTML(text)
+    return new TextComponent(text)
   }
 
   getTasksList() {

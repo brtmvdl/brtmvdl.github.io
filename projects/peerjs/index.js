@@ -1,7 +1,7 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { ButtonComponent, TextHTML, InputComponent, MessageCardComponent } from './components/index.js'
-import * as str from '../../assets/js/utils/str.js'
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 
 export class Page extends HTML {
   children = {
@@ -129,7 +129,7 @@ export class Page extends HTML {
   }
 
   addMessage(message) {
-    this.children.messages.prepend(new TextHTML(message))
+    this.children.messages.prepend(new TextComponent(message))
   }
 
 }

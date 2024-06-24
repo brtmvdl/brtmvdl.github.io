@@ -2,20 +2,7 @@ import { HTML, nLink, nButton, nInputTextGroup } from '@brtmvdl/frontend'
 import { client_id, access_token } from './config.js'
 import * as Local from '../../assets/js/utils/local.js'
 import * as Flow from '../../assets/js/utils/flow.js'
-
-class TextHTML extends HTML {
-  text = null
-
-  constructor(text = '') {
-    super()
-    this.text = text
-  }
-
-  onCreate() {
-    super.onCreate()
-    this.setText(this.text)
-  }
-}
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 
 export class Page extends HTML {
   children = {
@@ -70,8 +57,8 @@ export class Page extends HTML {
   onApiUserButton() {
     fetch('https://api.github.com/user', { headers: this.getHeaders() })
       .then(res => res.json())
-      .then((json) => this.children.responses.append(new TextHTML(JSON.stringify(json, null, 4))))
-      .catch((err) => this.children.responses.append(new TextHTML(err.message)))
+      .then((json) => this.children.responses.append(new TextComponent(JSON.stringify(json, null, 4))))
+      .catch((err) => this.children.responses.append(new TextComponent(err.message)))
   }
 
   getHeaders() {

@@ -1,19 +1,7 @@
 import { HTML, nButton } from '@brtmvdl/frontend'
 import { FACEBOOK } from './facebook.js' // https://www.facebook.com/v20.0/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}&state={state-param}
 
-class TextHTML extends HTML {
-  text = null
-
-  constructor(text = '') {
-    super()
-    this.text = text
-  }
-
-  onCreate() {
-    super.onCreate()
-    this.setText(this.text)
-  }
-}
+import { TextComponent } from '../../../../assets/js/components/text.component.js'
 
 export class Page extends HTML {
   children = {
@@ -70,7 +58,7 @@ export class Page extends HTML {
 
   appendResponse(name, resp = {}) {
     const str = JSON.stringify({ name, resp }, null, 4)
-    const html = new TextHTML(str)
+    const html = new TextComponent(str)
     this.children.responses.append(html)
   }
 

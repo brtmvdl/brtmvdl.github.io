@@ -2,6 +2,8 @@ import { HTML } from '@brtmvdl/frontend'
 import { TextHTML } from './text.component.js'
 import * as str from '../utils/str.js'
 
+import { TextComponent } from '../../../assets/js/components/text.component.js'
+
 export class ContentComponent extends HTML {
   children = {
     messages: new HTML(),
@@ -27,9 +29,9 @@ export class ContentComponent extends HTML {
 
   createMessageCard(header, ...messages) {
     const card = new HTML()
-    card.append(new TextHTML(header))
-    Array.from(messages).map((message) => card.append(new TextHTML(message)))
-    Array.from([Date.now()]).map((footer) => card.append(new TextHTML(footer, str.timestamp2str(footer))))
+    card.append(new TextComponent(header))
+    Array.from(messages).map((message) => card.append(new TextComponent(message)))
+    Array.from([Date.now()]).map((footer) => card.append(new TextComponent(footer, str.timestamp2str(footer))))
     return card
   }
 }
