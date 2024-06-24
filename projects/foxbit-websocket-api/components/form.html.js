@@ -42,10 +42,7 @@ export class FormHTML extends HTML {
   }
 
   getSendButton() {
-    const button = new ButtonComponent()
-    button.setText('send')
-    button.on('click', () => this.onSendButtonClick())
-    return button
+    return new ButtonComponent('send', () => this.onSendButtonClick())
   }
 
   onSendButtonClick(Endpoint = this.getEndpointValue()) {

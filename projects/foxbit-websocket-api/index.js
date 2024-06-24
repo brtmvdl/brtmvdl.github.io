@@ -2,6 +2,7 @@ import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormHTML } from './components/form.html.js'
 import { MessagesHTML } from './components/messages.html.js'
 import { SocketMessageModel } from './models/socket.message.model.js'
+import { TopComponent } from '../../assets/js/components/top.component.js'
 import { InputMessageModel, MessageModel, OutputMessageModel } from './models/index.js'
 
 import * as config from './utils/config.js'
@@ -14,7 +15,7 @@ export class Page extends HTML {
   }
 
   children = {
-    top_bar: new TopBarComponent(),
+    top_bar: new TopComponent('https://docs.foxbit.com.br/ws/v2/'),
     form: new FormHTML(),
     messages: new MessagesHTML(),
   }
@@ -26,7 +27,6 @@ export class Page extends HTML {
   onCreate() {
     super.onCreate()
     this.setSocketEvents()
-    this.setStyles()
     this.append(this.getTopBar())
     this.append(this.getFlex())
   }
@@ -47,13 +47,6 @@ export class Page extends HTML {
     this.state.socket.addEventListener('message', (data) => this.onFrontSocketMessage(data))
     this.state.socket.addEventListener('error', (data) => this.onFrontSocketError(data))
     this.state.socket.addEventListener('close', (data) => this.onFrontSocketClose(data))
-  }
-
-  setStyles() {
-    this.setStyle('font-family', 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"')
-    this.setStyle('font-stretch', '100%')
-    this.setStyle('font-weight', '400')
-    this.setStyle('font-size', '16px')
   }
 
   onFrontSocketOpen(data) {

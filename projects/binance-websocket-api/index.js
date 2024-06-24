@@ -1,4 +1,5 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
+import { TopComponent } from '../../assets/js/components/top.component.js'
 import { FormHTML, MessagesHTML } from './components/index.js'
 import { MessageModel } from './models/messages.model.js'
 import { getRoutinesList } from './utils/routines.js'
@@ -13,7 +14,7 @@ export class Page extends HTML {
   }
 
   children = {
-    top_bar: new TopBarComponent(),
+    top_bar: new TopComponent('https://binance-docs.github.io/apidocs/spot/en/#change-log'),
     form: new FormHTML(),
     messages: new MessagesHTML(),
   }
@@ -26,7 +27,6 @@ export class Page extends HTML {
     super.onCreate()
     this.setRoutinesEvents()
     this.setSocketEvents()
-    this.setStyles()
     this.append(this.getTopBar())
     this.append(this.getFlex())
   }
@@ -51,13 +51,6 @@ export class Page extends HTML {
     this.state.socket.addEventListener('message', (data) => this.onFrontSocketMessage(data))
     this.state.socket.addEventListener('error', (data) => this.onFrontSocketError(data))
     this.state.socket.addEventListener('close', (data) => this.onFrontSocketClose(data))
-  }
-
-  setStyles() {
-    this.setStyle('font-family', 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"')
-    this.setStyle('font-stretch', '100%')
-    this.setStyle('font-weight', '400')
-    this.setStyle('font-size', '16px')
   }
 
   onFrontSocketOpen(data) {

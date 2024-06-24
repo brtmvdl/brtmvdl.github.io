@@ -12,7 +12,6 @@ export class Page extends HTML {
   }
 
   setStyles() {
-    this.setStyle('font-family', 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"')
     this.setStyle('text-align', 'center')
   }
 

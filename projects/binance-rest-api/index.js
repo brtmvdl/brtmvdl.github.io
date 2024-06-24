@@ -2,6 +2,7 @@ import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormHTML } from './components/form.html.js'
 import { MessagesHTML } from './components/messages.html.js'
 import { MessageModel } from './models/messages.model.js'
+import { TopComponent } from '../../assets/js/components/top.component.js'
 import * as API from './utils/api.js'
 
 export class Page extends HTML {
@@ -16,7 +17,7 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(new TopBarComponent())
+    this.append(new TopComponent('https://binance-docs.github.io/apidocs/spot/en/#change-log'))
     this.append(this.getFlex())
   }
 
