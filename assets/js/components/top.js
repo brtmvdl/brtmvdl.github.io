@@ -12,6 +12,5 @@ export class Top extends HTML {
     this.setStyle('text-align', 'center')
     this.setStyle('font-size', '2rem')
     this.setStyle('padding', '1rem')
-    this.setStyle('color', '#ffffff')
   }
 }
