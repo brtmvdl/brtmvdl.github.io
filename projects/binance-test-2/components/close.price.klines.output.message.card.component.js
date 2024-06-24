@@ -1,6 +1,5 @@
-import { CardBodyComponent } from './card.body.component.js'
-import { MessageCardComponent } from './message.card.component.js'
-import { TextComponent } from './text.component.js'
+import { CardBodyComponent } from '../../../assets/js/components/card.component.js'
+import { MessageCardComponent } from '../../../assets/js/components/message.card.component.js'
 
 export class ClosePriceKlinesOutputMessageCardComponent extends MessageCardComponent {
   getBodyComponent() {

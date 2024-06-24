@@ -1,5 +1,4 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
-import { TopBarComponent } from './components/top.bar.component.js'
 import { FormHTML } from './components/form.html.js'
 import { MessagesHTML } from './components/messages.html.js'
 import { SocketMessageModel } from './models/socket.message.model.js'

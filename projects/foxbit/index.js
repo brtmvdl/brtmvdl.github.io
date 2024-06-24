@@ -1,5 +1,5 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
-import { TopComponent } from './components/top.component.js'
+import { TopComponent } from '../../assets/js/components/top.component.js'
 import { FormComponent } from './components/form.component.js'
 import { MessagesComponent } from './components/messages.component.js'
 import { MessageModel } from './models/message.model.js'

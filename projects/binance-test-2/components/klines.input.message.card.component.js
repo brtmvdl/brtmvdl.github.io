@@ -1,6 +1,6 @@
-import { CardBodyComponent } from './card.body.component.js'
-import { MessageCardComponent } from './message.card.component.js'
-import { TextComponent } from './text.component.js'
+import { CardBodyComponent } from '../../../assets/js/components/card.component.js'
+import { MessageCardComponent } from '../../../assets/js/components/message.card.component.js'
+import { TextComponent } from '../../../assets/js/components/text.component.js'
 import * as str from '../../../assets/js/utils/str.js'
 
 export class KlinesInputMessageCardComponent extends MessageCardComponent {

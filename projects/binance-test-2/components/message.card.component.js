@@ -1,10 +1,10 @@
 import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
 import { MessageModel } from '../models/message.model.js'
-import { CardComponent } from './card.component.js'
+import { CardComponent } from '../../../assets/js/components/card.component.js'
 import { TextComponent } from './text.component.js'
-import { CardHeaderComponent } from './card.header.component.js'
-import { CardBodyComponent } from './card.body.component.js'
-import { CardFooterComponent } from './card.footer.component.js'
+import { CardHeaderComponent } from '../../../assets/js/components/card.header.component.js'
+import { CardBodyComponent } from '../../../assets/js/components/card.body.component.js'
+import { CardFooterComponent } from '../../../assets/js/components/card.footer.component.js'
 import * as str from '../../../assets/js/utils/str.js'
 
 export class MessageCardComponent extends CardComponent {

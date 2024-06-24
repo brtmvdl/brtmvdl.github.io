@@ -1,6 +1,6 @@
-import { CardBodyComponent } from './card.body.component.js'
-import { InputMessageCardComponent } from './input.message.card.component.js'
-import { TextComponent } from './text.component.js'
+import { CardBodyComponent } from '../../../assets/js/components/card.body.component.js'
+import { InputMessageCardComponent } from '../../../assets/js/components/input.message.card.component.js'
+import { TextComponent } from '../../../assets/js/components/text.component.js'
 
 export class TickerPriceInputMessageCardComponent extends InputMessageCardComponent { 
   getBodyComponent() {
