@@ -1,7 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
-import { TextHTML } from './text.component.js'
 import * as str from '../utils/str.js'
-
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 
 export class ContentComponent extends HTML {

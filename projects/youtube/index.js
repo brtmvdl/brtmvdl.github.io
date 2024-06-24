@@ -1,5 +1,7 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
-import { TopBarComponent, FormHTML, MessagesHTML } from './components/index.js'
+import { TopBarComponent } from './components/top.bar.component.js'
+import { FormHTML } from './components/form.component.js'
+import { MessagesHTML } from './components/messages.html.js'
 import { MessageModel } from './models/messages.model.js'
 import * as API from './utils/api.js'
 

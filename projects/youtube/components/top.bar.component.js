@@ -1,6 +1,4 @@
 import { HTML, nFlex, nInput } from '@brtmvdl/frontend'
-import { LogoComponent } from './logo.component.js'
-import { ButtonComponent } from './button.component.js'
 import { FormComponent } from './form.component.js'
 
 import { GOOGLE } from './../../../assets/js/utils/googleusercontent.js'
@@ -33,7 +31,7 @@ export class TopBarComponent extends HTML {
   }
 
   getLeft() {
-    return new LogoComponent()
+    return new HTML()
   }
 
   getRight() {

@@ -1,5 +1,4 @@
-import { HTML, nFlex, nImage } from '@brtmvdl/frontend'
-import { LogoComponent } from './logo.component.js'
+import { HTML, nFlex } from '@brtmvdl/frontend'
 
 export class TopBarComponent extends HTML {
   children = { ip: new HTML() }
@@ -25,7 +24,7 @@ export class TopBarComponent extends HTML {
   }
 
   getLeft() {
-    return new LogoComponent()
+    return new HTML()
   }
 
   getRight() {
