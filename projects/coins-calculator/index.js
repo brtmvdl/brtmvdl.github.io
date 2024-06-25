@@ -34,7 +34,6 @@ class nInputComponent extends nInput {
 
   setStyles() {
     this.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) rgba(0, 0, 0, 0.5)')
-    this.setStyle('border-radius', 'calc(1rem / 4)')
     this.setStyle('margin', 'calc(-1rem / 4)')
     this.setStyle('padding', 'calc(1rem / 4)')
     this.setStyle('outline', 'none')
@@ -151,12 +150,9 @@ export class Page extends HTML {
       this.getPercent(),
     )))
     button.setContainerStyle('width', '100%')
-    button.setStyle('border-radius', 'calc(1rem / 4)')
-    // button.setStyle('background-color', '#000000')
     button.setStyle('box-sizing', 'border-box')
     button.setStyle('display', 'inline-block')
     button.setStyle('text-align', 'center')
-    // button.setStyle('color', '#ffffff')
     button.setStyle('padding', '1rem')
     button.setStyle('border', 'none')
     button.setStyle('width', '100%')
