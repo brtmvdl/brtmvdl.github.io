@@ -23,7 +23,6 @@ export class MessageCardComponent extends HTML {
   setStyles() {
     this.setStyle('border', 'calc(1rem / 8) solid #eeeeee')
     this.setStyle('margin', '0rem 0rem 1rem 0rem')
-    this.setStyle('border-radius', '1rem')
   }
 }
 

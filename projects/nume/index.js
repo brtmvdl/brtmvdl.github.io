@@ -65,7 +65,6 @@ class nGrid extends HTML {
     })
 
     this.setStyle('background-color', '#cba')
-    this.setStyle('border-radius', '.5rem')
     this.setStyle('padding', `1rem`)
   }
 
@@ -134,7 +133,6 @@ class nScore extends HTML {
 
     this.setStyle('background-color', '#cba')
     this.setStyle('margin', '0 0 1rem 1rem')
-    this.setStyle('border-radius', '.5rem')
     this.setStyle('text-align', 'center')
     this.setStyle('padding', '.5rem')
     this.setStyle('width', '5rem')

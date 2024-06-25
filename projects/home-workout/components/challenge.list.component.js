@@ -29,7 +29,7 @@ export class ChallengeListComponent extends HTML {
     flex.append(this.getTotal())
 
     flex.setStyle('padding', '1rem')
-    flex.setStyle('border-radius', 'calc(1rem / 4)')
+    // flex.setStyle('border-radius', 'calc(1rem / 4)')
     flex.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
 
     return flex

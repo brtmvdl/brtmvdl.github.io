@@ -20,7 +20,7 @@ export class FooterComponent extends HTML {
 
   getTextInput() {
     this.children.text.setContainerStyle('padding', '1rem')
-    this.children.text.setStyle('padding', 'calc(1rem / 2)')
+    this.children.text.setStyle('padding', 'calc(1rem / 4)')
     this.children.text.setStyle('width', '100%')
     this.children.text.setPlaceholder('text')
     return this.children.text
@@ -28,7 +28,7 @@ export class FooterComponent extends HTML {
 
   getSendButton() {
     this.children.send.setContainerStyle('padding', '1rem')
-    this.children.send.setStyle('padding', 'calc(1rem / 2)')
+    this.children.send.setStyle('padding', 'calc(1rem / 4)')
     this.children.send.setStyle('width', '100%')
     this.children.send.setText('send')
     this.children.send.on('click', () => this.onSendButtonClick())

@@ -43,7 +43,7 @@ export class Page extends HTML {
     const button = new nButton()
     button.setText(title)
     button.setStyle('background-color', COLORS.BLACK_1)
-    button.setStyle('padding', 'calc(1rem / 2)')
+    button.setStyle('padding', 'calc(1rem / 4)')
     button.setStyle('color', COLORS.WHITE_1)
     button.setStyle('border', '1rem')
     button.on('click', () => {

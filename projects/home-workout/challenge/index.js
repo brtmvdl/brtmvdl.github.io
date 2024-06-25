@@ -40,7 +40,7 @@ export class Page extends HTML {
     button.setStyle('color', '#ffffff')
     button.setStyle('padding', '1rem 2rem')
     button.setStyle('background-color', '#000000')
-    button.setStyle('border-radius', 'calc(1rem / 8)')
+    // button.setStyle('border-radius', 'calc(1rem / 8)')
     button.on('click', () => { })
     flex.append(button)
 
