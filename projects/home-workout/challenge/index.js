@@ -30,7 +30,7 @@ export class Page extends HTML {
   getTitle() {
     const flex = new nFlex()
 
-    this.children.title.setStyle('margin', 'calc(1rem / 2) 0rem')
+    // this.children.title.setStyle('margin', 'calc(1rem / 2) 0rem')
     this.children.title.setStyle('padding', '0rem')
     flex.append(this.children.title)
 

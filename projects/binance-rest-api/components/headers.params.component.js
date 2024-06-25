@@ -1,3 +1,3 @@
-import { ParamsComponent } from './params.component.js'
+import * as Components from '../../../assets/js/components/inputs.component.js'
 
-export class HeadersParamsComponent extends ParamsComponent { }
+export class HeadersParamsComponent extends Components.InputsComponent { }

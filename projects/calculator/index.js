@@ -1,4 +1,4 @@
-import { HTML, nH2, nFlex, nButton } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '@brtmvdl/frontend'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 
 export class Page extends HTML {
@@ -10,7 +10,6 @@ export class Page extends HTML {
   onCreate() {
     super.onCreate()
     const app = this.getAppHTML()
-    app.append(this.getTitleHTML())
     app.append(this.getInputHTML())
     app.append(this.getResultHTML())
     app.append(this.getNumbersHTML())
@@ -24,29 +23,15 @@ export class Page extends HTML {
     return app
   }
 
-  getTitleHTML() {
-    const title = new nH2()
-    title.setStyle('padding', '1rem')
-    title.setStyle('text-align', 'center')
-    title.setText('Calculator')
-    return title
-  }
-
   getInputHTML() {
-    this.children.input.setStyle('background-color', '#000000')
-    this.children.input.setStyle('margin', 'calc(1rem / 2)')
-    this.children.input.setStyle('min-height', '1rem')
-    this.children.input.setStyle('color', '#ffffff')
-    this.children.input.setStyle('padding', '1rem')
+    this.children.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
+    this.children.input.setStyle('min-height', '2rem')
     return this.children.input
   }
 
   getResultHTML() {
-    this.children.result.setStyle('background-color', '#000000')
-    this.children.result.setStyle('margin', 'calc(1rem / 2)')
-    this.children.result.setStyle('min-height', '1rem')
-    this.children.result.setStyle('color', '#ffffff')
-    this.children.result.setStyle('padding', '1rem')
+    this.children.result.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
+    this.children.result.setStyle('min-height', '2rem')
     return this.children.result
   }
 
@@ -85,13 +70,12 @@ export class Page extends HTML {
 
   createButton(char) {
     const button = new ButtonComponent(char, () => this.onButtonClick(char))
-    button.setStyle('background-color', '#000000')
-    button.setStyle('margin', 'calc(1rem / 2)')
-    button.setStyle('display', 'inline-block')
-    button.setStyle('color', '#ffffff')
+    button.setStyle('box-sizing', 'border-box')
     button.setStyle('padding', '1rem')
-    button.setStyle('height', '2rem')
-    button.setStyle('width', '2rem')
+    button.setStyle('margin', '0rem')
+    button.setStyle('border', 'none')
+    button.setStyle('height', '5rem')
+    button.setStyle('width', '5rem')
     return button
   }
 
@@ -109,6 +93,7 @@ export class Page extends HTML {
 
   clearResultText() {
     this.children.input.setText('')
+    this.children.result.setText('')
   }
 
   addInputText(char) {

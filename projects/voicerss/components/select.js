@@ -9,7 +9,7 @@ export class nSelect extends FRONTEND.nSelect {
   setStyles() {
     this.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 16) #000000')
     this.setStyle('padding', 'calc(1rem / 4)')
-    this.setStyle('margin', 'calc(1rem / 4)')
+    // this.setStyle('margin', 'calc(1rem / 4)')
     this.setStyle('outline', 'none')
     this.setStyle('border', 'none')
   }

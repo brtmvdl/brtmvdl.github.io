@@ -52,7 +52,7 @@ export class MessageCardHTML extends CardHTML {
 
   getFooterHTML() {
     const footer = new CardFooterHTML()
-    footer.append(new TextComponent(str.datetime2str(this.data.id)), this.data.id)
+    footer.setText(str.datetime2str(this.data.id))
     return footer
   }
 
@@ -106,9 +106,9 @@ export class tableMessage extends MessageCardHTML {
   getTableHTML(rows = [], ths = null) {
     if (rows.length === 0) return new HTML()
     const table = new nTable()
-    table.setStyle('border', '1px solid #000000')
+    table.setStyle('border', 'calc(1rem / 4) solid #000000')
     table.setStyle('border-collapse', 'collapse')
-    table.setStyle('padding', 'calc(1rem / 2)')
+    table.setStyle('padding', 'calc(1rem / 4)')
     table.append(this.createRow(Array.from(ths === null ? Object.keys(rows[0]) : ths)))
     Array.from(rows).map((row) => table.append(this.createRow(Object.keys(row).map((col) => row[col]))))
     return table

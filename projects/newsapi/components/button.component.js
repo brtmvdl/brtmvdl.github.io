@@ -7,7 +7,7 @@ export class ButtonComponent extends nButton {
   }
 
   setStyles() {
-    this.setStyle('margin', 'calc(1rem  / 4)')
+    // this.setStyle('margin', 'calc(1rem  / 4)')
     this.setStyle('padding', '1rem')
   }
 }

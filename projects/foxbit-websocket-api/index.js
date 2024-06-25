@@ -1,23 +1,25 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { FormHTML } from './components/form.html.js'
 import { MessagesHTML } from './components/messages.html.js'
-import { SocketMessageModel } from './models/socket.message.model.js'
 import { TopComponent } from '../../assets/js/components/top.component.js'
-import { InputMessageModel, MessageModel, OutputMessageModel } from './models/index.js'
+import { OutputMessageModel } from '../../assets/js/models/output.message.model.js'
+import { SocketMessageModel } from '../../assets/js/models/socket.message.model.js'
+import { InputMessageModel } from '../../assets/js/models/input.message.model.js'
+import { MessageModel } from '../../assets/js/models/message.model.js'
 
 import * as config from './utils/config.js'
 
 export class Page extends HTML {
+  children = {
+    top: new TopComponent('https://docs.foxbit.com.br/ws/v2/'),
+    form: new FormHTML(),
+    messages: new MessagesHTML(),
+  }
+
   state = {
     socket: this.getFrontWebSocket(),
     messages: [],
     sequenceNumber: 0,
-  }
-
-  children = {
-    top_bar: new TopComponent('https://docs.foxbit.com.br/ws/v2/'),
-    form: new FormHTML(),
-    messages: new MessagesHTML(),
   }
 
   getFrontWebSocket() {
@@ -32,13 +34,13 @@ export class Page extends HTML {
   }
 
   getTopBar() {
-    return this.children.top_bar
+    return this.children.top
   }
 
   getFlex() {
-    const flex = (window.innerWidth > window.innerHeight) ? new nFlex() : new HTML()
-    flex.append(this.getFormHTML())
-    flex.append(this.getMessagesHTML())
+    const flex = new nFlex()
+    flex.append(this.getFormHTML().setContainerStyle('width', '20%'))
+    flex.append(this.getMessagesHTML().setContainerStyle('width', '79%'))
     return flex
   }
 

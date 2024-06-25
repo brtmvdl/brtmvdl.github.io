@@ -2,10 +2,11 @@ import { HTML, nFlex } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from './components/input.component.js'
-import { TextComponent } from '../../../../assets/js/components/text.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 
 export class Page extends HTML {
   children = {
+    peer_id: new TextComponent('PEER ID: '),
     messages: new HTML(),
     peer_input: new InputComponent('peer id'),
     text_input: new InputComponent('text'),
@@ -35,7 +36,7 @@ export class Page extends HTML {
 
   setPeerEvents() {
     this.state.peer.on('error', (err) => console.error('error', err))
-
+    this.state.peer.on('open', () => this.children.peer_id.setText('PEER ID: ' + this.state.peer.id))
     this.state.peer.on('connection', (conn) => {
       console.log('connection', { conn })
 
@@ -49,10 +50,8 @@ export class Page extends HTML {
   }
 
   getPeerIdHTML() {
-    const html = new HTML()
-    this.state.peer.on('open', () => html.setText('PEER ID: ' + this.state.peer.id))
-    html.setStyle('margin', '1rem')
-    return html
+    this.children.peer_id.setStyle('margin', '1rem')
+    return this.children.peer_id
   }
 
   getPeerForm() {

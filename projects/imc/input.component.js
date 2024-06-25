@@ -27,7 +27,7 @@ export class InputComponent extends HTML {
 
   getLabel() {
     this.children.label.setText(this.state.label)
-    this.children.label.setStyle('margin', 'calc(1rem / 4) 0')
+    // this.children.label.setStyle('margin', 'calc(1rem / 4) 0')
     return this.children.label
   }
 
@@ -37,7 +37,7 @@ export class InputComponent extends HTML {
     this.children.input.setStyle('background-color', this.state.params.bgcolor)
     this.children.input.setStyle('box-shadow', '0rem 0rem 0rem 1px #000000')
     this.children.input.setStyle('color', this.state.params.color)
-    this.children.input.setStyle('margin', 'calc(1rem / 4) 0')
+    // this.children.input.setStyle('margin', 'calc(1rem / 4) 0')
     this.children.input.setStyle('box-sizing', 'border-box')
     this.children.input.setStyle('display', 'inline-block')
     this.children.input.setStyle('border', 'none')

@@ -34,7 +34,7 @@ class nInputComponent extends nInput {
 
   setStyles() {
     this.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) rgba(0, 0, 0, 0.5)')
-    this.setStyle('margin', 'calc(-1rem / 4)')
+    // this.setStyle('margin', 'calc(-1rem / 4)')
     this.setStyle('padding', 'calc(1rem / 4)')
     this.setStyle('outline', 'none')
     this.setStyle('border', 'none')

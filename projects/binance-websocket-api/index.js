@@ -1,22 +1,25 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
+import { FormHTML } from './components/form.html.js'
+import { MessagesHTML } from './components/messages.html.js'
 import { TopComponent } from '../../assets/js/components/top.component.js'
-import { FormHTML, MessagesHTML } from './components/index.js'
-import { MessageModel } from './models/messages.model.js'
-import { getRoutinesList } from './utils/routines.js'
-import { Routines } from './utils/routines.js'
+import { OutputMessageModel } from '../../assets/js/models/output.message.model.js'
+import { SocketMessageModel } from '../../assets/js/models/socket.message.model.js'
+import { InputMessageModel } from '../../assets/js/models/input.message.model.js'
+import { MessageModel } from '../../assets/js/models/message.model.js'
+
 import * as config from './utils/config.js'
 
 export class Page extends HTML {
+  children = {
+    top: new TopComponent('https://binance-docs.github.io/apidocs/spot/en/#change-log'),
+    form: new FormHTML(),
+    messages: new MessagesHTML(),
+  }
+
   state = {
     socket: this.getFrontWebSocket(),
     messages: [],
-    routines: new Routines(),
-  }
-
-  children = {
-    top_bar: new TopComponent('https://binance-docs.github.io/apidocs/spot/en/#change-log'),
-    form: new FormHTML(),
-    messages: new MessagesHTML(),
+    sequenceNumber: 0,
   }
 
   getFrontWebSocket() {
@@ -25,25 +28,20 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setRoutinesEvents()
     this.setSocketEvents()
     this.append(this.getTopBar())
     this.append(this.getFlex())
   }
 
   getTopBar() {
-    return this.children.top_bar
+    return this.children.top
   }
 
   getFlex() {
-    const flex = (window.innerWidth > window.innerHeight) ? new nFlex() : new HTML()
-    flex.append(this.getFormHTML())
-    flex.append(this.getMessagesHTML())
+    const flex = new nFlex()
+    flex.append(this.getFormHTML().setContainerStyle('width', '20%'))
+    flex.append(this.getMessagesHTML().setContainerStyle('width', '79%'))
     return flex
-  }
-
-  setRoutinesEvents() {
-    this.state.routines.addEventListener('message', ({ value }) => this.sendMessage(value))
   }
 
   setSocketEvents() {
@@ -54,27 +52,27 @@ export class Page extends HTML {
   }
 
   onFrontSocketOpen(data) {
-    this.addMessage(new MessageModel('open'))
+    this.addMessage(new SocketMessageModel('open'))
   }
 
   onFrontSocketMessage({ data } = {}) {
-    this.addMessage(this.getMessageInstance(JSON.parse(data)))
+    this.addMessage(this.getSocketMessageModel(JSON.parse(data)))
   }
 
-  getMessageInstance(data) {
+  getSocketMessageModel(data) {
     const error = data.status !== 200
     const method = this.state.messages.find(({ id }) => id === data.id)?.method
     const input = error ? data.error : data.result
     const side = error ? 'error' : 'output'
-    return new MessageModel(method, { input, side, output: data })
+    return new SocketMessageModel(method, { input, side, output: data })
   }
 
   onFrontSocketError(data) {
-    this.addMessage(new MessageModel('error'))
+    this.addMessage(new SocketMessageModel('error'))
   }
 
   onFrontSocketClose(input) {
-    this.addMessage(new MessageModel('close', { input }))
+    this.addMessage(new SocketMessageModel('close', { input }))
     this.state.socket = this.getFrontWebSocket()
     this.setSocketEvents()
   }
@@ -86,17 +84,12 @@ export class Page extends HTML {
   }
 
   onFormHtmlSubmit({ value: { method, input } } = {}) {
-    if (getRoutinesList().indexOf(method) === -1) {
-      const message = new MessageModel(method, { input, side: 'input' })
-      this.sendMessage(message)
-    } else {
-      this.state.routines.run(method, { input, messages: this.state.messages })
-    }
+    this.sendMessage(new SocketMessageModel(method, { input, side: 'input' }))
   }
 
   sendMessage(message = new MessageModel()) {
     this.addMessage(message)
-    if (message.getSocket()) {
+    if (message.Side == 'input') {
       this.state.socket.send(message.toString())
     }
   }
