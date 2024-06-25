@@ -9,6 +9,6 @@ export class CardFooterComponent extends HTML {
   }
 
   setStyles() {
-    this.setStyle('padding', 'calc(1rem / 2)')
+    this.setStyle('padding', 'calc(1rem / 4)')
   }
 }
