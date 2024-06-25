@@ -1,7 +1,8 @@
-import { HTML } from '@brtmvdl/frontend'
 import { InputComponent } from '../../../assets/js/components/input.component.js'
 
-export class InputsComponent extends HTML {
+import * as Components from '../../../assets/js/components/inputs.component.js'
+
+export class InputsComponent extends Components.InputsComponent {
   children = {
     OMSId: new InputComponent('OMSId', 1),
     InstrumentId: new InputComponent('InstrumentId'),
@@ -30,13 +31,5 @@ export class InputsComponent extends HTML {
     Count: new InputComponent('Count'),
     IncludeLastCount: new InputComponent('IncludeLastCount'),
     IntrumentId: new InputComponent('IntrumentId'),
-  }
-
-  getComponent(component = '') {
-    return this.children[component]
-  }
-
-  getValue(component) {
-    return this.children[component].getValue()
   }
 }

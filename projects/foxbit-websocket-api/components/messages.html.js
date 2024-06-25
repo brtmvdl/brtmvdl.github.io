@@ -1,5 +1,5 @@
 import { HTML } from '@brtmvdl/frontend'
-import { MessageModel } from '../models/message.model.js'
+import { MessageModel } from '../../../assets/js/models/message.model.js'
 
 import * as messages from './messages/index.js'
 

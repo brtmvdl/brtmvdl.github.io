@@ -1,8 +1,8 @@
-import { HTML } from '@brtmvdl/frontend'
+import * as Components from '../../../assets/js/components/inputs.component.js'
 import { InputComponent } from '../../../assets/js/components/input.component.js'
 import { DateTimeGroupComponent } from '../../../assets/js/components/datetime.group.component.js'
 
-export class InputsComponent extends HTML {
+export class InputsComponent extends Components.InputsComponent {
   children = {
     symbol: this.getSymbolInputTextGroupComponent(),
     limit: new InputComponent('limit', 1, 'number'),
@@ -35,13 +35,5 @@ export class InputsComponent extends HTML {
     const component = new InputComponent('symbol')
     component.children.input.on('keyup', () => component.children.input.setValue(component.children.input.getValue().toUpperCase()))
     return component
-  }
-
-  getComponent(component = '') {
-    return this.children[component]
-  }
-
-  getValue(component) {
-    return this.children[component].getValue()
   }
 }

@@ -10,6 +10,6 @@ export class CardHeaderHTML extends HTML {
 
   setStyles() {
     this.setContainerStyle('border-bottom', '1px solid rgba(0, 0, 0, 0.176)')
-    this.setStyle('padding', 'calc(1rem / 2)')
+    this.setStyle('padding', 'calc(1rem / 4)')
   }
 }

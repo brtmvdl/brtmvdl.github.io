@@ -1,7 +1,7 @@
 import { HTML } from '@brtmvdl/frontend'
 import { getMethodsList, paramsList } from '../utils/lists.js'
-import { SelectComponent } from './select.component.js'
-import { ButtonComponent } from './button.component.js'
+import { SelectComponent } from '../../../assets/js/components/select.component.js'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { InputsComponent } from './inputs.component.js'
 
 export class FormHTML extends HTML {
