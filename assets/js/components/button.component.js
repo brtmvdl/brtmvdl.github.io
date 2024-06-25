@@ -1,6 +1,6 @@
-import * as FRONTEND from '@brtmvdl/frontend'
+import { HTML, nButton } from '@brtmvdl/frontend'
 
-export class ButtonComponent extends FRONTEND.nButton {
+export class ButtonComponent extends nButton {
   state = {
     text: '',
     onclick: (() => { }),
@@ -20,10 +20,12 @@ export class ButtonComponent extends FRONTEND.nButton {
   }
 
   setStyles() {
-    this.setStyle('margin', 'calc(1rem / 4) 0rem')
+    this.setStyle('margin', 'calc(1rem / 2) 0rem')
     this.setStyle('padding', 'calc(1rem / 4)')
+    this.setStyle('border', '#000000 solid 1px')
+    this.setStyle('box-sizing', 'border-box')
     this.setStyle('cursor', 'pointer')
+    this.setStyle('font', 'inherit')
     this.setStyle('width', '100%')
   }
-
 }
