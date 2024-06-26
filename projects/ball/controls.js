@@ -50,8 +50,8 @@ export class Page extends HTML {
     const html = new HTML()
     html.setStyle('padding', '1rem')
     html.append(this.getInput())
-    html.append(new ButtonComponent('send', () => this.onSendButtonClick()))
-    html.append(new ButtonComponent('change color', () => this.onChangeColorButtonClick()))
+    html.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
+    html.append(new ButtonComponent({ text: 'change color', onclick: () => this.onChangeColorButtonClick() }))
     return html
   }
 

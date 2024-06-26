@@ -22,10 +22,10 @@ export class Page extends HTML {
 
   getButtonsFlex() {
     const html = new HTML()
-    this.append(new ButtonComponent('Login', () => FB.login((resp) => this.appendResponse('Login', resp), { scope: 'email,user_likes' })))
-    this.append(new ButtonComponent('Get Login Status', () => FB.getLoginStatus((resp) => this.appendResponse('Get Login Status', resp))))
-    this.append(new ButtonComponent('Publish a status message', () => FB.api('/me/feed', 'post', { message: 'Now is ' + (new Date()).toString() }, (resp) => this.appendResponse('Publish a status message', resp))))
-    this.append(new ButtonComponent('Logout', () => FB.logout((resp) => this.appendResponse('Logout', resp))))
+    this.append(new ButtonComponent({ text: 'Login', onclick: () => FB.login((resp) => this.appendResponse('Login', resp), { scope: 'email,user_likes' }) }))
+    this.append(new ButtonComponent({ text: 'Get Login Status', onclick: () => FB.getLoginStatus((resp) => this.appendResponse('Get Login Status', resp)) }))
+    this.append(new ButtonComponent({ text: 'Publish a status message', onclick: () => FB.api('/me/feed', 'post', { message: 'Now is ' + (new Date()).toString() }, (resp) => this.appendResponse('Publish a status message', resp)) }))
+    this.append(new ButtonComponent({ text: 'Logout', onclick: () => FB.logout((resp) => this.appendResponse('Logout', resp)) }))
     return html
   }
 

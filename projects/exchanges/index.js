@@ -8,7 +8,7 @@ import { ButtonComponent } from '../../assets/js/components/button.component.js'
 class TdComponent extends HTML {
   getTagName() { return 'td' }
 
-  hasContainer () { return false }
+  hasContainer() { return false }
 
   children = { component: new HTML() }
 
@@ -182,7 +182,7 @@ export class Page extends HTML {
       value.append(new TdTextComponent(percent(price, price60)))
 
       const buy_button = new HTML()
-      value.append(new TdComponent(new ButtonComponent('Buy BRL 100', () => this.buy(100, symbol, price))))
+      value.append(new TdComponent(new ButtonComponent({ text: 'buy BRL 100', onclick: () => this.buy(100, symbol, price) })))
 
       this.children.prices_table.append(value)
     })
@@ -226,7 +226,7 @@ export class Page extends HTML {
       value.append(new TdTextComponent(price2string(this.getSymbolPrice(symbol) - price)))
 
       const buy_button = new HTML()
-      value.append(new TdComponent(new ButtonComponent('Sell', () => this.sell(datetime))))
+      value.append(new TdComponent(new ButtonComponent({ text: 'sell', onclick: () => this.sell(datetime) })))
 
       this.children.buys_table.append(value)
     })

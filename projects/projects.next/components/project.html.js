@@ -52,11 +52,11 @@ export class ProjectHTML extends HTML {
   }
 
   getDeleteButton() {
-    return new ButtonComponent('delete', () => this.dispatchEvent('delete'))
+    return new ButtonComponent({ text: 'delete', onclick: () => this.dispatchEvent('delete') })
   }
 
   getCreateButton() {
-    return new ButtonComponent('create', () => this.addEndpoint(new EndpointModel()))
+    return new ButtonComponent({ text: 'create', onclick: () => this.addEndpoint(new EndpointModel()) })
   }
 
   getBody() {

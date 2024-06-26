@@ -32,7 +32,7 @@ export class Page extends HTML {
   }
 
   getCreateMeetingEventButton() {
-    return new ButtonComponent('Meeting', () => this.onCreateMeetingEventButtonClick())
+    return new ButtonComponent({ text: 'Meeting', onclick: () => this.onCreateMeetingEventButtonClick() })
   }
 
   onCreateMeetingEventButtonClick() {

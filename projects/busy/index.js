@@ -7,7 +7,7 @@ import { InputComponent } from '../../assets/js/components/input.component.js'
 export class Page extends HTML {
   children = {
     input: new InputComponent('Am i doing?'),
-    button: new ButtonComponent('save', () => this.onButtonClick()),
+    button: new ButtonComponent({ text: 'save', onclick: () => this.onButtonClick() }),
     list: new HTML(),
   }
 

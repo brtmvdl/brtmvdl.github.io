@@ -15,7 +15,7 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(new TextComponent('GitHub Oauth 2.0 Login'))
+    this.append(new TextComponent({ text: 'GitHub Oauth 2.0 Login' }))
     this.append(this.getLoginLink())
     this.append(this.getTokensLink())
     this.append(this.getAccessTokenInput())
@@ -37,7 +37,7 @@ export class Page extends HTML {
   }
 
   getApiUserButton() {
-    return new ButtonComponent('api.github.com/user', () => this.onApiUserButton())
+    return new ButtonComponent({ text: 'api.github.com/user', onclick: () => this.onApiUserButton() })
   }
 
   onApiUserButton() {

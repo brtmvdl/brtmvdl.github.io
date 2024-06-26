@@ -17,18 +17,18 @@ export class Page extends HTML {
 
   getBody() {
     const html = new HTML()
-    html.append(new TextComponent('Donate'))
-    html.append(new LinkComponent('donate', 'https://link.mercadopago.com.br/brtmvdl'))
-    html.append(new TextComponent('Social'))
-    html.append(new LinkComponent('email', 'mailto:br.tmvdl@gmail.com'))
-    html.append(new LinkComponent('github', 'https://github.com/brtmvdl'))
-    html.append(new LinkComponent('linkedin', 'https://www.linkedin.com/in/brtmvdl/'))
-    html.append(new LinkComponent('twitter', 'https://twitter.com/brtmvdl'))
-    html.append(new LinkComponent('discord', 'https://discord.gg/2zWpWBgmPj'))
-    html.append(new TextComponent('Products'))
-    Array.from(products).map(({ id }) => html.append(new LinkComponent(id, `/products/${id}/`)))
-    html.append(new TextComponent('Projects'))
-    Array.from(projects).map(({ id, step }) => html.append(new LinkComponent(id + stepName(step, ' (', ') '), `/projects/${id}/`)))
+    html.append(new TextComponent({ text: 'Donate' }))
+    html.append(new LinkComponent({ text: 'donate', href: 'https://link.mercadopago.com.br/brtmvdl' }))
+    html.append(new TextComponent({ text: 'Social' }))
+    html.append(new LinkComponent({ text: 'email', href: 'mailto:br.tmvdl@gmail.com' }))
+    html.append(new LinkComponent({ text: 'github', href: 'https://github.com/brtmvdl' }))
+    html.append(new LinkComponent({ text: 'linkedin', href: 'https://www.linkedin.com/in/brtmvdl/' }))
+    html.append(new LinkComponent({ text: 'twitter', href: 'https://twitter.com/brtmvdl' }))
+    html.append(new LinkComponent({ text: 'discord', href: 'https://discord.gg/2zWpWBgmPj' }))
+    html.append(new TextComponent({ text: 'Products' }))
+    Array.from(products).map(({ id }) => html.append(new LinkComponent({ text: id, href: `/products/${id}/` })))
+    html.append(new TextComponent({ text: 'Projects' }))
+    Array.from(projects).sort((a, b) => b.step - a.step).map(({ id, step }) => html.append(new LinkComponent({ text: id + stepName(step, ' (', ') '), href: `/projects/${id}/` })))
     return html
   }
 }

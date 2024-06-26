@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML } from '@brtmvdl/frontend'
 import { LinkComponent } from '../../../assets/js/components/link.component.js'
 import { ImageComponent } from '../../../assets/js/components/image.component.js'
 import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'
@@ -6,9 +6,7 @@ import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.c
 export class HeaderComponent extends HTML {
   getName() { return 'header-component' }
 
-  state = {
-    link: '',
-  }
+  state = { link: '', }
 
   constructor({ link = '' } = {}) {
     super()

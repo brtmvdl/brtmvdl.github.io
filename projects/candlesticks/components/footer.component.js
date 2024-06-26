@@ -91,11 +91,11 @@ export class FooterComponent extends HTML {
   }
 
   getBuyButton() {
-    return new ButtonComponent('buy', () => this.dispatchEvent('buy'))
+    return new ButtonComponent({ text: 'buy', onclick: () => this.dispatchEvent('buy') })
   }
 
   getSellButton() {
-    return new ButtonComponent('sell', () => this.dispatchEvent('sell'))
+    return new ButtonComponent({ text: 'sell', onclick: () => this.dispatchEvent('sell') })
   }
 
 }

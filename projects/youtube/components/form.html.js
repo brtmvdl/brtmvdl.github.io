@@ -18,7 +18,7 @@ export class FormHTML extends HTML {
     this.setStyles()
     this.append(this.getRequestSelect())
     this.append(this.getParamsHTML())
-    this.append(new ButtonComponent('send', () => this.onSendButtonClick()))
+    this.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
     this.append(this.children.inputs.children.apiKey)
   }
 

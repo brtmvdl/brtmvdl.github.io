@@ -17,19 +17,19 @@ export class EndpointHTML extends HTML {
   }
 
   getUrlInput() {
-    const input = new  nInput()
+    const input = new nInput()
     input.setPlaceholder('/home')
     return input
   }
 
   getHoursInput() {
-    const input = new  nInput()
+    const input = new nInput()
     input.setAttr('type', 'number')
     input.setPlaceholder(8)
     return input
   }
 
   getDeleteButton() {
-    return new ButtonComponent('delete', () => console.log('delete'))
+    return new ButtonComponent({ text: 'delete', onclick: () => console.log('delete') })
   }
 }

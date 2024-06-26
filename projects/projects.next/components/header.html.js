@@ -16,14 +16,14 @@ export class HeaderHTML extends HTML {
   }
 
   getTitle() {
-    const title = new TextComponent('Calc')
+    const title = new TextComponent({ text: 'calc' })
     title.setStyle('margin', '1rem 0rem')
     title.setStyle('padding', 'calc(1rem / 2) 0rem')
     return title
   }
 
   getCreateProjectButton() {
-    const button = new ButtonComponent('create project', () => this.dispatchEvent('createproject'))
+    const button = new ButtonComponent({ text: 'create project', onclick: () => this.dispatchEvent('createproject') })
     button.setStyle('padding', 'calc(1rem / 2) 0rem')
     button.setStyle('margin', '1rem 0rem')
     button.setStyle('cursor', 'pointer')

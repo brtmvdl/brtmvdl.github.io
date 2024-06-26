@@ -47,27 +47,27 @@ export class FormHTML extends HTML {
 
   getQueryParams() {
     const html = new HTML()
-    html.append(new TextComponent('Query'))
+    html.append(new TextComponent({ text: 'Query' }))
     html.append(this.children.query)
     return html
   }
 
   getHeadersParams() {
     const html = new HTML()
-    html.append(new TextComponent('Headers'))
+    html.append(new TextComponent({ text: 'Headers' }))
     html.append(this.children.headers)
     return html
   }
 
   getBodyParams() {
     const html = new HTML()
-    html.append(new TextComponent('Body'))
+    html.append(new TextComponent({ text: 'Body' }))
     html.append(this.children.body)
     return html
   }
 
   getSendButton() {
-    return new ButtonComponent('send', () => this.onSendButtonClick())
+    return new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
   }
 
   onSendButtonClick(endpoint = this.getEndpointValue()) {

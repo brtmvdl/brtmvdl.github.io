@@ -72,10 +72,10 @@ export class ProjectHeader extends nFlex {
   }
 
   getDelButton() {
-    return new ButtonComponent('delete', () => this.dispatchEvent('deleteproject', this) )
+    return new ButtonComponent({ text: 'delete', onclick: () => this.dispatchEvent('deleteproject', this) })
   }
 
   getPlusButton() {
-    return new ButtonComponent('plus', () => this.dispatchEvent('createendpoint', this))
+    return new ButtonComponent({ text: 'plus', onclick: () => this.dispatchEvent('createendpoint', this) })
   }
 }

@@ -10,7 +10,7 @@ export class Page extends HTML {
   }
 
   children = {
-    button: new ButtonComponent('play', () => this.onButtonClick()),
+    button: new ButtonComponent({ text: 'play', onclick: () => this.onButtonClick() }),
     records: new HTML(),
   }
 
@@ -24,7 +24,7 @@ export class Page extends HTML {
     html.setStyle('text-align', 'center')
     html.setStyle('margin', '0 auto')
     html.setStyle('width', '20rem')
-    html.append(new TextComponent('Audio'))
+    html.append(new TextComponent({ text: 'Audio' }))
     html.append(this.getPlayButton())
     html.append(this.getRecordsHTML())
     return html
@@ -41,10 +41,10 @@ export class Page extends HTML {
   onButtonClick() {
     if (this.state.is_playing = !this.state.is_playing) {
       this.startRecord()
-      this.setButtonText('Stop')
+      this.setButtonText('stop')
     } else {
       this.stopRecording()
-      this.setButtonText('Play')
+      this.setButtonText('play')
     }
   }
 
@@ -88,7 +88,7 @@ export class Page extends HTML {
   }
 
   createLinkElement(url, name) {
-    const link = new LinkComponent(name, url)
+    const link = new LinkComponent({ text: name, href: url })
     link.setAttr('download', name)
     return link
   }

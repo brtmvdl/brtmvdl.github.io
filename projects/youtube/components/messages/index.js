@@ -24,19 +24,19 @@ export class MessageCardHTML extends CardHTML {
 
   getHeaderHTML() {
     const header = new CardHeaderHTML()
-    header.append(new TextComponent('header'))
+    header.append(new TextComponent({ text: 'header' }))
     return header
   }
 
   getBodyHTML() {
     const body = new CardBodyHTML()
-    body.append(new TextComponent('body'))
+    body.append(new TextComponent({ text: 'body' }))
     return body
   }
 
   getFooterHTML() {
     const footer = new CardFooterHTML()
-    footer.append(new TextComponent('footer'))
+    footer.append(new TextComponent({ text: 'footer' }))
     return footer
   }
 

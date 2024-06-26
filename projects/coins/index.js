@@ -15,7 +15,7 @@ export class Page extends HTML {
     coin: new CoinSelectComponent(),
     price: new PriceComponent(),
     datetime: new DatetimeComponent(),
-    buy: new ButtonComponent('Buy (BRL 100)', () => this.onBuyButtonClick()),
+    buy: new ButtonComponent({ text: 'Buy (BRL 100)', onclick: () => this.onBuyButtonClick() }),
     history: new HistoryComponent(),
   }
 

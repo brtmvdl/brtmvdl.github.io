@@ -117,7 +117,7 @@ export class Page extends HTML {
   }
 
   getSendButton() {
-    const button = new ButtonComponent('send', () => this.onSendButtonClick())
+    const button = new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
     button.setStyle('padding', 'calc(1rem / 4)')
     // button.setStyle('margin', 'calc(1rem / 4) 0rem')
     button.setStyle('width', '100%')

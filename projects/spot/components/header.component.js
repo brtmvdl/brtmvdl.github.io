@@ -30,7 +30,7 @@ export class HeaderComponent extends HTML {
   getLogoImageLink() {
     const link = new nLink()
     link.href('https://www.bitget.com/api-doc/common/websocket-intro')
-    link.append(new TextComponent('Bitget Websocket API - Spot'))
+    link.append(new TextComponent({ text: 'Bitget Websocket API - Spot' }))
     return link
   }
 

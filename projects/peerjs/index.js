@@ -6,7 +6,7 @@ import { TextComponent } from '../../assets/js/components/text.component.js'
 
 export class Page extends HTML {
   children = {
-    peer_id: new TextComponent('PEER ID: '),
+    peer_id: new TextComponent({ text: 'PEER ID: ' }),
     messages: new HTML(),
     peer_input: new InputComponent('peer id'),
     text_input: new InputComponent('text'),
@@ -63,7 +63,7 @@ export class Page extends HTML {
   }
 
   getConnectButton() {
-    return new ButtonComponent('connect', () => this.onConnectButtonClick())
+    return new ButtonComponent({ text: 'connect', onclick: () => this.onConnectButtonClick() })
   }
 
   onConnectButtonClick() {
@@ -118,7 +118,7 @@ export class Page extends HTML {
   }
 
   getSendButton() {
-    return new ButtonComponent('send', () => this.onSendButtonClick())
+    return new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() })
   }
 
   onSendButtonClick() {
