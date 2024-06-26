@@ -25,8 +25,8 @@ export class MessageCardComponent extends CardComponent {
   getHeaderComponent() {
     const card = new CardHeaderComponent()
     const flex = new nFlex()
-    flex.append(new TextComponent(this.message.method))
-    flex.append(new TextComponent(this.message.side))
+    flex.append(new TextComponent({ text: this.message.method }))
+    flex.append(new TextComponent({ text: this.message.side }))
     card.append(flex)
     return card
   }
@@ -37,7 +37,7 @@ export class MessageCardComponent extends CardComponent {
 
   getFooterComponent() {
     const card = new CardFooterComponent()
-    card.append(new TextComponent(this.message.id, str.datetime2str(this.message.id)))
+    card.append(new TextComponent({ text: this.message.id, title: str.datetime2str(this.message.id) }))
     return card
   }
 

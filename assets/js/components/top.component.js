@@ -47,7 +47,7 @@ export class TopComponent extends HTML {
   }
 
   getDownloadButton() {
-    return new ButtonComponent('download', () => this.dispatchEvent('download'))
+    return new ButtonComponent({ text: 'download', onclick: () => this.dispatchEvent('download') })
   }
 
 }

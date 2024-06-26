@@ -1,6 +1,7 @@
 import { HTML, nFlex, nImage } from '@brtmvdl/frontend'
 import { getLinksList } from '../lists/links.js'
 import { LinkComponent } from './link.component.js'
+import { ImageComponent } from './image.component.js'
 
 export class HeaderComponent extends HTML {
   onCreate() {
@@ -16,24 +17,18 @@ export class HeaderComponent extends HTML {
   }
 
   getLeft() {
-    return new LinkComponent('brtmvdl', '/?' + Date.now())
+    return new LinkComponent({ text: 'brtmvdl', href: '/?' + Date.now() })
   }
 
   createImageLink(src, href = '') {
-    const link = new LinkComponent(null, href)
-    link.append(this.createImage(src))
+    const link = new LinkComponent({ text: null, href })
+    link.append(new ImageComponent({ src }))
     return link
-  }
-
-  createImage(src) {
-    const image = new nImage()
-    image.src(src)
-    return image
   }
 
   getRight() {
     const html = new nFlex()
-    Array.from(getLinksList()).map(([a, b]) => html.append(new LinkComponent(a, b)))
+    Array.from(getLinksList()).map(([a, b]) => html.append(new LinkComponent({ text: a, href: b })))
     return html
   }
 }

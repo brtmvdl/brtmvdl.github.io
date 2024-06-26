@@ -61,15 +61,15 @@ export default [
   },
   {
     "id": "foxbit",
-    "step": 2
+    "step": 0
   },
   {
     "id": "piano",
-    "step": 2
+    "step": 4
   },
   {
     "id": "audio-recorder",
-    "step": 0
+    "step": 4
   },
   {
     "id": "foxbit-api",
@@ -97,7 +97,7 @@ export default [
   },
   {
     "id": "ball",
-    "step": 2
+    "step": 4
   },
   {
     "id": "github",
@@ -273,7 +273,7 @@ export default [
   },
   {
     "id": "clock",
-    "step": 2
+    "step": 4
   },
   {
     "id": "makersuite-api",

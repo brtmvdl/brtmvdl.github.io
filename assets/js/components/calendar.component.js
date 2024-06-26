@@ -35,7 +35,7 @@ export class CalendarComponent extends HTML {
 
   getDateButton(date = new Date()) {
     const day = padLeft(date.getDate(), 2, '0')
-    const button = new ButtonComponent(day, () => this.onDateChange(date))
+    const button = new ButtonComponent({ text: day, onclick: () => this.onDateChange(date) })
     if (date < this.state.cur_date) button.setAttr('disabled', true)
     return button
   }

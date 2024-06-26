@@ -6,7 +6,7 @@ export class ButtonComponent extends nButton {
     onclick: (() => { }),
   }
 
-  constructor(text, onclick = (() => { })) {
+  constructor({ text, onclick = (() => { }) }) {
     super()
     this.state.text = text
     this.state.onclick = onclick
