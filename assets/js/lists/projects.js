@@ -93,7 +93,7 @@ export default [
   },
   {
     "id": "projects",
-    "step": 1
+    "step": 0
   },
   {
     "id": "ball",
@@ -105,7 +105,7 @@ export default [
   },
   {
     "id": "projects.next",
-    "step": 1
+    "step": 0
   },
   {
     "id": "binance",
