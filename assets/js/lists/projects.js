@@ -84,10 +84,6 @@ export default [
     "step": 0
   },
   {
-    "id": "foxbit-websocket-api",
-    "step": 0
-  },
-  {
     "id": "backend",
     "step": 0
   },
@@ -172,10 +168,6 @@ export default [
     "step": 0
   },
   {
-    "id": "binance-websocket-api",
-    "step": 0
-  },
-  {
     "id": "ibparque",
     "step": 0
   },
@@ -241,10 +233,6 @@ export default [
   },
   {
     "id": "linkedin",
-    "step": 0
-  },
-  {
-    "id": "twitch-websocket-api",
     "step": 0
   },
   {
@@ -356,6 +344,25 @@ export default [
     "step": 0
   },
   {
+    "id": "foxbit-websocket-api",
+    "step": 0
+  },
+
+  {
+    "id": "binance-websocket-api",
+    "step": 0
+  },
+
+  {
+    "id": "twitch-websocket-api",
+    "step": 0
+  },
+
+  {
+    "id": "discord-websocket-api",
+    "step": 0
+  },
+  {
     "id": "cube",
     "step": 0
   },
@@ -380,11 +387,7 @@ export default [
     "step": 0
   },
   {
-    "id": "discord-websocket-api",
-    "step": 0
-  },
-  {
     "id": "nume",
-    "step": 0
+    "step": 4
   }
 ]
