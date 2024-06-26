@@ -26,20 +26,14 @@ export class Head extends HTML {
   }
 
   getTitle() {
-    this.children.title.setText('Calc')
-
-    this.children.title.setStyle('font-weight', 'bold')
-
+    this.children.title.setText('projects')
     return this.children.title
   }
 
   getAddProject() {
     this.children.addProject.setText('create project')
-
     this.children.addProject.setStyle('cursor', 'pointer')
-
     this.children.addProject.on('click', () => this.dispatchEvent('createproject'))
-
     return this.children.addProject
   }
 }

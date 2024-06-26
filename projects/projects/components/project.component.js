@@ -1,18 +1,13 @@
-import { HTML, nFlex, nImage, nInput, nSelect } from '@brtmvdl/frontend'
+import { HTML } from '@brtmvdl/frontend'
 
 import { EndPointModel } from '../models/endpoint.js'
 import { ProjectModel } from '../models/project.js'
-
-import { CONTRACTS } from '../utils/constansts.js'
-import { Logger } from '../utils/logger.js'
 
 import { EndPoint } from './endpoint.js'
 import { ProjectHeader } from './project.header.js'
 import { ProjectFooter } from './project.footer.js'
 
-export class Project extends HTML {
-  logger = new Logger('Project')
-
+export class ProjectComponent extends HTML {
   state = new ProjectModel()
 
   children = {
@@ -56,14 +51,12 @@ export class Project extends HTML {
   }
 
   onCreateEndPoint() {
-    this.logger.log('onCreateEndPoint', {})
 
     this.state.endpoints.push(new EndPointModel())
     this.dispatchEvent('updateendpoints')
   }
 
   onUpdateEndPoints() {
-    this.logger.log('onUpdateEndPoints', {})
 
     this.children.endpoints.clear()
 

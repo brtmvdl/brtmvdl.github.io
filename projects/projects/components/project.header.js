@@ -1,12 +1,10 @@
-import { HTML, COLORS, nFlex, nImage, nInput, nSelect } from '@brtmvdl/frontend'
-import { Logger } from '../utils/logger.js'
+import { HTML, COLORS, nFlex, nInput, nSelect } from '@brtmvdl/frontend'
+
 import { CONTRACTS } from '../utils/constansts.js'
 
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 
 export class ProjectHeader extends nFlex {
-  logger = new Logger('Project Header')
-
   state = {
     domain: '',
     contract: 1,
@@ -45,8 +43,6 @@ export class ProjectHeader extends nFlex {
   }
 
   getDomain() {
-    this.logger.log('getDomain', {})
-
     this.children.domain.setText(this.state.domain)
     this.children.domain.setPlaceholder('domain.com')
     this.children.domain.setStyle('border', 'none')
@@ -57,8 +53,6 @@ export class ProjectHeader extends nFlex {
   }
 
   getContract() {
-    this.logger.log('getContract', {})
-
     this.children.contract.setValue(10)
 
     CONTRACTS.map(([key, value]) => this.children.contract.addOption(key, value))

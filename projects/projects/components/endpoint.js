@@ -1,10 +1,8 @@
 import { HTML, nFlex, nInputNumber, nInputText } from '@brtmvdl/frontend'
+
 import { EndPointModel } from '../models/endpoint.js'
-import { Logger } from '../utils/logger.js'
 
 export class EndPoint extends HTML {
-  logger = new Logger('EndPoint')
-
   state = {
     path: '/',
     hours: 0,
@@ -32,8 +30,6 @@ export class EndPoint extends HTML {
   }
 
   getFlex() {
-    this.logger.log('getFlex', {})
-
     const flex = new nFlex()
     flex.append(this.getPath())
     flex.append(this.getHours())
@@ -41,8 +37,6 @@ export class EndPoint extends HTML {
   }
 
   getPath() {
-    this.logger.log('getURL', {})
-
     this.children.path.setValue(this.state.path)
 
     this.children.path.setPlaceholder('/home')
@@ -54,8 +48,6 @@ export class EndPoint extends HTML {
     this.children.path.setContainerStyle('width', '100%')
 
     this.children.path.on('input', () => {
-      this.logger.log('url:oninput', {})
-
       this.state.path = this.children.path.getValue()
       this.dispatchEvent('updateendpoint')
     })
@@ -64,8 +56,6 @@ export class EndPoint extends HTML {
   }
 
   getHours() {
-    this.logger.log('getHours', {})
-
     this.children.hours.setValue(this.state.hours)
 
     this.children.hours.setValue(8)
@@ -78,8 +68,6 @@ export class EndPoint extends HTML {
     this.children.hours.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
 
     this.children.hours.on('input', () => {
-      this.logger.log('hours:oninput', {})
-
       this.state.hours = +this.children.hours.getValue()
       this.dispatchEvent('updateendpoint')
     })

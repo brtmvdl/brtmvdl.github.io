@@ -1,11 +1,8 @@
 import { HTML } from '@brtmvdl/frontend'
-import { Logger } from '../utils/logger.js'
 import { ProjectModel } from '../models/project.js'
-import { Project } from './project.js'
+import { ProjectComponent } from './project.component.js'
 
 export class Body extends HTML {
-  logger = new Logger('Body')
-
   state = {
     projects: [],
   }
@@ -31,33 +28,25 @@ export class Body extends HTML {
   }
 
   onCreateProject() {
-    this.logger.log('onCreateProject', {})
-
     this.state.projects.push(new ProjectModel())
     this.dispatchEvent('updateprojects')
   }
 
   deleteProjectById(ix) {
-    this.logger.log('deleteProjectById', {})
-
     this.state.projects = this.state.projects.filter((_, index) => ix != index)
     this.dispatchEvent('updateprojects')
   }
 
   onUpdateProjects() {
-    this.logger.log('onUpdateProjects', {})
-
     this.children.projects.clear()
     this.state.projects.map((p, ix) => {
-      const project = new Project(p)
+      const project = new ProjectComponent(p)
       project.children.header.on('deleteproject', () => this.deleteProjectById(ix))
       this.children.projects.append(project)
     })
   }
 
   getProjects() {
-    this.logger.log('getProjects', {})
-
     return this.children.projects
   }
 }
