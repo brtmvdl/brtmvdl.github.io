@@ -1,12 +1,11 @@
 import { HTML, nLink } from '@brtmvdl/frontend'
 
 export class LinkComponent extends nLink {
-  state = {
-    text: '',
-    href: '',
-  }
+  getName() { return 'link-component' }
 
-  constructor(text, href = '') {
+  state = { text: '', href: '', }
+
+  constructor({ text, href = '' } = {}) {
     super()
     this.state.text = text
     this.state.href = href
@@ -14,10 +13,11 @@ export class LinkComponent extends nLink {
 
   onCreate() {
     super.onCreate()
-    this.setText(this.state.text)
-    this.href(this.state.href)
+    if (this.state.href) this.href(this.state.href)
+    if (this.state.text) this.setText(this.state.text)
     this.setStyle('text-decoration', 'none')
     this.setStyle('display', 'inline-block')
     this.setStyle('padding', 'calc(1rem / 4)')
+    this.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem ')
   }
 }
