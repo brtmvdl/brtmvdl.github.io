@@ -2,7 +2,6 @@ import { HTML, nButton } from '@brtmvdl/frontend'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import * as Local from '../../assets/js/utils/local.js'
-// import { FACEBOOK } from './facebook.js' // https://www.facebook.com/v20.0/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}&state={state-param}
 
 export class Page extends HTML {
   children = {
@@ -13,6 +12,7 @@ export class Page extends HTML {
   onCreate() {
     this.append(this.getButtonsFlex())
     this.append(this.getResponses())
+    this.appendResponse('On Page Load', { datetime: Date.now() })
   }
 
   getTitle() {
