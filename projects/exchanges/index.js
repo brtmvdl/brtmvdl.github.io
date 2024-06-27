@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '@brtmvdl/frontend'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TableComponent } from '../../assets/js/components/table.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
@@ -24,11 +24,17 @@ export class Page extends HTML {
     super.onCreate()
     Local.set(['history'], [])
     this.append(new TextComponent({ text: 'exchanges' }))
-    this.append(this.getPricesTable())
-    this.append(this.getBuysTable())
-    this.append(this.getSellsTable())
+    this.append(this.getFlex())
     this.updateBinancePrices()
     this.updateSellsTable()
+  }
+
+  getFlex() {
+    const flex = (window.innerHeight < window.innerWidth) ? new nFlex() : new HTML()
+    flex.append(this.getPricesTable())
+    flex.append(this.getBuysTable())
+    flex.append(this.getSellsTable())
+    return flex
   }
 
   getPricesTable() {
