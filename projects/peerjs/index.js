@@ -35,18 +35,38 @@ export class Page extends HTML {
   }
 
   setPeerEvents() {
-    this.state.peer.on('error', (err) => console.error('error', err))
-    this.state.peer.on('open', () => this.children.peer_id.setText('PEER ID: ' + this.state.peer.id))
-    this.state.peer.on('connection', (conn) => {
-      console.log('connection', { conn })
+    this.state.peer.on('error', (err) => this.onPeerError(err))
+    this.state.peer.on('open', (data) => this.onPeerOpen(data))
+    this.state.peer.on('connection', (data) => this.onPeerConnection(data))
+  }
 
-      conn.on('data', (message) => {
-        console.log('data', { message })
+  onPeerError(conn, error) {
+    this.addMessage(`${this.state.peer.id}: error: ${error.message}`)
+  }
 
-        this.addMessage(`${conn.peer}: message: ${message}`)
-      })
-    })
+  onPeerOpen() {
+    const { id } = this.state.peer
+    this.addMessage(`${id}: open: ${Date.now()}`)
+    this.children.peer_id.setText('PEER ID: ' + id)
+  }
 
+  onPeerConnection(conn) {
+    this.addMessage(`${conn.peer}: connection: ${Date.now()}`)
+    conn.on('error', (err) => this.onConnectionError(conn, err))
+    conn.on('open', (data) => this.onConnectionOpen(conn, data))
+    conn.on('data', (data) => this.onConnectionData(conn, data))
+  }
+
+  onConnectionError(conn, error) {
+    this.addMessage(`${conn.peer}: error: ${error.message}`)
+  }
+
+  onConnectionOpen(conn, data) {
+    this.addMessage(`${conn.peer}: open: ${Date.now()}`)
+  }
+
+  onConnectionData(conn, message) {
+    this.addMessage(`${conn.peer}: data: ${message}`)
   }
 
   getPeerIdHTML() {
@@ -72,22 +92,16 @@ export class Page extends HTML {
     const conn = this.state.peer.connect(peer_id)
 
     conn.on('open', () => {
-      console.log('open', {})
-
       this.state.conns.push(conn)
       conn.send('hello')
       this.addMessage(`${peer_id}: open: ${Date.now()}`)
     })
 
     conn.on('data', (data) => {
-      console.log('data', { data })
-
       this.addMessage(`${peer_id}: data: ${data}`)
     })
 
     conn.on('error', (err) => {
-      console.log('error', { err })
-
       this.addMessage(`${peer_id}: error: ${err.message}`)
     })
   }
@@ -128,8 +142,8 @@ export class Page extends HTML {
     this.children.text_input.setValue('')
   }
 
-  addMessage(message) {
-    this.children.messages.prepend(new TextComponent(message))
+  addMessage(text) {
+    this.children.messages.prepend(new TextComponent({ text }))
   }
 
 }
