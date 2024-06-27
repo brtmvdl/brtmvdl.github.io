@@ -1,61 +1,34 @@
-import { HTML, nButton } from '@brtmvdl/frontend'
-import { TextComponent } from '../../assets/js/components/text.component.js'
-import { ButtonComponent } from '../../assets/js/components/button.component.js'
-
-import { FACEBOOK } from './facebook.js' // https://www.facebook.com/v20.0/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}&state={state-param}
+import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HeaderComponent } from '../../assets/js/components/header.component.js'
+import { EndpointsComponent } from '../../assets/js/components/endpoints.component.js'
+import { MessagesComponent } from '../../assets/js/components/messages.component.js'
+import { getEndpointsList } from './lists/endpoints.list.js'
+import * as messages from './components/messages/index.js'
 
 export class Page extends HTML {
   children = {
-    title: new HTML(),
-    responses: new HTML(),
+    endpoints: new EndpointsComponent(getEndpointsList()),
+    messages: new MessagesComponent(messages),
   }
 
   onCreate() {
-    this.append(this.getButtonsFlex())
-    this.append(this.getResponses())
+    super.onCreate()
+    this.append(new HeaderComponent())
+    this.append(this.getFlex())
   }
 
-  getTitle() {
-    this.children.title.setText('Facebook JavaScript SDK')
-    return this.children.title
+  getFlex() {
+    const flex = new nFlex()
+    flex.append(this.getEndpoints().setContainerStyle('width', '20%'))
+    flex.append(this.getMessages().setContainerStyle('width', '79%'))
+    return flex
   }
 
-  getButtonsFlex() {
-    const html = new HTML()
-    this.append(new ButtonComponent({ text: 'Login', onclick: () => FB.login((resp) => this.onFacebookLogin(resp), { scope: 'email,user_likes' }) }))
-    this.append(new ButtonComponent({ text: 'Get Login Status', onclick: () => FB.getLoginStatus((resp) => this.onFacebookGetLoginStatus(resp)) }))
-    this.append(new ButtonComponent({ text: 'Publish a status message', onclick: () => FB.api('/me/feed', 'post', { message: 'Now is ' + (new Date()).toString() }, (resp) => this.onFacebookMeFeed(resp)) }))
-    this.append(new ButtonComponent({ text: 'Logout', onclick: () => FB.logout((resp) => this.onFacebookLogout(resp)) }))
-    return html
+  getEndpoints() {
+    return this.children.endpoints
   }
 
-  onFacebookLogin(data) {
-    console.log('Login', data)
-    this.appendResponse('Login', data)
-  }
-
-  onFacebookGetLoginStatus(data) {
-    console.log('Get Login Status', data)
-    this.appendResponse('Get Login Status', data)
-  }
-
-  onFacebookMeFeed(data) {
-    console.log('Publish a status message', data)
-    this.appendResponse('Publish a status message', data)
-  }
-
-  onFacebookLogout(data) {
-    console.log('Logout', data)
-    this.appendResponse('Logout', data)
-  }
-
-  appendResponse(name, resp = {}) {
-    const str = JSON.stringify({ name, resp }, null, 4)
-    const html = new TextComponent(str)
-    this.children.responses.append(html)
-  }
-
-  getResponses() {
-    return this.children.responses
+  getMessages() {
+    return this.children.messages
   }
 }
