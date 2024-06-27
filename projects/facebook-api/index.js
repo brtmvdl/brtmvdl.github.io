@@ -35,22 +35,22 @@ export class Page extends HTML {
   }
 
   onFacebookLogin(data) {
-    console.log('on Facebook Login', data)
+    this.appendResponse('Login', data)
     Local.set(['facebook.accessToken'], data.authResponse.accessToken)
   }
 
   onFacebookGetLoginStatusButtonClick() {
-    FB.getLoginStatus((data) => console.log('login status', data), {})
+    FB.getLoginStatus((data) => this.appendResponse('Get Login Status', data), {})
   }
 
   onFacebookPublishStatusMessageButtonClick() {
     const message = `Date time: ${Date.now()}`
-    FB.api('/me/feed', 'post', { message }, (data) => console.log('Publish Status Message', data))
+    FB.api('/me/feed', 'post', { message }, (data) => this.appendResponse('Publish a Status Message', data))
   }
 
   onFacebookLogoutButtonClick() {
     const access_token = Local.get(['facebook.accessToken'])
-    FB.logout((data) => console.log(data), { access_token })
+    FB.logout((data) => this.appendResponse('Logout', data), { access_token })
   }
 
   appendResponse(name, resp = {}) {
