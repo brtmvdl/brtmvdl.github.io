@@ -12,7 +12,6 @@ export class Page extends HTML {
   onCreate() {
     this.append(this.getButtonsFlex())
     this.append(this.getResponses())
-    this.appendResponse('On Page Load', { datetime: Date.now() })
   }
 
   getTitle() {
@@ -54,9 +53,8 @@ export class Page extends HTML {
   }
 
   appendResponse(name, resp = {}) {
-    const str = JSON.stringify({ name, resp }, null, 4)
-    const html = new TextComponent(str)
-    this.children.responses.append(html)
+    const text = JSON.stringify({ name, resp }, null, 4)
+    this.children.responses.append(new TextComponent({ text }))
   }
 
   getResponses() {
