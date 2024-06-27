@@ -29,7 +29,7 @@ export default [
   },
   {
     "id": "anagram",
-    "step": 0
+    "step": 4
   },
   {
     "id": "facebook-api",
@@ -37,7 +37,7 @@ export default [
   },
   {
     "id": "peerjs",
-    "step": 0
+    "step": 4
   },
   {
     "id": "anthropic-api",
