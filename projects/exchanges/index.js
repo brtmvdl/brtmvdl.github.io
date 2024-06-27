@@ -6,6 +6,7 @@ import { TrComponent } from '../../assets/js/components/tr.component.js'
 import { TdComponent } from '../../assets/js/components/td.component.js'
 import * as Local from '../../assets/js/utils/local.js'
 import { getSymbolsList } from './lists/symbols.list.js'
+import { datetime2str, price2string } from '../../assets/js/utils/str.js'
 
 export class Page extends HTML {
   state = {
@@ -27,6 +28,7 @@ export class Page extends HTML {
     this.append(this.getBuysTable())
     this.append(this.getSellsTable())
     this.updateBinancePrices()
+    this.updateSellsTable()
   }
 
   getPricesTable() {
@@ -53,18 +55,26 @@ export class Page extends HTML {
   updatePricesTable() {
     this.children.prices_table.clear()
 
-    Array.from(this.state.values).map((price) => {
+    const tr = new TrComponent({})
+
+    Array.from(['price', 'symbol']).map((key) => {
+      const td = new TdComponent({})
+      td.setText(key)
+      tr.append(td)
+    })
+
+    this.children.prices_table.append(tr)
+
+    Array.from(this.state.values).map((value) => {
       const tr = new TrComponent({})
 
-      Object.keys(price).map((key) => {
-        const td = new TdComponent()
-        td.setText(price[key])
-        tr.append(td)
-      })
+      tr.append(this.createTdText(value['symbol']))
 
-      const td = new TdComponent()
-      td.append(new ButtonComponent({ text: 'buy', onclick: () => this.buy(price.symbol) }))
-      tr.append(td)
+      tr.append(this.createTdText(price2string(value['price'], 'R$')))
+
+      const button = new TdComponent()
+      button.append(new ButtonComponent({ text: 'buy', onclick: () => this.buy(value['symbol']) }))
+      tr.append(button)
 
       this.children.prices_table.append(tr)
     })
@@ -77,7 +87,7 @@ export class Page extends HTML {
   buy(symbol) {
     const value = this.getValue(symbol)
 
-    Local.add(['buys'], {
+    if (value) Local.add(['buys'], {
       symbol: value.symbol,
       buy_price: value.price,
       buy_datetime: Date.now(),
@@ -87,50 +97,69 @@ export class Page extends HTML {
   updateBuysTable() {
     this.children.buys_table.clear()
 
+    const buys = Local.get(['buys'], [])
+
+    if (buys.length == 0) return
+
     const tr = new TrComponent({})
 
-    Array.from(['symbol', 'buy_price', 'buy_datetime',]).map((key) => {
-      const td = new TdComponent({})
-      td.setText(key)
-      tr.append(td)
-    })
+    Array.from(['symbol', 'price', 'datetime', 'price_diff', 'percent_diff']).map((key) => tr.append(this.createTdText(key)))
 
     this.children.buys_table.append(tr)
 
-    Array.from(Local.get(['buys'], [])).map((buy) => {
+    Array.from(buys).map((buy) => {
       const tr = new TrComponent({})
 
-      Object.keys(buy).map((key) => {
-        const td = new TdComponent({})
-        td.setText(buy[key])
-        tr.append(td)
-      })
+      tr.append(this.createTdText(buy['symbol']))
 
-      const td = new TdComponent({})
-      td.append(new ButtonComponent({ text: 'sell', onclick: () => this.sell(buy.buy_datetime) }))
-      tr.append(td)
+      tr.append(this.createTdText(price2string(buy['buy_price'], 'R$')))
+
+      tr.append(this.createTdText(datetime2str(buy['buy_datetime'])))
+
+      const price = this.getPrice(buy['symbol'])
+
+      const price_diff = price - buy['buy_price']
+
+      tr.append(this.createTdText(price2string(price_diff, 'R$')))
+
+      const percent_diff = (((100 * price) / buy['buy_price']) - 100).toFixed(4)
+
+      tr.append(this.createTdText(`${percent_diff}%`))
+
+      const button = new TdComponent({})
+      button.append(new ButtonComponent({ text: 'sell', onclick: () => this.sell(buy.buy_datetime) }))
+      tr.append(button)
 
       this.children.buys_table.append(tr)
     })
   }
 
-  sell(datetime = Date.now()) {
-    console.log('sell', { datetime })
+  getPrice(symbol) {
+    return Array.from(this.state.values).find((value) => value.symbol == symbol)?.price
+  }
 
+  createTdText(text = '') {
+    const td = new TdComponent({})
+    td.setText(text)
+    td.setStyle('padding', 'calc(1rem / 4)')
+    return td
+  }
+
+  sell(datetime = Date.now()) {
     const buys = Array.from(Local.get(['buys'], []))
 
     const buy_index = buys.findIndex((buy) => buy.buy_datetime == datetime)
 
     const buy = buys[buy_index]
 
-    const value = this.getValue(buy.symbol)
-
-    buy.sell_price = value.price
+    buy.sell_price = this.getValue(buy.symbol)?.price
     buy.sell_datetime = Date.now()
 
-    Local.set(['buys'], buys.filter((_, index) => index != buy_index ))
+    Local.set(['buys'], buys.filter((_, index) => index != buy_index))
 
     Local.add(['sells'], buy)
+
+    this.updateSellsTable()
   }
 
   updateSellsTable() {
@@ -138,29 +167,19 @@ export class Page extends HTML {
 
     const tr = new TrComponent({})
 
-    Array.from(['symbol', 'buy_price', 'buy_datetime', 'sell_price', 'sell_datetime',]).map((key) => {
-      const td = new TdComponent({})
-      td.setText(key)
-      tr.append(td)
-    })
+    Array.from(['symbol', 'buy_price', 'buy_datetime', 'sell_price', 'sell_datetime']).map((key) => tr.append(this.createTdText(key)))
 
     this.children.sells_table.append(tr)
 
-    Array.from(Local.get(['sells'], [])).map((buy) => {
+    Array.from(Local.get(['sells'], [])).map((sell) => {
       const tr = new TrComponent({})
-
-      Object.keys(buy).map((key) => {
-        const td = new TdComponent({})
-        td.setText(buy[key])
-        tr.append(td)
-      })
-
+      tr.append(this.createTdText(sell['symbol']))
+      tr.append(this.createTdText(price2string(sell['buy_price'], 'R$')))
+      tr.append(this.createTdText(datetime2str(sell['buy_datetime'])))
+      tr.append(this.createTdText(price2string(sell['sell_price'], 'R$')))
+      tr.append(this.createTdText(datetime2str(sell['sell_datetime'])))
       this.children.sells_table.append(tr)
     })
-  }
-
-  updateValuesHistory() {
-    // console.log('updateValuesHistory')
   }
 
   getSymbolsList() {
@@ -173,8 +192,6 @@ export class Page extends HTML {
       .then((values) => this.state.values = values.map(({ symbol, price }) => ({ symbol, price: +price })))
       .then(() => this.updatePricesTable())
       .then(() => this.updateBuysTable())
-      .then(() => this.updateSellsTable())
-      .then(() => this.updateValuesHistory())
       .then(() => this.updateBinancePrices())
   }
 }
