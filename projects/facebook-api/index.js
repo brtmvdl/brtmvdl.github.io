@@ -30,7 +30,8 @@ export class Page extends HTML {
 
   onFacebookLoginButtonClick() {
     const config_id = 1
-    FB.login((data) => this.onFacebookLogin(data), { config_id })
+    const scope = 'email,user_likes,publish_actions,publish_to_grwoups,pages_manage_metadata,pages_manage_posts,pages_manage_read_engagement,pages_show_list'
+    FB.login((data) => this.onFacebookLogin(data), { config_id, scope })
   }
 
   onFacebookLogin(data) {
@@ -54,7 +55,8 @@ export class Page extends HTML {
 
   appendResponse(name, resp = {}) {
     const text = JSON.stringify({ name, resp }, null, 4)
-    this.children.responses.append(new TextComponent({ text }))
+    const text_component = new TextComponent({ text })
+    this.children.responses.append(text_component)
   }
 
   getResponses() {
