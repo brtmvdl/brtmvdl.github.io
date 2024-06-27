@@ -1,1 +1,50 @@
-coming soon 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>facebook</title>
+  <meta name="google-adsense-account" content="ca-pub-8803365396237758">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758" crossorigin="anonymous"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@brtmvdl/frontend": "https://cdn.jsdelivr.net/npm/@brtmvdl/frontend@2.0.1/src/index.js"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({ appId: '1132850457706291', cookie: true, xfbml: true, version: 'v20.0' });
+      FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <div id="app"></div>
+  <script type="module">
+    import { HTML, nButton, nH1 } from '@brtmvdl/frontend'
+    import { Page } from './index.js'
+
+    // window.fbAsyncInit = () => ([
+      // FB.init({ appId: '1132850457706291', cookie: true, xfbml: true, version: 'v19.0' }),
+      // FB.AppEvents.logPageView()
+    // ])
+
+    HTML.fromElement(document.body).append(new Page())
+    HTML.fromId('app').setStyle('margin', '0rem')
+  </script>
+</body>
+
+</html>
