@@ -1,7 +1,7 @@
 export default [
   {
     "id": "drawer",
-    "step": 0
+    "step": 4
   },
   {
     "id": "airplane",

@@ -1,15 +1,8 @@
-// 
+//
 
-export const add = (key = [], value = null) => {
-  const list = get(key, [])
-  list.push(value)
-  set(key, list)
-}
-
-export const get = (key = [], def = null) => {
-  const str = localStorage.getItem(key.join('.'))
+export const get = (key, def = null) => {
   try {
-    return JSON.parse(str) || def
+    return JSON.parse(localStorage.getItem(key.join('.'))) || def
   } catch (e) {
     console.error(e)
   }
@@ -17,7 +10,12 @@ export const get = (key = [], def = null) => {
   return def
 }
 
-export const set = (key = [], value = '') => {
-  const str = JSON.stringify(value)
-  localStorage.setItem(key.join('.'), str)
+export const set = (key, value = {}) => {
+  localStorage.setItem(key.join('.'), JSON.stringify(value))
+}
+
+export const add = (key, value = {}) => {
+  const list = get(key, [])
+  list.push(value)
+  set(key, list)
 }
