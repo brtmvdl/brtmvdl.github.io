@@ -1,4 +1,4 @@
-import { Model } from './model.js'
+import { Model } from '../../../assets/js/models/model.js'
 import { getNow } from '../utils/datetime.js'
 
 export class HistoryModel extends Model {

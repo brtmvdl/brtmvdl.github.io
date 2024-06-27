@@ -1,245 +1,179 @@
-import { HTML, nH1, nH2, nTable, nTr, nTd } from '@brtmvdl/frontend'
-import * as Local from './utils/local.js'
-import { price2string } from './utils/str.js'
-import { percent } from './utils/math.js'
-import { TextComponent } from '../../assets/js/components/text.component.js'
+import { HTML } from '@brtmvdl/frontend'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { TableComponent } from '../../assets/js/components/table.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
+import { TrComponent } from '../../assets/js/components/tr.component.js'
+import { TdComponent } from '../../assets/js/components/td.component.js'
+import * as Local from '../../assets/js/utils/local.js'
+import { getSymbolsList } from './lists/symbols.list.js'
 
-class TdComponent extends HTML {
-  getTagName() { return 'td' }
+export class Page extends HTML {
+  state = {
+    symbols: getSymbolsList(),
+    values: [],
+  }
 
-  hasContainer() { return false }
-
-  children = { component: new HTML() }
-
-  constructor(component = new HTML()) {
-    super()
-    this.children.component = component
+  children = {
+    prices_table: new TableComponent(),
+    buys_table: new TableComponent(),
+    sells_table: new TableComponent(),
   }
 
   onCreate() {
     super.onCreate()
-    this.append(this.children.component)
-  }
-}
-
-class TdTextComponent extends TdComponent {
-  constructor(text = '') {
-    super(new TextComponent(text))
-  }
-}
-
-export class Page extends HTML {
-  state = {
-    enabled: {
-      binance: [
-        'BTCBRL',
-        'USDTBRL',
-        'ETHBRL',
-        'XRPBRL',
-        'BNBBRL',
-        'MATICBRL',
-        'SOLBRL',
-        'LINKBRL',
-        'LTCBRL',
-        'AVAXBRL',
-        'DOGEBRL',
-        'ADABRL',
-        'DOTBRL',
-        'BUSDBRL',
-        'CHZBRL'
-      ],
-    },
-    values: {
-      binance: [],
-    },
-    symbols: [],
-  }
-
-  children = {
-    prices_table: new nTable(),
-    buys_table: new nTable(),
-    sells_table: new nTable(),
-  }
-
-  onCreate() {
-    this.updateBinancePrices()
     Local.set(['history'], [])
-    const container = new HTML()
-    container.append(this.getPricesTable())
-    container.append(this.getBuysTable())
-    // container.append(this.getSellsTable())
-    this.append(container)
+    this.append(new TextComponent({ text: 'exchanges' }))
+    this.append(this.getPricesTable())
+    this.append(this.getBuysTable())
+    this.append(this.getSellsTable())
+    this.updateBinancePrices()
   }
 
   getPricesTable() {
-    const prices_table = new HTML()
-    const title = new nH1()
-    title.setText('Prices')
-    prices_table.append(title)
-    this.children.prices_table.setStyle('width', '100%')
-    prices_table.append(this.children.prices_table)
-    return prices_table
+    const html = new HTML()
+    html.append(new TextComponent({ text: 'prices' }))
+    html.append(this.children.prices_table)
+    return html
   }
 
   getBuysTable() {
-    const buys_table = new HTML()
-    const title = new nH1()
-    title.setText('Buys')
-    buys_table.append(title)
-    this.children.buys_table.setStyle('width', '100%')
-    buys_table.append(this.children.buys_table)
-    return buys_table
+    const html = new HTML()
+    html.append(new TextComponent({ text: 'buys' }))
+    html.append(this.children.buys_table)
+    return html
   }
 
   getSellsTable() {
-    const sells_table = new HTML()
-    const title = new nH1()
-    title.setText('Sells')
-    sells_table.append(title)
-    this.children.sells_table.setStyle('width', '100%')
-    sells_table.append(this.children.sells_table)
-    return sells_table
-  }
-
-  updateValuesHistory() {
-    const datetime = Date.now()
-
-    this.state.values.binance.map(({ symbol, price }) => {
-      Local.add(['history'], { symbol, price, datetime })
-    })
-
-    const history = Local.get(['history'])
-
-    if (history.length > 2e3) {
-      Local.set(['history'], history.filter((_, ix) => ix > 1e3))
-    }
-  }
-
-  getPrice(symbol, interval = 0) {
-    const now = Date.now()
-    const sec = interval * 1000
-    const history = Local.get(['history'], [])
-      .filter(({ symbol: s }) => symbol === s)
-      .filter(({ datetime }) => datetime > now - sec)
-      .find(() => true)
-
-    return history?.price || 0
-  }
-
-  buy(amount = 0, symbol = '', price = 0) {
-    const datetime = Date.now()
-    Local.add(['buys'], { amount, symbol, price, datetime })
+    const html = new HTML()
+    html.append(new TextComponent({ text: 'sells' }))
+    html.append(this.children.sells_table)
+    return html
   }
 
   updatePricesTable() {
     this.children.prices_table.clear()
 
-    const value = new nTr()
-    value.setStyle('margin-bottom', '1rem')
+    Array.from(this.state.values).map((price) => {
+      const tr = new TrComponent({})
 
-    value.append(new TdTextComponent('symbol'))
+      Object.keys(price).map((key) => {
+        const td = new TdComponent()
+        td.setText(price[key])
+        tr.append(td)
+      })
 
-    value.append(new TdTextComponent('price'))
+      const td = new TdComponent()
+      td.append(new ButtonComponent({ text: 'buy', onclick: () => this.buy(price.symbol) }))
+      tr.append(td)
 
-    value.append(new TdTextComponent('price10'))
-    value.append(new TdTextComponent('diff10'))
-    value.append(new TdTextComponent('percent10'))
-
-    value.append(new TdTextComponent('price30'))
-    value.append(new TdTextComponent('diff30'))
-    value.append(new TdTextComponent('percent30'))
-
-    value.append(new TdTextComponent('price60'))
-    value.append(new TdTextComponent('diff60'))
-    value.append(new TdTextComponent('percent60'))
-
-    value.append(new TdTextComponent(''))
-
-    this.children.prices_table.append(value)
-
-    this.state.values.binance.map(({ symbol, price }) => {
-      const value = new nTr()
-      value.setStyle('margin', '1rem')
-
-      value.append(new TdTextComponent(symbol))
-
-      value.append(new TdTextComponent(`${price2string(price)}`))
-
-      const price10 = this.getPrice(symbol, 10)
-      value.append(new TdTextComponent(price2string(price10)))
-      value.append(new TdTextComponent(price2string(price - price10)))
-      value.append(new TdTextComponent(percent(price, price10)))
-
-      const price30 = this.getPrice(symbol, 30)
-      value.append(new TdTextComponent(price2string(price30)))
-      value.append(new TdTextComponent(price2string(price - price30)))
-      value.append(new TdTextComponent(percent(price, price30)))
-
-      const price60 = this.getPrice(symbol, 60)
-      value.append(new TdTextComponent(price2string(price60)))
-      value.append(new TdTextComponent(price2string(price - price60)))
-      value.append(new TdTextComponent(percent(price, price60)))
-
-      const buy_button = new HTML()
-      value.append(new TdComponent(new ButtonComponent({ text: 'buy BRL 100', onclick: () => this.buy(100, symbol, price) })))
-
-      this.children.prices_table.append(value)
+      this.children.prices_table.append(tr)
     })
   }
 
-  sell(datetime) {
-    //
+  getValue(symbol = '') {
+    return Array.from(this.state.values).find((value) => value.symbol == symbol)
   }
 
-  getSymbolPrice(s) {
-    const { price = 0 } = this.state.values.binance.find(({ symbol }) => symbol == s)
-    return price
+  buy(symbol) {
+    const value = this.getValue(symbol)
+
+    Local.add(['buys'], {
+      symbol: value.symbol,
+      buy_price: value.price,
+      buy_datetime: Date.now(),
+    })
   }
 
   updateBuysTable() {
     this.children.buys_table.clear()
 
-    const value = new nTr()
-    value.setStyle('margin-bottom', '1rem')
+    const tr = new TrComponent({})
 
-    value.append(new TdTextComponent('symbol'))
+    Array.from(['symbol', 'buy_price', 'buy_datetime',]).map((key) => {
+      const td = new TdComponent({})
+      td.setText(key)
+      tr.append(td)
+    })
 
-    value.append(new TdTextComponent('price'))
+    this.children.buys_table.append(tr)
 
-    value.append(new TdTextComponent('diff'))
+    Array.from(Local.get(['buys'], [])).map((buy) => {
+      const tr = new TrComponent({})
 
-    value.append(new TdTextComponent(''))
+      Object.keys(buy).map((key) => {
+        const td = new TdComponent({})
+        td.setText(buy[key])
+        tr.append(td)
+      })
 
-    this.children.buys_table.append(value)
+      const td = new TdComponent({})
+      td.append(new ButtonComponent({ text: 'sell', onclick: () => this.sell(buy.buy_datetime) }))
+      tr.append(td)
 
-    const buys = Array.from(Local.get(['buys'], []))
-
-    buys.map(({ symbol, price }) => {
-      const value = new nTr()
-      value.setStyle('margin', '1rem')
-
-      value.append(new TdTextComponent(symbol))
-
-      value.append(new TdTextComponent(price))
-
-      value.append(new TdTextComponent(price2string(this.getSymbolPrice(symbol) - price)))
-
-      const buy_button = new HTML()
-      value.append(new TdComponent(new ButtonComponent({ text: 'sell', onclick: () => this.sell(datetime) })))
-
-      this.children.buys_table.append(value)
+      this.children.buys_table.append(tr)
     })
   }
 
-  updateBinancePrices() {
-    const symbols = this.state.enabled.binance.map((s) => `"${s}"`).join(',')
+  sell(datetime = Date.now()) {
+    console.log('sell', { datetime })
 
-    fetch(`https://api2.binance.com/api/v3/ticker/price?symbols=[${symbols}]`)
+    const buys = Array.from(Local.get(['buys'], []))
+
+    const buy_index = buys.findIndex((buy) => buy.buy_datetime == datetime)
+
+    const buy = buys[buy_index]
+
+    const value = this.getValue(buy.symbol)
+
+    buy.sell_price = value.price
+    buy.sell_datetime = Date.now()
+
+    Local.set(['buys'], buys.filter((_, index) => index != buy_index ))
+
+    Local.add(['sells'], buy)
+  }
+
+  updateSellsTable() {
+    this.children.sells_table.clear()
+
+    const tr = new TrComponent({})
+
+    Array.from(['symbol', 'buy_price', 'buy_datetime', 'sell_price', 'sell_datetime',]).map((key) => {
+      const td = new TdComponent({})
+      td.setText(key)
+      tr.append(td)
+    })
+
+    this.children.sells_table.append(tr)
+
+    Array.from(Local.get(['sells'], [])).map((buy) => {
+      const tr = new TrComponent({})
+
+      Object.keys(buy).map((key) => {
+        const td = new TdComponent({})
+        td.setText(buy[key])
+        tr.append(td)
+      })
+
+      this.children.sells_table.append(tr)
+    })
+  }
+
+  updateValuesHistory() {
+    // console.log('updateValuesHistory')
+  }
+
+  getSymbolsList() {
+    return this.state.symbols.map((s) => `"${s}"`).join(',')
+  }
+
+  updateBinancePrices() {
+    fetch(`https://api4.binance.com/api/v3/ticker/price?symbols=[${this.getSymbolsList()}]`)
       .then((res) => res.json())
-      .then((values) => this.state.values.binance = values.map(({ symbol, price }) => ({ symbol, price: +price, exchange: 'binance' })))
+      .then((values) => this.state.values = values.map(({ symbol, price }) => ({ symbol, price: +price })))
       .then(() => this.updatePricesTable())
       .then(() => this.updateBuysTable())
+      .then(() => this.updateSellsTable())
       .then(() => this.updateValuesHistory())
       .then(() => this.updateBinancePrices())
   }
