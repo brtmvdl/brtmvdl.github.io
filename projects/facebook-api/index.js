@@ -1,8 +1,8 @@
 import { HTML, nButton } from '@brtmvdl/frontend'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
-
-import { FACEBOOK } from './facebook.js' // https://www.facebook.com/v20.0/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}&state={state-param}
+import * as Local from '../../assets/js/utils/local.js'
+// import { FACEBOOK } from './facebook.js' // https://www.facebook.com/v20.0/dialog/oauth?client_id={app-id}&redirect_uri={redirect-uri}&state={state-param}
 
 export class Page extends HTML {
   children = {
@@ -31,20 +31,26 @@ export class Page extends HTML {
 
   onFacebookLoginButtonClick() {
     const config_id = 1
-    FB.login((data) => console.log(data), { config_id })
+    FB.login((data) => this.onFacebookLogin(data), { config_id })
+  }
+
+  onFacebookLogin(data) {
+    console.log('on Facebook Login', data)
+    Local.set(['facebook.accessToken'], data.authResponse.accessToken)
   }
 
   onFacebookGetLoginStatusButtonClick() {
-    FB.getLoginStatus((data) => console.log(data), {})
+    FB.getLoginStatus((data) => console.log('login status', data), {})
   }
 
   onFacebookPublishStatusMessageButtonClick() {
     const message = `Date time: ${Date.now()}`
-    FB.api('/me/feed', 'post', { message }, (data) => console.log(data))
+    FB.api('/me/feed', 'post', { message }, (data) => console.log('Publish Status Message', data))
   }
 
   onFacebookLogoutButtonClick() {
-    FB.logout((data) => console.log(data), {})
+    const access_token = Local.get(['facebook.accessToken'])
+    FB.logout((data) => console.log(data), { access_token })
   }
 
   appendResponse(name, resp = {}) {
