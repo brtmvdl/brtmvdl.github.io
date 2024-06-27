@@ -1,4 +1,4 @@
-import { Model } from './model.js'
+import { Model } from '../../../assets/js/models/model.js'
 
 export class MessageModel extends Model {
   type = null

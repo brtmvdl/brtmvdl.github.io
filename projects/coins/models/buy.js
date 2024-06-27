@@ -1,4 +1,4 @@
-import { Model } from './model.js'
+import { Model } from '../../../assets/js/models/model.js'
 import { Coin } from './coin.js'
 import { Pair } from './pair.js'
 
