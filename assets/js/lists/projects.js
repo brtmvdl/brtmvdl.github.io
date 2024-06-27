@@ -24,10 +24,6 @@ export default [
     "step": 0
   },
   {
-    "id": "facebook",
-    "step": 0
-  },
-  {
     "id": "openai-api",
     "step": 0
   },
@@ -37,7 +33,7 @@ export default [
   },
   {
     "id": "facebook-api",
-    "step": 0
+    "step": 1
   },
   {
     "id": "peerjs",
