@@ -11,10 +11,12 @@ export class SelectComponent extends HTML {
     error: new HTML(),
   }
 
-  constructor(label = '') {
+  constructor({ label = '' } = {}) {
     super()
     this.state.label = label
   }
+
+  getName() { return 'select-component' }
 
   onCreate() {
     super.onCreate()
