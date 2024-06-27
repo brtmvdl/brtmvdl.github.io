@@ -9,7 +9,7 @@ export default [
   },
   {
     "id": "exchanges",
-    "step": 0
+    "step": 3
   },
   {
     "id": "ajax-in-aws",
