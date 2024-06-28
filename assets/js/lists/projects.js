@@ -201,7 +201,7 @@ export default [
   },
   {
     "id": "imc",
-    "step": 0
+    "step": 4
   },
   {
     "id": "kraken-api",
