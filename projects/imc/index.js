@@ -1,14 +1,12 @@
 import { HTML } from '@brtmvdl/frontend'
-import { InputComponent } from './input.component.js'
-import { ButtonComponent } from './button.component.js'
-import { getParams } from './params.js'
+import { InputComponent } from '../../assets/js/components/input.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { getParams } from '../../assets/js/utils/url.js'
 
 export class Page extends HTML {
-
   children = {
-    weight: new InputComponent('weight (kg)', 1),
-    height: new InputComponent('height (m)', 1),
-    imc_button: this.getImcButton(),
+    weight: new InputComponent({ label: 'weight (kg)', value: '1' }),
+    height: new InputComponent({ label: 'height (m)', value: '1' }),
     result: new HTML(),
   }
 
@@ -20,7 +18,7 @@ export class Page extends HTML {
     this.append(this.getTitle())
     this.append(this.getWeightInput())
     this.append(this.getHeightInput())
-    this.append(this.getImcButton())
+    this.append(new ButtonComponent({ text: 'calc imc', onclick: () => this.onImcButtonClick() }))
     this.append(this.getResultHTML())
   }
 
@@ -46,16 +44,11 @@ export class Page extends HTML {
     return this.children.height
   }
 
-  getImcButton() {
-    return new ButtonComponent(
-      'calc imc',
-      () => {
-        const weight = this.children.weight.getValue()
-        const height = this.children.height.getValue()
-        const imc = this.getIMC(weight, height)
-        this.children.result.setText(`IMC: ${imc}`)
-      }
-    )
+  onImcButtonClick() {
+    const weight = this.children.weight.getValue()
+    const height = this.children.height.getValue()
+    const imc = this.getIMC(weight, height)
+    this.children.result.setText(`IMC: ${imc}`)
   }
 
   getResultHTML() {

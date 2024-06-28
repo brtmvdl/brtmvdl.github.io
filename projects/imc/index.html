@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wordpress</title>
+  <title>imc</title>
   <meta name="google-adsense-account" content="ca-pub-8803365396237758">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758" crossorigin="anonymous"></script>
   <script type="importmap">
@@ -22,11 +22,7 @@
   <script type="module">
     import { HTML } from '@brtmvdl/frontend'
     import { Page } from './index.js'
-    import { getParams } from './params.js'
-
-    const params = getParams()
-    console.log({ params })
-    HTML.fromElement(document.body).setStyle('margin', params.margin).setStyle('background-color', params.bgcolor).setStyle('color', params.color)
+    HTML.fromElement(document.body).setStyle('margin', '0rem')
     HTML.fromId('app').append(new Page())
   </script>
 </body>
