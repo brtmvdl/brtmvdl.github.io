@@ -172,12 +172,8 @@ export default [
     "step": 0
   },
   {
-    "id": "github",
-    "step": 0
-  },
-  {
     "id": "github-api",
-    "step": 0
+    "step": 1
   },
   {
     "id": "gmail",
