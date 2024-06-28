@@ -40,23 +40,7 @@ export default [
     "step": 4
   },
   {
-    "id": "binance",
-    "step": 0
-  },
-  {
-    "id": "binance-api",
-    "step": 0
-  },
-  {
     "id": "binance-rest-api",
-    "step": 0
-  },
-  {
-    "id": "binance-test",
-    "step": 0
-  },
-  {
-    "id": "binance-test-2",
     "step": 0
   },
   {
