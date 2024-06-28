@@ -352,7 +352,7 @@ export default [
     "step": 0
   },
   {
-    "id": "youtube",
-    "step": 0
+    "id": "youtube-data-api",
+    "step": 1
   }
 ]
