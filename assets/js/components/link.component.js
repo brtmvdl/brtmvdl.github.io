@@ -3,9 +3,9 @@ import { HTML, nLink } from '@brtmvdl/frontend'
 export class LinkComponent extends nLink {
   getName() { return 'link-component' }
 
-  state = { text: '', href: '', }
+  state = { text: null, href: null, }
 
-  constructor({ text, href = '' } = {}) {
+  constructor({ text = null, href = null } = {}) {
     super()
     this.state.text = text
     this.state.href = href
