@@ -341,7 +341,7 @@ export default [
   },
   {
     "id": "voicerss-rest-api",
-    "step": 1
+    "step": 4
   },
   {
     "id": "websocket",
