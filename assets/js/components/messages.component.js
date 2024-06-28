@@ -1,33 +1,31 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML } from '@brtmvdl/frontend'
 import { MessageModel } from '../models/message.model.js'
-import { MessageCardComponent } from '../components/message.card.component.js'
 
 export class MessagesComponent extends HTML {
   children = {
-    messages: new HTML(),
+    messages: [],
   }
 
-  getName() { return 'messages-component' }
+  constructor(messages = []) {
+    super()
+    this.children.messages = messages
+  }
 
   onCreate() {
     super.onCreate()
     this.setEvents()
-    this.append(this.getMessagesHTML())
+    this.setStyle('padding', '1rem')
   }
 
   setEvents() {
-    this.on('message', (message) => this.onMessage(message))
+    this.on('message', ({ value: data }) => this.onMessage(data))
   }
 
-  getMessagesHTML() {
-    return this.children.messages
+  onMessage(message = new MessageModel()) {
+    this.prepend(this.getMessageHTML(message.request?.name, message))
   }
 
-  onMessage({ value: message = new MessageModel() }) {
-    this.children.messages.prepend(this.getMessageCardComponent(message))
-  }
-
-  getMessageCardComponent(message = new MessageModel()) {
-    return new MessageCardComponent(message)
+  getMessageHTML(name, data) {
+    return new HTML()
   }
 }

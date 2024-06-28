@@ -39,6 +39,10 @@ export class Response {
     return JSON.parse(this.getResponseText())
   }
 
+  toJSON() {
+    return this.getData()
+  }
+
   get(key) {
     return this.getData()[key]
   }

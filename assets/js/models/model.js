@@ -1,1 +1,5 @@
-export class Model { }
+export class Model {
+  toJSON() { return {} }
+
+  asJSON() { return {} }
+}

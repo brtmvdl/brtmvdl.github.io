@@ -18,8 +18,14 @@ export class RequestModel extends Model {
     this.headers = headers
   }
 
-  getUrl(params = {}) {
-    return Object.keys(params).reduce((url, param) => url.replace('{' + param + '}', params[param]), this.url)
+  getUrl(params = {}, query = {}) {
+    const url = new URL(Object.keys(params).reduce((url, param) => url.replace('{' + param + '}', params[param]), this.url))
+    Array.from(this.query).map((q) => url.searchParams.set(q.toString(), query[q]))
+    return url
   }
 
+  toJSON() {
+    const { name, method, url, params, query, headers } = this
+    return { name, method, url, params, query, headers }
+  }
 }

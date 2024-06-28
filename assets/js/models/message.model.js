@@ -23,7 +23,13 @@ export class MessageModel extends JSONableModel {
     return { m: MessageType, i: SequenceNumber, n: Endpoint, o: JSON.stringify(Payload) }
   }
 
+  asJSON() {
+    const { Side, MessageType, SequenceNumber, Endpoint, Payload } = this
+    return { Side, MessageType, SequenceNumber, Endpoint, Payload }
+  }
+
   toString() {
     return JSON.stringify(this.toJSON())
   }
+
 }
