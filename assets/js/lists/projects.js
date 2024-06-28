@@ -81,7 +81,7 @@ export default [
   },
   {
     "id": "busy",
-    "step": 0
+    "step": 4
   },
   {
     "id": "buy-coins",
