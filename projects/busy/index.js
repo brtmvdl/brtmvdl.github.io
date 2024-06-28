@@ -1,12 +1,13 @@
 import { HTML, nH1, nFlex } from '@brtmvdl/frontend'
-import * as Local from '../../assets/js/utils/local.js'
 import { TextComponent } from '../../../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
+import { datetime2str } from '../../assets/js/utils/str.js'
+import * as Local from '../../assets/js/utils/local.js'
 
 export class Page extends HTML {
   children = {
-    input: new InputComponent('Am i doing?'),
+    input: new InputComponent({ label: 'Am i doing?' }),
     button: new ButtonComponent({ text: 'save', onclick: () => this.onButtonClick() }),
     list: new HTML(),
   }
@@ -15,10 +16,9 @@ export class Page extends HTML {
     super.onCreate()
     this.setStyles()
     this.setEvents()
-    this.append(this.getTitle())
+    this.append(new TextComponent({ text: 'busy' }))
     this.append(this.getForm())
     this.append(this.getTasksList())
-    this.notifyMe('Am i doing?')
     this.updateList()
   }
 
@@ -30,13 +30,6 @@ export class Page extends HTML {
     setInterval(() => this.notifyMe(text), 1000 * 60 * 5)
   }
 
-  getTitle() {
-    const title = new nH1()
-    title.setStyle('margin', '0rem')
-    title.setText('Busy')
-    return title
-  }
-
   getForm() {
     const flex = new nFlex()
     flex.append(this.getInput().setContainerStyle('width', '79%'))
@@ -45,17 +38,17 @@ export class Page extends HTML {
   }
 
   getInput() {
-    this.children.input.setStyle('width', '100%')
     return this.children.input
   }
 
   getButton() {
+    this.children.button.setStyle('margin', '1rem 0rem 0rem 0rem')
     this.children.button.setStyle('width', '100%')
     return this.children.button
   }
 
   onButtonClick() {
-    this.appendTask(this.children.input.getValue())
+    this.appendTask(this.children.input.children.input.getValue())
     this.updateList()
     this.clearInput()
   }
@@ -70,24 +63,18 @@ export class Page extends HTML {
     this.children.list.clear()
     Local.get(['tasks'], []).map(({ title, datetime }) => {
       const flex = new nFlex()
-      flex.append(new TextComponent(title))
-      flex.append(this.getDateTimeHTML(datetime))
+      flex.append(new TextComponent({ text: title }))
+      flex.append(new TextComponent({ text: datetime2str(datetime) }))
       this.children.list.prepend(flex)
     })
   }
 
   clearInput() {
-    this.children.input.setValue('')
+    this.children.input.children.input.setValue('')
   }
 
   notifyMe(text) {
     Notification.requestPermission().then((p) => new Notification(text))
-  }
-
-  getDateTimeHTML(datetime = Date.now()) {
-    const date = new Date(datetime)
-    const text = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-    return new TextComponent(text)
   }
 
   getTasksList() {
