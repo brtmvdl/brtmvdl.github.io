@@ -1,10 +1,13 @@
-import { HTML, nFlex, nImage, nLink } from '@brtmvdl/frontend'
+import { HTML } from '@brtmvdl/frontend'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { AudioMessageComponent } from './components/audio.message.component.js'
-import { MessageComponent } from './components/message.component.js'
-import { SelectComponent } from './components/select.component.js'
-import { InputComponent } from './components/input.component.js'
-import { nButton } from './components/button.js'
+// import { MessageComponent } from './components/message.component.js'
+import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
+import { SelectComponent } from '../../assets/js/components/select.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { InputComponent } from '../../assets/js/components/input.component.js'
+import { ImageComponent } from '../../assets/js/components/image.component.js'
+import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { AudioMessageModel } from './models/audio.message.model.js'
 import { MessageModel } from './models/message.model.js'
 import { getLanguages } from './languages.js'
@@ -12,9 +15,9 @@ import { getLanguages } from './languages.js'
 export class Page extends HTML {
   children = {
     ip: new HTML(),
-    src_input: new InputComponent('src', 'project ' + Date.now().toString()),
-    key_input: new InputComponent('key', 'ebcb13f044794a24b8f1511008312127'),
-    language_select: new SelectComponent('languages'),
+    src_input: new InputComponent({ label: 'src', value: 'project ' + Date.now().toString() }),
+    key_input: new InputComponent({ label: 'key', value: 'ebcb13f044794a24b8f1511008312127', type: 'password' }),
+    language_select: new SelectComponent({ label: 'languages' }),
     messages: new HTML(),
   }
 
@@ -25,20 +28,14 @@ export class Page extends HTML {
   }
 
   getHeader() {
-    const flex = new nFlex()
-    flex.append(this.getLeftHeaderHTML().setContainerStyle('width', '20%'))
-    flex.append(this.getRightHeaderHTML().setContainerStyle('width', '80%'))
-    return flex
+    return new TwoColumnsComponent({ html1: this.getLeftHeaderHTML(), html2: this.getRightHeaderHTML() })
   }
 
   getLeftHeaderHTML() {
     const html = new HTML()
-    const image = new nImage()
+    const image = new ImageComponent({ src: './logo.png', alt: 'logo' })
     image.setStyle('width', 'calc(100% - 1rem)')
-    image.src('./logo.png')
-    image.alt('logo')
-    const link = new nLink()
-    link.href('https://voicerss.org/')
+    const link = new LinkComponent({ href: 'https://voicerss.org/' })
     link.setAttr('_new', true)
     link.append(image)
     html.append(link)
@@ -50,16 +47,13 @@ export class Page extends HTML {
   }
 
   getBody() {
-    const html = new nFlex()
-    html.append(this.getForm().setContainerStyle('width', '20%'))
-    html.append(this.getMessages().setContainerStyle('width', '80%'))
-    return html
+    return new TwoColumnsComponent({ html1: this.getForm(), html2: this.getMessages() })
   }
 
   getForm() {
     const form = new HTML()
     form.append(this.getParametersForm())
-    form.append(this.getSendButton())
+    form.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
     return form
   }
 
@@ -76,17 +70,12 @@ export class Page extends HTML {
   }
 
   getKeyInput() {
-    this.children.key_input.children.input.setAttr('type', 'password')
     return this.children.key_input
   }
 
   getLanguageSelect() {
-    Array.from(getLanguages()).map((l) => this.children.language_select.children.select.addOption(l, l))
+    Array.from(getLanguages()).map((l) => this.children.language_select.children.input.addOption(l, l))
     return this.children.language_select
-  }
-
-  getSendButton() {
-    return new nButton('send', () => this.onSendButtonClick())
   }
 
   onSendButtonClick() {
@@ -111,7 +100,7 @@ export class Page extends HTML {
       return new AudioMessageComponent(message)
     }
 
-    return new TextComponent(message.type)
+    return new TextComponent({ text: message.type })
   }
 
   getMessages() {
