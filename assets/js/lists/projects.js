@@ -340,8 +340,8 @@ export default [
     "step": 0
   },
   {
-    "id": "voicerss",
-    "step": 0
+    "id": "voicerss-rest-api",
+    "step": 1
   },
   {
     "id": "voicerss-api",
