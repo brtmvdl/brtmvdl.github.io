@@ -2,11 +2,14 @@ import { HTML, nLink } from '@brtmvdl/frontend'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
+import { padLeft } from '../../assets/js/utils/str.js'
 
 export class Page extends HTML {
   state = {
     is_playing: false,
     media_recorder: null,
+    timer: 0,
+    id: -1,
   }
 
   children = {
@@ -24,7 +27,7 @@ export class Page extends HTML {
     html.setStyle('text-align', 'center')
     html.setStyle('margin', '0 auto')
     html.setStyle('width', '20rem')
-    html.append(new TextComponent({ text: 'Audio' }))
+    html.append(new TextComponent({ text: 'audio recorder' }))
     html.append(this.getPlayButton())
     html.append(this.getRecordsHTML())
     return html
@@ -39,13 +42,11 @@ export class Page extends HTML {
   }
 
   onButtonClick() {
-    if (this.state.is_playing = !this.state.is_playing) {
-      this.startRecord()
-      this.setButtonText('stop')
-    } else {
-      this.stopRecording()
-      this.setButtonText('play')
-    }
+    (this.state.is_playing = !this.state.is_playing)
+      ? this.startRecord()
+      : this.stopRecording()
+
+    this.updateButtonText()
   }
 
   setButtonText(text = '') {
@@ -60,6 +61,7 @@ export class Page extends HTML {
 
   stopRecording() {
     this.state.media_recorder?.stop()
+    this.state.timer = 0
   }
 
   getUserMedia() {
@@ -67,8 +69,20 @@ export class Page extends HTML {
   }
 
   onUserMedia(data) {
+    this.state.id = setInterval(() => this.tick(), 1000)
     this.createMediaRecorder(data)
     this.startMediaRecorder()
+  }
+
+  tick() {
+    this.state.timer++
+    this.updateButtonText()
+  }
+
+  updateButtonText() {
+    this.state.is_playing
+      ? this.setButtonText(`stop (${padLeft(this.state.timer, 2, '0')}s)`)
+      : this.setButtonText('play')
   }
 
   createMediaRecorder(stream) {
