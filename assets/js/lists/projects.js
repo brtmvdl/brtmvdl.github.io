@@ -8,7 +8,7 @@ export default [
     "step": 0
   },
   {
-    "id": "aliexpress-api",
+    "id": "aliexpress-rest-api",
     "step": 0
   },
   {
@@ -16,7 +16,7 @@ export default [
     "step": 4
   },
   {
-    "id": "anthropic-api",
+    "id": "anthropic-rest-api",
     "step": 0
   },
   {
@@ -28,7 +28,7 @@ export default [
     "step": 4
   },
   {
-    "id": "autentique-api",
+    "id": "autentique-rest-api",
     "step": 0
   },
   {
@@ -60,7 +60,7 @@ export default [
     "step": 0
   },
   {
-    "id": "brasil-api",
+    "id": "brasil-rest-api",
     "step": 0
   },
   {
@@ -72,7 +72,7 @@ export default [
     "step": 0
   },
   {
-    "id": "bybit-api",
+    "id": "bybit-rest-api",
     "step": 0
   },
   {
@@ -88,11 +88,11 @@ export default [
     "step": 4
   },
   {
-    "id": "cloudflare-api",
+    "id": "cloudflare-rest-api",
     "step": 0
   },
   {
-    "id": "coinbase-api",
+    "id": "coinbase-rest-api",
     "step": 0
   },
   {
@@ -128,15 +128,15 @@ export default [
     "step": 3
   },
   {
-    "id": "expaybrasil-api",
+    "id": "expaybrasil-rest-api",
     "step": 0
   },
   {
-    "id": "facebook-api",
+    "id": "facebook-rest-api",
     "step": 1
   },
   {
-    "id": "firebase-api",
+    "id": "firebase-rest-api",
     "step": 0
   },
   {
@@ -152,7 +152,7 @@ export default [
     "step": 0
   },
   {
-    "id": "github-api",
+    "id": "github-rest-api",
     "step": 1
   },
   {
@@ -160,7 +160,7 @@ export default [
     "step": 0
   },
   {
-    "id": "google-api",
+    "id": "google-rest-api",
     "step": 0
   },
   {
@@ -168,7 +168,7 @@ export default [
     "step": 0
   },
   {
-    "id": "hotmart-api",
+    "id": "hotmart-rest-api",
     "step": 0
   },
   {
@@ -180,11 +180,11 @@ export default [
     "step": 4
   },
   {
-    "id": "kraken-api",
+    "id": "kraken-rest-api",
     "step": 0
   },
   {
-    "id": "kucoin-api",
+    "id": "kucoin-rest-api",
     "step": 0
   },
   {
@@ -192,7 +192,7 @@ export default [
     "step": 0
   },
   {
-    "id": "linkedin-api",
+    "id": "linkedin-rest-api",
     "step": 0
   },
   {
@@ -200,11 +200,11 @@ export default [
     "step": 0
   },
   {
-    "id": "lyrics-api",
+    "id": "lyrics-rest-api",
     "step": 0
   },
   {
-    "id": "makersuite-api",
+    "id": "makersuite-rest-api",
     "step": 0
   },
   {
@@ -220,15 +220,15 @@ export default [
     "step": 0
   },
   {
-    "id": "mercadopago-api",
+    "id": "mercadopago-rest-api",
     "step": 0
   },
   {
-    "id": "microsoft-api",
+    "id": "microsoft-rest-api",
     "step": 0
   },
   {
-    "id": "musixmatch-api",
+    "id": "musixmatch-rest-api",
     "step": 0
   },
   {
@@ -240,7 +240,7 @@ export default [
     "step": 4
   },
   {
-    "id": "openai-api",
+    "id": "openai-rest-api",
     "step": 0
   },
   {
@@ -268,7 +268,7 @@ export default [
     "step": 0
   },
   {
-    "id": "rdap-api",
+    "id": "rdap-rest-api",
     "step": 0
   },
   {
@@ -276,7 +276,7 @@ export default [
     "step": 0
   },
   {
-    "id": "screen-capture-api",
+    "id": "screen-capture-rest-api",
     "step": 0
   },
   {
@@ -292,11 +292,11 @@ export default [
     "step": 0
   },
   {
-    "id": "sumup-api",
+    "id": "sumup-rest-api",
     "step": 0
   },
   {
-    "id": "telegram-api",
+    "id": "telegram-rest-api",
     "step": 0
   },
   {
@@ -304,7 +304,7 @@ export default [
     "step": 0
   },
   {
-    "id": "tradingeconomics-api",
+    "id": "tradingeconomics-rest-api",
     "step": 0
   },
   {
@@ -320,19 +320,19 @@ export default [
     "step": 0
   },
   {
-    "id": "twitter-api",
+    "id": "twitter-rest-api",
     "step": 0
   },
   {
-    "id": "udemy-api",
+    "id": "udemy-rest-api",
     "step": 0
   },
   {
-    "id": "unique-api",
+    "id": "unique-rest-api",
     "step": 0
   },
   {
-    "id": "unsplash-api",
+    "id": "unsplash-rest-api",
     "step": 0
   },
   {
