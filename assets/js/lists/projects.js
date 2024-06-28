@@ -344,10 +344,6 @@ export default [
     "step": 1
   },
   {
-    "id": "voicerss-api",
-    "step": 0
-  },
-  {
     "id": "websocket",
     "step": 0
   },
