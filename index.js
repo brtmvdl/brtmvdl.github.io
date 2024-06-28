@@ -28,7 +28,7 @@ export class Page extends HTML {
     html.append(new TextComponent({ text: 'Products' }))
     Array.from(products).map(({ id }) => html.append(new LinkComponent({ text: id, href: `/products/${id}/` })))
     html.append(new TextComponent({ text: 'Projects' }))
-    Array.from(projects).sort((a, b) => b.step - a.step).map(({ id, step }) => html.append(new LinkComponent({ text: id + stepName(step, ' (', ') '), href: `/projects/${id}/` })))
+    Array.from(projects).map(({ id, step }) => html.append(new LinkComponent({ text: id + stepName(step, ' (', ') '), href: `/projects/${id}/` })))
     return html
   }
 }
