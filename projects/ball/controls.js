@@ -2,6 +2,7 @@ import { HTML } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { getURLSearchParam } from '../../assets/js/utils/url.js'
 
 export class Page extends HTML {
   state = {
@@ -10,7 +11,7 @@ export class Page extends HTML {
   }
 
   children = {
-    input: new InputComponent('text'),
+    input: new InputComponent({ label: 'text' }),
   }
 
   onCreate() {
@@ -42,8 +43,7 @@ export class Page extends HTML {
   }
 
   getId() {
-    const url = new URL(window.location)
-    return url.searchParams.get('id')
+    return getURLSearchParam('id')
   }
 
   getForm() {
