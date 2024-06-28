@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import * as dat from 'dat.gui'
+// import * as dat from 'dat.gui'
 
 const {
   innerHeight: HEIGHT,
@@ -54,7 +54,7 @@ const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
 sphere.position.set(-10, 10, 0)
 scene.add(sphere)
 
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
 const options = {
   sphereColor: '#ffcc00',
@@ -62,13 +62,13 @@ const options = {
   speed: 0.01,
 }
 
-gui.addColor(options, 'sphereColor')
-  .onChange((e) => sphere.material.color.set(e))
+// gui.addColor(options, 'sphereColor')
+//   .onChange((e) => sphere.material.color.set(e))
 
-gui.add(options, 'wireframe')
-  .onChange((e) => sphere.material.wireframe = e)
+// gui.add(options, 'wireframe')
+//   .onChange((e) => sphere.material.wireframe = e)
 
-gui.add(options, 'speed', 0, 0.1)
+// gui.add(options, 'speed', 0, 0.1)
 
 let step = 0
 
@@ -83,7 +83,7 @@ function animate() {
   step += options.speed
   sphere.position.y = 10 * Math.abs(Math.sin(step))
 
-  controls.update()
+  // controls.update()
 
   renderer.render(scene, camera)
 
