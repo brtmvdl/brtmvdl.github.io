@@ -13,7 +13,7 @@ export class InputComponent extends HTML {
     error: new HTML(),
   }
 
-  constructor(label, value = '', type = 'text') {
+  constructor({ label, value = '', type = 'text' } = {}) {
     super()
     this.state.label = label
     this.state.value = value
@@ -33,9 +33,9 @@ export class InputComponent extends HTML {
   }
 
   getInput() {
-    this.children.input.setPlaceholder(this.state.label)
-    this.children.input.setValue(this.state.value)
-    this.children.input.setAttr('type', this.state.type)
+    this.children.input.setPlaceholder(this.state.label?.toString())
+    this.children.input.setValue(this.state.value?.toString())
+    this.children.input.setAttr('type', this.state.type?.toString())
     this.children.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
     this.children.input.setStyle('padding', 'calc(1rem / 4)')
     this.children.input.setStyle('box-sizing', 'border-box')
@@ -48,6 +48,6 @@ export class InputComponent extends HTML {
   }
 
   getValue() {
-    return this.getInput().getValue()
+    return this.children.input.getValue()
   }
 }
