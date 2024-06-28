@@ -105,7 +105,7 @@ export default [
   },
   {
     "id": "coins-calculator",
-    "step": 0
+    "step": 4
   },
   {
     "id": "cube",
