@@ -4,7 +4,7 @@ export class RequestModel extends JSONableModel {
   name = 'Request'
   method = 'GET'
   pathname = ''
-  query = []
+  // query = []
   headers = []
   body = []
 
@@ -13,7 +13,7 @@ export class RequestModel extends JSONableModel {
     this.name = name
     this.method = method
     this.pathname = pathname
-    this.query = query
+    // this.query = query
     this.headers = headers
     this.body = body
   }

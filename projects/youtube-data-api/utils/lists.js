@@ -1,7 +1,6 @@
-import { RequestModel } from '../../../assets/js/models/request.model.js'
+import { EndpointModel } from '../../../assets/js/models/endpoint.model.js'
 
-export const getRequestList = () => Array.from([
-  new RequestModel('Youtube API'),
-  new RequestModel('Videos: list', 'GET', '/youtube/v3/videos', [], ['part', 'chart']),
-  new RequestModel('Videos: insert', 'POST', '/upload/youtube/v3/videos'),
-])
+export const getEndpointsList = () => Array.from([
+  new EndpointModel('Youtube API'),
+  new EndpointModel('Videos: list', 'GET', 'https://www.googleapis.com/youtube/v3/videos', [], ['part', 'chart']),
+]).map((endpoint, ix) => { if (ix != 0) endpoint.query.push('key'); return endpoint })

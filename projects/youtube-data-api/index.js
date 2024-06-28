@@ -1,9 +1,20 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML } from '@brtmvdl/frontend'
+
+import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
+import { EndpointsComponent } from '../../assets/js/components/endpoints.component.js'
 import { TopComponent } from '../../assets/js/components/top.component.js'
-import { FormHTML } from './components/form.component.js'
-import { MessagesHTML } from './components/messages.html.js'
-import { MessageModel } from './models/messages.model.js'
-import * as API from './utils/api.js'
+import { MessagesComponent } from './components/messages.component.js'
+import inputs from './components/inputs/index.js'
+
+import { SuccessMessageModel } from '../../assets/js/models/success.message.model.js'
+import { ErrorResponseModel } from '../../assets/js/models/error.response.model.js'
+import { ErrorMessageModel } from '../../assets/js/models/error.message.model.js'
+import { ResponseModel } from '../../assets/js/models/response.model.js'
+import { EndpointModel } from '../../assets/js/models/endpoint.model.js'
+import { MessageModel } from '../../assets/js/models/message.model.js'
+import { RequestModel } from '../../assets/js/models/request.model.js'
+
+import { getEndpointsList } from './utils/lists.js'
 
 export class Page extends HTML {
   state = {
@@ -12,8 +23,8 @@ export class Page extends HTML {
 
   children = {
     top_bar: new TopComponent('https://developers.google.com/youtube/v3/docs'),
-    form: new FormHTML(),
-    messages: new MessagesHTML(),
+    form: new EndpointsComponent(getEndpointsList(), inputs),
+    messages: new MessagesComponent(),
   }
 
   onCreate() {
@@ -27,32 +38,27 @@ export class Page extends HTML {
   }
 
   getFlex() {
-    const flex = (window.innerWidth > window.innerHeight) ? new nFlex() : new HTML()
-    flex.append(this.getFormHTML())
-    flex.append(this.getMessagesHTML())
-    return flex
+    return new TwoColumnsComponent({ html1: this.getFormHTML(), html2: this.getMessagesComponent(), })
   }
 
   getFormHTML() {
-    this.children.form.on('submit', (data) => this.onFormHtmlSubmit(data))
-    this.children.form.on('save', (data) => this.children.form.dispatchEvent('messages', this.state.messages))
+    this.children.form.on('send', (data) => this.onFormSend(data))
     return this.children.form
   }
 
-  onFormHtmlSubmit({ value: { request, query, body, headers } } = {}) {
-    console.log({ request, query, body, headers })
-    const message = new MessageModel(request, { query, body, headers })
-    this.sendMessage(message)
+  onFormSend({ value: { endpoint = new EndpointModel(), query: queryParams } } = {}) {
+    const url = new URL(endpoint.url)
+    Object.keys(queryParams).map((q) => url.searchParams.set(q, queryParams[q]))
+    this.sendRequest(new RequestModel(endpoint.name, endpoint.method, url.toString(), [], queryParams))
   }
 
-  sendMessage(message = new MessageModel()) {
-    this.addMessage(message)
-    API.sendMessage(message)
-      .then((json) => console.log(json))
-      .catch((err) => console.error(err))
+  sendRequest(request = new RequestModel()) {
+    fetch(request.getUrl(), { headers: request.headers, body: request.body, method: request.method })
+      .then((json) => this.addMessage(new SuccessMessageModel(request, new ResponseModel(json))))
+      .catch((err) => this.addMessage(new ErrorMessageModel(request, new ErrorResponseModel(err))))
   }
 
-  getMessagesHTML() {
+  getMessagesComponent() {
     return this.children.messages
   }
 
