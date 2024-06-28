@@ -140,16 +140,12 @@ export default [
     "step": 0
   },
   {
-    "id": "foxbit",
-    "step": 0
-  },
-  {
-    "id": "foxbit-api",
+    "id": "foxbit-rest-api",
     "step": 0
   },
   {
     "id": "foxbit-websocket-api",
-    "step": 0
+    "step": 1
   },
   {
     "id": "frontend",
