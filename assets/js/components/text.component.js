@@ -6,7 +6,7 @@ export class TextComponent extends HTML {
     title: '',
   }
 
-  constructor({ text, title = '' }) {
+  constructor({ text, title = '' } = { text: '' }) {
     super()
     this.state.text = text
     this.state.title = title
