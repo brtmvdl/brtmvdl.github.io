@@ -219,6 +219,10 @@ export default [
   //   "id": "mercadobitcoin",
   //   "step": 0
   // },
+  {
+    "id": "meetings",
+    "step": 1
+  },
   // {
   //   "id": "mercadopago-rest-api",
   //   "step": 0
