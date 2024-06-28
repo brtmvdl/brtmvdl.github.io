@@ -3,6 +3,7 @@ import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
+import { getURLSearchParam } from '../../assets/js/utils/url.js'
 import * as Local from '../../assets/js/utils/local.js'
 import * as Flow from '../../assets/js/utils/flow.js'
 import { client_id } from './config.js'
@@ -10,7 +11,7 @@ import { client_id } from './config.js'
 export class Page extends HTML {
   children = {
     responses: new HTML(),
-    access_token: new InputComponent('access token'),
+    access_token: new InputComponent({ label: 'access token' }),
   }
 
   onCreate() {
@@ -25,11 +26,11 @@ export class Page extends HTML {
   }
 
   getLoginLink() {
-    return new LinkComponent('login', `https://github.com/login/oauth/authorize?scope=user:email&client_id=${client_id}`)
+    return new LinkComponent({ text: 'login', href: `https://github.com/login/oauth/authorize?scope=user:email&client_id=${client_id}` })
   }
 
   getTokensLink() {
-    return new LinkComponent('settings/tokens', 'https://github.com/settings/tokens?type=beta')
+    return new LinkComponent({ text: 'settings/tokens', href: 'https://github.com/settings/tokens?type=beta' })
   }
 
   getAccessTokenInput() {
@@ -58,8 +59,7 @@ export class Page extends HTML {
   }
 
   setOauthCode() {
-    const url = new URL(window.location)
-    const github_code = url.searchParams.get('code')
+    const github_code = getURLSearchParam('code')
     if (github_code) {
       Local.set(['github_code'], github_code)
       Flow.goTo('index.html')
