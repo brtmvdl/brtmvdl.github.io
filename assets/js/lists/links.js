@@ -1,8 +1,7 @@
 // 
 
 export const getLinksList = () => Array.from([
+  ['experiences', '/experiences/'],
   ['blog', '/blog/'],
-  ['products', '/products/'],
-  ['projects', '/projects/'],
-  ['cart', '/cart/'],
+  ['donate', '/pages/donate/'],
 ])
