@@ -1,4 +1,4 @@
-import { HTML, nImage, nError, nFlex, nH1, nLink, nH2 } from '@brtmvdl/frontend'
+import { HTML, nFlex, nH1, nLink, nH2 } from '@brtmvdl/frontend'
 import { ChallengeListComponent } from './components/challenge.list.component.js'
 import * as API from './utils/api.js'
 
@@ -40,7 +40,7 @@ class CardHTML extends HTML {
 
 export class Page extends HTML {
   children = {
-    errorMessage: new nError(),
+    errorMessage: new HTML(),
     header: new HTML(),
     resume: new HTML(),
     goals: new HTML(),
