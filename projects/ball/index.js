@@ -3,7 +3,6 @@ import * as THREE from 'three'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
-import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 
 THREE.Cache.enabled = true
 
@@ -194,17 +193,6 @@ function init() {
       window.open(url)
     }
   }
-
-  //
-
-  const gui = new GUI()
-
-  gui.add(params, 'changeColor').name('change color')
-  gui.add(params, 'changeFont').name('change font')
-  gui.add(params, 'changeWeight').name('change weight')
-  gui.add(params, 'changeBevel').name('change bevel')
-  gui.add(params, 'openControls').name('open controls')
-  gui.open()
 
   //
 
