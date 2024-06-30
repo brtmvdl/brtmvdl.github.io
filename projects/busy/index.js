@@ -1,5 +1,6 @@
 import { HTML, nH1, nFlex } from '@brtmvdl/frontend'
 import { TextComponent } from '../../../../assets/js/components/text.component.js'
+import { HeaderComponent } from '../../assets/js/components/header.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { datetime2str } from '../../assets/js/utils/str.js'
@@ -7,7 +8,7 @@ import * as Local from '../../assets/js/utils/local.js'
 
 export class Page extends HTML {
   children = {
-    input: new InputComponent({ label: 'Am i doing?' }),
+    input: new InputComponent({ placeholder: 'what am i doing?' }),
     button: new ButtonComponent({ text: 'save', onclick: () => this.onButtonClick() }),
     list: new HTML(),
   }
@@ -16,6 +17,7 @@ export class Page extends HTML {
     super.onCreate()
     this.setStyles()
     this.setEvents()
+    this.append(new HeaderComponent())
     this.append(new TextComponent({ text: 'busy' }))
     this.append(this.getForm())
     this.append(this.getTasksList())
@@ -42,7 +44,6 @@ export class Page extends HTML {
   }
 
   getButton() {
-    this.children.button.setStyle('margin', '1rem 0rem 0rem 0rem')
     this.children.button.setStyle('width', '100%')
     return this.children.button
   }
@@ -81,5 +82,4 @@ export class Page extends HTML {
     this.children.list.setStyle('margin', '1rem 0rem 0rem 0rem')
     return this.children.list
   }
-
 }
