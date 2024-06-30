@@ -2,6 +2,7 @@ import { HTML, nLink } from '@brtmvdl/frontend'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
+import { HeaderComponent } from '../../assets/js/components/header.component.js'
 import { padLeft } from '../../assets/js/utils/str.js'
 
 export class Page extends HTML {
@@ -19,6 +20,7 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.append(new HeaderComponent())
     this.append(this.getBox())
   }
 
