@@ -2,7 +2,7 @@ import { RequestModel } from '../../assets/js/models/request.model.js'
 
 const url = (path = '') => `https://api.musixmatch.com/ws/1.1/${path}`
 
-export const getMethodsList = () => Array.from([
+export const getRequestModelList = () => Array.from([
   new RequestModel('Musixmatch'),
   new RequestModel('chart.artists.get', 'GET', url('chart.artists.get'), [], ['country', 'page', 'page_size', 'format'], []),
   new RequestModel('chart.tracks.get', 'GET', url('chart.tracks.get'), [], ['country', 'page', 'page_size', 'chart_name', 'f_has_lyrics'], []),
