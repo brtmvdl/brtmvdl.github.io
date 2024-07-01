@@ -55,13 +55,16 @@ let pointerXOnPointerDown = 0
 let windowHalfX = window.innerWidth / 2
 let fontIndex = 1
 
-const createQrcodeImage = (id) => {
-  const image = document.createElement('img')
+const createControlsUrl = (id) => {
   const url = new URL(window.location)
   url.pathname = `/projects/ball/controls.html?id=${id}`
-  const qrcode_url = url.toString()
-  console.log({ qrcode_url })
-  image.src = qrcode(qrcode_url)
+  return url.toString()
+}
+
+const createQrcodeImage = (url) => {
+  console.log({ url })
+  const image = document.createElement('img')
+  image.src = qrcode(url)
   image.style.position = 'fixed'
   image.style.left = '1rem'
   image.style.bottom = '1rem'
@@ -233,7 +236,7 @@ function init() {
     console.log('peer open')
     const PEER_ID = peer.id
     console.log({ PEER_ID })
-    createQrcodeImage(PEER_ID)
+    createQrcodeImage(createControlsUrl(PEER_ID))
   })
 
   peer.on('error', () => console.log('peer error'))
