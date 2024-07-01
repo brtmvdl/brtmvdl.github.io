@@ -9,7 +9,7 @@ const url = (url, query = {}) => {
 export const rest = {
   musixmatch: {
     v1: {
-      call: (method, path, params = {}) => request(method, url('https://api.musixmatch.com/ws/1.1/' + path, params), {}, { 'Access-Control-Allow-Origin': '*' })
+      call: (method, path, params = {}) => request(method, url('https://api.musixmatch.com/ws/1.1/' + path, params), {}, { 'Access-Control-Allow-Origin': '*', 'Access-Control-Request-Headers': '*' })
     }
   }
 }
