@@ -43,7 +43,7 @@ export class Page extends PaddingComponent {
 
   onFormSend(data) {
     console.log('on form send', { data })
-    API.rest.musixmatch.v1.call(data.endpoint.method, data.endpoint.name, data.query)
+    API.rest.musixmatch.v1.call(data.endpoint.method, data.endpoint.url, data.query)
       .then((res) => console.log(res))
       .catch((err) => console.error(err))
   }
