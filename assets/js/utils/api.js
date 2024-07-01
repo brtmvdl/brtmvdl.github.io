@@ -1,4 +1,4 @@
-// 
+import { request } from './ajax.js'
 
 const url = (url, query = {}) => {
   const nUrl = new URL(url)
@@ -9,7 +9,7 @@ const url = (url, query = {}) => {
 export const rest = {
   musixmatch: {
     v1: {
-      call: (method, path, params = {}) => fetch(url('https://api.musixmatch.com/ws/1.1/' + path, params), { method, mode: 'no-cors' }).then((res) => res.json())
+      call: (method, path, params = {}) => request(method, url('https://api.musixmatch.com/ws/1.1/' + path, params), {}, { 'Access-Control-Allow-Origin': '*' })
     }
   }
 }
