@@ -1,8 +1,9 @@
 import { HTML } from '@brtmvdl/frontend'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { AudioMessageComponent } from './components/audio.message.component.js'
-// import { MessageComponent } from './components/message.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
+import { ImageLinkComponent } from '../../assets/js/components/image.link.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { SelectComponent } from '../../assets/js/components/select.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
@@ -12,7 +13,7 @@ import { AudioMessageModel } from './models/audio.message.model.js'
 import { MessageModel } from './models/message.model.js'
 import { getLanguages } from './languages.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     ip: new HTML(),
     src_input: new InputComponent({ label: 'src', value: 'project ' + Date.now().toString() }),
@@ -28,22 +29,10 @@ export class Page extends HTML {
   }
 
   getHeader() {
-    return new TwoColumnsComponent({ html1: this.getLeftHeaderHTML(), html2: this.getRightHeaderHTML() })
-  }
-
-  getLeftHeaderHTML() {
-    const html = new HTML()
-    const image = new ImageComponent({ src: './logo.png', alt: 'logo' })
-    image.setStyle('width', 'calc(100% - 1rem)')
-    const link = new LinkComponent({ href: 'https://voicerss.org/' })
-    link.setAttr('_new', true)
-    link.append(image)
-    html.append(link)
-    return html.append(link)
-  }
-
-  getRightHeaderHTML() {
-    return new HTML()
+    return new TwoColumnsComponent({
+      html1: new ImageLinkComponent({ src: './logo.png', href: 'https://voicerss.org/' }),
+      html2: new HTML(),
+    })
   }
 
   getBody() {
@@ -52,16 +41,10 @@ export class Page extends HTML {
 
   getForm() {
     const form = new HTML()
-    form.append(this.getParametersForm())
-    form.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
-    return form
-  }
-
-  getParametersForm() {
-    const form = new HTML()
     form.append(this.getSrcInput())
     form.append(this.getKeyInput())
     form.append(this.getLanguageSelect())
+    form.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
     return form
   }
 
@@ -87,8 +70,12 @@ export class Page extends HTML {
     const src = this.children.src_input.getValue()
     const hl = this.children.language_select.getValue()
     const search = new URLSearchParams({ key, src, hl })
-    const url = `http://api.voicerss.org/?${search.toString()}`
+    const url = this.getUrl({ search })
     this.addMessage(new AudioMessageModel(url, src))
+  }
+
+  getUrl({ search } = {}) {
+    return `http://api.voicerss.org/?${search.toString()}`
   }
 
   addMessage(message = new MessageModel()) {
