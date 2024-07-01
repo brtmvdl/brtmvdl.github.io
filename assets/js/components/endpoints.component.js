@@ -1,19 +1,20 @@
 import { HTML } from '@brtmvdl/frontend'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
+import { InputsComponent } from './inputs.component.js'
 
 export class EndpointsComponent extends HTML {
   children = {
     select: new SelectComponent({}),
     form: new HTML(),
-    inputs: {},
+    inputs: new InputsComponent(),
   }
 
   state = {
     endpoints: [],
   }
 
-  constructor(endpoints = [], inputs = {}) {
+  constructor(endpoints = [], inputs = new InputsComponent()) {
     super()
     this.state.endpoints = endpoints
     this.children.inputs = inputs
@@ -36,12 +37,12 @@ export class EndpointsComponent extends HTML {
 
   onEndpointsSelectChange() {
     this.children.form.clear()
-    const inputs = this.getEndpointInputs()
+    this.getEndpointInputs().map((i) => this.children.form.append(i))
   }
 
   getEndpointInputs(endpoint = this.children.select.getValue()) {
     const { query } = this.getEndpoint(endpoint)
-    Array.from(query).map((q) => this.children.form.append(this.children.inputs[q]))
+    return Array.from(query).map((q) => (this.children.inputs.getComponent(q)))
   }
 
   getForm() {
@@ -60,6 +61,7 @@ export class EndpointsComponent extends HTML {
 
   getEndpointQuery(endpoint = this.children.select.getValue()) {
     const { query } = this.getEndpoint(endpoint)
-    return Array.from(query).reduce((params, q) => ({ ...params, [q]: this.children.inputs[q].getValue() }), {})
+    return Array.from(query).reduce((params, q) => ({ ...params, [q]: this.children.inputs.getValue(q) }), {})
   }
+
 }
