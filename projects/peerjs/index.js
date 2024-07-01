@@ -1,10 +1,12 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
-import { InputComponent } from './components/input.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
+import { InputComponent } from './components/input.component.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     peer_id: new TextComponent({ text: 'PEER ID: ' }),
     messages: new HTML(),
@@ -70,12 +72,11 @@ export class Page extends HTML {
   }
 
   getPeerIdHTML() {
-    this.children.peer_id.setStyle('margin', '1rem')
     return this.children.peer_id
   }
 
   getPeerForm() {
-    return this.createFlex(this.getPeerIdInput(), this.getConnectButton())
+    return new TwoColumnsComponent({ html1: this.getPeerIdInput(), html2: this.getConnectButton(), widths: ['79%', '20%'] })
   }
 
   getPeerIdInput() {
@@ -111,20 +112,12 @@ export class Page extends HTML {
   }
 
   getMessagesHTML() {
-    this.children.messages.setStyle('padding', '1rem')
+    this.children.messages.setStyle('padding', 'calc(1rem / 4) 0rem')
     return this.children.messages
   }
 
-  createFlex(component1, component2) {
-    const html = new nFlex()
-    html.setStyle('padding', '1rem')
-    html.append(component1.setContainerStyle('width', '79%'))
-    html.append(component2.setContainerStyle('width', '20%'))
-    return html
-  }
-
   getTextForm() {
-    return this.createFlex(this.getTextInput(), this.getSendButton())
+    return new TwoColumnsComponent({ html1: this.getTextInput(), html2: this.getSendButton(), widths: ['79%', '20%'] })
   }
 
   getTextInput() {
@@ -145,5 +138,4 @@ export class Page extends HTML {
   addMessage(text) {
     this.children.messages.prepend(new TextComponent({ text }))
   }
-
 }
