@@ -6,6 +6,7 @@ import { EndpointsComponent } from '../../assets/js/components/endpoints.compone
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { InputsComponent } from './components/inputs.component.js'
 import { TextModel } from '../../assets/js/models/text.model.js'
+import * as API from '../../assets/js/utils/api.js'
 
 import { getRequestModelList } from './lists.js'
 
@@ -42,12 +43,9 @@ export class Page extends PaddingComponent {
 
   onFormSend(data) {
     console.log('on form send', { data })
-  }
-
-  onSendButtonClick() {
-  }
-
-  getUrl({ search } = {}) {
+    API.rest.musixmatch.v1.call(data.endpoint.method, data.endpoint.name, data.query)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err))
   }
 
   addMessage(message = new TextModel()) {
