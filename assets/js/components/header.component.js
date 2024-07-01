@@ -21,7 +21,7 @@ export class HeaderComponent extends HTML {
 
   getRight() {
     const html = new nFlex()
-    Array.from(getLinksList()).map(([text, href = '']) => new LinkComponent({ text, href }))
+    Array.from(getLinksList()).map(([text, href = '']) => html.append(new LinkComponent({ text, href })))
     return html
   }
 }
