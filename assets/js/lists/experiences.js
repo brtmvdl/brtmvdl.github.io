@@ -248,6 +248,10 @@ export default [
   //   "step": 0
   // },
   {
+    "id": "panel",
+    "step": 0
+  },
+  {
     "id": "peerjs",
     "step": 3
   },
