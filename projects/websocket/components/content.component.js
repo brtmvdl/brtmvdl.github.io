@@ -1,6 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
-import * as str from '../utils/str.js'
+import * as str from '../../../assets/js/utils/str.js'
 
 export class ContentComponent extends HTML {
   children = {
