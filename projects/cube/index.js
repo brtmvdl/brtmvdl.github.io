@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { planesInCube } from './constants.js'
-
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { fixDecimals } from '../../assets/js/utils/numbers.js'
 
 const __ = {
@@ -18,6 +18,9 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(__.getWidth(), __.getHeight())
 document.body.appendChild(renderer.domElement)
 document.body.style.margin = '0rem'
+
+const controls = new OrbitControls(camera, renderer.domElement)
+controls.update()
 
 const createPlane = (color) => {
   if (!color) throw new Error('It has no color!')
@@ -75,6 +78,7 @@ Array.from(Array(3)).map((_x, x) => {
 })
 
 const animate = () => {
+  controls.update()
   renderer.render(scene, camera)
   requestAnimationFrame(animate)
 }
