@@ -149,7 +149,7 @@ export default [
   },
   {
     "id": "frontend",
-    "step": 0
+    "step": 4
   },
   {
     "id": "github-rest-api",
