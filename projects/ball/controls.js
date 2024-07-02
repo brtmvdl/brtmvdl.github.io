@@ -2,9 +2,10 @@ import { HTML } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { getURLSearchParam } from '../../assets/js/utils/url.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   state = {
     peer: new Peer(),
     conn: null,
@@ -37,7 +38,6 @@ export class Page extends HTML {
   getIdHTML() {
     const html = new HTML()
     html.setStyle('text-align', 'center')
-    html.setStyle('padding', '1rem')
     html.setText(this.getId())
     return html
   }
@@ -48,7 +48,6 @@ export class Page extends HTML {
 
   getForm() {
     const html = new HTML()
-    html.setStyle('padding', '1rem')
     html.append(this.getInput())
     html.append(new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonClick() }))
     html.append(new ButtonComponent({ text: 'change color', onclick: () => this.onChangeColorButtonClick() }))
