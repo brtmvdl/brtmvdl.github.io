@@ -1,4 +1,5 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TableComponent } from '../../assets/js/components/table.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
@@ -8,7 +9,7 @@ import * as Local from '../../assets/js/utils/local.js'
 import { getSymbolsList } from './lists/symbols.list.js'
 import { datetime2str, price2string } from '../../assets/js/utils/str.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   state = {
     symbols: getSymbolsList(),
     values: [],
