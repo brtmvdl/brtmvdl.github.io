@@ -1,4 +1,5 @@
 import { HTML, nH1, nInput, nButton } from '@brtmvdl/frontend'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { FormComponent } from '../../assets/js/components/form.component.js'
 import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
@@ -6,7 +7,7 @@ import * as LOCAL from '../../assets/js/utils/local.js'
 import * as FLOW from '../../assets/js/utils/flow.js'
 import * as API from '../../assets/js/utils/api.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     google_form: new FormComponent(),
   }
