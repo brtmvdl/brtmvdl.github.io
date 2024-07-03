@@ -5,9 +5,9 @@ import { TableComponent } from '../../assets/js/components/table.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { TrComponent } from '../../assets/js/components/tr.component.js'
 import { TdComponent } from '../../assets/js/components/td.component.js'
+import { datetime2str, price2string } from '../../assets/js/utils/str.js'
 import * as Local from '../../assets/js/utils/local.js'
 import { getSymbolsList } from './lists/symbols.list.js'
-import { datetime2str, price2string } from '../../assets/js/utils/str.js'
 
 export class Page extends PaddingComponent {
   state = {
@@ -116,27 +116,17 @@ export class Page extends PaddingComponent {
 
     Array.from(buys).map((buy) => {
       const tr = new TrComponent({})
-
       tr.append(this.createTdText(buy['symbol']))
-
       tr.append(this.createTdText(price2string(buy['buy_price'], 'R$')))
-
       tr.append(this.createTdText(datetime2str(buy['buy_datetime'])))
-
       const price = this.getPrice(buy['symbol'])
-
       const price_diff = price - buy['buy_price']
-
       tr.append(this.createTdText(price2string(price_diff, 'R$')))
-
       const percent_diff = (((100 * price) / buy['buy_price']) - 100).toFixed(4)
-
       tr.append(this.createTdText(`${percent_diff}%`))
-
       const button = new TdComponent({})
       button.append(new ButtonComponent({ text: 'sell', onclick: () => this.sell(buy.buy_datetime) }))
       tr.append(button)
-
       this.children.buys_table.append(tr)
     })
   }
@@ -172,13 +162,17 @@ export class Page extends PaddingComponent {
   updateSellsTable() {
     this.children.sells_table.clear()
 
+    const sells = Array.from(Local.get(['sells'], []))
+
+    if (sells.length == 0) return
+
     const tr = new TrComponent({})
 
     Array.from(['symbol', 'buy_price', 'buy_datetime', 'sell_price', 'sell_datetime']).map((key) => tr.append(this.createTdText(key)))
 
     this.children.sells_table.append(tr)
 
-    Array.from(Local.get(['sells'], [])).map((sell) => {
+    Array.from(sells).map((sell) => {
       const tr = new TrComponent({})
       tr.append(this.createTdText(sell['symbol']))
       tr.append(this.createTdText(price2string(sell['buy_price'], 'R$')))
