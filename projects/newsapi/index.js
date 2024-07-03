@@ -1,8 +1,9 @@
 import { HTML } from '@brtmvdl/frontend'
-import { HeaderComponent } from './components/header.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import { FormComponent } from './components/form.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     form: new FormComponent(),
     results: new HTML(),
@@ -10,7 +11,7 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(new HeaderComponent('News API'))
+    this.append(new TextComponent({ text: 'news rest api' }))
     this.append(this.getForm())
     this.append(this.getResultsHTML())
   }

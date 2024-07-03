@@ -1,15 +1,17 @@
 import { HTML } from '@brtmvdl/frontend'
 import { InputComponent } from '../../../assets/js/components/input.component.js'
-import { ButtonComponent } from './button.component.js'
+import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { padLeft } from '../../../assets/js/utils/str.js'
+
+import * as API from '../../../assets/js/utils/api.js'
 
 export class FormComponent extends HTML {
   children = {
-    apiKey: new InputComponent('api key', this.getDefaultApiKey(), 'password'),
-    query: new InputComponent('query', this.getDefaultQuery()),
-    from: new InputComponent('from', this.getDefaultFrom()),
-    to: new InputComponent('to', this.getDefaultTo()),
-    sortBy: new InputComponent('sort by', this.getDefaultsortBy()),
+    apiKey: new InputComponent({ label: 'api key', value: this.getDefaultApiKey(), type: 'password' }),
+    query: new InputComponent({ label: 'query', value: this.getDefaultQuery() }),
+    from: new InputComponent({ label: 'from', value: this.getDefaultFrom() }),
+    to: new InputComponent({ label: 'to', value: this.getDefaultTo() }),
+    sortBy: new InputComponent({ label: 'sort by', value: this.getDefaultsortBy() }),
   }
 
   getDefaultApiKey() {
@@ -74,23 +76,17 @@ export class FormComponent extends HTML {
   }
 
   getSendButtonComponent() {
-    const button = new ButtonComponent()
-    button.setText('send')
-    button.on('click', () => this.onSendButtonComponentClick())
-    return button
+    return new ButtonComponent({ text: 'send', onclick: () => this.onSendButtonComponentClick() })
   }
 
   onSendButtonComponentClick() {
-    const search = new URLSearchParams({
+    API.rest.newsapi.v2.call('everything', {
       apiKey: this.children.apiKey.getValue(),
       q: this.children.query.getValue(),
       from: this.children.from.getValue(),
       to: this.children.to.getValue(),
       sortBy: this.children.sortBy.getValue(),
     })
-
-    const url = `https://newsapi.org/v2/everything?${search.toString()}`
-    fetch(url, { mode: 'cors' }).then((res) => res.json())
       .then((json) => this.onNewsApiEverything(json))
       .catch((err) => this.onError(err))
   }
