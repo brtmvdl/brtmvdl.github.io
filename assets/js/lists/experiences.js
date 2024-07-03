@@ -228,6 +228,10 @@ export default [
     "step": -1
   },
   {
+    "id": "metronomo",
+    "step": 0
+  },
+  {
     "id": "microsoft-rest-api",
     "step": -1
   },
