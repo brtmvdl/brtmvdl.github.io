@@ -11,5 +11,10 @@ export const rest = {
     v1: {
       call: (method, path, params = {}) => request(method, url('https://api.musixmatch.com/ws/1.1/' + path, params), {}, { 'Access-Control-Allow-Origin': '*', 'Access-Control-Request-Headers': '*' })
     }
+  },
+  newsapi: {
+    v2: {
+      call: (path, params = {}) => request('GET', url('https://newsapi.org/v2/' + path, params)),
+    }
   }
 }
