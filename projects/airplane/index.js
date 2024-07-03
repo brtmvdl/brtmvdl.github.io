@@ -41,6 +41,12 @@ renderer.setAnimationLoop(() => {
 })
 
 const params = {
+  up: () => camera.position.y += 0.1,
+  down: () => camera.position.y -= 0.1,
+  left: () => camera.position.x += 0.1,
+  right: () => camera.position.x -= 0.1,
+  front: () => camera.position.z += 0.1,
+  down: () => camera.position.z -= 0.1,
 }
 
 const peer = new Peer()
