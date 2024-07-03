@@ -1,5 +1,6 @@
 import { HTML } from '@brtmvdl/frontend'
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
@@ -18,7 +19,7 @@ export class Page extends PaddingComponent {
   onCreate() {
     super.onCreate()
     this.setPeerEvents()
-    this.append(this.getIdHTML())
+    this.append(new TextComponent({ text: 'ball ' + this.getId() }))
     this.append(this.getForm())
   }
 
@@ -33,13 +34,6 @@ export class Page extends PaddingComponent {
       conn.on('error', (err) => console.log('conn error', err))
       console.log({ id, conn })
     })
-  }
-
-  getIdHTML() {
-    const html = new HTML()
-    html.setStyle('text-align', 'center')
-    html.setText(this.getId())
-    return html
   }
 
   getId() {

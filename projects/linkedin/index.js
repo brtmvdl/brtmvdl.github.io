@@ -1,29 +1,21 @@
 import { HTML, nH2, nLink, nButton } from '@brtmvdl/frontend'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
-
-import { TextComponent } from '../../../../assets/js/components/text.component.js'
 
 // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     texts: new HTML(),
   }
 
   onCreate() {
     super.onCreate()
-    this.append(this.getTitleLink())
+    this.append(new TextComponent({ text: 'linkedin rest api' }))
     this.append(this.getAuthorizationLink())
     this.append(this.getCodeButton())
     this.append(this.getTextsHTML())
-  }
-
-  getTitleLink() {
-    const link = new nLink()
-    const title = new nH2()
-    title.setText('LinkedIn API')
-    link.append(title)
-    return link.href('?')
   }
 
   getAuthorizationLink() {
@@ -48,7 +40,7 @@ export class Page extends HTML {
 
   onCodeButtonClick() {
     const url = new URL(window.location)
-    this.append(new TextComponent(url.searchParams.get('code')))
+    this.append(new TextComponent({ text: url.searchParams.get('code') }))
   }
 
   getTextsHTML() {

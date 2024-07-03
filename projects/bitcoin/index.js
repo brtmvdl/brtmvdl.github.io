@@ -1,24 +1,26 @@
 import { HTML, nFlex, nButton } from '@brtmvdl/frontend'
-
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   onCreate() {
     super.onCreate()
     this.setStyles()
+    this.append(new TextComponent({ text: 'bitcoin' }))
     this.append(this.getTitleHTML())
     this.append(this.getSubtitleHTML())
     this.append(this.getFlex())
   }
 
   setStyles() {
-    this.setStyle('text-align', 'center')
   }
 
   getTitleHTML() {
     const title = new HTML()
     title.setText('Compre Bitcoin aqui')
     title.setStyle('font-size', '4rem')
+    title.setStyle('text-align', 'center')
     return title
   }
 
@@ -26,11 +28,13 @@ export class Page extends HTML {
     const title = new HTML()
     title.setText('COMPRAR CRIPTO NUNCA FOI TÃO FÁCIL')
     title.setStyle('font-size', '2rem')
+    title.setStyle('text-align', 'center')
     return title
   }
 
   getFlex() {
     const flex = new nFlex()
+    flex.setStyle('text-align', 'center')
     flex.setContainerStyle('width', '40rem')
     flex.setContainerStyle('margin', '0 auto')
     flex.append(this.getG())

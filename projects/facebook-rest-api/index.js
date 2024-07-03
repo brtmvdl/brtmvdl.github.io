@@ -1,22 +1,20 @@
 import { HTML, nButton } from '@brtmvdl/frontend'
-import { TextComponent } from '../../assets/js/components/text.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as Local from '../../assets/js/utils/local.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     title: new HTML(),
     responses: new HTML(),
   }
 
   onCreate() {
+    super.onCreate()
+    this.append(new TextComponent({ text: 'facebook javascript sdk' }))
     this.append(this.getButtonsFlex())
     this.append(this.getResponses())
-  }
-
-  getTitle() {
-    this.children.title.setText('Facebook JavaScript SDK')
-    return this.children.title
   }
 
   getButtonsFlex() {

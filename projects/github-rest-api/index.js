@@ -1,4 +1,5 @@
 import { HTML, nLink, nButton, nInputTextGroup } from '@brtmvdl/frontend'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
@@ -8,7 +9,7 @@ import * as Local from '../../assets/js/utils/local.js'
 import * as Flow from '../../assets/js/utils/flow.js'
 import { client_id } from './config.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     responses: new HTML(),
     access_token: new InputComponent({ label: 'access token' }),
@@ -16,7 +17,7 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(new TextComponent({ text: 'GitHub Oauth 2.0 Login' }))
+    this.append(new TextComponent({ text: 'github rest api' }))
     this.append(this.getLoginLink())
     this.append(this.getTokensLink())
     this.append(this.getAccessTokenInput())

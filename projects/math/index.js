@@ -1,5 +1,6 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 
 class CellHTML extends HTML {
   text = ''
@@ -55,6 +56,7 @@ export class Page extends PaddingComponent {
 
   onCreate() {
     super.onCreate()
+    this.append(new TextComponent({ text: 'math' }))
     this.append(this.getResultComponent())
     this.append(this.getKeyboardComponent())
     this.reset()

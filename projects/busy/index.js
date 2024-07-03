@@ -1,12 +1,12 @@
 import { HTML, nH1, nFlex } from '@brtmvdl/frontend'
 import { TextComponent } from '../../../../assets/js/components/text.component.js'
-import { HeaderComponent } from '../../assets/js/components/header.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { datetime2str } from '../../assets/js/utils/str.js'
 import * as Local from '../../assets/js/utils/local.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     input: new InputComponent({ placeholder: 'what am i doing?' }),
     button: new ButtonComponent({ text: 'save', onclick: () => this.onButtonClick() }),
@@ -15,17 +15,11 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setStyles()
     this.setEvents()
-    this.append(new HeaderComponent())
     this.append(new TextComponent({ text: 'busy' }))
     this.append(this.getForm())
     this.append(this.getTasksList())
     this.updateList()
-  }
-
-  setStyles() {
-    this.setStyle('padding', '1rem')
   }
 
   setEvents() {

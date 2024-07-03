@@ -1,11 +1,11 @@
 import { HTML, nLink } from '@brtmvdl/frontend'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
-import { HeaderComponent } from '../../assets/js/components/header.component.js'
 import { padLeft } from '../../assets/js/utils/str.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   state = {
     is_playing: false,
     media_recorder: null,
@@ -20,15 +20,16 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(new HeaderComponent())
+    this.setStyles()
     this.append(this.getBox())
+  }
+
+  setStyles() {
+    this.setStyle('text-align', 'center')
   }
 
   getBox() {
     const html = new HTML()
-    html.setStyle('text-align', 'center')
-    html.setStyle('margin', '0 auto')
-    html.setStyle('width', '20rem')
     html.append(new TextComponent({ text: 'audio recorder' }))
     html.append(this.getPlayButton())
     html.append(this.getRecordsHTML())

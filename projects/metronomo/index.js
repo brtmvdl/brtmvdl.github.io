@@ -78,6 +78,7 @@ export class Page extends PaddingComponent {
 
   onResetButtonClick() {
     this.children.speed.children.input.setValue(SPEED)
+    this.stop()
     this.update()
   }
 
@@ -96,4 +97,5 @@ export class Page extends PaddingComponent {
     })
     return html
   }
+
 }

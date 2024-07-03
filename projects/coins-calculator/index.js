@@ -1,7 +1,6 @@
 import { HTML, nFlex, nSpan } from '@brtmvdl/frontend'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
-// import { HeaderComponent } from '../../assets/js/components/header.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
@@ -108,4 +107,5 @@ export class Page extends PaddingComponent {
     link.setAttr('download', filename)
     return link
   }
+
 }

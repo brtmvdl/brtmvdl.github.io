@@ -62,7 +62,7 @@ const createControlsUrl = (id) => {
 }
 
 const createQrcodeImage = (url) => {
-  console.log({ url })
+  console.log('url', (url).replace('%3F', '?'))
   const image = document.createElement('img')
   image.src = qrcode(url)
   image.style.position = 'fixed'

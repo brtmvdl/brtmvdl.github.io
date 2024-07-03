@@ -1,4 +1,9 @@
-import { HTML, nButton, nH1, nInput, nLink } from '@brtmvdl/frontend'
+import { HTML, nInput } from '@brtmvdl/frontend'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
+import { LinkComponent } from '../../assets/js/components/link.component.js'
+
 import { GOOGLE } from './../../assets/js/utils/googleusercontent.js'
 import * as Local from '../../assets/js/utils/local.js'
 
@@ -13,28 +18,20 @@ class nForm extends HTML {
   }
 }
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     form: new nForm(),
   }
 
   onCreate() {
     super.onCreate()
-    this.append(this.getTitleHTML())
+    this.append(new TextComponent({ text: 'market' }))
     this.append(this.getForm())
-    this.append(this.getLink())
-    this.append(this.getLoginButton())
-    this.append(this.getEraseButton())
-    this.append(this.getAccessTokenHTML())
+    this.append(new LinkComponent({ text: 'login link', href: GOOGLE.redirect_uri }))
+    this.append(new ButtonComponent({ text: 'login button', onclick: () => this.children.form.submit() }))
+    this.append(new ButtonComponent({ text: 'erase button', onclick: () => Local.set(['google', 'access_token'], '') }))
+    this.append(new TextComponent({ text: Local.get(['google', 'access_token']) }))
     this.saveURLSearchParams()
-  }
-
-  getTitleHTML() {
-    const link = new nLink()
-    const h1 = new nH1()
-    h1.setText('Market')
-    link.append(h1)
-    return link
   }
 
   getForm() {
@@ -48,33 +45,6 @@ export class Page extends HTML {
       this.children.form.append(input)
     })
     return this.children.form
-  }
-
-  getLink() {
-    const link = new nLink()
-    link.href(GOOGLE.redirect_uri)
-    link.setText('login link')
-    return link
-  }
-
-  getLoginButton() {
-    const button = new nButton()
-    button.setText('login button')
-    button.on('click', () => this.children.form.submit())
-    return button
-  }
-
-  getEraseButton() {
-    const button = new nButton()
-    button.setText('erase button')
-    button.on('click', () => Local.set(['google', 'access_token'], ''))
-    return button
-  }
-
-  getAccessTokenHTML() {
-    const html = new HTML()
-    html.setText(Local.get(['google', 'access_token']))
-    return html
   }
 
   saveURLSearchParams() {
