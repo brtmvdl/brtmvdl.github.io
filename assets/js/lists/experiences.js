@@ -7,18 +7,18 @@ export default [
     "id": "ajax-in-aws",
     "step": 1
   },
-  // {
-  //   "id": "aliexpress-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "aliexpress-rest-api",
+    "step": -1
+  },
   {
     "id": "anagram",
     "step": 3
   },
-  // {
-  //   "id": "anthropic-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "anthropic-rest-api",
+    "step": -1
+  },
   {
     "id": "apex-charts",
     "step": 1
@@ -27,10 +27,10 @@ export default [
     "id": "audio-recorder",
     "step": 3
   },
-  // {
-  //   "id": "autentique-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "autentique-rest-api",
+    "step": -1
+  },
   {
     "id": "backend",
     "step": 3
@@ -39,30 +39,30 @@ export default [
     "id": "ball",
     "step": 3
   },
-  // {
-  //   "id": "binance-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "binance-websocket-api",
-  //   "step": 0
-  // },
+  {
+    "id": "binance-rest-api",
+    "step": -1
+  },
+  {
+    "id": "binance-websocket-api",
+    "step": -1
+  },
   {
     "id": "bitcoin",
     "step": 0
   },
-  // {
-  //   "id": "bitcointoyou",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "bitget",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "brasil-rest-api", // brasilapi
-  //   "step": 0
-  // },
+  {
+    "id": "bitcointoyou",
+    "step": -1
+  },
+  {
+    "id": "bitget",
+    "step": -1
+  },
+  {
+    "id": "brasil-rest-api",
+    "step": -1
+  },
   {
     "id": "busy",
     "step": 3
@@ -71,10 +71,10 @@ export default [
     "id": "buy-coins",
     "step": 0
   },
-  // {
-  //   "id": "bybit-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "bybit-rest-api",
+    "step": -1
+  },
   {
     "id": "calculator",
     "step": 1
@@ -87,18 +87,18 @@ export default [
     "id": "clock",
     "step": 3
   },
-  // {
-  //   "id": "cloudflare-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "coinbase-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "coinext",
-  //   "step": 0
-  // },
+  {
+    "id": "cloudflare-rest-api",
+    "step": -1
+  },
+  {
+    "id": "coinbase-rest-api",
+    "step": -1
+  },
+  {
+    "id": "coinext",
+    "step": -1
+  },
   {
     "id": "coins",
     "step": 0
@@ -115,10 +115,10 @@ export default [
     "id": "database",
     "step": 3
   },
-  // {
-  //   "id": "discord-websocket-api",
-  //   "step": 0
-  // },
+  {
+    "id": "discord-websocket-api",
+    "step": -1
+  },
   {
     "id": "drawer",
     "step": 3
@@ -127,22 +127,22 @@ export default [
     "id": "exchanges",
     "step": 3
   },
-  // {
-  //   "id": "expaybrasil-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "expaybrasil-rest-api",
+    "step": -1
+  },
   {
     "id": "facebook-rest-api",
     "step": 1
   },
-  // {
-  //   "id": "firebase-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "foxbit-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "firebase-rest-api",
+    "step": -1
+  },
+  {
+    "id": "foxbit-rest-api",
+    "step": -1
+  },
   {
     "id": "foxbit-websocket-api",
     "step": 1
@@ -159,18 +159,18 @@ export default [
     "id": "gmail",
     "step": 1
   },
-  // {
-  //   "id": "google-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "google-rest-api",
+    "step": -1
+  },
   {
     "id": "home-workout",
     "step": 1
   },
-  // {
-  //   "id": "hotmart-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "hotmart-rest-api",
+    "step": -1
+  },
   {
     "id": "ibparque",
     "step": 0
@@ -179,34 +179,34 @@ export default [
     "id": "imc",
     "step": 3
   },
-  // {
-  //   "id": "kraken-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "kucoin-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "kraken-rest-api",
+    "step": -1
+  },
+  {
+    "id": "kucoin-rest-api",
+    "step": -1
+  },
   {
     "id": "linkedin",
     "step": 0
   },
-  // {
-  //   "id": "linkedin-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "linkedin-rest-api",
+    "step": -1
+  },
   {
     "id": "luxfacta",
     "step": 0
   },
-  // {
-  //   "id": "lyrics-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "makersuite-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "lyrics-rest-api",
+    "step": -1
+  },
+  {
+    "id": "makersuite-rest-api",
+    "step": -1
+  },
   {
     "id": "market",
     "step": 1
@@ -215,38 +215,38 @@ export default [
     "id": "math",
     "step": 3
   },
-  // {
-  //   "id": "mercadobitcoin",
-  //   "step": 0
-  // },
+  {
+    "id": "mercadobitcoin",
+    "step": -1
+  },
   {
     "id": "meetings",
     "step": 1
   },
-  // {
-  //   "id": "mercadopago-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "microsoft-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "mercadopago-rest-api",
+    "step": -1
+  },
+  {
+    "id": "microsoft-rest-api",
+    "step": -1
+  },
   {
     "id": "musixmatch-rest-api",
     "step": 0
   },
-  // {
-  //   "id": "newsapi",
-  //   "step": 0
-  // },
+  {
+    "id": "newsapi",
+    "step": -1
+  },
   {
     "id": "nume",
     "step": 3
   },
-  // {
-  //   "id": "openai-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "openai-rest-api",
+    "step": -1
+  },
   {
     "id": "panel",
     "step": 0
@@ -275,18 +275,18 @@ export default [
     "id": "projects.next",
     "step": 0
   },
-  // {
-  //   "id": "rdap-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "rdap-rest-api",
+    "step": -1
+  },
   {
     "id": "requestidlecallback",
     "step": 0
   },
-  // {
-  //   "id": "screen-capture-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "screen-capture-rest-api",
+    "step": -1
+  },
   {
     "id": "socket",
     "step": 0
@@ -299,22 +299,22 @@ export default [
     "id": "spot",
     "step": 0
   },
-  // {
-  //   "id": "sumup-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "telegram-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "sumup-rest-api",
+    "step": -1
+  },
+  {
+    "id": "telegram-rest-api",
+    "step": -1
+  },
   {
     "id": "three.js-sample",
     "step": 3
   },
-  // {
-  //   "id": "tradingeconomics-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "tradingeconomics-rest-api",
+    "step": -1
+  },
   {
     "id": "twitch",
     "step": 0
@@ -327,18 +327,18 @@ export default [
     "id": "twitter-rest-api",
     "step": 0
   },
-  // {
-  //   "id": "udemy-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "unique-rest-api",
-  //   "step": 0
-  // },
-  // {
-  //   "id": "unsplash-rest-api",
-  //   "step": 0
-  // },
+  {
+    "id": "udemy-rest-api",
+    "step": -1
+  },
+  {
+    "id": "unique-rest-api",
+    "step": -1
+  },
+  {
+    "id": "unsplash-rest-api",
+    "step": -1
+  },
   {
     "id": "vestibular",
     "step": 0
