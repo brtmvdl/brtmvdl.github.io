@@ -3,6 +3,7 @@ import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
+import { ImageComponent } from '../../assets/js/components/image.component.js'
 import { getURLSearchParam } from '../../assets/js/utils/url.js'
 
 export class Page extends PaddingComponent {
@@ -52,7 +53,7 @@ export class Page extends PaddingComponent {
 
   createButton(text) {
     const button = new HTML()
-    button.append(new TextComponent({ text }))
+    button.append(this.getImageComponent(text))
     button.on('mousedown', () => this.onButtonMouseDown({ value: text }))
     button.on('mouseup', () => this.onButtonMouseUp({ value: text }))
     button.on('touchstart', () => this.onButtonTouchStart({ value: text }))
@@ -60,6 +61,13 @@ export class Page extends PaddingComponent {
     button.setStyle('text-align', 'center')
     button.setStyle('padding', '1rem')
     return button
+  }
+
+  getImageComponent(arrow) {
+    const image = new ImageComponent({ src: `/projects/airplane/images/${arrow}.arrow.png` })
+    image.setStyle('height', '1rem')
+    image.setStyle('width', '1rem')
+    return image
   }
 
   startMoving({ message } = {}) {
