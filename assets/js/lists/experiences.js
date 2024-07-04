@@ -443,5 +443,10 @@ export default [
     "id": "youtube-data-api",
     "tags": ["rest", "api"],
     "step": 1
+  },
+  {
+    "id": "onegle",
+    "tags": ["api"],
+    "step": 0
   }
 ]
