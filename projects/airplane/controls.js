@@ -55,19 +55,39 @@ export class Page extends PaddingComponent {
     button.append(new TextComponent({ text }))
     button.on('mousedown', () => this.onButtonMouseDown({ value: text }))
     button.on('mouseup', () => this.onButtonMouseUp({ value: text }))
+    button.on('touchstart', () => this.onButtonTouchStart({ value: text }))
+    button.on('touchend', () => this.onButtonTouchEnd({ value: text }))
     button.setStyle('text-align', 'center')
     button.setStyle('padding', '1rem')
     return button
   }
 
+  startMoving({ message } = {}) {
+    this.state.events[message] = setInterval(() => this.dispatchEvent('message', message), 100)
+  }
+
+  stopMoving({ message } = {}) {
+    clearInterval(this.state.events[message])
+  }
+
   onButtonMouseDown({ value: message }) {
     console.log('on mouse down', { message })
-    this.state.events.message = setInterval(() => this.dispatchEvent('message', message), 100)
+    this.startMoving({ message })
   }
 
   onButtonMouseUp({ value: message }) {
     console.log('on mouse up', { message })
-    clearInterval(this.state.events.message)
+    this.stopMoving({ message })
+  }
+
+  onButtonTouchStart({ value: message }) {
+    console.log('on Button Touch Start', { message })
+    this.startMoving({ message })
+  }
+
+  onButtonTouchEnd({ value: message }) {
+    console.log('on Button Touch End', { message })
+    this.stopMoving({ message })
   }
 
 }
