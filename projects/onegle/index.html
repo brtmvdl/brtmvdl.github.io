@@ -29,7 +29,7 @@
     HTML.fromId('app').append(page)
     // FB Async Init
     window.fbAsyncInit = function () {
-      FB.init({ appId: '1132850457706291', xfbml: true, version: 'v20.0' });
+      FB.init({ appId: '', xfbml: true, version: 'v20.0' });
       FB.AppEvents.logPageView();
       page.dispatchEvent('fb.load', Date.now())
     };
