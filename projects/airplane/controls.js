@@ -54,6 +54,7 @@ export class Page extends PaddingComponent {
   createButton(text) {
     const button = new HTML()
     button.append(this.getImageComponent(text))
+    button.on('contextmenu', (ev) => ev.preventDefault())
     button.on('mousedown', () => this.onButtonMouseDown({ value: text }))
     button.on('mouseup', () => this.onButtonMouseUp({ value: text }))
     button.on('touchstart', () => this.onButtonTouchStart({ value: text }))
@@ -64,7 +65,10 @@ export class Page extends PaddingComponent {
   }
 
   getImageComponent(arrow) {
-    const image = new ImageComponent({ src: `/projects/airplane/images/${arrow}.arrow.png` })
+    const image = new HTML()
+    image.setStyle('background-image', `url('/projects/airplane/images/${arrow}.arrow.png')`)
+    image.setStyle('background-size', '1rem')
+    image.setStyle('display', 'inline-block')
     image.setStyle('height', '1rem')
     image.setStyle('width', '1rem')
     return image
