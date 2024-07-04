@@ -107,7 +107,13 @@ export class Page extends PaddingComponent {
 
   onFacebookLogin(response) {
     console.log('on facebook login', { response })
-    this.setTitle(response.authResponse.userID)
+    this.setTitle(response.authResponse.userID, this.getPageUrl())
+  }
+
+  getPageUrl() {
+    const url = new URL(window.location)
+    url.pathname += '?id=' + this.state.peer.conn._id
+    return url.toString().replace('%3F', '?')
   }
 
   onUserMedia() {
