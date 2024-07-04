@@ -1,7 +1,7 @@
 import { HTML } from '@brtmvdl/frontend'
 import { PaddingComponent } from '../assets/js/components/padding.component.js'
-import { LinkComponent } from '../assets/js/components/link.component.js'
 import { TextComponent } from '../assets/js/components/text.component.js'
+import { ProjectThumbnailComponent } from '../assets/js/components/project.thumbnail.component.js'
 import experiences from '../assets/js/lists/experiences.js'
 import { stepName } from '../assets/js/utils/functions.js'
 
@@ -14,7 +14,7 @@ export class Page extends PaddingComponent {
   getBody() {
     const html = new HTML()
     html.append(new TextComponent({ text: 'experiences' }))
-    Array.from(experiences).map(({ id, step }) => html.append(new LinkComponent({ text: id + stepName(step, ' (', ') '), href: `/projects/${id}/` })))
+    Array.from(experiences).map((project) => html.append(new ProjectThumbnailComponent(project)))
     return html
   }
 

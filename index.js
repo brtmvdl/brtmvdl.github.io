@@ -2,6 +2,8 @@ import { HTML } from '@brtmvdl/frontend'
 import { LinkComponent } from './assets/js/components/link.component.js'
 import { TextComponent } from './assets/js/components/text.component.js'
 import { PaddingComponent } from './assets/js/components/padding.component.js'
+import { ProjectThumbnailComponent } from './assets/js/components/project.thumbnail.component.js'
+
 import experiences from './assets/js/lists/experiences.js'
 
 export class Page extends PaddingComponent {
@@ -19,7 +21,7 @@ export class Page extends PaddingComponent {
     html.append(new LinkComponent({ text: 'twitter', href: 'https://twitter.com/brtmvdl' }))
     html.append(new LinkComponent({ text: 'discord', href: 'https://discord.gg/2zWpWBgmPj' }))
     html.append(new TextComponent({ text: 'experiences' }))
-    Array.from(experiences).filter(({ step }) => step >= 3).map(({ id }) => html.append(new LinkComponent({ text: id, href: `/projects/${id}/` })))
+    Array.from(experiences).filter(({ step }) => step >= 3).map(({ id }) => html.append(new ProjectThumbnailComponent({ id })))
     return html
   }
 }
