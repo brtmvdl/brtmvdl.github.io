@@ -1,4 +1,4 @@
-export default [
+export default ([
   {
     "id": "airplane",
     "tags": ["3d", "game"],
@@ -310,7 +310,7 @@ export default [
     "step": 0
   },
   {
-    "id": "peerjs",
+    "id": "chat",
     "tags": ["peer"],
     "step": 3
   },
@@ -449,4 +449,4 @@ export default [
     "tags": ["api"],
     "step": 0
   }
-]
+]).sort((a, b) => a.id.toString().localeCompare(b.id))
