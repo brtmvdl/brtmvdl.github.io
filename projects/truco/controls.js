@@ -1,47 +1,56 @@
-import { qrcode } from '../../assets/js/utils/functions.js'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import * as COLORS from '../../assets/js/utils/colors.js'
+import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { createNewPeer } from '../../assets/js/utils/peer.js'
+import { createPlane, mathPI } from './functions.js'
 
-// functions
+const peer = createNewPeer('truco')
 
-const urlParam = (param) => (new URL(window.location)).searchParams.get(param)
+const scene = new THREE.Scene()
+scene.add(new THREE.GridHelper(+15.0, +15.0))
 
 // game
 
-const canvas = document.createElement('canvas')
-canvas.width = window.innerWidth + 'px'
-canvas.height = window.innerHeight + 'px'
-const ctx = canvas.getContext('2d')
-document.body.append(canvas)
-
-const update = () => {
-  requestAnimationFrame(update)
+const createCard = () => {
+  const card = createPlane(+2.0, +5.0)
+  card.rotation.set(mathPI(+0.5), +0.0, +0.0)
+  return card
 }
 
-requestAnimationFrame(update)
+const card1 = createCard()
+card1.position.set(+5.0, +0.0, +0.0)
+scene.add(card1)
 
-// connections
+const card2 = createCard()
+card2.position.set(+0.0, +0.0, +0.0)
+scene.add(card2)
 
-const peer = new Peer()
+const card3 = createCard()
+card3.position.set(-5.0, +0.0, +0.0)
+scene.add(card3)
 
-peer.on('open', () => {
-  const conn = peer.connect(urlParam('id'))
+// lights
 
-  conn.on('open', (open) => {
-    console.log({ open })
+const pointLight = new THREE.PointLight(COLORS.WHITE_1, +4.5, +0, +0)
+pointLight.color.setHSL(+Math.random(), +1, +0.5)
+scene.add(pointLight)
 
-    conn.on('data', (data) => {
-      console.log({ data })
-    })
+// animate
 
-    conn.on('close', (close) => {
-      console.log({ close })
-    })
+const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, +1, +1500)
+camera.position.set(+0.0, +20.0, +10.0)
 
-    conn.on('error', (error) => {
-      console.log({ error })
-    })
+const renderer = new THREE.WebGLRenderer({ antialias: true })
+renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setAnimationLoop(animate)
+document.body.appendChild(renderer.domElement)
+document.body.style.margin = '+0rem'
 
-    conn.send({ header: 'hello', body: peer.id })
-  })
+const controls = new OrbitControls(camera, renderer.domElement)
 
-})
+function animate() {
+  renderer.clear()
+  renderer.render(scene, camera)
+  controls.update()
+}

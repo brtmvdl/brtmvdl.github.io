@@ -2,27 +2,11 @@ import * as COLORS from '../../assets/js/utils/colors.js'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { createNewPeer } from '../../assets/js/utils/peer.js'
+import { createPlane, createSphere } from './functions.js'
 
-const peer = createNewPeer('truco')
-
+const peer = createNewPeer('truco', true)
 const scene = new THREE.Scene()
 scene.add(new THREE.PolarGridHelper(+8.0, +16.0, +8.0, +64.0))
-
-// functions
-
-const createPlane = (width = +1.0, height = +1.0) => {
-  const geometry = new THREE.PlaneGeometry(+width, +height)
-  const material = new THREE.MeshBasicMaterial({ color: COLORS.WHITE_1, side: THREE.DoubleSide })
-  const plane = new THREE.Mesh(geometry, material)
-  return plane
-}
-
-const createSphere = (radius = +1.0, segments = 5) => {
-  const geometry = new THREE.SphereGeometry(radius, 2 ** segments, 2 ** (segments - 1))
-  const material = new THREE.MeshBasicMaterial({ color: COLORS.WHITE_1 })
-  const sphere = new THREE.Mesh(geometry, material)
-  return sphere
-}
 
 const mathPI = (num) => Math.PI * num
 
