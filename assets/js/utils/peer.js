@@ -19,7 +19,7 @@ export const createQrcodeImage = (url) => {
   document.body.append(image)
 }
 
-export const createNewPeer = (project) => {
+export const createNewPeer = (project, qrcode = false) => {
   const peer = new Peer()
 
   peer.on('connection', (conn) => {
@@ -44,7 +44,7 @@ export const createNewPeer = (project) => {
 
   peer.on('open', (open) => {
     console.log('peer open', { peer, open })
-    createQrcodeImage(createControlsUrl(project, peer.id))
+    if (qrcode) createQrcodeImage(createControlsUrl(project, peer.id))
   })
 
   peer.on('error', (error) => {
