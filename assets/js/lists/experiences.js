@@ -390,6 +390,11 @@ export default [
   //   "step": -1
   // },
   {
+    "id": "truco",
+    "tags": ["3d", "game", "peer"],
+    "step": 0
+  },
+  {
     "id": "twitch",
     "tags": ["websocket", "api"],
     "step": 0
