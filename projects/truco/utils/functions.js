@@ -16,4 +16,4 @@ export const createSphere = (radius = +1.0, segments = 5) => {
   return sphere
 }
 
-export const mathPI = (num) => Math.PI * num
+export const radian = (r) => r * (Math.PI / 180)

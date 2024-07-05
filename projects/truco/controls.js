@@ -1,33 +1,23 @@
-import * as COLORS from '../../assets/js/utils/colors.js'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { createNewPeer } from '../../assets/js/utils/peer.js'
-import { createPlane, mathPI } from './functions.js'
-
-const peer = createNewPeer('truco')
+import { createPlane, radian } from './utils/functions.js'
+import { getURLSearchParam } from '../../assets/js/utils/url.js'
+import * as COLORS from '../../assets/js/utils/colors.js'
 
 const scene = new THREE.Scene()
-scene.add(new THREE.GridHelper(+15.0, +15.0))
 
 // game
 
-const createCard = () => {
-  const card = createPlane(+2.0, +5.0)
-  card.rotation.set(mathPI(+0.5), +0.0, +0.0)
-  return card
-}
+const cards = new THREE.Group()
+scene.add(cards)
 
-const card1 = createCard()
-card1.position.set(+5.0, +0.0, +0.0)
-scene.add(card1)
-
-const card2 = createCard()
-card2.position.set(+0.0, +0.0, +0.0)
-scene.add(card2)
-
-const card3 = createCard()
-card3.position.set(-5.0, +0.0, +0.0)
-scene.add(card3)
+Array.from(Array(3)).map((_, ix) => {
+  const card = createPlane(+0.2, +0.5)
+  card.rotation.set(radian(+90.0), +0.0, +0.0)
+  card.position.set((ix * +0.25) - +0.25, +0.0, +0.0)
+  cards.add(card)
+})
 
 // lights
 
@@ -38,7 +28,7 @@ scene.add(pointLight)
 // animate
 
 const camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, +1, +1500)
-camera.position.set(+0.0, +20.0, +10.0)
+camera.position.set(+0.0, +1.0, +1.0)
 
 const renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setPixelRatio(window.devicePixelRatio)
@@ -54,3 +44,40 @@ function animate() {
   renderer.render(scene, camera)
   controls.update()
 }
+
+const peer = createNewPeer('truco')
+
+peer.on('connection', (conn) => {
+  console.log('peer connection', { peer, conn })
+})
+
+peer.on('open', (open) => {
+  console.log('peer open', { peer, open })
+
+  const conn = peer.connect(getURLSearchParam('id'))
+
+  conn.on('open', (open) => {
+    console.log('conn open', { peer, conn, open })
+    conn.send('hello')
+  })
+
+  conn.on('close', (close) => {
+    console.log('conn close', { peer, conn, close })
+  })
+
+  conn.on('error', (error) => {
+    console.log('conn error', { peer, conn, error })
+  })
+
+  conn.on('data', (data) => {
+    console.log('conn data', { peer, conn, data })
+  })
+})
+
+peer.on('error', (error) => {
+  console.log('peer error', { peer, error })
+})
+
+peer.on('close', (close) => {
+  console.log('peer close', { peer, close })
+})
