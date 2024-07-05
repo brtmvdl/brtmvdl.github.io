@@ -32,7 +32,7 @@ export class ProjectThumbnailComponent extends HTML {
 
   getImage() {
     const image = new ImageComponent({ src: this.getUrl('image.jpg')  })
-    image.setStyle('max-width', '20rem')
+    image.setStyle('max-width', '26rem')
     return image
   }
 
