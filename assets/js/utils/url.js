@@ -4,9 +4,10 @@ export const usp = new URLSearchParams(u.search)
 
 export const getURLSearchParam = (name, def = '') => usp.get(name) || def
 
-export const getParams = ({ color = '000000', bgcolor = 'ffffff', margin = '0rem', title = '' } = {}) => ({
+export const getParams = ({ color = '000000', bgcolor = 'ffffff', margin = '0rem', title = '', id = '' } = {}) => ({
   color: '#' + getURLSearchParam('color', color),
   bgcolor: '#' + getURLSearchParam('bgcolor', bgcolor),
   margin: getURLSearchParam('margin', margin),
-  title: getURLSearchParam('title', title)
+  title: getURLSearchParam('title', title),
+  id: getURLSearchParam('id', id)
 })
