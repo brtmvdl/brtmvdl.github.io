@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-import * as COLORS from '../../assets/js/utils/colors.js'
+import * as COLORS from '../../../assets/js/utils/colors.js'
 
 export const createPlane = (width = +1.0, height = +1.0) => {
   const geometry = new THREE.PlaneGeometry(+width, +height)
