@@ -50,4 +50,10 @@ function animate() {
 
 const peer = createNewPeer('truco', true)
 
-peer.on('connection', (conn) => Array.from(players).find((p) => !p.getConnection())?.setConnection(conn) )
+peer.on('connection', (conn) => {
+  Array.from(players).find((p) => !p.getConnection())?.setConnection(conn)
+
+  if (Array.from(players).reduce((count, p) => { return count + (p.getConnection() ? 1 : 0) }, 0) == 4) {
+    peer.removeQRCode()
+  }
+})

@@ -1,5 +1,14 @@
 import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+
 import { qrcode } from './functions.js'
+
+const image = document.createElement('img')
+
+class MyPeer extends Peer {
+  removeQRCode() {
+    document.body.removeChild(image)
+  }
+}
 
 export const getPeerConnection = () => { }
 
@@ -11,7 +20,6 @@ export const createControlsUrl = (project, id) => {
 
 export const createQrcodeImage = (url) => {
   console.log('url', (url).replace('%3F', '?'))
-  const image = document.createElement('img')
   image.src = qrcode(url)
   image.style.position = 'fixed'
   image.style.left = '1rem'
@@ -20,7 +28,7 @@ export const createQrcodeImage = (url) => {
 }
 
 export const createNewPeer = (project, qrcode = false) => {
-  const peer = new Peer()
+  const peer = new MyPeer()
 
   peer.on('connection', (conn) => {
     console.log('peer connection', { peer, conn })

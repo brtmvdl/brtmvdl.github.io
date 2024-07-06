@@ -61,6 +61,8 @@ export class PlayerModel {
 
     conn.on('open', (open) => {
       console.log('conn open', { conn, open })
+
+      this.sphere.material.color = new THREE.Color(COLORS.WHITE_1)
     })
 
     conn.on('close', (close) => {
