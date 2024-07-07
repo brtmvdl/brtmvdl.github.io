@@ -350,6 +350,11 @@ export default [
     "step": 0
   },
   {
+    "id": "roleta",
+    "tags": ["3d, 'game", "peer"],
+    "step": 0
+  },
+  {
     "id": "screen-capture-rest-api",
     "tags": ["api"],
     "step": -1
