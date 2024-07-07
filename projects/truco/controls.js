@@ -5,17 +5,30 @@ import { createPlane, radian } from './utils/functions.js'
 import { getURLSearchParam } from '../../assets/js/utils/url.js'
 import * as COLORS from '../../assets/js/utils/colors.js'
 
-const scene = new THREE.Scene()
+const et = new EventTarget()
 
 // game
 
+const scene = new THREE.Scene()
+
+const raycaster = new THREE.Raycaster()
+const pointer = new THREE.Vector2()
 const cards = new THREE.Group()
 scene.add(cards)
 
 Array.from(Array(3)).map((_, ix) => {
   const card = createPlane(+0.2, +0.5)
+  card.userData['index'] = ix
   card.rotation.set(radian(+90.0), +0.0, +0.0)
   card.position.set((ix * +0.25) - +0.25, +0.0, +0.0)
+  et.addEventListener('cardup', ({ value }) => {
+    if (value.index == ix) {
+      card.rotateX(radian(+90.0))
+      card.position.set((ix * +0.25) - +0.25, +0.25, -0.25)
+    }
+  })
+  et.addEventListener('carddown', ({ value }) => { })
+  et.addEventListener('cardleave', ({ value }) => { })
   cards.add(card)
 })
 
@@ -45,6 +58,23 @@ function animate() {
   controls.update()
 }
 
+// raycaster
+
+window.addEventListener('pointermove', (event) => {
+  pointer.x = (event.clientX / window.innerWidth) * 2 - 1
+  pointer.y = - (event.clientY / window.innerHeight) * 2 + 1
+})
+
+window.addEventListener('click', () => {
+  raycaster.setFromCamera(pointer, camera)
+  const [intersect] = raycaster.intersectObjects(cards.children)
+  const ev = new Event('cardclick')
+  ev.value = { index: intersect?.object?.userData['index'] }
+  et.dispatchEvent(ev)
+})
+
+// peer
+
 const peer = createNewPeer('truco')
 
 peer.on('connection', (conn) => {
@@ -55,6 +85,13 @@ peer.on('open', (open) => {
   console.log('peer open', { peer, open })
 
   const conn = peer.connect(getURLSearchParam('id'))
+
+  et.addEventListener('cardclick', ({ value }) => {
+    console.log('conn cardclick', { value })
+
+    const { index } = value
+    console.log('cardclick index', { index })
+  })
 
   conn.on('open', (open) => {
     console.log('conn open', { peer, conn, open })
