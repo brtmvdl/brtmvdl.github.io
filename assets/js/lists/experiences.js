@@ -44,11 +44,6 @@ export default [
     "tags": ["library"],
     "step": 3
   },
-  {
-    "id": "ball",
-    "tags": ["3d"],
-    "step": 3
-  },
   // {
   //   "id": "binance-rest-api",
   //   "tags": ["trading", "rest", "api"],
@@ -150,11 +145,6 @@ export default [
   //   "step": -1
   // },
   {
-    "id": "drawer",
-    "tags": ["3d"],
-    "step": 3
-  },
-  {
     "id": "exchanges",
     "tags": ["trading"],
     "step": 3
@@ -229,6 +219,11 @@ export default [
   //   "tags": ["rest", "api"],
   //   "step": -1
   // },
+  {
+    "id": "letter",
+    "tags": ["3d"],
+    "step": 3
+  },
   {
     "id": "linkedin",
     "tags": ["rest", "api"],
@@ -463,5 +458,10 @@ export default [
     "id": "video",
     "tags": ["api"],
     "step": 0
+  },
+  {
+    "id": "write",
+    "tags": ["3d"],
+    "step": 3
   }
 ]
