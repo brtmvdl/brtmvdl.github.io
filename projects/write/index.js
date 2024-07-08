@@ -1,6 +1,5 @@
-import { qrcode } from '../../assets/js/utils/functions.js'
 import * as THREE from 'three'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { createNewPeer } from '../../assets/js/utils/peer.js'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
 
@@ -54,22 +53,6 @@ let pointerX = 0
 let pointerXOnPointerDown = 0
 let windowHalfX = window.innerWidth / 2
 let fontIndex = 1
-
-const createControlsUrl = (id) => {
-  const url = new URL(window.location)
-  url.pathname = `/projects/ball/controls.html?id=${id}`
-  return url.toString()
-}
-
-const createQrcodeImage = (url) => {
-  console.log('url', (url).replace('%3F', '?'))
-  const image = document.createElement('img')
-  image.src = qrcode(url)
-  image.style.position = 'fixed'
-  image.style.left = '1rem'
-  image.style.bottom = '1rem'
-  document.body.append(image)
-}
 
 init()
 
@@ -203,22 +186,10 @@ function init() {
 
   //
 
-  const peer = new Peer()
+  const peer = createNewPeer('write', true)
 
   peer.on('connection', function (conn) {
     console.log('peer connection', { conn })
-
-    conn.on('open', function (open) {
-      console.log('conn open', { open })
-    })
-
-    conn.on('close', function (close) {
-      console.log('conn close', { close })
-    })
-
-    conn.on('error', function (error) {
-      console.log('conn error', { error })
-    })
 
     conn.on('data', function ({ text, fn } = {}) {
       console.log('conn data', { text, fn })
@@ -231,17 +202,6 @@ function init() {
       }
     })
   })
-
-  peer.on('open', () => {
-    console.log('peer open')
-    const PEER_ID = peer.id
-    console.log({ PEER_ID })
-    createQrcodeImage(createControlsUrl(PEER_ID))
-  })
-
-  peer.on('error', () => console.log('peer error'))
-
-  peer.on('close', () => console.log('peer close'))
 
 }
 
