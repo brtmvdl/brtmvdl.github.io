@@ -1,6 +1,4 @@
-import { qrcode } from '../../assets/js/utils/functions.js'
 import * as THREE from 'three'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 const {
@@ -85,57 +83,3 @@ requestAnimationFrame(animate)
 
 const random = (num = 100) => Math.floor(Math.random() * num)
 
-const params = {
-  square_color: () => box.material.color = new THREE.Color(`rgb(${random(255)},${random(255)},${random(255)})`),
-  ball_color: () => sphere.material.color = new THREE.Color(`rgb(${random(255)},${random(255)},${random(255)})`),
-}
-
-const peer = new Peer()
-
-peer.on('connection', function (conn) {
-  console.log('peer connection', { conn })
-
-  conn.on('open', function (open) {
-    console.log('conn open', { open })
-  })
-
-  conn.on('close', function (close) {
-    console.log('conn close', { close })
-  })
-
-  conn.on('error', function (error) {
-    console.log('conn error', { error })
-  })
-
-  conn.on('data', function ({ text, fn } = {}) {
-    console.log('conn data', { text, fn })
-    params[fn]()
-  })
-})
-
-peer.on('open', () => {
-  console.log('peer open')
-  const PEER_ID = peer.id
-  console.log({ PEER_ID })
-  createQrcodeImage(createControlsUrl(PEER_ID))
-})
-
-peer.on('error', () => console.log('peer error'))
-
-peer.on('close', () => console.log('peer close'))
-
-const createControlsUrl = (id) => {
-  const url = new URL(window.location)
-  url.pathname = `/projects/three.js-sample/controls.html?id=${id}`
-  return url.toString()
-}
-
-const createQrcodeImage = (url) => {
-  console.log({ url })
-  const image = document.createElement('img')
-  image.src = qrcode(url)
-  image.style.position = 'fixed'
-  image.style.left = '1rem'
-  image.style.bottom = '1rem'
-  document.body.append(image)
-}
