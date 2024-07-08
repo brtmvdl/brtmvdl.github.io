@@ -1,5 +1,6 @@
 import { HTML, nFlex, nButton } from '@brtmvdl/frontend'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
 
@@ -65,27 +66,18 @@ export class Page extends PaddingComponent {
   }
 
   createCardTitle(title = '') {
-    const html = new HTML()
-    html.setText(title)
-    return html
+    return new TextComponent({ text: title })
   }
 
   createCardPrice(price = 0) {
-    const html = new HTML()
-    html.setText(`R$ ${Number(price)},00`)
-    return html
+    return new TextComponent({ text: `R$ ${Number(price)},00` })
   }
 
   createCardItem(item) {
-    const html = new HTML()
-    html.setText(item)
-    return html
+    return new TextComponent({ text: item })
   }
 
   createCardButton(price) {
-    const button = new nButton()
-    button.setText('COMPRAR')
-    button.on('click', () => Flow.goTo('checkout.html', { price }))
-    return button
+    return new ButtonComponent({ text: 'comprar', onclick: () => Flow.goTo('checkout.html', { price }) })
   }
 }
