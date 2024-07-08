@@ -2,6 +2,8 @@ import { HTML, nFlex, nButton, nTable, nTr, nTd } from '@brtmvdl/frontend'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import * as Local from '../../../assets/js/utils/local.js'
 
+import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'
+
 class TableHTML extends nTable {
   constructor(data = [], headers = []) {
     super()
@@ -46,14 +48,9 @@ export class FooterComponent extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setStyles()
     this.setEvents()
-    this.append(this.getFlex())
+    this.append(this.getTwoColumns())
     this.updateMoves()
-  }
-
-  setStyles() {
-    this.setStyle('padding', '1rem')
   }
 
   setEvents() {
@@ -70,32 +67,21 @@ export class FooterComponent extends HTML {
     this.children.moves.append(table)
   }
 
-  getFlex() {
-    const flex = new nFlex()
-    flex.append(this.getLeft())
-    flex.append(this.getRight())
-    return flex
+  getTwoColumns() {
+    return new TwoColumnsComponent({
+      html1: this.getMovesComponent(),
+      html2: this.getButtonsComponents(),
+    })
   }
 
-  getLeft() {
-    const left = new HTML()
-    left.append(this.children.moves)
-    return left
+  getMovesComponent() {
+    return this.children.moves
   }
 
-  getRight() {
-    const right = new nFlex()
-    right.append(this.getBuyButton())
-    right.append(this.getSellButton())
-    return right
+  getButtonsComponents() {
+    return new TwoColumnsComponent({
+      html1: new ButtonComponent({ text: 'buy', onclick: () => this.dispatchEvent('buy') }),
+      html2: new ButtonComponent({ text: 'sell', onclick: () => this.dispatchEvent('sell') }),
+    })
   }
-
-  getBuyButton() {
-    return new ButtonComponent({ text: 'buy', onclick: () => this.dispatchEvent('buy') })
-  }
-
-  getSellButton() {
-    return new ButtonComponent({ text: 'sell', onclick: () => this.dispatchEvent('sell') })
-  }
-
 }

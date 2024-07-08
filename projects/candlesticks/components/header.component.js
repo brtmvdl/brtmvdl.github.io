@@ -1,34 +1,20 @@
 import { HTML, nH1, nFlex } from '@brtmvdl/frontend'
-import { SelectComponent } from './select.component.js'
-import { getSymbolList } from '../utils/lists/symbol.list.js'
+import { SelectComponent } from '../../../assets/js/components/select.component.js'
+import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { getIntervalList } from '../utils/lists/interval.list.js'
 import { getQuantityList } from '../utils/lists/quantity.list.js'
+import { getSymbolList } from '../utils/lists/symbol.list.js'
 
 export class HeaderComponent extends HTML {
   children = {
-    quantity: new SelectComponent(),
-    symbol: new SelectComponent(),
-    interval: new SelectComponent(),
+    quantity: new SelectComponent({ label: 'quantity' }),
+    symbol: new SelectComponent({ label: 'symbol' }),
+    interval: new SelectComponent({ label: 'interval' }),
   }
 
   onCreate() {
     super.onCreate()
-    this.setStyle('padding', '1rem')
-    this.append(this.getFlex())
-  }
-
-  getFlex() {
-    const flex = new nFlex()
-    flex.append(this.getTitle())
-    flex.append(this.getMenu())
-    return flex
-  }
-
-  getTitle() {
-    const title = new nH1()
-    title.setText('candlesticks')
-    title.setStyle('margin', '0rem')
-    return title
+    this.append(this.getMenu())
   }
 
   getSymbol() {
@@ -36,41 +22,29 @@ export class HeaderComponent extends HTML {
   }
 
   getMenu() {
-    const menu = new nFlex()
-    menu.append(this.getQuantitySelect())
+    const menu = new HTML()
     menu.append(this.getSymbolSelect())
     menu.append(this.getIntervalSelect())
+    menu.append(this.getQuantitySelect())
     return menu
   }
 
   getSymbolSelect() {
     getSymbolList().map((symbol) => this.children.symbol.addOption(symbol, symbol))
-    this.children.symbol.on('change', () => this.onSymbolUpdate())
+    this.children.symbol.on('change', () => this.update())
     return this.children.symbol
-  }
-
-  onSymbolUpdate() {
-    this.update()
   }
 
   getIntervalSelect() {
     getIntervalList().map((interval) => this.children.interval.addOption(interval, interval))
-    this.children.interval.on('change', () => this.onIntervalUpdate())
+    this.children.interval.on('change', () => this.update())
     return this.children.interval
-  }
-
-  onIntervalUpdate() {
-    this.update()
   }
 
   getQuantitySelect() {
     getQuantityList().map((quantity) => this.children.quantity.addOption(quantity, quantity))
-    this.children.quantity.on('change', () => this.onQuantityUpdate())
+    this.children.quantity.on('change', () => this.update())
     return this.children.quantity
-  }
-
-  onQuantityUpdate() {
-    this.update()
   }
 
   getQuantity() {

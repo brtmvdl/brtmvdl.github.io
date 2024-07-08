@@ -14,27 +14,8 @@ export class BodyComponent extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.setStyles()
-    this.setEvents()
     this.setCharts()
     this.append(this.getChart())
-    this.apiGetKlines()
-  }
-
-  setStyles() {
-    this.setStyle('padding', '1rem')
-  }
-
-  setEvents() {
-    this.on('klines', () => this.drawChart())
-  }
-
-  onSymbolUpdate(data = {}) {
-    console.log('on symbol update', data)
-  }
-
-  onIntervalUpdate(data = {}) {
-    console.log('onIntervalUpdate', data)
   }
 
   getChart() {
@@ -43,11 +24,15 @@ export class BodyComponent extends HTML {
   }
 
   apiGetKlines() {
-    const search = new URLSearchParams({ symbol: this.state.symbol, interval: this.state.interval, limit: this.state.limit })
-    return fetch(`https://api4.binance.com/api/v3/klines?${search.toString()}`).then((res) => res.json())
+    return fetch(this.getURL()).then((res) => res.json())
       .then((json) => this.state.klines = json)
-      .then(() => this.dispatchEvent('klines'))
+      .then(() => this.drawChart())
       .then(() => this.apiGetKlines())
+  }
+
+  getURL() {
+    const search = new URLSearchParams({ symbol: this.state.symbol, interval: this.state.interval, limit: this.state.limit })
+    return `https://api3.binance.com/api/v3/klines?${search.toString()}`
   }
 
   getPrice() {
@@ -56,7 +41,7 @@ export class BodyComponent extends HTML {
 
   setCharts() {
     google.charts.load('current', { 'packages': ['corechart'] })
-    google.charts.setOnLoadCallback(() => this.drawChart())
+    google.charts.setOnLoadCallback(() => this.apiGetKlines())
   }
 
   drawChart() {
