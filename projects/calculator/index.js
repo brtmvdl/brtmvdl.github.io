@@ -1,7 +1,10 @@
 import { HTML, nFlex } from '@brtmvdl/frontend'
+import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 
-export class Page extends HTML {
+export class Page extends PaddingComponent {
   children = {
     input: new HTML(),
     result: new HTML(),
@@ -9,73 +12,66 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    const app = this.getAppHTML()
-    app.append(this.getInputHTML())
-    app.append(this.getResultHTML())
-    app.append(this.getNumbersHTML())
-    this.append(app)
+    this.append(new TextComponent({ text: 'calculator' }))
+    this.append(new TwoColumnsComponent({
+      html1: this.getNumbersHTML(),
+      html2: this.getInputsHTML(),
+    }))
   }
 
-  getAppHTML() {
-    const app = new HTML()
-    app.setStyle('margin', '0 auto')
-    app.setStyle('width', '20rem')
-    return app
+  getInputsHTML() {
+    const html = new HTML()
+    html.append(this.getInputHTML())
+    html.append(this.getResultHTML())
+    return html
   }
 
   getInputHTML() {
-    this.children.input.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
-    this.children.input.setStyle('min-height', '2rem')
+    this.children.input.setStyle('line-height', '5rem')
     return this.children.input
   }
 
   getResultHTML() {
-    this.children.result.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
-    this.children.result.setStyle('min-height', '2rem')
+    this.children.result.setStyle('line-height', '10rem')
     return this.children.result
   }
 
   getNumbersHTML() {
-    const flex = new nFlex()
     const numbers = new HTML()
     const n1 = new nFlex()
     n1.append(this.createButton('1'))
-    n1.append(this.createButton('2'))
-    n1.append(this.createButton('3'))
+    n1.append(this.createButton('4'))
+    n1.append(this.createButton('7'))
+    n1.append(this.createButton('+'))
     numbers.append(n1)
     const n2 = new nFlex()
-    n2.append(this.createButton('4'))
+    n2.append(this.createButton('2'))
     n2.append(this.createButton('5'))
-    n2.append(this.createButton('6'))
+    n2.append(this.createButton('8'))
+    n2.append(this.createButton('-'))
     numbers.append(n2)
     const n3 = new nFlex()
-    n3.append(this.createButton('7'))
-    n3.append(this.createButton('8'))
+    n3.append(this.createButton('3'))
+    n3.append(this.createButton('6'))
     n3.append(this.createButton('9'))
+    n3.append(this.createButton('*'))
     numbers.append(n3)
     const n4 = new nFlex()
     n4.append(this.createButton('0'))
     n4.append(this.createButton('CE'))
     n4.append(this.createButton('='))
+    n4.append(this.createButton('/'))
     numbers.append(n4)
-    flex.append(numbers)
-    const ops = new HTML()
-    ops.append(this.createButton('+'))
-    ops.append(this.createButton('-'))
-    ops.append(this.createButton('*'))
-    ops.append(this.createButton('/'))
-    flex.append(ops)
-    return flex
+    return numbers
   }
 
   createButton(char) {
-    const button = new ButtonComponent(char, () => this.onButtonClick(char))
+    const button = new ButtonComponent({ text: char, onclick: () => this.onButtonClick(char) })
     button.setStyle('box-sizing', 'border-box')
-    button.setStyle('padding', '1rem')
     button.setStyle('margin', '0rem')
     button.setStyle('border', 'none')
     button.setStyle('height', '5rem')
-    button.setStyle('width', '5rem')
+    button.setContainerStyle('width', '100%')
     return button
   }
 
@@ -100,5 +96,4 @@ export class Page extends HTML {
     const input = this.children.input.getText() || ''
     this.children.input.setText(input + char)
   }
-
 }
