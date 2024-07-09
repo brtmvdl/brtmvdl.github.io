@@ -345,7 +345,7 @@ export default Array.from([
     "step": 0
   },
   {
-    "id": "roleta",
+    "id": "slots",
     "tags": ["3d, 'game", "peer"],
     "step": 0
   },
