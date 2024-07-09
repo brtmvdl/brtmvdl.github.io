@@ -12,19 +12,19 @@ class MyPeer extends Peer {
 
 export const getPeerConnection = () => { }
 
-export const createControlsUrl = (project, id) => {
+export const createControlsLink = (project, id) => {
   const url = new URL(window.location)
   url.pathname = `/projects/${project}/controls.html?id=${id}`
-  return url.toString()
-}
-
-export const createQrcodeImage = (url) => {
-  console.log('url', (url).replace('%3F', '?'))
-  image.src = qrcode(url)
-  image.style.position = 'fixed'
-  image.style.left = '1rem'
-  image.style.bottom = '1rem'
-  document.body.append(image)
+  const _url = (url.toString()).replace('%3F', '?')
+  image.src = qrcode(_url)
+  const link = document.createElement('a')
+  link.style.position = 'fixed'
+  link.style.bottom = '1rem'
+  link.style.left = '1rem'
+  link.target = '_blank'
+  link.href = _url
+  link.append(image)
+  document.body.append(link)
 }
 
 export const createNewPeer = (project, qrcode = false) => {
@@ -52,7 +52,7 @@ export const createNewPeer = (project, qrcode = false) => {
 
   peer.on('open', (open) => {
     console.log('peer open', { peer, open })
-    if (qrcode) createQrcodeImage(createControlsUrl(project, peer.id))
+    if (qrcode) createControlsLink(project, peer.id)
   })
 
   peer.on('error', (error) => {

@@ -1,4 +1,4 @@
-export default [
+export default Array.from([
   {
     "id": "airplane",
     "tags": ["3d", "game"],
@@ -464,4 +464,4 @@ export default [
     "tags": ["3d"],
     "step": 3
   }
-]
+]).sort((a, b) => a.id.toString().localeCompare(b.id.toString()))
