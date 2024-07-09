@@ -12,19 +12,13 @@ const params = { segments: +8.0, }
 
 const state = { running: false, }
 
-//
-
 const randomNum = (num = 100) => Math.floor(Math.random() * num) + 1
-
-//
 
 const cylinders = Array.from(Array(+3.0)).map((_, ix) => {
   const c = new THREE.Mesh(
-    new THREE.CylinderGeometry(1, 1, 1, 8, 1, true),
+    new THREE.CylinderGeometry(+1.0, +1.0, +1.0, +8.0, +1.0, true),
     new THREE.MeshBasicMaterial({ color: COLORS.WHITE_1 }),
   )
-
-  // createCylinder(+1.0, +1.0, { segments: params.segments, color: COLORS.YELLOW_1, openEnded: true })
 
   c.position.set((ix * +1.5) - +1.5, +1.0, +1.0)
   c.rotation.set(+0.0, +0.0, radian(+90.0))
@@ -63,7 +57,7 @@ window.addEventListener('keypress', ({ key }) => {
 //
 
 const camera = new THREE.PerspectiveCamera(+45.0, window.innerWidth / window.innerHeight, +1.0, +1000.0)
-camera.position.set(+0.0, +5.0, +5.0)
+camera.position.set(+0.0, +2.0, +8.0)
 
 const renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setPixelRatio(window.devicePixelRatio)
