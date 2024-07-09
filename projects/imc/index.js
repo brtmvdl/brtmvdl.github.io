@@ -7,8 +7,8 @@ import { getParams } from '../../assets/js/utils/url.js'
 
 export class Page extends PaddingComponent {
   children = {
-    weight: new InputComponent({ label: 'weight (kg)', value: '1' }),
-    height: new InputComponent({ label: 'height (m)', value: '1' }),
+    weight: new InputComponent({ label: 'weight (kg)', value: 80, type: 'number' }),
+    height: new InputComponent({ label: 'height (m)', value: 1.8, type: 'number' }),
     result: new HTML(),
   }
 
@@ -22,7 +22,7 @@ export class Page extends PaddingComponent {
 
   getBody() {
     const html = new HTML()
-    html.setStyle('width', '20%')
+    html.setStyle('max-width', '26rem')
     html.append(this.getWeightInput())
     html.append(this.getHeightInput())
     html.append(new ButtonComponent({ text: 'calc imc', onclick: () => this.onImcButtonClick() }))
