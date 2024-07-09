@@ -177,7 +177,7 @@ export default Array.from([
   {
     "id": "frontend",
     "tags": ["library"],
-    "step": 4
+    "step": 3
   },
   {
     "id": "github-rest-api",
