@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import { CylinderGeometry } from './geometries/cylinder.geometry.js'
 import * as COLORS from '../../assets/js/utils/colors.js'
 import { radian } from '../../assets/js/utils/3d.js'
 
@@ -15,19 +14,18 @@ const state = { running: false, }
 
 //
 
-export const createCylinder = () => {
-  return new THREE.Mesh(
-    new CylinderGeometry(),
-    new THREE.MeshBasicMaterial({ color:0x999999 }),
-  )
-}
-
 const randomNum = (num = 100) => Math.floor(Math.random() * num) + 1
 
 //
 
 const cylinders = Array.from(Array(+3.0)).map((_, ix) => {
-  const c = createCylinder(+1.0, +1.0, { segments: params.segments, color: COLORS.YELLOW_1, openEnded: true })
+  const c = new THREE.Mesh(
+    new THREE.CylinderGeometry(1, 1, 1, 8, 1, true),
+    new THREE.MeshBasicMaterial({ color: COLORS.WHITE_1 }),
+  )
+
+  // createCylinder(+1.0, +1.0, { segments: params.segments, color: COLORS.YELLOW_1, openEnded: true })
+
   c.position.set((ix * +1.5) - +1.5, +1.0, +1.0)
   c.rotation.set(+0.0, +0.0, radian(+90.0))
   return c
