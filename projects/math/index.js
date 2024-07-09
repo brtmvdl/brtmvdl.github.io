@@ -138,7 +138,7 @@ export class Page extends PaddingComponent {
   getResetedValues(op = this.getOpeator()) {
     const max = op == '/' ? 10 : 100
     const n1 = this.getRandomNumber(max)
-    const n2 = this.getRandomNumber(max)
+    const n2 = this.getRandomNumber(max) + 1
     let result = 'Infinity'
     while (result == 'Infinity') result = this.getCalc(n1, op, n2)
     return { n1, op, n2 }
