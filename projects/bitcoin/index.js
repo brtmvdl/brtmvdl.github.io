@@ -1,20 +1,40 @@
-import { HTML, nFlex, nButton } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '@brtmvdl/frontend'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
 
+import { loadScript } from 'https://cdn.jsdelivr.net/npm/@paypal/paypal-js@8.1.0/dist/esm/paypal-js.min.js'
+
 export class Page extends PaddingComponent {
+  children = {
+    error: new TextComponent({}),
+  }
+
   onCreate() {
     super.onCreate()
-    this.setStyles()
+    this.setEvents()
     this.append(new TextComponent({ text: 'bitcoin' }))
     this.append(this.getTitleHTML())
     this.append(this.getSubtitleHTML())
     this.append(this.getFlex())
+    this.append(this.getErrorComponent())
   }
 
-  setStyles() {
+  setEvents() {
+    loadScript({ 'client-id': '123' })
+      .then((paypal) => console.log({ paypal }))
+      .catch((err) => this.setErrorText('failed to load the PayPal JS SDK script', err))
+  }
+
+  setErrorText(text, error = new Error()) {
+    console.error(error)
+    this.children.error.setText(text)
+  }
+
+  getErrorComponent() {
+    this.children.error.setStyle('color', '#ff0000')
+    return this.children.error
   }
 
   getTitleHTML() {
