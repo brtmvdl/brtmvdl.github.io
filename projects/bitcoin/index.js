@@ -22,7 +22,7 @@ export class Page extends PaddingComponent {
   }
 
   setEvents() {
-    loadScript({ 'client-id': '123' })
+    loadScript({ 'client-id': config.client_id, 'locale': 'pt_BR', 'buyer-country': 'pt_BR', 'currency': 'BRL', 'enable-funding': 'venmo', 'debug': config.debug })
       .then((paypal) => console.log({ paypal }))
       .catch((err) => this.setErrorText('failed to load the PayPal JS SDK script', err))
   }
