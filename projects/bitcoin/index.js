@@ -7,6 +7,10 @@ import * as config from './config.js'
 import { loadScript } from 'https://cdn.jsdelivr.net/npm/@paypal/paypal-js@8.1.0/dist/esm/paypal-js.min.js'
 
 export class Page extends PaddingComponent {
+  state = {
+    amount: 100,
+  }
+
   children = {
     error: new TextComponent({}),
   }
@@ -19,11 +23,18 @@ export class Page extends PaddingComponent {
     this.append(this.getSubtitleHTML())
     this.append(this.getFlex())
     this.append(this.getErrorComponent())
+    this.append(this.children.button)
   }
 
   setEvents() {
     loadScript({ 'client-id': config.client_id, 'locale': 'pt_BR', 'buyer-country': 'BR', 'currency': 'BRL', 'enable-funding': 'venmo', 'debug': config.debug })
-      .then((paypal) => console.log({ paypal }))
+      .then((paypal) => {
+        console.log({ paypal })
+        paypal
+          .Buttons({ message: { amount: this.state.amount } })
+          .render('#button')
+          .catch((error) => this.setErrorText('failed to render the PayPal Buttons', error))
+      })
       .catch((err) => this.setErrorText('failed to load the PayPal JS SDK script', err))
   }
 
@@ -78,6 +89,7 @@ export class Page extends PaddingComponent {
 
   createCardHTML(title, price, items = []) {
     const card = new HTML()
+    card.on('click', () => this.state.amount = price)
     card.append(this.createCardTitle(title))
     card.append(this.createCardPrice(price))
     Array.from(items).map((item) => card.append(this.createCardItem(item)))
