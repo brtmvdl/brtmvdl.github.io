@@ -33,7 +33,7 @@ const params = {
   back: () => camera.position.z += +0.1,
 }
 
-const peer = createNewPeer('airplane')
+const peer = createNewPeer('airplane', true)
 
 peer.on('connection', function (conn) {
   conn.on('data', function ({ text, fn } = {}) {
