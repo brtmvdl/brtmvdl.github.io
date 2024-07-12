@@ -13,6 +13,9 @@
   <script>
     function makeReq() {
       fetch(`http://${document.getElementById('aws_ip').value}/ajax?a=1`)
+        .then((res) => res.json())
+        .then((json) => console.log('json', { json }))
+        .catch((err) => console.error('error', err))
     }
   </script>
   <div id="app">
