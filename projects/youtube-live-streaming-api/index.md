@@ -1,4 +1,6 @@
-# 
+# google api javascript client
+
+https://github.com/google/google-api-javascript-client/blob/master/docs/start.md
 
 ## authenticate
 
