@@ -13,3 +13,9 @@ export const monthName = (month, language = 'enus') => months[language]?.[month 
 export const steps = { '-1': 'comming soon', '0': 'alpha', '1': 'beta', '2': 'staging' }
 
 export const stepName = (step, prefix = '', suffix = '') => (step in steps) ? (prefix + steps[step] + suffix) : ''
+
+export const innerWidth = () => window.innerWidth
+
+export const innerHeight = () => window.innerHeight
+
+export const innerAspect = () => innerWidth() / innerHeight()
