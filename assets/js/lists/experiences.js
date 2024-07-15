@@ -460,6 +460,11 @@ export default Array.from([
     "step": 0
   },
   {
+    "id": "unique",
+    "tags": ["3d", "game"],
+    "step": 0
+  },
+  {
     "id": "write",
     "tags": ["3d"],
     "step": 3
