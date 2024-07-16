@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { HeaderComponent } from './components/header.component.js'
 import { ContentComponent } from './components/content.component.js'
 import { FooterComponent } from './components/footer.component.js'
@@ -22,7 +22,7 @@ export class Page extends HTML {
   }
 
   getHeaderComponent() {
-    this.children.header.on('connect', (ev) => this.onConnect(ev))
+    this.children.header.addEventListener('connect', (ev) => this.onConnect(ev))
     return this.children.header
   }
 
@@ -55,7 +55,7 @@ export class Page extends HTML {
   }
 
   getFooterComponent() {
-    this.children.footer.on('send', (ev) => this.onSend(ev))
+    this.children.footer.addEventListener('send', (ev) => this.onSend(ev))
     return this.children.footer
   }
 

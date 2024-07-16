@@ -1,4 +1,4 @@
-import { HTML, nLink, nImage } from '@brtmvdl/frontend'
+import { HTML, nLink, nImage } from '../../../assets/js/libs/frontend/index.js'
 
 export class ImageLinkComponent extends HTML {
   state = {

@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
 
 export class MessageCardComponent extends HTML {
   state = {

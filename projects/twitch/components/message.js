@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { MessageModel } from '../models/message.js'
 
 export class MessageComponent extends HTML {

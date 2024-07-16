@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 
 export class Page extends HTML {
@@ -17,7 +17,7 @@ export class Page extends HTML {
   }
 
   getInput() {
-    this.children.input.children.input.on('input', () => this.onInput())
+    this.children.input.children.input.addEventListener('input', () => this.onInput())
     return this.children.input
   }
 

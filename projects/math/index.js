@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
@@ -23,7 +23,7 @@ class CellHTML extends HTML {
   }
 
   setEvents() {
-    this.on('click', () => this.dispatchEvent('input', this.text))
+    this.addEventListener('click', () => this.dispatch('input', this.text))
   }
 }
 
@@ -85,7 +85,7 @@ export class Page extends PaddingComponent {
       const cols = []
       Array.from(line).map((col) => {
         const cell = new CellHTML({ text: col })
-        cell.on('input', ({ value }) => this.onInput(value))
+        cell.addEventListener('input', ({ value }) => this.onInput(value))
         cols.push(cell)
       })
       this.children.keyboard.append(new LineHTML({ cols }))

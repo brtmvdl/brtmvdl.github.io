@@ -1,4 +1,4 @@
-import { HTML, nFlex, nLink, nH1, nButton } from '@brtmvdl/frontend'
+import { HTML, nFlex, nLink, nH1, nButton } from '../../../assets/js/libs/frontend/index.js'
 
 export class HeaderComponent extends HTML {
   onCreate() {
@@ -33,7 +33,7 @@ export class HeaderComponent extends HTML {
     button.setStyle('margin', '1rem')
     button.setStyle('padding', '1rem')
     button.setText('start')
-    button.on('click', () => console.log('click'))
+    button.addEventListener('click', () => console.log('click'))
     return button
   }
 }

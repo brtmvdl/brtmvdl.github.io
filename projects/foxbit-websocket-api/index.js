@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
 import { MessagesComponent } from './components/messages.component.js'
 import { HeaderComponent } from './components/header-component.js'
 import { FormComponent } from './components/form.component.js'

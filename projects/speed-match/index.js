@@ -1,4 +1,4 @@
-import { HTML, nH1, nButton, nFlex } from '@brtmvdl/frontend'
+import { HTML, nH1, nButton, nFlex } from '../../assets/js/libs/frontend/index.js'
 
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 

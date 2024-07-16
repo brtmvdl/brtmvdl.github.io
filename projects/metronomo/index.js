@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'

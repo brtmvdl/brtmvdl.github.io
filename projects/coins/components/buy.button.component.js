@@ -1,4 +1,4 @@
-import { HTML, nButton } from '@brtmvdl/frontend'
+import { HTML, nButton } from '../../../assets/js/libs/frontend/index.js'
 
 export class BuyButtonComponent extends nButton {
   onCreate() {

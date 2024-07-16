@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { ImageLinkComponent } from '../../assets/js/components/image.link.component.js'
@@ -37,7 +37,7 @@ export class Page extends PaddingComponent {
   }
 
   getForm() {
-    this.children.form.on('send', ({ value }) => this.onFormSend(value))
+    this.children.form.addEventListener('send', ({ value }) => this.onFormSend(value))
     return this.children.form
   }
 

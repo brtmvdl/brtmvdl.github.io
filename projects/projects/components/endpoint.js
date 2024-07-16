@@ -1,4 +1,4 @@
-import { HTML, nFlex, nInputNumber, nInputText } from '@brtmvdl/frontend'
+import { HTML, nFlex, nInputNumber, nInputText } from '../../../assets/js/libs/frontend/index.js'
 
 import { EndPointModel } from '../models/endpoint.js'
 
@@ -47,9 +47,9 @@ export class EndPoint extends HTML {
 
     this.children.path.setContainerStyle('width', '100%')
 
-    this.children.path.on('input', () => {
+    this.children.path.addEventListener('input', () => {
       this.state.path = this.children.path.getValue()
-      this.dispatchEvent('updateendpoint')
+      this.dispatch('updateendpoint')
     })
 
     return this.children.path
@@ -67,9 +67,9 @@ export class EndPoint extends HTML {
     this.children.hours.setStyle('padding', 'calc(1rem / 4)')
     this.children.hours.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 8) #000000')
 
-    this.children.hours.on('input', () => {
+    this.children.hours.addEventListener('input', () => {
       this.state.hours = +this.children.hours.getValue()
-      this.dispatchEvent('updateendpoint')
+      this.dispatch('updateendpoint')
     })
 
     return this.children.hours

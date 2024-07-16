@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
 
 export class Head extends HTML {
   children = {
@@ -33,7 +33,7 @@ export class Head extends HTML {
   getAddProject() {
     this.children.addProject.setText('create project')
     this.children.addProject.setStyle('cursor', 'pointer')
-    this.children.addProject.on('click', () => this.dispatchEvent('createproject'))
+    this.children.addProject.addEventListener('click', () => this.dispatch('createproject'))
     return this.children.addProject
   }
 }

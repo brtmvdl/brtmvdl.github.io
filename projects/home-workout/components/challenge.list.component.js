@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { padLeft, secondsToMinutes } from '../../../assets/js/utils/str.js'
 
 export class ChallengeListComponent extends HTML {
@@ -40,7 +40,7 @@ export class ChallengeListComponent extends HTML {
   }
 
   setEvents() {
-    this.on('click', () => FLOW.goTo('./challenge/index.html', { id: this.item.id }))
+    this.addEventListener('click', () => FLOW.goTo('./challenge/index.html', { id: this.item.id }))
   }
 
   getTitle() {

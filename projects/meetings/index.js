@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { HeaderComponent } from '../../assets/js/components/header.component.js'
 import { FooterComponent } from '../../assets/js/components/footer.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
@@ -42,7 +42,7 @@ export class Page extends HTML {
 
   getCalendarHTML() {
     this.children.calendar.setStyle('display', 'none')
-    this.children.calendar.on('change', ({ value }) => this.onCalendarChange({ value }))
+    this.children.calendar.addEventListener('change', ({ value }) => this.onCalendarChange({ value }))
     return this.children.calendar
   }
 

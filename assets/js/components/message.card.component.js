@@ -1,4 +1,4 @@
-import { HTML, nFlex, nTable, nTr, nTd } from '@brtmvdl/frontend'
+import { HTML, nFlex, nTable, nTr, nTd } from '../../../assets/js/libs/frontend/index.js'
 import { MessageModel } from '../models/message.model.js'
 import { CardComponent } from './card.component.js'
 import { TextComponent } from './text.component.js'

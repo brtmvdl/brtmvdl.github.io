@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { HeaderComponent } from './components/header.component.js'
 import { ContentComponent } from './components/content.component.js'
 import { FooterComponent } from './components/footer.component.js'

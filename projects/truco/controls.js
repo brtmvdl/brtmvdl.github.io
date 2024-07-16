@@ -70,7 +70,7 @@ window.addEventListener('click', () => {
   const [intersect] = raycaster.intersectObjects(cards.children)
   const ev = new Event('cardclick')
   ev.value = { index: intersect?.object?.userData['index'] }
-  et.dispatchEvent(ev)
+  et.dispatch(ev)
 })
 
 // peer

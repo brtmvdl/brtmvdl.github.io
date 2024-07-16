@@ -1,8 +1,8 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { Peer } from '../../assets/js/libs/peerjs/index.js'
 
 export class Page extends PaddingComponent {
   children = {
@@ -22,7 +22,7 @@ export class Page extends PaddingComponent {
   }
 
   setEvents() {
-    setInterval(() => this.dispatchEvent('message', { numbers: this.state.numbers }), 500)
+    setInterval(() => this.dispatch('message', { numbers: this.state.numbers }), 500)
     this.setPeerEvents()
   }
 
@@ -50,7 +50,7 @@ export class Page extends PaddingComponent {
 
   setConnectionEvents(connection) {
     console.log({ connection })
-    this.on('message', ({ value: message }) => connection.send(message))
+    this.addEventListener('message', ({ value: message }) => connection.send(message))
     connection.on('data', (data) => this.onConnectionData(data))
     connection.on('open', (data) => this.onConnectionOpen(data))
     connection.on('close', (data) => this.onConnectionClose(data))

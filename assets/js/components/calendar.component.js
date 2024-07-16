@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { SelectComponent } from '../../../assets/js/components/select.component.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { monthName } from '../../../assets/js/utils/functions.js'
@@ -23,8 +23,8 @@ export class CalendarComponent extends HTML {
   }
 
   setEvents() {
-    this.on('updatemonth', () => this.loadDays())
-    this.on('updateyear', () => this.loadDays())
+    this.addEventListener('updatemonth', () => this.loadDays())
+    this.addEventListener('updateyear', () => this.loadDays())
   }
 
   loadDays() {
@@ -77,7 +77,7 @@ export class CalendarComponent extends HTML {
     Array.from(Array(5))
       .map((_, i) => (year + i).toString())
       .map((i) => this.children.year.addOption(i, i))
-    this.children.year.on('change', () => this.dispatchEvent('updateyear'))
+    this.children.year.addEventListener('change', () => this.dispatch('updateyear'))
     return this.children.year
   }
 
@@ -85,7 +85,7 @@ export class CalendarComponent extends HTML {
     Array.from(Array(12))
       .map((_, i) => monthName(i + 1))
       .map((month, i) => this.children.month.addOption(i + 1, month))
-    this.children.month.on('change', () => this.dispatchEvent('updatemonth'))
+    this.children.month.addEventListener('change', () => this.dispatch('updatemonth'))
     return this.children.month
   }
 

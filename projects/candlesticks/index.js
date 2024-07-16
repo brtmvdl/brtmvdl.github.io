@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
@@ -22,7 +22,7 @@ export class Page extends PaddingComponent {
   }
 
   setEvents() {
-    this.on('update', () => this.children.footer.dispatchEvent('update'))
+    this.addEventListener('update', () => this.children.footer.dispatch('update'))
   }
 
   getTwoColumns() {
@@ -44,7 +44,7 @@ export class Page extends PaddingComponent {
   }
 
   getHeader() {
-    this.children.header.on('update', ({ value: data }) => this.onHeaderUpdate(data))
+    this.children.header.addEventListener('update', ({ value: data }) => this.onHeaderUpdate(data))
     return this.children.header
   }
 
@@ -53,7 +53,7 @@ export class Page extends PaddingComponent {
   }
 
   getBody() {
-    this.children.body.on('update', ({ value: data }) => this.onBodyUpdate(data))
+    this.children.body.addEventListener('update', ({ value: data }) => this.onBodyUpdate(data))
     return this.children.body
   }
 
@@ -62,9 +62,9 @@ export class Page extends PaddingComponent {
   }
 
   getFooter() {
-    this.children.footer.on('buy', () => this.onFooterBuy())
-    this.children.footer.on('sell', () => this.onFooterSell())
-    this.children.footer.on('update', ({ value: data }) => this.onFooterUpdate(data))
+    this.children.footer.addEventListener('buy', () => this.onFooterBuy())
+    this.children.footer.addEventListener('sell', () => this.onFooterSell())
+    this.children.footer.addEventListener('update', ({ value: data }) => this.onFooterUpdate(data))
     return this.children.footer
   }
 
@@ -90,12 +90,12 @@ export class Page extends PaddingComponent {
       timestamp: Date.now(),
       ...params
     })
-    this.dispatchEvent('update')
+    this.dispatch('update')
   }
 
   update({ header = {}, body = {}, footer = {} } = {}) {
-    this.children.header.dispatchEvent('input', header)
-    this.children.body.dispatchEvent('input', body)
-    this.children.footer.dispatchEvent('input', footer)
+    this.children.header.dispatch('input', header)
+    this.children.body.dispatch('input', body)
+    this.children.footer.dispatch('input', footer)
   }
 }

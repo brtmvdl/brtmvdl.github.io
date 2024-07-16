@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
 
 HTML.fromElement(document.body)
   .setStyle('background-color', '#000000')
@@ -42,8 +42,8 @@ class nLetter extends HTML {
   }
 
   setEvents() {
-    this.on('touchstart', (data) => this.onTouchStart(data))
-    this.on('touchend', (data) => this.onTouchEnd(data))
+    this.addEventListener('touchstart', (data) => this.onTouchStart(data))
+    this.addEventListener('touchend', (data) => this.onTouchEnd(data))
   }
 
   onTouchStart(data) {

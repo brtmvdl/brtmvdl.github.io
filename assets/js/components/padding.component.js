@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../libs/frontend/index.js'
 import { HeaderComponent } from './header.component.js'
 
 export class PaddingComponent extends HTML {

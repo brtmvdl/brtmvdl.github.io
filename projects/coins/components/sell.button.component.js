@@ -1,4 +1,4 @@
-import { HTML, nButton } from '@brtmvdl/frontend'
+import { HTML, nButton } from '../../../assets/js/libs/frontend/index.js'
 import * as Local from '../../../assets/js/utils/local.js'
 
 export class SellButtonComponent extends nButton {
@@ -15,7 +15,7 @@ export class SellButtonComponent extends nButton {
     super.onCreate()
     this.setStyles()
     this.setText('Sell')
-    this.on('click', () => this.onClick())
+    this.addEventListener('click', () => this.onClick())
   }
 
   setStyles() {

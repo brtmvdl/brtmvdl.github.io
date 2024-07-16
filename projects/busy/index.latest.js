@@ -1,4 +1,4 @@
-import { HTML, nH1, nInputText, nFlex } from '@brtmvdl/frontend'
+import { HTML, nH1, nInputText, nFlex } from '../../assets/js/libs/frontend/index.js'
 
 const app = HTML.fromId('app')
 
@@ -22,7 +22,7 @@ const inputButton = new HTML()
 inputButton.setStyle('margin-left', '1rem')
 inputButton.setStyle('padding', '0.5rem')
 inputButton.setText('Go!')
-inputButton.on('click', () => {
+inputButton.addEventListener('click', () => {
   const itemName = inputText.getValue()
   inputText.clear()
 
@@ -71,12 +71,12 @@ const renderList = () => {
     if (item.on) {
       const timeEl = new HTML()
       timeEl.setText(textTime(calcTime(now, item.started)))
-      timeEl.on('click', () => list[ix].on = false)
+      timeEl.addEventListener('click', () => list[ix].on = false)
       itemEl.append(timeEl)
     } else {
       const buttonEl = new HTML()
       buttonEl.setText('Start')
-      buttonEl.on('click', () => list[ix].on = true)
+      buttonEl.addEventListener('click', () => list[ix].on = true)
       itemEl.append(buttonEl)
     }
 

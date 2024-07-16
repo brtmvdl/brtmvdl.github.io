@@ -1,4 +1,4 @@
-import { HTML, nFlex, nSpan } from '@brtmvdl/frontend'
+import { HTML, nFlex, nSpan } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
@@ -49,17 +49,17 @@ export class Page extends PaddingComponent {
   }
 
   getBuyQuantityInput() {
-    this.children.buy_quantity_input.on('keyup', () => this.calcGains())
+    this.children.buy_quantity_input.addEventListener('keyup', () => this.calcGains())
     return this.children.buy_quantity_input
   }
 
   getBuyPriceInput() {
-    this.children.buy_price_input.on('keyup', () => this.calcGains())
+    this.children.buy_price_input.addEventListener('keyup', () => this.calcGains())
     return this.children.buy_price_input
   }
 
   getSellPriceInput() {
-    this.children.sell_price_input.on('keyup', () => this.calcGains())
+    this.children.sell_price_input.addEventListener('keyup', () => this.calcGains())
     return this.children.sell_price_input
   }
 

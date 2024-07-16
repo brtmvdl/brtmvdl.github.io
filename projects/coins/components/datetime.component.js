@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { datetime2str } from '../../../assets/js/utils/str.js'
 
 export class DatetimeComponent extends HTML {

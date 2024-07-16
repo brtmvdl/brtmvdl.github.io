@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { MessageModel } from '../models/message.model.js'
 
 export class MessagesComponent extends HTML {
@@ -18,7 +18,7 @@ export class MessagesComponent extends HTML {
   }
 
   setEvents() {
-    this.on('message', ({ value: data }) => this.onMessage(data))
+    this.addEventListener('message', ({ value: data }) => this.onMessage(data))
   }
 
   onMessage(message = new MessageModel()) {

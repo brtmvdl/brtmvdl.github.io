@@ -1,4 +1,4 @@
-import { HTML, nLink } from '@brtmvdl/frontend'
+import { HTML, nLink } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'

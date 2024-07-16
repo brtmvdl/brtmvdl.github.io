@@ -1,4 +1,4 @@
-import { HTML, nSelectGroup } from '@brtmvdl/frontend'
+import { HTML, nSelectGroup } from '../../../assets/js/libs/frontend/index.js'
 
 export class SelectGroupComponent extends nSelectGroup {
   text = ''

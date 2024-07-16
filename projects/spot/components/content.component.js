@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { FormComponent } from './form.component.js'
 import { MessagesComponent } from './messages.component.js'
 
@@ -50,15 +50,15 @@ export class ContentComponent extends HTML {
   }
 
   getFormComponent() {
-    this.children.form.on('start', (ev) => this.onStart(ev))
-    this.children.form.on('change', (ev) => this.onChange(ev))
+    this.children.form.addEventListener('start', (ev) => this.onStart(ev))
+    this.children.form.addEventListener('change', (ev) => this.onChange(ev))
     return this.children.form
   }
 
   onStart(ev) {
     const message = { "op": "subscribe", "args": [{ "instType": "SPOT", "channel": "candle1m", "instId": ev.value }] }
     this.state.socket.send(JSON.stringify(message))
-    this.children.messages.dispatchEvent('message', message)
+    this.children.messages.dispatch('message', message)
   }
 
   onChange(ev) {

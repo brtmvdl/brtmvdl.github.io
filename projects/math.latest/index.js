@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
 
 const app = HTML.fromId('app')
 
@@ -106,7 +106,7 @@ const keyboard = [
     cellEl.setStyle('height', '2em')
     cellEl.setStyle('width', '2em')
     cellEl.setText(cell)
-    cellEl.on('click', () => {
+    cellEl.addEventListener('click', () => {
       switch (true) {
         case Number.isInteger(+cell): return screen.addResultNumber(cell)
         case cell === '!': return screen.checkResult()

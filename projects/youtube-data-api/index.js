@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { EndpointsComponent } from '../../assets/js/components/endpoints.component.js'
@@ -42,7 +42,7 @@ export class Page extends HTML {
   }
 
   getFormHTML() {
-    this.children.form.on('send', (data) => this.onFormSend(data))
+    this.children.form.addEventListener('send', (data) => this.onFormSend(data))
     return this.children.form
   }
 
@@ -64,6 +64,6 @@ export class Page extends HTML {
 
   addMessage(message = new MessageModel()) {
     this.state.messages.push(message)
-    this.children.messages.dispatchEvent('message', message)
+    this.children.messages.dispatch('message', message)
   }
 }

@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { AudioMessageComponent } from './components/audio.message.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'

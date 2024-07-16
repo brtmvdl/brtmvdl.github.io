@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { Head } from './components/head.js'
 import { Body } from './components/body.js'
@@ -16,7 +16,7 @@ export class Page extends PaddingComponent {
   }
 
   getHeader() {
-    this.children.header.on('createproject', () => this.children.body.dispatchEvent('createproject'))
+    this.children.header.addEventListener('createproject', () => this.children.body.dispatch('createproject'))
 
     return this.children.header
   }

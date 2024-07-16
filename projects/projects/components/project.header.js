@@ -1,4 +1,4 @@
-import { HTML, COLORS, nFlex, nInput, nSelect } from '@brtmvdl/frontend'
+import { HTML, COLORS, nFlex, nInput, nSelect } from '../../../assets/js/libs/frontend/index.js'
 
 import { CONTRACTS } from '../utils/constansts.js'
 
@@ -47,7 +47,7 @@ export class ProjectHeader extends nFlex {
     this.children.domain.setPlaceholder('domain.com')
     this.children.domain.setStyle('border', 'none')
 
-    this.children.domain.on('input', () => this.state.domain = this.children.domain.getValue())
+    this.children.domain.addEventListener('input', () => this.state.domain = this.children.domain.getValue())
 
     return this.children.domain
   }
@@ -60,16 +60,16 @@ export class ProjectHeader extends nFlex {
     this.children.contract.setStyle('border', 'none')
     this.children.contract.setStyle('background-color', COLORS.WHITE_1)
 
-    this.children.contract.on('input', () => this.state.contract = this.children.contract.getValue())
+    this.children.contract.addEventListener('input', () => this.state.contract = this.children.contract.getValue())
 
     return this.children.contract
   }
 
   getDelButton() {
-    return new ButtonComponent({ text: 'delete', onclick: () => this.dispatchEvent('deleteproject', this) })
+    return new ButtonComponent({ text: 'delete', onclick: () => this.dispatch('deleteproject', this) })
   }
 
   getPlusButton() {
-    return new ButtonComponent({ text: 'plus', onclick: () => this.dispatchEvent('createendpoint', this) })
+    return new ButtonComponent({ text: 'plus', onclick: () => this.dispatch('createendpoint', this) })
   }
 }

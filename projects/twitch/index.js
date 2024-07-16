@@ -1,4 +1,4 @@
-import { HTML, nFlex, nButton, nInputTextGroup } from '@brtmvdl/frontend'
+import { HTML, nFlex, nButton, nInputTextGroup } from '../../assets/js/libs/frontend/index.js'
 import { TitleComponent } from './components/title.js'
 import { MessageComponent } from './components/message.js'
 import { MessageModel } from './models/message.js'
@@ -68,7 +68,7 @@ export class Page extends HTML {
   createSendMessageButton(text, onMessage = (() => '')) {
     const button = new nButton()
     button.setText(text)
-    button.on('click', () => this.socketSend(onMessage()))
+    button.addEventListener('click', () => this.socketSend(onMessage()))
     return button
   }
 
@@ -105,7 +105,7 @@ export class Page extends HTML {
   getSendButton() {
     const button = new nButton()
     button.setText('send')
-    button.on('click', () => this.onButtonClick())
+    button.addEventListener('click', () => this.onButtonClick())
     return button
   }
 

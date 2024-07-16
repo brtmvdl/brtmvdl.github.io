@@ -1,5 +1,5 @@
-import { HTML } from '@brtmvdl/frontend'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputComponent } from '../../assets/js/components/input.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'

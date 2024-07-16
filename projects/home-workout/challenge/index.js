@@ -1,4 +1,4 @@
-import { HTML, nButton, nFlex, nH1, nHr } from '@brtmvdl/frontend'
+import { HTML, nButton, nFlex, nH1, nHr } from '../../assets/js/libs/frontend/index.js'
 import * as API from '../utils/api.js'
 
 import { padLeft } from './../../../assets/js/utils/str.js'
@@ -41,7 +41,7 @@ export class Page extends HTML {
     button.setStyle('padding', '1rem 2rem')
     button.setStyle('background-color', '#000000')
     // button.setStyle('border-radius', 'calc(1rem / 8)')
-    button.on('click', () => { })
+    button.addEventListener('click', () => { })
     flex.append(button)
 
     return flex

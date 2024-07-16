@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 
 import { EndPointModel } from '../models/endpoint.js'
 import { ProjectModel } from '../models/project.js'
@@ -29,7 +29,7 @@ export class ProjectComponent extends HTML {
     this.append(this.getEndPoints())
     this.append(this.children.footer)
 
-    this.children.header.dispatchEvent('createendpoint')
+    this.children.header.dispatch('createendpoint')
   }
 
   setStyles() {
@@ -42,18 +42,18 @@ export class ProjectComponent extends HTML {
   }
 
   setEvents() {
-    this.children.header.on('createendpoint', () => this.onCreateEndPoint())
+    this.children.header.addEventListener('createendpoint', () => this.onCreateEndPoint())
 
-    this.on('updateendpoints', () => this.onUpdateEndPoints())
+    this.addEventListener('updateendpoints', () => this.onUpdateEndPoints())
 
-    this.on('updatevalues', () => this.onUpdateValues())
-    this.on('updatefooter', () => this.onUpdateFooter())
+    this.addEventListener('updatevalues', () => this.onUpdateValues())
+    this.addEventListener('updatefooter', () => this.onUpdateFooter())
   }
 
   onCreateEndPoint() {
 
     this.state.endpoints.push(new EndPointModel())
-    this.dispatchEvent('updateendpoints')
+    this.dispatch('updateendpoints')
   }
 
   onUpdateEndPoints() {
@@ -62,7 +62,7 @@ export class ProjectComponent extends HTML {
 
     this.state.endpoints.map((ep) => {
       const endpoint = new EndPoint(ep)
-      endpoint.on('updateendpoint', () => this.dispatchEvent('updateendpoints'))
+      endpoint.addEventListener('updateendpoint', () => this.dispatch('updateendpoints'))
       this.children.endpoints.append(endpoint)
     })
 

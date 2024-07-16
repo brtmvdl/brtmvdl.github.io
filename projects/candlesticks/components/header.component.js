@@ -1,4 +1,4 @@
-import { HTML, nH1, nFlex } from '@brtmvdl/frontend'
+import { HTML, nH1, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { SelectComponent } from '../../../assets/js/components/select.component.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { getIntervalList } from '../utils/lists/interval.list.js'
@@ -31,19 +31,19 @@ export class HeaderComponent extends HTML {
 
   getSymbolSelect() {
     getSymbolList().map((symbol) => this.children.symbol.addOption(symbol, symbol))
-    this.children.symbol.on('change', () => this.update())
+    this.children.symbol.addEventListener('change', () => this.update())
     return this.children.symbol
   }
 
   getIntervalSelect() {
     getIntervalList().map((interval) => this.children.interval.addOption(interval, interval))
-    this.children.interval.on('change', () => this.update())
+    this.children.interval.addEventListener('change', () => this.update())
     return this.children.interval
   }
 
   getQuantitySelect() {
     getQuantityList().map((quantity) => this.children.quantity.addOption(quantity, quantity))
-    this.children.quantity.on('change', () => this.update())
+    this.children.quantity.addEventListener('change', () => this.update())
     return this.children.quantity
   }
 
@@ -52,7 +52,7 @@ export class HeaderComponent extends HTML {
   }
 
   update() {
-    this.dispatchEvent('update', {
+    this.dispatch('update', {
       quantity: this.children.quantity.getValue(),
       symbol: this.children.symbol.getValue(),
       interval: this.children.interval.getValue(),

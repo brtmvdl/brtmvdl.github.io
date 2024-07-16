@@ -1,4 +1,4 @@
-import { HTML, nInput } from '@brtmvdl/frontend'
+import { HTML, nInput } from '../../../assets/js/libs/frontend/index.js'
 
 export class DateTimeGroupComponent extends nInput {
   constructor(text, value = Date.now()) {

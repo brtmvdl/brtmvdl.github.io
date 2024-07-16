@@ -1,4 +1,4 @@
-import * as FRONTEND from '@brtmvdl/frontend'
+import * as FRONTEND from '../../../assets/js/libs/frontend/index.js'
 
 export class nInput extends FRONTEND.nInput {
   onCreate() {

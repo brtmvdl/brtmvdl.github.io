@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 
@@ -23,7 +23,7 @@ export class HeaderHTML extends HTML {
   }
 
   getCreateProjectButton() {
-    const button = new ButtonComponent({ text: 'create project', onclick: () => this.dispatchEvent('createproject') })
+    const button = new ButtonComponent({ text: 'create project', onclick: () => this.dispatch('createproject') })
     button.setStyle('padding', 'calc(1rem / 2) 0rem')
     button.setStyle('margin', '1rem 0rem')
     button.setStyle('cursor', 'pointer')

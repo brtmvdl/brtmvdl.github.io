@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { HeaderHTML } from './components/header.html.js'
 import { BodyHTML } from './components/body.html.js'
 import { FooterHTML } from './components/footer.html.js'
@@ -24,12 +24,12 @@ export class Page extends HTML {
   }
 
   getHeader() {
-    this.children.header.on('createproject', () => this.children.body.dispatchEvent('createproject'))
+    this.children.header.addEventListener('createproject', () => this.children.body.dispatch('createproject'))
     return this.children.header
   }
 
   getBody() {
-    this.children.body.on('update', () => this.children.footer.dispatchEvent('update'))
+    this.children.body.addEventListener('update', () => this.children.footer.dispatch('update'))
     return this.children.body
   }
 

@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { LinkComponent } from '../../../assets/js/components/link.component.js'
 import { ImageComponent } from '../../../assets/js/components/image.component.js'
 import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'

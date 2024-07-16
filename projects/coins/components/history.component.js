@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import * as Local from '../../../assets/js/utils/local.js'
 import { MoveComponent } from './move.component.js'
 

@@ -1,4 +1,4 @@
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { Peer } from '../../../assets/js/libs/peerjs/index.js'
 
 import { qrcode } from './functions.js'
 

@@ -1,4 +1,4 @@
-import { HTML, nH2, nLink, nButton } from '@brtmvdl/frontend'
+import { HTML, nH2, nLink, nButton } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
@@ -34,7 +34,7 @@ export class Page extends PaddingComponent {
   getCodeButton() {
     const button = new nButton()
     button.setText('get code from url')
-    button.on('click', () => this.onCodeButtonClick())
+    button.addEventListener('click', () => this.onCodeButtonClick())
     return button
   }
 

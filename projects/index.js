@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../assets/js/components/padding.component.js'
 import { TextComponent } from '../assets/js/components/text.component.js'
 import { ProjectThumbnailComponent } from '../assets/js/components/project.thumbnail.component.js'

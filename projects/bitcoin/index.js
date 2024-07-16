@@ -1,10 +1,10 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as config from './config.js'
 
-import { loadScript } from 'https://cdn.jsdelivr.net/npm/@paypal/paypal-js@8.1.0/dist/esm/paypal-js.min.js'
+import { loadScript } from '../../assets/js/libs/paypal/index.js'
 
 export class Page extends PaddingComponent {
   state = {
@@ -89,7 +89,7 @@ export class Page extends PaddingComponent {
 
   createCardHTML(title, price, items = []) {
     const card = new HTML()
-    card.on('click', () => this.state.amount = price)
+    card.addEventListener('click', () => this.state.amount = price)
     card.append(this.createCardTitle(title))
     card.append(this.createCardPrice(price))
     Array.from(items).map((item) => card.append(this.createCardItem(item)))

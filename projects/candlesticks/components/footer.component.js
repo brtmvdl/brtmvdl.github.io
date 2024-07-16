@@ -1,4 +1,4 @@
-import { HTML, nFlex, nButton, nTable, nTr, nTd } from '@brtmvdl/frontend'
+import { HTML, nFlex, nButton, nTable, nTr, nTd } from '../../../assets/js/libs/frontend/index.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import * as Local from '../../../assets/js/utils/local.js'
 
@@ -54,7 +54,7 @@ export class FooterComponent extends HTML {
   }
 
   setEvents() {
-    this.on('update', () => this.onUpdate())
+    this.addEventListener('update', () => this.onUpdate())
   }
 
   onUpdate() {
@@ -80,8 +80,8 @@ export class FooterComponent extends HTML {
 
   getButtonsComponents() {
     return new TwoColumnsComponent({
-      html1: new ButtonComponent({ text: 'buy', onclick: () => this.dispatchEvent('buy') }),
-      html2: new ButtonComponent({ text: 'sell', onclick: () => this.dispatchEvent('sell') }),
+      html1: new ButtonComponent({ text: 'buy', onclick: () => this.dispatch('buy') }),
+      html2: new ButtonComponent({ text: 'sell', onclick: () => this.dispatch('sell') }),
     })
   }
 }

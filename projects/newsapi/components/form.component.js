@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { InputComponent } from '../../../assets/js/components/input.component.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { padLeft } from '../../../assets/js/utils/str.js'
@@ -92,10 +92,10 @@ export class FormComponent extends HTML {
   }
 
   onNewsApiEverything(json) {
-    this.dispatchEvent('result', json)
+    this.dispatch('result', json)
   }
 
   onError(err) {
-    this.dispatchEvent('error', err)
+    this.dispatch('error', err)
   }
 }

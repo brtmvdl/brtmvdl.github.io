@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../libs/frontend/index.js'
 
 export class TwoColumnsComponent extends nFlex {
   getName() { return 'two-columns-component' }

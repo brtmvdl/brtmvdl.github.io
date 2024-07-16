@@ -1,4 +1,4 @@
-import { HTML, nFlex, nH1, nButton } from '@brtmvdl/frontend'
+import { HTML, nFlex, nH1, nButton } from '../../assets/js/libs/frontend/index.js'
 
 class nText extends HTML { }
 
@@ -101,10 +101,10 @@ class nGrid extends HTML {
         cell.setStyle('height', `${width}rem`)
         cell.setStyle('width', `${width}rem`)
 
-        cell.on('click', () => {
+        cell.addEventListener('click', () => {
           const event = new Event('cellclick')
           event.cell = cell
-          self.element.dispatchEvent(event)
+          self.element.dispatch(event)
         })
 
         this.cells.push({ line: l, column: c, place: cell })
@@ -194,15 +194,15 @@ const buttons = new nFlex()
 
 const largeButton = new nButton()
 largeButton.setText('Large 6')
-largeButton.on('click', () => { game.play(nGrid.LARGE) })
+largeButton.addEventListener('click', () => { game.play(nGrid.LARGE) })
 
 const mediumButton = new nButton()
 mediumButton.setText('Medium 5')
-mediumButton.on('click', () => { game.play(nGrid.MEDIUM) })
+mediumButton.addEventListener('click', () => { game.play(nGrid.MEDIUM) })
 
 const smallButton = new nButton()
 smallButton.setText('Small 4')
-smallButton.on('click', () => { game.play(nGrid.SMALL) })
+smallButton.addEventListener('click', () => { game.play(nGrid.SMALL) })
 
 marginAuto.append(buttons)
 
@@ -257,7 +257,7 @@ class Game {
     const self = this
 
     square.setGrid(self.grid_size)
-    square.on('cellclick', ({ cell }) => {
+    square.addEventListener('cellclick', ({ cell }) => {
       const num = +cell.getText()
       const line = +cell.getData('line')
       const column = +cell.getData('column')

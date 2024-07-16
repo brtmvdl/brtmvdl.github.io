@@ -1,4 +1,4 @@
-import { HTML, nFlex, nLink } from '@brtmvdl/frontend'
+import { HTML, nFlex, nLink } from '../../../assets/js/libs/frontend/index.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import * as COLORS from '../colors.js'
 import { links } from '../constants.js'
@@ -48,7 +48,7 @@ class nModal extends HTML {
 
     const closeButton = new HTML()
     closeButton.setText('x')
-    closeButton.on('click', () => this.close())
+    closeButton.addEventListener('click', () => this.close())
     flex.append(closeButton)
 
     return flex

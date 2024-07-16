@@ -1,4 +1,4 @@
-import { HTML, nButton, nVideo } from '@brtmvdl/frontend'
+import { HTML, nButton, nVideo } from '../../assets/js/libs/frontend/index.js'
 
 import { API_KEY } from './config.js'
 
@@ -72,7 +72,7 @@ export class Page extends HTML {
     console.log('getStartCaptureButton')
 
     this.children.startCaptureButton.setText('start capture')
-    this.children.startCaptureButton.on('click', () => this.startCapture())
+    this.children.startCaptureButton.addEventListener('click', () => this.startCapture())
 
     return this.children.startCaptureButton
   }
@@ -81,7 +81,7 @@ export class Page extends HTML {
     console.log('getStopCaptureButton')
 
     this.children.stopCaptureButton.setText('stop capture')
-    this.children.stopCaptureButton.on('click', () => this.stopCapture())
+    this.children.stopCaptureButton.addEventListener('click', () => this.stopCapture())
 
     return this.children.stopCaptureButton
   }
@@ -112,7 +112,7 @@ export class Page extends HTML {
     console.log('getStartRecordButton')
 
     this.children.startRecordButton.setText('start Record')
-    this.children.startRecordButton.on('click', () => this.startRecord())
+    this.children.startRecordButton.addEventListener('click', () => this.startRecord())
 
     return this.children.startRecordButton
   }
@@ -121,7 +121,7 @@ export class Page extends HTML {
     console.log('getStopRecordButton')
 
     this.children.stopRecordButton.setText('stop Record')
-    this.children.stopRecordButton.on('click', () => this.stopRecord())
+    this.children.stopRecordButton.addEventListener('click', () => this.stopRecord())
 
     return this.children.stopRecordButton
   }
@@ -179,7 +179,7 @@ export class Page extends HTML {
     console.log('getAuthenticateButton')
 
     this.children.authenticateButton.setText('authenticate')
-    this.children.authenticateButton.on('click', () => this.authenticate().then(console.log).catch(console.error))
+    this.children.authenticateButton.addEventListener('click', () => this.authenticate().then(console.log).catch(console.error))
 
     return this.children.authenticateButton
   }
@@ -195,7 +195,7 @@ export class Page extends HTML {
     console.log('getLoadClientButton')
 
     this.children.loadClientButton.setText('load client')
-    this.children.loadClientButton.on('click', () => this.loadClient().then(console.log).catch(console.error))
+    this.children.loadClientButton.addEventListener('click', () => this.loadClient().then(console.log).catch(console.error))
 
     return this.children.loadClientButton
   }
@@ -211,7 +211,7 @@ export class Page extends HTML {
     console.log('getExecuteButton')
 
     this.children.executeButton.setText('execute')
-    this.children.executeButton.on('click', () => this.execute().then(console.log).catch(console.error))
+    this.children.executeButton.addEventListener('click', () => this.execute().then(console.log).catch(console.error))
 
     return this.children.executeButton
   }
@@ -231,7 +231,7 @@ export class Page extends HTML {
     console.log('getInsertButton')
 
     this.children.insertButton.setText('insert')
-    this.children.insertButton.on('click', () => this.insert().then(console.log).catch(console.error))
+    this.children.insertButton.addEventListener('click', () => this.insert().then(console.log).catch(console.error))
 
     return this.children.insertButton
   }
@@ -255,7 +255,7 @@ export class Page extends HTML {
     console.log('getLoadButton')
 
     this.children.loadButton.setText('load GAPI')
-    this.children.loadButton.on('click', () => this.loadGAPI())
+    this.children.loadButton.addEventListener('click', () => this.loadGAPI())
 
     return this.children.loadButton
   }

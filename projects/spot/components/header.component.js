@@ -1,4 +1,4 @@
-import { HTML, nFlex, nLink, nImage } from '@brtmvdl/frontend'
+import { HTML, nFlex, nLink, nImage } from '../../../assets/js/libs/frontend/index.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 import { ip } from '../../../assets/js/utils/net.js'
 

@@ -1,4 +1,4 @@
-import { HTML, nSelect, nButton } from '@brtmvdl/frontend'
+import { HTML, nSelect, nButton } from '../../../assets/js/libs/frontend/index.js'
 import { getProductList } from '../utils/lists.js'
 
 export class FormComponent extends HTML {
@@ -16,7 +16,7 @@ export class FormComponent extends HTML {
 
   getSelect() {
     Array.from(getProductList()).map((item) => this.children.select.addOption(item, item))
-    this.children.select.on('change', () => this.onSelectChange())
+    this.children.select.addEventListener('change', () => this.onSelectChange())
     this.children.select.setContainerStyle('padding', '1rem')
     this.children.select.setStyle('background-color', 'transparent')
     this.children.select.setStyle('padding', '1rem')
@@ -26,7 +26,7 @@ export class FormComponent extends HTML {
   }
 
   onSelectChange() {
-    this.dispatchEvent('change', this.children.select.getValue())
+    this.dispatch('change', this.children.select.getValue())
   }
 
   getInputs() {
@@ -39,11 +39,11 @@ export class FormComponent extends HTML {
     button.setStyle('padding', '1rem')
     button.setStyle('width', '10rem')
     button.setText('start')
-    button.on('click', () => this.onButtonClick())
+    button.addEventListener('click', () => this.onButtonClick())
     return button
   }
 
   onButtonClick() {
-    this.dispatchEvent('start', this.children.select.getValue())
+    this.dispatch('start', this.children.select.getValue())
   }
 }

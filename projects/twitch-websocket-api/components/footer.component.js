@@ -1,4 +1,4 @@
-import { HTML, nFlex, nInput, nButton } from '@brtmvdl/frontend'
+import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/frontend/index.js'
 
 export class FooterComponent extends HTML {
   children = {
@@ -31,11 +31,11 @@ export class FooterComponent extends HTML {
     this.children.send.setStyle('padding', 'calc(1rem / 4)')
     this.children.send.setStyle('width', '100%')
     this.children.send.setText('send')
-    this.children.send.on('click', () => this.onSendButtonClick())
+    this.children.send.addEventListener('click', () => this.onSendButtonClick())
     return this.children.send
   }
 
   onSendButtonClick() {
-    this.dispatchEvent('send', this.children.text.getValue())
+    this.dispatch('send', this.children.text.getValue())
   }
 }

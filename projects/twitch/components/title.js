@@ -1,4 +1,4 @@
-import { HTML, nLink, nH1 } from '@brtmvdl/frontend'
+import { HTML, nLink, nH1 } from '../../../assets/js/libs/frontend/index.js'
 
 export class TitleComponent extends HTML {
   title = ''

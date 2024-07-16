@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { TextComponent } from './text.component.js'
 
 export class TitleComponent extends TextComponent {

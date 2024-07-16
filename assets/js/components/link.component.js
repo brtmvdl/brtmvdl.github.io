@@ -1,4 +1,4 @@
-import { HTML, nLink } from '@brtmvdl/frontend'
+import { HTML, nLink } from '../libs/frontend/index.js'
 
 export class LinkComponent extends nLink {
   getName() { return 'link-component' }

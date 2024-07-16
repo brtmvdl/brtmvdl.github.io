@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { ProjectModel } from '../models/project.model.js'
 import { ProjectHTML } from './project.html.js'
 
@@ -18,7 +18,7 @@ export class BodyHTML extends HTML {
   }
 
   setEvents() {
-    this.on('createproject', () => this.onCreateProject())
+    this.addEventListener('createproject', () => this.onCreateProject())
   }
 
   onCreateProject() {
@@ -30,7 +30,7 @@ export class BodyHTML extends HTML {
     this.children.projects.clear()
     this.state.projects.map((project, ix) => {
       const html = new ProjectHTML(project)
-      html.on('delete', () => this.deleteProjectByIndex(ix))
+      html.addEventListener('delete', () => this.deleteProjectByIndex(ix))
       this.children.projects.append(html)
     })
   }

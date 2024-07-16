@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 
 class LetterComponent extends HTML {
@@ -19,10 +19,10 @@ class LetterComponent extends HTML {
   }
 
   setEvents() {
-    this.on('mouseenter', () => this.onMouseEnter())
-    this.on('mouseleave', () => this.onMouseLeave())
-    this.on('mousedown', () => this.onMouseDown())
-    this.on('mouseup', () => this.onMouseUp())
+    this.addEventListener('mouseenter', () => this.onMouseEnter())
+    this.addEventListener('mouseleave', () => this.onMouseLeave())
+    this.addEventListener('mousedown', () => this.onMouseDown())
+    this.addEventListener('mouseup', () => this.onMouseUp())
   }
 
   onMouseEnter() {

@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { AmountInputComponent, CoinSelectComponent, PriceComponent, DatetimeComponent, BuyButtonComponent, HistoryComponent } from './components/index.js'
 import * as Local from '../../assets/js/utils/local.js'
 
@@ -32,7 +32,7 @@ export class Page extends HTML {
 
   getAmountInputComponent() {
     this.children.amount.setValue(100)
-    this.children.amount.on('keyup', () => this.onAmountInputKeyUp())
+    this.children.amount.addEventListener('keyup', () => this.onAmountInputKeyUp())
     return this.children.amount
   }
 
@@ -45,7 +45,7 @@ export class Page extends HTML {
   }
 
   getCoinSelectComponent() {
-    this.children.coin.on('change', () => this.onCoinSelectChange())
+    this.children.coin.addEventListener('change', () => this.onCoinSelectChange())
     return this.children.coin
   }
 

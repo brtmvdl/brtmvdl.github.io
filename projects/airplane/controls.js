@@ -1,9 +1,9 @@
-import { HTML } from '@brtmvdl/frontend'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
-import { ImageComponent } from '../../assets/js/components/image.component.js'
+// import { ImageComponent } from '../../assets/js/components/image.component.js'
 import { getURLSearchParam } from '../../assets/js/utils/url.js'
 
 export class Page extends PaddingComponent {
@@ -39,7 +39,7 @@ export class Page extends PaddingComponent {
     this.state.peer.on('open', () => {
       console.log('peer open')
       const conn = this.state.peer.connect(id)
-      this.on('message', ({ value: message }) => conn.send({ fn: message }))
+      this.addEventListener('message', ({ value: message }) => conn.send({ fn: message }))
       conn.on('open', () => console.log('conn open', conn))
       conn.on('close', () => console.log('conn close', conn))
       conn.on('error', (err) => console.log('conn error', err, conn))
@@ -54,11 +54,11 @@ export class Page extends PaddingComponent {
   createButton(text) {
     const button = new HTML()
     button.append(this.getImageComponent(text))
-    button.on('contextmenu', (ev) => ev.preventDefault())
-    button.on('mousedown', () => this.onButtonMouseDown({ value: text }))
-    button.on('mouseup', () => this.onButtonMouseUp({ value: text }))
-    button.on('touchstart', () => this.onButtonTouchStart({ value: text }))
-    button.on('touchend', () => this.onButtonTouchEnd({ value: text }))
+    button.addEventListener('contextmenu', (ev) => ev.preventDefault())
+    button.addEventListener('mousedown', () => this.onButtonMouseDown({ value: text }))
+    button.addEventListener('mouseup', () => this.onButtonMouseUp({ value: text }))
+    button.addEventListener('touchstart', () => this.onButtonTouchStart({ value: text }))
+    button.addEventListener('touchend', () => this.onButtonTouchEnd({ value: text }))
     button.setStyle('text-align', 'center')
     button.setStyle('padding', '1rem')
     return button
@@ -75,7 +75,7 @@ export class Page extends PaddingComponent {
   }
 
   startMoving({ message } = {}) {
-    this.state.events[message] = setInterval(() => this.dispatchEvent('message', message), 100)
+    this.state.events[message] = setInterval(() => this.dispatch('message', message), 100)
   }
 
   stopMoving({ message } = {}) {

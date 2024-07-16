@@ -1,4 +1,4 @@
-import { HTML, nSelect } from '@brtmvdl/frontend'
+import { HTML, nSelect } from '../../../assets/js/libs/frontend/index.js'
 
 export class SelectComponent extends HTML {
   state = {
@@ -27,7 +27,7 @@ export class SelectComponent extends HTML {
   }
 
   setEvents() {
-    this.children.input.on('change', () => this.dispatchEvent('change'))
+    this.children.input.addEventListener('change', () => this.dispatch('change'))
   }
 
   getLabel() {

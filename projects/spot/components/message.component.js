@@ -1,4 +1,4 @@
-import { HTML, nSelect, nButton } from '@brtmvdl/frontend'
+import { HTML, nSelect, nButton } from '../../../assets/js/libs/frontend/index.js'
 import { MessageModel } from '../models/message.model.js'
 import { TextComponent } from '../components/text.component.js'
 

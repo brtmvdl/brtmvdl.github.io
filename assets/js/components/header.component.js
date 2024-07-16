@@ -1,4 +1,4 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
+import { HTML, nFlex } from '../libs/frontend/index.js'
 import { getLinksList } from '../lists/links.js'
 import { LinkComponent } from './link.component.js'
 

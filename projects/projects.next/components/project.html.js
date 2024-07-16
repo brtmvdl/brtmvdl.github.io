@@ -1,4 +1,4 @@
-import { HTML, nInputText, nSelect, nFlex } from '@brtmvdl/frontend'
+import { HTML, nInputText, nSelect, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { EndpointModel } from '../models/endpoint.model.js'
 import { EndpointHTML } from './endpoint.html.js'
@@ -40,7 +40,7 @@ export class ProjectHTML extends HTML {
   }
 
   getDomainInputText() {
-    this.children.domain.on('input', () => console.log('value', this.getValue()))
+    this.children.domain.addEventListener('input', () => console.log('value', this.getValue()))
     return this.children.domain
   }
 
@@ -52,7 +52,7 @@ export class ProjectHTML extends HTML {
   }
 
   getDeleteButton() {
-    return new ButtonComponent({ text: 'delete', onclick: () => this.dispatchEvent('delete') })
+    return new ButtonComponent({ text: 'delete', onclick: () => this.dispatch('delete') })
   }
 
   getCreateButton() {

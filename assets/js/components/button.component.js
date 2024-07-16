@@ -1,4 +1,4 @@
-import { HTML, nButton } from '@brtmvdl/frontend'
+import { HTML, nButton } from '../../../assets/js/libs/frontend/index.js'
 
 export class ButtonComponent extends nButton {
   state = {
@@ -16,7 +16,7 @@ export class ButtonComponent extends nButton {
   onCreate() {
     super.onCreate()
     this.setText(this.state.text)
-    this.on('click', () => this.state.onclick?.())
+    this.addEventListener('click', () => this.state.onclick?.())
   }
 
   setStyles() {

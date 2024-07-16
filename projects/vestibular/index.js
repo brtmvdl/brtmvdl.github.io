@@ -1,4 +1,4 @@
-import { HTML, nH1 } from '@brtmvdl/frontend'
+import { HTML, nH1 } from '../../assets/js/libs/frontend/index.js'
 
 class Question extends HTML {
   constructor({ question = [], answers = [], right = 0 } = {}) {
@@ -11,8 +11,8 @@ class Question extends HTML {
     this.append(this.getQuestionHTML())
     this.append(this.getAnswersHTML())
 
-    this.on('rightanswer', ({ data: { answer } }) => console.log('Right answer ' + answer))
-    this.on('wronganswer', ({ data: { answer } }) => console.log('Wrong answer ' + answer))
+    this.addEventListener('rightanswer', ({ data: { answer } }) => console.log('Right answer ' + answer))
+    this.addEventListener('wronganswer', ({ data: { answer } }) => console.log('Wrong answer ' + answer))
   }
 
   createTextElement(text) {
@@ -54,7 +54,7 @@ class Question extends HTML {
     this.answers.map((q, answer) => {
       const answerEl = new HTML()
       answerEl.setText(`${String.fromCharCode(97 + answer)}: `)
-      answerEl.on('click', () => {
+      answerEl.addEventListener('click', () => {
         self.dispatch(
           self.right ? 'rightanswer' : 'wronganswer',
           { answer }
@@ -124,7 +124,7 @@ const setTestsList = (tests = []) => {
 
     const button = new nButton()
     button.setText('Start')
-    button.on('click', () => {
+    button.addEventListener('click', () => {
       clearLists()
       API.getTest({ where, when, which })
         .then((res) => res.get('list').map((q) => questionsEl.append(new Question(q))))

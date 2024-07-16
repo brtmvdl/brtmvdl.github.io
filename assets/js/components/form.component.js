@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 
 export class FormComponent extends HTML {
   getName() { return 'form-component' }

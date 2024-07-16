@@ -1,4 +1,4 @@
-import { HTML, nFlex, nInput, nButton } from '@brtmvdl/frontend'
+import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/frontend/index.js'
 
 export class HeaderComponent extends HTML {
   children = {
@@ -31,11 +31,11 @@ export class HeaderComponent extends HTML {
     this.children.connect.setStyle('padding', 'calc(1rem / 4)')
     this.children.connect.setStyle('width', '100%')
     this.children.connect.setText('connect')
-    this.children.connect.on('click', () => this.onConnectButtonClick())
+    this.children.connect.addEventListener('click', () => this.onConnectButtonClick())
     return this.children.connect
   }
 
   onConnectButtonClick() {
-    this.dispatchEvent('connect', this.children.url.getValue())
+    this.dispatch('connect', this.children.url.getValue())
   }
 }

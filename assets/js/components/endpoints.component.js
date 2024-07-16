@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { SelectComponent } from './select.component.js'
 import { ButtonComponent } from './button.component.js'
 import { InputsComponent } from './inputs.component.js'
@@ -31,7 +31,7 @@ export class EndpointsComponent extends HTML {
 
   getEndpointsSelect() {
     Array.from(this.state.endpoints).map(({ name }) => this.children.select.addOption(name, name))
-    this.children.select.on('change', () => this.onEndpointsSelectChange())
+    this.children.select.addEventListener('change', () => this.onEndpointsSelectChange())
     return this.children.select
   }
 
@@ -52,7 +52,7 @@ export class EndpointsComponent extends HTML {
   onSendButtonClick() {
     const endpoint = this.getEndpoint()
     const query = this.getEndpointQuery()
-    this.dispatchEvent('send', { endpoint, query })
+    this.dispatch('send', { endpoint, query })
   }
 
   getEndpoint(endpoint = this.children.select.getValue()) {

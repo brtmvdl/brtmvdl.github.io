@@ -1,5 +1,5 @@
-import { HTML } from '@brtmvdl/frontend'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
@@ -57,7 +57,7 @@ export class Page extends PaddingComponent {
   }
 
   setFacebookEvents() {
-    this.on('fb.load', () => this.onFacebookLoad())
+    this.addEventListener('fb.load', () => this.onFacebookLoad())
   }
 
   setPeerEvents() {

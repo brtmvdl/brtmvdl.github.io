@@ -1,4 +1,4 @@
-import { HTML, nSelect } from '@brtmvdl/frontend'
+import { HTML, nSelect } from '../../../assets/js/libs/frontend/index.js'
 import { getPairsList } from '../utils/lists.js'
 
 export class CoinSelectComponent extends nSelect {

@@ -1,5 +1,5 @@
-import { HTML, nFlex } from '@brtmvdl/frontend'
-import { Peer } from 'https://esm.sh/peerjs@1.5.4?bundle-deps'
+import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
+import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
@@ -37,9 +37,9 @@ export class Page extends PaddingComponent {
   }
 
   setPeerEvents() {
-    this.state.peer.on('error', (err) => this.onPeerError(err))
-    this.state.peer.on('open', (data) => this.onPeerOpen(data))
-    this.state.peer.on('connection', (data) => this.onPeerConnection(data))
+    this.state.peer.addEventListener('error', (err) => this.onPeerError(err))
+    this.state.peer.addEventListener('open', (data) => this.onPeerOpen(data))
+    this.state.peer.addEventListener('connection', (data) => this.onPeerConnection(data))
   }
 
   onPeerError(conn, error) {
@@ -54,9 +54,9 @@ export class Page extends PaddingComponent {
 
   onPeerConnection(conn) {
     this.addMessage(`${conn.peer}: connection: ${Date.now()}`)
-    conn.on('error', (err) => this.onConnectionError(conn, err))
-    conn.on('open', (data) => this.onConnectionOpen(conn, data))
-    conn.on('data', (data) => this.onConnectionData(conn, data))
+    conn.addEventListener('error', (err) => this.onConnectionError(conn, err))
+    conn.addEventListener('open', (data) => this.onConnectionOpen(conn, data))
+    conn.addEventListener('data', (data) => this.onConnectionData(conn, data))
   }
 
   onConnectionError(conn, error) {

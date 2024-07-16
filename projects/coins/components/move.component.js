@@ -1,4 +1,4 @@
-import { HTML } from '@brtmvdl/frontend'
+import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import { datetime2str, interval2str } from '../../../assets/js/utils/str.js'
 import { SellButtonComponent } from './sell.button.component.js'
 import { TitleComponent } from './title.component.js'

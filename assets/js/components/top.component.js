@@ -1,4 +1,4 @@
-import { HTML, nImage, nFlex } from '@brtmvdl/frontend'
+import { HTML, nImage, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { LinkComponent } from './link.component.js'
 import { ButtonComponent } from './button.component.js'
 
@@ -47,7 +47,7 @@ export class TopComponent extends HTML {
   }
 
   getDownloadButton() {
-    return new ButtonComponent({ text: 'download', onclick: () => this.dispatchEvent('download') })
+    return new ButtonComponent({ text: 'download', onclick: () => this.dispatch('download') })
   }
 
 }
