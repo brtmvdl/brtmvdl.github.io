@@ -1,21 +1,23 @@
 import * as THREE from 'three'
+
 import { planesInCube } from './constants.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+
+import { innerWidth, innerHeight } from '../../assets/js/utils/functions.js'
 import { fixDecimals } from '../../assets/js/utils/numbers.js'
+import { createNewPeer } from '../../assets/js/utils/peer.js'
 
 const __ = {
-  getWidth: () => window.innerWidth,
-  getHeight: () => window.innerHeight,
   getSide: () => THREE.DoubleSide,
 }
 
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, __.getWidth() / __.getHeight(), 1e-1, 1e4)
+const camera = new THREE.PerspectiveCamera(75, innerWidth() / innerHeight(), 1e-1, 1e4)
 camera.position.set(+5.0, +5.0, +3.0)
 camera.lookAt(+0.0, +0.0, +0.0)
 
 const renderer = new THREE.WebGLRenderer()
-renderer.setSize(__.getWidth(), __.getHeight())
+renderer.setSize(innerWidth(), innerHeight())
 document.body.appendChild(renderer.domElement)
 document.body.style.margin = '0rem'
 
@@ -114,4 +116,16 @@ const keysFunctions = {
 window.addEventListener('keydown', ({ key, shiftKey }) => {
   const fn = (shiftKey ? '_' : '') + keysFunctions[key.toLocaleLowerCase()]
   moves[fn]?.()
+})
+
+const peer = createNewPeer('cube', true)
+
+peer.on('connection', (conn) => {
+  conn.on('open', () => {
+    conn.on('data', (data) => {
+      console.log('data', { data })
+    })
+
+    conn.send('hello')
+  })
 })
