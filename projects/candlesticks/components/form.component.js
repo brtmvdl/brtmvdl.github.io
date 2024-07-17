@@ -5,7 +5,7 @@ import { getIntervalList } from '../utils/lists/interval.list.js'
 import { getQuantityList } from '../utils/lists/quantity.list.js'
 import { getSymbolList } from '../utils/lists/symbol.list.js'
 
-export class HeaderComponent extends HTML {
+export class FormComponent extends HTML {
   children = {
     quantity: new SelectComponent({ label: 'quantity' }),
     symbol: new SelectComponent({ label: 'symbol' }),

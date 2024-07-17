@@ -1,6 +1,6 @@
 import { HTML } from '../../../assets/js/libs/frontend/index.js'
 
-export class BodyComponent extends HTML {
+export class ChartsComponent extends HTML {
   children = {
     charts: new HTML(),
   }
@@ -14,8 +14,17 @@ export class BodyComponent extends HTML {
 
   onCreate() {
     super.onCreate()
+    this.setEvents()
     this.setCharts()
     this.append(this.getChart())
+  }
+
+  setEvents() {
+    this.addEventListener('input', (data) => this.onInput(data))
+  }
+
+  onInput(data) {
+    console.log('input', { data })
   }
 
   getChart() {
