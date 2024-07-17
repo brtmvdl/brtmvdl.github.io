@@ -1,6 +1,7 @@
 import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'
 
-export class HeaderComponent extends HTML {
+export class ConnectComponent extends HTML {
   children = {
     url: new nInput(),
     connect: new nButton(),
@@ -8,18 +9,14 @@ export class HeaderComponent extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(this.getFlex())
-  }
-
-  getFlex() {
-    const flex = new nFlex()
-    flex.append(this.getUrlInput().setContainerStyle('width', '80%'))
-    flex.append(this.getConnectButton().setContainerStyle('width', '20%'))
-    return flex
+    this.append(new TwoColumnsComponent({
+      html1: this.getUrlInput(),
+      html2: this.getConnectButton(),
+      widths: ['78%', '20%']
+    }))
   }
 
   getUrlInput() {
-    this.children.url.setContainerStyle('padding', '1rem')
     this.children.url.setStyle('padding', 'calc(1rem / 4)')
     this.children.url.setStyle('width', '100%')
     this.children.url.setPlaceholder('url')
@@ -27,7 +24,6 @@ export class HeaderComponent extends HTML {
   }
 
   getConnectButton() {
-    this.children.connect.setContainerStyle('padding', '1rem')
     this.children.connect.setStyle('padding', 'calc(1rem / 4)')
     this.children.connect.setStyle('width', '100%')
     this.children.connect.setText('connect')

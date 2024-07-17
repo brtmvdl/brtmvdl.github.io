@@ -1,13 +1,41 @@
 import { HTML } from '../../assets/js/libs/frontend/index.js'
-import { HeaderComponent } from './components/header.component.js'
-import { ContentComponent } from './components/content.component.js'
-import { FooterComponent } from './components/footer.component.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
+import { MessageModel } from '../../assets/js/models/message.model.js'
+import { MessagesComponent } from './components/content.component.js'
+import { ConnectComponent } from './components/connect.component.js'
+import { SendComponent } from './components/send.component.js'
 
-export class Page extends HTML {
+class SocketMessageModel extends MessageModel {
+  Side = 'socket'
+}
+
+class OpenMessageModel extends SocketMessageModel {
+  constructor(data = {}) {
+    super('open', data)
+  }
+}
+
+class ErrorMessageModel extends SocketMessageModel {
+  constructor(error = new Error()) {
+    super('error', error)
+  }
+}
+
+class CloseMessageModel extends SocketMessageModel {
+  constructor(data = {}) {
+    super('close', data)
+  }
+}
+
+class OptionsComponent extends HTML { }
+
+export class Page extends PaddingComponent {
   children = {
-    header: new HeaderComponent(),
-    content: new ContentComponent(),
-    footer: new FooterComponent(),
+    connect: new ConnectComponent(),
+    options: new OptionsComponent(),
+    send: new SendComponent(),
+    messages: new MessagesComponent(),
   }
 
   state = {
@@ -16,14 +44,16 @@ export class Page extends HTML {
 
   onCreate() {
     super.onCreate()
-    this.append(this.getHeaderComponent())
-    this.append(this.getFooterComponent())
-    this.append(this.getContentComponent())
+    this.append(new TextComponent({ text: 'socket' }))
+    this.append(this.getConnectComponent())
+    this.append(this.getOptionsComponent())
+    this.append(this.getSendComponent())
+    this.append(this.getMessagesComponent())
   }
 
-  getHeaderComponent() {
-    this.children.header.addEventListener('connect', (ev) => this.onConnect(ev))
-    return this.children.header
+  getConnectComponent() {
+    this.children.connect.addEventListener('connect', (ev) => this.onConnect(ev))
+    return this.children.connect
   }
 
   onConnect(ev) {
@@ -35,37 +65,41 @@ export class Page extends HTML {
   }
 
   onConnectOpen(data) {
-    this.children.content.addMessage('open', '')
+    this.dispatchMessage(new OpenMessageModel(data))
   }
 
   onConnectMessage({ data } = {}) {
-    this.addMessage(data.toString())
+    this.dispatchMessage(new MessageModel(data))
   }
 
   onConnectError(data) {
-    this.children.content.addMessage('error', data.message.toString())
+    this.dispatchMessage(new ErrorMessageModel(data))
   }
 
   onConnectClose(data) {
-    this.children.content.addMessage('close', '')
+    this.dispatchMessage(new CloseMessageModel(data))
   }
 
-  getContentComponent() {
-    return this.children.content
+  getOptionsComponent() {
+    return this.children.options
   }
 
-  getFooterComponent() {
-    this.children.footer.addEventListener('send', (ev) => this.onSend(ev))
-    return this.children.footer
+  getSendComponent() {
+    this.children.send.addEventListener('send', (ev) => this.onSend(ev))
+    return this.children.send
   }
 
   onSend({ value: data } = {}) {
-    this.addMessage(data.toString())
+    this.dispatchMessage(data.toString())
     this.state.socket.send(data)
   }
 
-  addMessage(message) {
-    this.children.content.addMessage('message', message.toString())
+  getMessagesComponent() {
+    return this.children.messages
+  }
+
+  dispatchMessage(message = new MessageModel()) {
+    this.children.messages.dispatch('message', message)
   }
 
 }

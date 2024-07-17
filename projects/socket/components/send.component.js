@@ -1,6 +1,7 @@
 import { HTML, nFlex, nInput, nButton } from '../../../assets/js/libs/frontend/index.js'
+import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'
 
-export class FooterComponent extends HTML {
+export class SendComponent extends HTML {
   children = {
     text: new nInput(),
     send: new nButton(),
@@ -12,14 +13,15 @@ export class FooterComponent extends HTML {
   }
 
   getFlex() {
-    const flex = new nFlex()
-    flex.append(this.getTextInput().setContainerStyle('width', '80%'))
-    flex.append(this.getSendButton().setContainerStyle('width', '20%'))
-    return flex
+    return new TwoColumnsComponent({
+      html1: this.getTextInput(),
+      html2: this.getSendButton(),
+      widths: ['78%', '20%'],
+    })
   }
 
   getTextInput() {
-    this.children.text.setContainerStyle('padding', '1rem')
+    this.children.text.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
     this.children.text.setStyle('padding', 'calc(1rem / 4)')
     this.children.text.setStyle('width', '100%')
     this.children.text.setPlaceholder('text')
@@ -27,7 +29,7 @@ export class FooterComponent extends HTML {
   }
 
   getSendButton() {
-    this.children.send.setContainerStyle('padding', '1rem')
+    this.children.send.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem')
     this.children.send.setStyle('padding', 'calc(1rem / 4)')
     this.children.send.setStyle('width', '100%')
     this.children.send.setText('send')

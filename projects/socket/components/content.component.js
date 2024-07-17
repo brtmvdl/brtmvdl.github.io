@@ -2,7 +2,7 @@ import { HTML } from '../../../assets/js/libs/frontend/index.js'
 import * as str from '../../../assets/js/utils/str.js'
 import { TextComponent } from '../../../assets/js/components/text.component.js'
 
-export class ContentComponent extends HTML {
+export class MessagesComponent extends HTML {
   children = {
     messages: new HTML(),
   }
@@ -10,11 +10,20 @@ export class ContentComponent extends HTML {
   onCreate() {
     super.onCreate()
     this.setStyles()
+    this.setEvents()
     this.append(this.getMessages())
   }
 
   setStyles() {
     this.setStyle('padding', '1rem')
+  }
+
+  setEvents() {
+    this.addEventListener('message', (data) => this.onMessage(data))
+  }
+
+  onMessage(data) {
+    console.log('on message', data)
   }
 
   getMessages() {
