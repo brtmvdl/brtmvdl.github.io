@@ -14,8 +14,9 @@ export class Page extends PaddingComponent {
     super.onCreate()
     this.append(new TextComponent({ text: 'calculator' }))
     this.append(new TwoColumnsComponent({
-      html1: this.getNumbersHTML(),
-      html2: this.getInputsHTML(),
+      html1: this.getInputsHTML(),
+      html2: this.getNumbersHTML(),
+      widths: ['59%', '39%']
     }))
   }
 
@@ -27,12 +28,18 @@ export class Page extends PaddingComponent {
   }
 
   getInputHTML() {
-    this.children.input.setStyle('line-height', '5rem')
+    this.children.input.setStyle('font-size', '2rem')
+    this.children.input.setStyle('line-height', '2rem')
+    this.children.input.setStyle('margin-bottom', '2rem')
+    this.children.input.setStyle('padding', 'calc(1rem / 4)')
     return this.children.input
   }
 
   getResultHTML() {
-    this.children.result.setStyle('line-height', '10rem')
+    this.children.result.setStyle('font-size', '2rem')
+    this.children.result.setStyle('line-height', '2rem')
+    this.children.result.setStyle('margin-bottom', '2rem')
+    this.children.result.setStyle('padding', 'calc(1rem / 4)')
     return this.children.result
   }
 
@@ -40,19 +47,19 @@ export class Page extends PaddingComponent {
     const numbers = new HTML()
     const n1 = new nFlex()
     n1.append(this.createButton('1'))
-    n1.append(this.createButton('4'))
-    n1.append(this.createButton('7'))
+    n1.append(this.createButton('2'))
+    n1.append(this.createButton('3'))
     n1.append(this.createButton('+'))
     numbers.append(n1)
     const n2 = new nFlex()
-    n2.append(this.createButton('2'))
+    n2.append(this.createButton('4'))
     n2.append(this.createButton('5'))
-    n2.append(this.createButton('8'))
+    n2.append(this.createButton('6'))
     n2.append(this.createButton('-'))
     numbers.append(n2)
     const n3 = new nFlex()
-    n3.append(this.createButton('3'))
-    n3.append(this.createButton('6'))
+    n3.append(this.createButton('7'))
+    n3.append(this.createButton('8'))
     n3.append(this.createButton('9'))
     n3.append(this.createButton('*'))
     numbers.append(n3)
@@ -96,4 +103,5 @@ export class Page extends PaddingComponent {
     const input = this.children.input.getText() || ''
     this.children.input.setText(input + char)
   }
+
 }
