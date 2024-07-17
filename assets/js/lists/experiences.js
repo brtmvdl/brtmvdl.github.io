@@ -92,7 +92,7 @@ export default Array.from([
   {
     "id": "calculator",
     "tags": ["personal"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "candlesticks",
