@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from '../../../assets/js/libs/three/index.js'
 import * as COLORS from '../../../assets/js/utils/colors.js'
 import { createPlane, radian } from '../utils/functions.js'
 

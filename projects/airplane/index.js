@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from '../../assets/js/libs/three/index.js'
 import { createNewPeer } from '../../assets/js/utils/peer.js'
 import * as COLORS from '../../assets/js/utils/colors.js'
 

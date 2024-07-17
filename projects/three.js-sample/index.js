@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from '../../assets/js/libs/three/index.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 const {
