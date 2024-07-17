@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from '../../../assets/js/libs/three/index.js'
 import * as COLORS from './colors.js'
 
 export const radian = (r) => r * (Math.PI / +180.0)
