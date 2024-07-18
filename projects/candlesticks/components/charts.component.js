@@ -23,8 +23,9 @@ export class ChartsComponent extends HTML {
     this.addEventListener('input', (data) => this.onInput(data))
   }
 
-  onInput(data) {
-    console.log('input', { data })
+  onInput({ value: { form: { symbol, interval, } } }) {
+    this.state.symbol = symbol
+    this.state.interval = interval
   }
 
   getChart() {
@@ -61,7 +62,8 @@ export class ChartsComponent extends HTML {
 
   getData() {
     return Array.from(this.state.klines)
-      .map(([kline_open_time, open_price, high_price, low_price, close_price]) => ([new Date(kline_open_time), +open_price, +low_price, +high_price, +close_price]))
+      .map(([kline_open_time, open_price, high_price, low_price, close_price]) => ([new Date(kline_open_time), +low_price, +open_price, +close_price, +high_price]))
       .filter((_, ix) => ix < 10)
   }
+
 }
