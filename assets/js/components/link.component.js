@@ -17,7 +17,7 @@ export class LinkComponent extends nLink {
     if (this.state.text) this.setText(this.state.text)
     this.setStyle('text-decoration', 'none')
     this.setStyle('display', 'inline-block')
-    this.setStyle('padding', 'calc(1rem / 4)')
     this.setStyle('margin', '0rem 0rem calc(1rem / 4) 0rem ')
   }
+
 }
