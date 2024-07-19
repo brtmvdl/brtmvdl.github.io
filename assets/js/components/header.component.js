@@ -1,8 +1,17 @@
 import { HTML, nFlex } from '../libs/frontend/index.js'
-import { getLinksList } from '../lists/links.js'
 import { LinkComponent } from './link.component.js'
 
 export class HeaderComponent extends HTML {
+  props = {
+    links: Array.from([
+      ['products', '/products/'],
+      ['projects', '/projects/'],
+      ['blog', '/blog/'],
+      ['donate', '/pages/donate/'],
+    ])
+  }
+
+
   onCreate() {
     super.onCreate()
     this.append(this.getFlex())
@@ -21,7 +30,10 @@ export class HeaderComponent extends HTML {
 
   getRight() {
     const html = new nFlex()
-    Array.from(getLinksList()).map(([text, href = '']) => html.append(new LinkComponent({ text, href })))
+    Array.from(this.props.links)
+      .map(([text, href = '']) => new LinkComponent({ text, href }))
+      .map((link) => link.setContainerStyle('margin-left', 'calc(1rem / 4)'))
+      .map((link) => html.append(link))
     return html
   }
 }
