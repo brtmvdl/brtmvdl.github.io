@@ -23,6 +23,9 @@ export class Page extends PaddingComponent {
 
   setEvents() {
     this.addEventListener('update', () => this.children.moves.dispatch('update'))
+    this.children.form.addEventListener('update', ({ value: data }) => this.update({ form: data }))
+    this.children.moves.addEventListener('buy', () => this.saveMove({ side: 'buy' }))
+    this.children.moves.addEventListener('sell', () => this.saveMove({ side: 'sell' }))
   }
 
   getLeft() {
@@ -30,7 +33,6 @@ export class Page extends PaddingComponent {
   }
 
   getForm() {
-    this.children.form.addEventListener('update', ({ value: data }) => this.update({ form: data }))
     return this.children.form
   }
 
@@ -42,23 +44,11 @@ export class Page extends PaddingComponent {
   }
 
   getChartsComponent() {
-    this.children.charts.addEventListener('update', ({ value: data }) => this.update({ charts: data }))
     return this.children.charts
   }
 
   getMovesComponent() {
-    this.children.moves.addEventListener('buy', () => this.onFooterBuy())
-    this.children.moves.addEventListener('sell', () => this.onFooterSell())
-    this.children.moves.addEventListener('update', ({ value: data }) => this.update({ moves: data }))
     return this.children.moves
-  }
-
-  onFooterBuy() {
-    this.saveMove({ side: 'buy' })
-  }
-
-  onFooterSell() {
-    this.saveMove({ side: 'sell' })
   }
 
   saveMove(params = {}) {
@@ -77,7 +67,5 @@ export class Page extends PaddingComponent {
   update(data = {}) {
     this.children.form.dispatch('input', data)
     this.children.charts.dispatch('input', data)
-    this.children.moves.dispatch('input', data)
   }
-
 }

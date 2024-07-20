@@ -1,4 +1,6 @@
 import { HTML } from '../../../assets/js/libs/frontend/index.js'
+import { getSymbolList } from '../utils/lists/symbol.list.js'
+import { getIntervalList } from '../utils/lists/interval.list.js'
 
 export class ChartsComponent extends HTML {
   children = {
@@ -7,8 +9,8 @@ export class ChartsComponent extends HTML {
 
   state = {
     klines: [],
-    symbol: 'BNBBRL',
-    interval: '1s',
+    symbol: getSymbolList()[0],
+    interval: getIntervalList()[0],
     limit: 100,
   }
 

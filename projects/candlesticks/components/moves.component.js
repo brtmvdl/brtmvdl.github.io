@@ -2,6 +2,7 @@ import { HTML, nFlex, nButton, nTable, nTr, nTd } from '../../../assets/js/libs/
 import { TwoColumnsComponent } from '../../../assets/js/components/two.columns.component.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
 import { TableComponent } from '../../../assets/js/components/table.component.js'
+import { fixDecimals } from '../../../assets/js/utils/math.js'
 import * as Local from '../../../assets/js/utils/local.js'
 
 export class MovesComponent extends HTML {
@@ -26,7 +27,12 @@ export class MovesComponent extends HTML {
 
   updateMoves() {
     this.children.moves.clear()
-    const table = new TableComponent(Local.get(['orders'], []) || [])
+    const orders = Array.from(Local.get(['orders'], []))
+      .map((order) => {
+        order['price'] = +fixDecimals(order['price'])
+        return order
+      })
+    const table = new TableComponent(orders || [])
     this.children.moves.append(table)
   }
 
