@@ -17,14 +17,14 @@
     const searchParams = (param, def = '') => { const url = new URL(window.location); return url.searchParams.get(param) || def }
 
     const chart = document.getElementById('chart')
-    chart.style.height = window.innerHeight
-    chart.style.width = window.innerWidth
+    chart.style.height = (window.innerHeight * 0.5) + 'px'
+    chart.style.width = (window.innerWidth * 0.5) + 'px'
 
     const apexCharts = new ApexCharts(chart, { chart: { type: 'candlestick' }, series: [{ data: [] }] })
     apexCharts.render()
 
     const run = () => {
-      fetch(`https://api4.binance.com/api/v3/klines?symbol=${searchParams('symbol', 'BNBBRL')}&interval=${searchParams('interval', '1m')}&limit=${searchParams('limit', 100)}`)
+      fetch(`https://api4.binance.com/api/v3/klines?symbol=${searchParams('symbol', 'BNBUSDT')}&interval=${searchParams('interval', '1h')}&limit=${searchParams('limit', 100)}`)
         .then((res) => res.json())
         .then((data) => Array.from(data).map(([Open_Time, Open_Price, High_Price, Low_Price, Close_Price]) => ([+Open_Time, +Open_Price, +High_Price, +Low_Price, +Close_Price])))
         .then((data) => [data, console.log({ data })][0])
