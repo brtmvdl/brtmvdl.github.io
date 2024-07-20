@@ -1,8 +1,7 @@
 import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { AmountInputComponent, CoinSelectComponent, PriceComponent, DatetimeComponent, BuyButtonComponent, HistoryComponent } from './components/index.js'
-import * as Local from '../../assets/js/utils/local.js'
-
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import * as Local from '../../assets/js/utils/local.js'
 
 export class Page extends HTML {
   state = {
