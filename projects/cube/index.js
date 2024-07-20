@@ -4,7 +4,7 @@ import { planesInCube } from './constants.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 import { innerWidth, innerHeight } from '../../assets/js/utils/functions.js'
-import { fixDecimals } from '../../assets/js/utils/numbers.js'
+import { fixDecimals } from '../../assets/js/utils/math.js'
 import { createNewPeer } from '../../assets/js/utils/peer.js'
 
 const __ = {
