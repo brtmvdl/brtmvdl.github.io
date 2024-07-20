@@ -27,6 +27,7 @@ export class Page extends PaddingComponent {
     this.append(new TextComponent({ text: 'exchanges' }))
     this.append(this.getFlex())
     this.updateBinancePrices()
+    this.updateBuysTable()
     this.updateSellsTable()
   }
 
