@@ -2,32 +2,27 @@ export default Array.from([
   {
     "id": "airplane",
     "tags": ["3d", "game"],
-    "step": 1
-  },
-  {
-    "id": "ajax-in-aws",
-    "tags": [],
-    "step": 1
+    "step": 2
   },
   {
     "id": "anagram",
     "tags": ["game"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "apex-charts",
     "tags": ["trading"],
-    "step": 1
+    "step": 2
   },
   {
     "id": "audio-recorder",
     "tags": ["personal"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "backend",
     "tags": ["library"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "bitcoin",
@@ -42,36 +37,31 @@ export default Array.from([
   {
     "id": "busy",
     "tags": ["personal"],
-    "step": 1
-  },
-  {
-    "id": "buy-coins",
-    "tags": ["trading"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "calculator",
     "tags": ["personal"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "candlesticks",
-    "tags": ["trading"],
-    "step": 1
+    "tags": ["trading", "rest", "api"],
+    "step": 2
   },
   {
     "id": "chat",
     "tags": ["peer"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "clock",
     "tags": ["3d"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "coinext",
-    "tags": [],
+    "tags": ["rest", "api"],
     "step": 1
   },
   {
@@ -82,22 +72,22 @@ export default Array.from([
   {
     "id": "coins-calculator",
     "tags": ["trading"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "cube",
     "tags": ["3d", "game"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "database",
     "tags": ["library"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "exchanges",
     "tags": ["trading"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "facebook-rest-api",
