@@ -9,21 +9,11 @@ export default Array.from([
     "tags": [],
     "step": 1
   },
-  // {
-  //   "id": "aliexpress-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "anagram",
     "tags": ["game"],
     "step": 3
   },
-  // {
-  //   "id": "anthropic-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "apex-charts",
     "tags": ["trading"],
@@ -34,46 +24,16 @@ export default Array.from([
     "tags": ["personal"],
     "step": 3
   },
-  // {
-  //   "id": "autentique-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "backend",
     "tags": ["library"],
     "step": 3
   },
-  // {
-  //   "id": "binance-rest-api",
-  //   "tags": ["trading", "rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "binance-websocket-api",
-  //   "tags": ["trading", "websocket", "api"],
-  //   "step": -1
-  // },
   {
     "id": "bitcoin",
     "tags": ["trading"],
     "step": 0
   },
-  // {
-  //   "id": "bitcointoyou",
-  //   "tags": ["trading", "rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "bitget",
-  //   "tags": ["trading", "rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "brasil-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "busy",
     "tags": ["personal"],
@@ -84,11 +44,6 @@ export default Array.from([
     "tags": ["trading"],
     "step": 0
   },
-  // {
-  //   "id": "bybit-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "calculator",
     "tags": ["personal"],
@@ -100,25 +55,15 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "chat",
+    "tags": ["peer"],
+    "step": 3
+  },
+  {
     "id": "clock",
     "tags": ["3d"],
     "step": 3
   },
-  // {
-  //   "id": "cloudflare-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "coinbase-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "coinext",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "coins",
     "tags": ["trading"],
@@ -139,36 +84,16 @@ export default Array.from([
     "tags": ["library"],
     "step": 3
   },
-  // {
-  //   "id": "discord-websocket-api",
-  //   "tags": ["websocket", "api"],
-  //   "step": -1
-  // },
   {
     "id": "exchanges",
     "tags": ["trading"],
     "step": 3
   },
-  // {
-  //   "id": "expaybrasil-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "facebook-rest-api",
     "tags": ["rest", "api"],
     "step": 1
   },
-  // {
-  //   "id": "firebase-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "foxbit-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "foxbit-websocket-api",
     "tags": ["websocket", "api"],
@@ -189,36 +114,16 @@ export default Array.from([
     "tags": ["rest", "api"],
     "step": 1
   },
-  // {
-  //   "id": "google-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "home-workout",
     "tags": ["personal"],
     "step": 1
   },
-  // {
-  //   "id": "hotmart-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "imc",
     "tags": [],
     "step": 3
   },
-  // {
-  //   "id": "kraken-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "kucoin-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "letter",
     "tags": ["3d"],
@@ -229,21 +134,6 @@ export default Array.from([
     "tags": ["rest", "api"],
     "step": 0
   },
-  // {
-  //   "id": "linkedin-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "lyrics-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "makersuite-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "market",
     "tags": ["personal"],
@@ -254,60 +144,35 @@ export default Array.from([
     "tags": ["game"],
     "step": 3
   },
-  // {
-  //   "id": "mercadobitcoin",
-  //   "tags": ["trading"],
-  //   "step": -1
-  // },
   {
     "id": "meetings",
     "tags": ["personal"],
     "step": 1
   },
-  // {
-  //   "id": "mercadopago-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "metronomo",
     "tags": ["music"],
     "step": 1
   },
-  // {
-  //   "id": "microsoft-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "musixmatch-rest-api",
     "tags": ["music", "rest", "api"],
     "step": 0
   },
-  // {
-  //   "id": "newsapi",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "nume",
     "tags": ["game"],
     "step": 3
   },
-  // {
-  //   "id": "openai-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
+  {
+    "id": "onegle",
+    "tags": ["api"],
+    "step": 0
+  },
   {
     "id": "panel",
     "tags": [],
     "step": 0
-  },
-  {
-    "id": "chat",
-    "tags": ["peer"],
-    "step": 3
   },
   {
     "id": "phone-number",
@@ -334,25 +199,20 @@ export default Array.from([
     "tags": [],
     "step": 0
   },
-  // {
-  //   "id": "rdap-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "requestidlecallback",
     "tags": [],
     "step": 0
   },
   {
-    "id": "slots",
-    "tags": ["3d, 'game", "peer"],
-    "step": 0
-  },
-  {
     "id": "screen-capture-rest-api",
     "tags": ["api"],
     "step": -1
+  },
+  {
+    "id": "slots",
+    "tags": ["3d, 'game", "peer"],
+    "step": 0
   },
   {
     "id": "socket",
@@ -369,26 +229,11 @@ export default Array.from([
     "tags": [],
     "step": 0
   },
-  // {
-  //   "id": "sumup-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "telegram-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "three.js-sample",
     "tags": ["3d", "peer"],
     "step": 3
   },
-  // {
-  //   "id": "tradingeconomics-rest-api",
-  //   "tags": ["trading", "rest", "api"],
-  //   "step": -1
-  // },
   {
     "id": "truco",
     "tags": ["3d", "game", "peer"],
@@ -409,26 +254,16 @@ export default Array.from([
     "tags": ["rest", "api"],
     "step": 0
   },
-  // {
-  //   "id": "udemy-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "unique-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "unsplash-rest-api",
-  //   "tags": ["rest", "api"],
-  //   "step": -1
-  // },
-  // {
-  //   "id": "vestibular",
-  //   "tags": [],
-  //   "step": 0
-  // },
+  {
+    "id": "unique",
+    "tags": ["3d", "game"],
+    "step": 0
+  },
+  {
+    "id": "video",
+    "tags": ["api"],
+    "step": 0
+  },
   {
     "id": "voicerss-rest-api",
     "tags": ["rest", "api"],
@@ -445,28 +280,13 @@ export default Array.from([
     "step": 0
   },
   {
-    "id": "youtube-data-api",
-    "tags": ["rest", "api"],
-    "step": 1
-  },
-  {
-    "id": "onegle",
-    "tags": ["api"],
-    "step": 0
-  },
-  {
-    "id": "video",
-    "tags": ["api"],
-    "step": 0
-  },
-  {
-    "id": "unique",
-    "tags": ["3d", "game"],
-    "step": 0
-  },
-  {
     "id": "write",
     "tags": ["3d"],
     "step": 3
+  },
+  {
+    "id": "youtube-data-api",
+    "tags": ["rest", "api"],
+    "step": 1
   }
-]).sort((a, b) => a.id.toString().localeCompare(b.id.toString()))
+])
