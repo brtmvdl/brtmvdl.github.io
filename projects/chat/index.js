@@ -37,9 +37,9 @@ export class Page extends PaddingComponent {
   }
 
   setPeerEvents() {
-    this.state.peer.addEventListener('error', (err) => this.onPeerError(err))
-    this.state.peer.addEventListener('open', (data) => this.onPeerOpen(data))
-    this.state.peer.addEventListener('connection', (data) => this.onPeerConnection(data))
+    this.state.peer.on('error', (err) => this.onPeerError(err))
+    this.state.peer.on('open', (data) => this.onPeerOpen(data))
+    this.state.peer.on('connection', (data) => this.onPeerConnection(data))
   }
 
   onPeerError(conn, error) {
