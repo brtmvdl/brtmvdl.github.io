@@ -8,7 +8,7 @@ import { CardFooterComponent } from './card.footer.component.js'
 import * as str from '../../../assets/js/utils/str.js'
 
 export class MessageCardComponent extends CardComponent {
-  message = null
+  message = new MessageModel()
 
   constructor(message = new MessageModel()) {
     super()
@@ -25,8 +25,8 @@ export class MessageCardComponent extends CardComponent {
   getHeaderComponent() {
     const card = new CardHeaderComponent()
     const flex = new nFlex()
-    flex.append(new TextComponent({ text: this.message.method }))
-    flex.append(new TextComponent({ text: this.message.side }))
+    flex.append(new TextComponent({ text: this.message.Endpoint }))
+    flex.append(new TextComponent({ text: this.message.Side }))
     card.append(flex)
     return card
   }
@@ -37,7 +37,7 @@ export class MessageCardComponent extends CardComponent {
 
   getFooterComponent() {
     const card = new CardFooterComponent()
-    card.append(new TextComponent({ text: this.message.id, title: str.datetime2str(this.message.id) }))
+    card.append(new TextComponent({ text: this.message.Id, title: str.datetime2str(this.message.Id) }))
     return card
   }
 
@@ -55,12 +55,12 @@ export class MessageCardComponent extends CardComponent {
     return tr
   }
 
-  getTableHTML(rows = [], ths = null) {
+  getTableHTML(rows = [], headers = null) {
     if (rows.length === 0) return new HTML()
     const table = new nTable()
     table.setStyle('border', '1px solid #000000')
     table.setStyle('border-collapse', 'collapse')
-    table.append(this.createRow(Array.from(ths === null ? Object.keys(rows[0]) : ths)))
+    table.append(this.createRow(Array.from(headers === null ? Object.keys(rows[0]) : headers)))
     Array.from(rows).map((row) => table.append(this.createRow(Object.keys(row).map((col) => row[col]))))
     return table
   }
