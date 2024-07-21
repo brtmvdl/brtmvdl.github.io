@@ -3,7 +3,6 @@ import { PaddingComponent } from '../../assets/js/components/padding.component.j
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { MessagesComponent } from './components/messages.component.js'
 import { FormComponent } from './components/form.component.js'
-
 import { InputSocketMessageModel } from '../../assets/js/models/input.socket.message.model.js'
 import { OutputSocketMessageModel } from '../../assets/js/models/output.socket.message.model.js'
 import { SocketErrorMessageModel } from './models/socket.error.message.model.js'
@@ -45,6 +44,7 @@ export class Page extends PaddingComponent {
 
   onSocketClose(data) {
     this.appendMessage(new SocketCloseMessageModel())
+    this.state.socket = this.createSocketConnection()
   }
 
   onCreate() {
