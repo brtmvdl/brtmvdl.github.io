@@ -8,7 +8,7 @@ export const scope = [
 
 export const response_type = 'token'
 
-export const client_id = '387615697147-teh6kvrni1blv7trnkhl5uk1l1hdtp2v.apps.googleusercontent.com',
+export const client_id = '387615697147-teh6kvrni1blv7trnkhl5uk1l1hdtp2v.apps.googleusercontent.com'
 
 export const project_id = 'brtmvdl'
 
