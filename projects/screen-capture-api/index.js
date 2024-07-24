@@ -126,9 +126,7 @@ export class Page extends PaddingComponent {
 
 
   authenticate() {
-    return new Promise((s, f) => gapi.auth2.getAuthInstance().signIn({
-      scope: this.state.scope
-    }).then(s).catch(f))
+    return new Promise((s, f) => gapi.auth2.getAuthInstance().signIn({ scope: this.state.scope }).then(s).catch(f))
   }
 
   getAuthenticateButton() {
