@@ -17,7 +17,11 @@ export class Page extends PaddingComponent {
   }
 
   onAuthorizeButtonClick() {
-    gapi.load('client:auth2', () => { gapi.auth2.init({ client_id: google.client_id }) })
+    gapi.load('auth2', () => {
+      gapi.auth2.init({ client_id: google.client_id })
+        .then((res) => console.log(res))
+        .catch((err) => console.error(err))
+    })
   }
 
   onAuthenticateButtonClick() {
