@@ -21,9 +21,7 @@ export class Page extends PaddingComponent {
   }
 
   onAuthenticateButtonClick() {
-    gapi.client.setApiKey(google.api_key)
     gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
     gapi.auth2.getAuthInstance().signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
   }
-
 }
