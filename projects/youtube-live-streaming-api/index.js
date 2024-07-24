@@ -12,20 +12,32 @@ export class Page extends PaddingComponent {
   onCreate() {
     super.onCreate()
     this.append(new TextComponent({ text: 'youtube live streaming api' }))
-    this.append(new ButtonComponent({ text: 'authorize', onclick: () => this.onAuthorizeButtonClick() }))
-    this.append(new ButtonComponent({ text: 'authenticate', onclick: () => this.onAuthenticateButtonClick() }))
+    this.append(new ButtonComponent({ text: 'load auth2', onclick: () => this.onLoadAuth2() }))
+    this.append(new ButtonComponent({ text: 'auth2 init', onclick: () => this.onAuth2Init() }))
+    this.append(new ButtonComponent({ text: 'client set api key', onclick: () => this.onClientSetApiKey() }))
+    this.append(new ButtonComponent({ text: 'client load youtube', onclick: () => this.onClientLoadYoutube() }))
+    this.append(new ButtonComponent({ text: 'auth2 sign in', onclick: () => this.onAuth2SignIn() }))
   }
 
-  onAuthorizeButtonClick() {
-    gapi.load('auth2', () => {
-      gapi.auth2.init({ client_id: google.client_id })
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err))
-    })
+  onLoadAuth2() {
+    gapi.load('auth2', () => console.log('load auth2'))
   }
 
-  onAuthenticateButtonClick() {
-    gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+  onAuth2Init() {
+    gapi.auth2.init({ client_id: google.client_id })
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err))
+  }
+
+  onClientSetApiKey() {
+    gapi.client.setApiKey(google.api_key)
+  }
+
+  onClientLoadYoutube() {
+    gapi.client.load('youtube', 'v3', () => console.log('client.load youtube.v3'))
+  }
+
+  onAuth2SignIn() {
     gapi.auth2.getAuthInstance().signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
   }
 }
