@@ -8,7 +8,7 @@ export const scope = [
 
 export const response_type = 'token'
 
-export const client_id = '387615697147-stog5jmu38kqlagk9jdd2ragvh0vh55q.apps.googleusercontent.com'
+export const client_id = '387615697147-teh6kvrni1blv7trnkhl5uk1l1hdtp2v.apps.googleusercontent.com',
 
 export const project_id = 'brtmvdl'
 
@@ -19,8 +19,8 @@ export const token_uri = 'https://oauth2.googleapis.com/token'
 export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1/certs'
 
 export const redirect_uris = [
-  'https://brtmvdl.github.io/pages/login/',
-  'http://localhost:8080/pages/login/',
+  'https://brtmvdl.github.io/projects/screen-capture-api/index.html',
+  'http://localhost:8080/projects/screen-capture-api/index.html',
 ]
 
 export const javascript_origins = [
