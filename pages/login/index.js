@@ -1,7 +1,8 @@
-import { HTML, nH1, nInput, nButton } from '@brtmvdl/frontend'
+import { HTML, nH1, nInput, nButton } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { FormComponent } from '../../assets/js/components/form.component.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import * as GOOGLE from '../../assets/js/utils/googleusercontent.js'
 import * as LOCAL from '../../assets/js/utils/local.js'
 import * as FLOW from '../../assets/js/utils/flow.js'
@@ -22,7 +23,7 @@ export class Page extends PaddingComponent {
       LOCAL.set(['access_token'], this.getAccessToken())
       FLOW.goTo('/?access_token=1')
     } else {
-      this.append(this.getTitle())
+      this.append(new TextComponent({ text: 'login' }))
       this.append(this.getButtons())
       this.append(this.getGoogleForm())
       this.append(this.getTwitterLoginButton())
@@ -35,12 +36,6 @@ export class Page extends PaddingComponent {
 
   getAccessToken() {
     return this.state.hash_params.get('access_token')
-  }
-
-  getTitle() {
-    const h1 = new nH1()
-    h1.setText('login')
-    return h1
   }
 
   getButtons() {
@@ -68,12 +63,7 @@ export class Page extends PaddingComponent {
   }
 
   createButton(text, onclick = (() => { })) {
-    const button = new ButtonComponent(text, onclick)
-    button.setStyle('border', 'none')
-    button.setStyle('padding', '1rem')
-    button.setStyle('color', '#ffffff')
-    button.setStyle('background-color', '#000000')
-    return button
+    return new ButtonComponent({ text, onclick })
   }
 
   getGoogleForm() {
@@ -84,11 +74,16 @@ export class Page extends PaddingComponent {
       const input = new nInput()
       input.setAttr('type', 'hidden')
       input.setAttr('name', key)
-      input.setValue(GOOGLE[key])
+      input.setValue(this.getGoogleValue(key))
       this.children.google_form.append(input)
     })
 
     return this.children.google_form
   }
 
+  getGoogleValue(key) {
+    const value = GOOGLE[key]
+    if (key == 'redirect_uri') return FLOW.getCurrentURL()
+    return value
+  }
 }
