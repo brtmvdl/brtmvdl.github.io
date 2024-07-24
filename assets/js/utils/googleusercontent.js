@@ -20,12 +20,14 @@ export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1
 
 export const redirect_uris = [
   'https://brtmvdl.github.io/projects/screen-capture-api/index.html',
+  'http://localhost:8080/pages/login/index.html',
 ]
 
 export const javascript_origins = [
   'https://brtmvdl.github.io',
+  'http://localhost:8080',
 ]
 
-export const redirect_uri = redirect_uris[0]
+export const redirect_uri = redirect_uris.find((url) => (new URL(window.location)).host == (new URL(url)).host)
 
 export const GOOGLE = { scope, response_type, client_id, project_id, auth_uri, token_uri, auth_provider_x509_cert_url, redirect_uri }
