@@ -20,12 +20,10 @@ export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1
 
 export const redirect_uris = [
   'https://brtmvdl.github.io/projects/screen-capture-api/index.html',
-  'http://localhost:8080/projects/screen-capture-api/index.html',
 ]
 
 export const javascript_origins = [
   'https://brtmvdl.github.io',
-  'http://localhost:8080',
 ]
 
 export const redirect_uri = redirect_uris[0]
