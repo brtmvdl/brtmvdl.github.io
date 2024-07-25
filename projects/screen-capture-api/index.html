@@ -6,17 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Screen Capture API</title>
   <meta name="google-adsense-account" content="ca-pub-8803365396237758">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758" crossorigin="anonymous"></script>
+  <meta name="google-signin-client_id" content="387615697147-teh6kvrni1blv7trnkhl5uk1l1hdtp2v.apps.googleusercontent.com">
+  <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8803365396237758" crossorigin="anonymous"></script>
+  <script src="https://apis.google.com/js/client.js"></script>
 </head>
 
 <body>
   <div id="app"></div>
-  <script src="https://apis.google.com/js/api.js"></script>
   <script type="module">
     import { HTML } from '../../assets/js/libs/frontend/index.js'
     import { Page } from './index.js'
-    HTML.fromId('app').append(new Page())
+    const page = new Page()
+    HTML.fromId('app').append(page)
     HTML.fromElement(document.body).setStyle('margin', '0rem')
+    const handleClientLoad = (...args) => page.dispatch('google.client.load', args)
   </script>
 </body>
 
