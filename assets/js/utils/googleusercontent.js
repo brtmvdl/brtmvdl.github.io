@@ -1,4 +1,6 @@
 
+export const api_key = 'AIzaSyAxNbjWoeI9au0TOecALQEv2BPCx7kpIb0'
+
 export const scope = [
   'https://www.googleapis.com/auth/youtube.upload',
   'https://www.googleapis.com/auth/youtube',
