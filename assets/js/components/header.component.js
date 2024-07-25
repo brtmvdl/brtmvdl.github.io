@@ -4,13 +4,13 @@ import { LinkComponent } from './link.component.js'
 export class HeaderComponent extends HTML {
   props = {
     links: Array.from([
+      ['login', '/pages/login/'],
       ['products', '/products/'],
       ['projects', '/projects/'],
       ['blog', '/blog/'],
       ['donate', '/pages/donate/'],
     ])
   }
-
 
   onCreate() {
     super.onCreate()
@@ -19,13 +19,9 @@ export class HeaderComponent extends HTML {
 
   getFlex() {
     const flex = new nFlex()
-    flex.append(this.getLeft())
+    flex.append(new LinkComponent({ text: 'brtmvdl', href: '/?' + Date.now() }))
     flex.append(this.getRight())
     return flex
-  }
-
-  getLeft() {
-    return new LinkComponent({ text: 'brtmvdl', href: '/?' + Date.now() })
   }
 
   getRight() {
