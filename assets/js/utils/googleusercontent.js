@@ -6,6 +6,8 @@ export const scope = [
   'https://www.googleapis.com/auth/youtube.force-ssl',
 ].join(' ')
 
+export const discovery = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
+
 export const response_type = 'token'
 
 export const client_id = '387615697147-teh6kvrni1blv7trnkhl5uk1l1hdtp2v.apps.googleusercontent.com'
