@@ -10,7 +10,7 @@ export const discovery = 'https://www.googleapis.com/discovery/v1/apis/youtube/v
 
 export const response_type = 'token'
 
-export const client_id = '387615697147-teh6kvrni1blv7trnkhl5uk1l1hdtp2v.apps.googleusercontent.com'
+export const client_id = '387615697147-ioro8q5q9cht4mfeon55jh9aom5hve94.apps.googleusercontent.com'
 
 export const project_id = 'brtmvdl'
 
@@ -21,8 +21,10 @@ export const token_uri = 'https://oauth2.googleapis.com/token'
 export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1/certs'
 
 export const redirect_uris = [
+  'http://localhost:8080/pages/login/',
+  'https://brtmvdl.github.io/pages/login/',
+  'http://localhost:8080/projects/screen-capture-api/index.html',
   'https://brtmvdl.github.io/projects/screen-capture-api/index.html',
-  'http://localhost:8080/pages/login/index.html',
 ]
 
 export const javascript_origins = [
