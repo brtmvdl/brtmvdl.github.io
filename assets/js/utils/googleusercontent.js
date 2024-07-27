@@ -1,5 +1,5 @@
 
-export const api_key = 'AIzaSyAxNbjWoeI9au0TOecALQEv2BPCx7kpIb0'
+export const api_key = ''
 
 export const scope = [
   'https://www.googleapis.com/auth/youtube.upload',
@@ -12,7 +12,7 @@ export const discovery = 'https://www.googleapis.com/discovery/v1/apis/youtube/v
 
 export const response_type = 'token'
 
-export const client_id = '387615697147-ioro8q5q9cht4mfeon55jh9aom5hve94.apps.googleusercontent.com'
+export const client_id = ''
 
 export const project_id = 'brtmvdl'
 
