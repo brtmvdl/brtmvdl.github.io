@@ -1,4 +1,5 @@
 import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { KeyValuePairComponent } from '../../assets/js/components/key.value.pair.component.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
@@ -8,12 +9,8 @@ import { FormComponent } from './components/form.component.js'
 import { MessageModel } from './models/message.model.js'
 import * as str from '../../assets/js/utils/str.js'
 
-class RdapMessageModel extends MessageModel {
-  TYPE = 'NONE'
-}
-
-class RdapResponseMessageModel extends RdapMessageModel {
-  TYPE = 'SUCCESS'
+class ResponseMessageModel extends MessageModel {
+  type = 'response'
 
   json = {}
 
@@ -21,67 +18,26 @@ class RdapResponseMessageModel extends RdapMessageModel {
     super()
     this.json = json
   }
-
-  toJSON() {
-    console.log('json', this.json)
-    return this.json
-  }
-}
-
-class RdapErrorResponseMessageModel extends RdapMessageModel {
-  TYPE = 'ERROR'
-
-  error = new Error('RDAP error')
-
-  constructor(err = new Error()) {
-    super()
-    this.error = err
-  }
-
-  toJSON() {
-    return { message: this.error.message }
-  }
 }
 
 class ResponseComponent extends HTML {
-  model = new RdapMessageModel()
+  model = new MessageModel()
 
-  constructor(model = new RdapMessageModel()) {
+  state = {
+    datetime: Date.now(),
+  }
+
+  constructor(model = new MessageModel()) {
     super()
     this.model = model
   }
 
   onCreate() {
     super.onCreate()
-    this.append(this.getHeader())
-    this.append(this.getBody())
-    this.append(this.getFooter())
-  }
-
-  getHeader() {
-    return new HTML()
-  }
-
-  getBody() {
-    return new HTML()
-  }
-
-  getFooter(datetime = Date.now()) {
-    return new TextComponent({ text: datetime, title: str.datetime2str(datetime) })
-  }
-}
-
-class RdapResponseComponent extends ResponseComponent {
-  onCreate() {
-    super.onCreate()
-    this.setText(this.model)
-  }
-}
-
-class RdapErrorResponseComponent extends ResponseComponent {
-  onCreate() {
-    super.onCreate()
-    this.setText(this.model)
+    this.append(new KeyValuePairComponent({ key: 'ldh', value: this.model.json.ldhName }))
+    this.append(new KeyValuePairComponent({ key: 'type', value: this.model.json.entities[0].publicIds[0].type }))
+    this.append(new KeyValuePairComponent({ key: 'identifier', value: this.model.json.entities[0].publicIds[0].identifier }))
+    this.append(new TextComponent({ text: this.state.datetime, title: str.datetime2str(this.state.datetime) }))
   }
 }
 
@@ -117,21 +73,17 @@ export class Page extends PaddingComponent {
     console.log('on form submit', tld)
 
     fetch(`https://rdap.org/domain/${tld}`).then((res) => res.json())
-      .then((json) => this.addMessage(new RdapResponseMessageModel(json)))
-      .catch((err) => this.addMessage(new RdapErrorResponseMessageModel(err)))
+      .then((json) => this.addMessage(new ResponseMessageModel(json)))
+      .catch((err) => this.addMessage(new MessageModel(err.message)))
   }
 
   addMessage(message = new MessageModel()) {
     this.children.messages.append(this.parseMessage(message))
   }
 
-  parseMessage(message = new RdapMessageModel()) {
-    switch (message.TYPE) {
-      case 'SUCCESS': return new RdapResponseComponent(message)
-      case 'ERROR': return new RdapErrorResponseComponent(message)
-    }
-
-    return new TextComponent({ text: JSON.stringify(message) })
+  parseMessage(message = new MessageModel()) {
+    if (message.type == 'response') return new ResponseComponent(message)
+    return new TextComponent({ text: JSON.stringify(message.toJSON()) })
   }
 
   getMessages() {
