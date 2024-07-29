@@ -215,6 +215,11 @@ export default Array.from([
     "step": 1
   },
   {
+    "id": "rdap",
+    "tags": ["rest", "api"],
+    "step": 1
+  },
+  {
     "id": "screen-capture-api",
     "tags": [],
     "step": 1
