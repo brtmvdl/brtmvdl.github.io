@@ -1,29 +1,41 @@
-import { createNewPeer } from '../../assets/js/utils/peer.js'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { getURLSearchParam } from '../../assets/js/utils/url.js'
+import { createNewPeer } from '../../assets/js/utils/peer.js'
 
-const app = document.getElementById('app')
+export class Page extends PaddingComponent {
+  state = {
+    keys: ['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'],
+    id: getURLSearchParam('id'),
+    conn: null,
+  }
 
-const state = {
-  id: getURLSearchParam('id'),
-  conn: null,
+  onCreate() {
+    super.onCreate()
+    this.setEvents()
+    this.append(this.getButtons())
+    this.createNewPeer()
+  }
+
+  createNewPeer() {
+    const peer = createNewPeer('snake')
+    peer.on('open', () => this.state.conn = peer.connect(this.state.id))
+  }
+
+  sendKey(key) {
+    if (this.state.keys.includes(key)) this.state.conn?.send(key)
+  }
+
+  setEvents() {
+    window.addEventListener('keyup', ({ key }) => this.sendKey(key))
+  }
+
+  getButtons() {
+    const buttons = new HTML()
+    Array.from(this.state.keys).map((key) => {
+      buttons.append(new ButtonComponent({ text: key, onclick: () => this.sendKey(key) }))
+    })
+    return buttons
+  }
 }
-
-const peer = createNewPeer('snake')
-
-peer.on('open', () => state.conn = peer.connect(state.id))
-
-const keys = ['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft']
-
-const onKeyUp = (key) => { if (keys.join(' ').includes(key)) state.conn?.send(key) }
-
-window.addEventListener('keyup', ({ key }) => onKeyUp(key))
-
-Array.from(keys).map((key) => {
-  const btn = document.createElement('button')
-
-  btn.innerText = key
-
-  btn.onclick = function () { state.conn.send(key) }
-
-  app.appendChild(btn)
-})
