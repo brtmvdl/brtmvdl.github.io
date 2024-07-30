@@ -12,11 +12,14 @@ class MyPeer extends Peer {
 
 export const getPeerConnection = () => { }
 
-export const createControlsLink = (project, id) => {
+export const getControlsUrl = (project, id) => {
   const url = new URL(window.location)
   url.pathname = `/projects/${project}/controls.html?id=${id}`
-  const _url = (url.toString()).replace('%3F', '?')
-  image.src = qrcode(_url)
+  return (url.toString()).replace('%3F', '?')
+}
+
+export const createControlsLink = (project, id) => {
+  image.src = qrcode(getControlsUrl(project, id))
   const link = document.createElement('a')
   link.style.position = 'fixed'
   link.style.bottom = '1rem'
@@ -31,36 +34,36 @@ export const createNewPeer = (project, qrcode = false) => {
   const peer = new MyPeer()
 
   peer.on('connection', (conn) => {
-    console.log('peer connection', { peer, conn })
+    // console.log('peer connection', { peer, conn })
 
     conn.on('open', (open) => {
-      console.log('conn open', { peer, conn, open })
+      // console.log('conn open', { peer, conn, open })
     })
 
     conn.on('close', (close) => {
-      console.log('conn close', { peer, conn, close })
+      // console.log('conn close', { peer, conn, close })
     })
 
     conn.on('error', (error) => {
-      console.log('conn error', { peer, conn, error })
+      // console.log('conn error', { peer, conn, error })
     })
 
     conn.on('data', (data) => {
-      console.log('conn data', { peer, conn, data })
+      // console.log('conn data', { peer, conn, data })
     })
   })
 
   peer.on('open', (open) => {
-    console.log('peer open', { peer, open })
+    // console.log('peer open', { peer, open })
     if (qrcode) createControlsLink(project, peer.id)
   })
 
   peer.on('error', (error) => {
-    console.log('peer error', { peer, error })
+    // console.log('peer error', { peer, error })
   })
 
   peer.on('close', (close) => {
-    console.log('peer close', { peer, close })
+    // console.log('peer close', { peer, close })
   })
 
   return peer
