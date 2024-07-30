@@ -1,91 +1,125 @@
-import { createNewPeer } from '../../assets/js/utils/peer.js'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
+import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { ImageComponent } from '../../assets/js/components/image.component.js'
+import { createNewPeer, getControlsUrl } from '../../assets/js/utils/peer.js'
+import { LinkComponent } from '../../assets/js/components/link.component.js'
+import { qrcode } from '../../assets/js/utils/functions.js'
+import { random } from '../../assets/js/utils/math.js'
 
-const random = (n, m = 0) => Math.floor(Math.random() * n) + m
-
-const state = {
-  players: {},
-  fruits: [{ x: random(9), y: random(9) }],
+class CanvasComponent extends HTML {
+  getName() { return 'canvas-component' }
+  getTagName() { return 'canvas' }
+  getContext() { return this.element.getContext('2d') }
 }
 
-const size = (n = 1) => n * 40
+export class Page extends PaddingComponent {
+  children = {
+    canvas: new CanvasComponent(),
+    qrcode: new HTML(),
+  }
 
-const app = document.getElementById('app')
+  state = {
+    peer: this.createNewPeer(),
+    ctx: null,
+    players: {},
+    fruits: [{ x: random(9), y: random(9) }],
+    moves: {
+      ArrowDown: (id) => this.state.players[id].y += this.state.players[id].y == 9 ? 0 : 1,
+      ArrowRight: (id) => this.state.players[id].x += this.state.players[id].x == 9 ? 0 : 1,
+      ArrowUp: (id) => this.state.players[id].y -= this.state.players[id].y == 0 ? 0 : 1,
+      ArrowLeft: (id) => this.state.players[id].x -= this.state.players[id].x == 0 ? 0 : 1,
+    }
+  }
 
-const cv = document.createElement('canvas')
-cv.height = '' + size(10)
-cv.width = '' + size(10)
-app.appendChild(cv)
+  onCreate() {
+    super.onCreate()
+    this.append(this.getCanvas())
+    this.append(this.getQRCode())
+  }
 
-const ctx = cv.getContext('2d')
+  createNewPeer() {
+    const peer = createNewPeer('snake')
+    peer.on('open', (open) => this.onPeerOpen(open))
+    peer.on('connection', (conn) => {
+      this.addPlayer(conn.peer)
+      conn.on('data', (move) => this.movePlayer(conn.peer, move))
+    })
+    return peer
+  }
 
-const reset = () => {
-  ctx.clearRect(0, 0, size(10), size(10))
-}
+  onPeerOpen() {
+    this.setQRCode()
+    this.runAnimationFrame()
+  }
 
-const drawPlayers = () => {
-  for (const id in state.players) {
-    ctx.fillStyle = '#000000'
-    if (id == peer._id) ctx.fillStyle = '#ff9900'
-    const player = state.players[id]
-    ctx.fillRect(...[player.x, player.y, 1, 1].map(size))
+  getSize(n) { return n * 40 }
+
+  getCanvas() {
+    this.state.ctx = this.children.canvas.getContext()
+    this.children.canvas.setAttr('height', this.getSize(10))
+    this.children.canvas.setAttr('width', this.getSize(10))
+    return this.children.canvas
+  }
+
+  getQRCode() { return this.children.qrcode }
+
+  setQRCode() {
+    this.children.qrcode.clear()
+    const url = getControlsUrl('snake', this.state.peer.id)
+    const link = new LinkComponent({ href: url })
+    const image = new ImageComponent({ src: qrcode(url) })
+    image.setContainerStyle('max-width', '10rem')
+    link.append(image)
+    this.children.qrcode.append(link)
+  }
+
+  reset() { this.state.ctx.clearRect(0, 0, this.getSize(10), this.getSize(10)) }
+
+  drawPlayers() {
+    for (const id in this.state.players) {
+      this.state.ctx.fillStyle = '#000000'
+      const player = this.state.players[id]
+      this.state.ctx.fillRect(...[player.x, player.y, 1, 1].map(this.getSize))
+    }
+  }
+
+  drawFruits() {
+    for (const id in this.state.fruits) {
+      this.state.ctx.fillStyle = '#ff0000'
+      const fruit = this.state.fruits[id]
+      this.state.ctx.fillRect(...[fruit.x, fruit.y, 1, 1].map(this.getSize))
+    }
+  }
+
+  addPlayer(id) { this.state.players[id] = { x: random(9), y: random(9) } }
+
+  runAnimationFrame() {
+    this.reset()
+    this.drawPlayers()
+    this.drawFruits()
+    requestAnimationFrame(() => this.runAnimationFrame())
+  }
+
+  getFruitCollision(playerId) {
+    const player = this.state.players[playerId]
+    for (const id in this.state.fruits) {
+      const fruit = this.state.fruits[id]
+      if (fruit.x == player.x && fruit.y == player.y) return fruit
+    }
+    return null
+  }
+
+  removeFruit() { this.state.fruits = [] }
+
+  addFruit() { this.state.fruits.push({ x: random(9), y: random(9) }) }
+
+  movePlayer(player, move) {
+    const fn = this.state.moves[move]
+    if (fn) fn(player)
+    const collision = this.getFruitCollision(player)
+    if (collision) {
+      this.removeFruit(collision)
+      this.addFruit()
+    }
   }
 }
-
-const drawFruits = () => {
-  for (const id in state.fruits) {
-    ctx.fillStyle = '#ff0000'
-    const fruit = state.fruits[id]
-    ctx.fillRect(...[fruit.x, fruit.y, 1, 1].map(size))
-  }
-}
-
-const addPlayer = (id) => {
-  state.players[id] = { x: random(9), y: random(9) }
-}
-
-const loop = () => {
-  reset()
-  drawPlayers()
-  drawFruits()
-  requestAnimationFrame(loop)
-}
-
-const getFruitCollision = (id) => {
-  const player = state.players[id]
-  for (const id in state.fruits) {
-    const fruit = state.fruits[id]
-    if (fruit.x == player.x && fruit.y == player.y) return fruit
-  }
-  return null
-}
-
-const removeFruit = () => { state.fruits = [] }
-
-const addFruit = () => state.fruits.push({ x: random(9), y: random(9) })
-
-const keysFunctions = {
-  ArrowDown: (id) => state.players[id].y += state.players[id].y == 9 ? 0 : 1,
-  ArrowRight: (id) => state.players[id].x += state.players[id].x == 9 ? 0 : 1,
-  ArrowUp: (id) => state.players[id].y -= state.players[id].y == 0 ? 0 : 1,
-  ArrowLeft: (id) => state.players[id].x -= state.players[id].x == 0 ? 0 : 1,
-}
-
-const movePlayer = (player, move) => {
-  const fn = keysFunctions[move]
-  if (fn) fn(player); else console.log('no key')
-
-  const collision = getFruitCollision(player)
-  if (collision) {
-    removeFruit(collision)
-    addFruit()
-  }
-}
-
-const peer = createNewPeer('snake', true)
-
-peer.on('open', () => loop())
-
-peer.on('connection', (conn) => {
-  addPlayer(conn.id)
-  conn.on('data', (move) => movePlayer(conn.id, move))
-})
