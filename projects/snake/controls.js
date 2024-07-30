@@ -33,9 +33,11 @@ export class Page extends PaddingComponent {
 
   getButtons() {
     const buttons = new HTML()
-    Array.from(this.state.keys).map((key) => {
-      buttons.append(new ButtonComponent({ text: key, onclick: () => this.sendKey(key) }))
-    })
+    Array.from(this.state.keys).map((key) => buttons.append(this.createButton(key)))
     return buttons
+  }
+
+  createButton(key) {
+    return new ButtonComponent({ text: key, onclick: () => this.sendKey(key) })
   }
 }
