@@ -237,7 +237,7 @@ export default Array.from([
   {
     "id": "snake",
     "tags": ["2d, 'game", "peer"],
-    "step": 2
+    "step": 3
   },
   {
     "id": "socket",
