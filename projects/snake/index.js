@@ -1,16 +1,12 @@
 import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
+import { CanvasComponent } from '../../assets/js/components/canvas.component.js'
 import { ImageComponent } from '../../assets/js/components/image.component.js'
 import { createNewPeer, getControlsUrl } from '../../assets/js/utils/peer.js'
+import { TextComponent } from '../../assets/js/components/text.component.js'
 import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { qrcode } from '../../assets/js/utils/functions.js'
 import { random } from '../../assets/js/utils/math.js'
-
-class CanvasComponent extends HTML {
-  getName() { return 'canvas-component' }
-  getTagName() { return 'canvas' }
-  getContext() { return this.element.getContext('2d') }
-}
 
 export class Page extends PaddingComponent {
   children = {
@@ -33,8 +29,18 @@ export class Page extends PaddingComponent {
 
   onCreate() {
     super.onCreate()
-    this.append(this.getCanvas())
-    this.append(this.getQRCode())
+    this.append(new TextComponent({ text: 'snake' }))
+    const container = this.getContainer()
+    container.append(this.getCanvas())
+    container.append(this.getQRCode())
+    this.append(container)
+  }
+
+  getContainer() {
+    const html = new HTML()
+    html.setStyle('width', '380px')
+    html.setStyle('margin', '0 auto')
+    return html
   }
 
   createNewPeer() {
@@ -52,16 +58,24 @@ export class Page extends PaddingComponent {
     this.runAnimationFrame()
   }
 
-  getSize(n) { return n * 40 }
+  getSize(n) { return n * 32 }
 
   getCanvas() {
     this.state.ctx = this.children.canvas.getContext()
+    this.children.canvas.setStyle('box-shadow', '0rem 0rem 1rem 1rem rgba(0, 0, 0, 0.5)')
+    this.children.canvas.setStyle('border', 'calc(1rem / 8) solid rgba(0, 0, 0, 0.5)')
+    this.children.canvas.setContainerStyle('width', `${this.getSize(10)}px`)
+    this.children.canvas.setContainerStyle('margin', '2rem auto')
     this.children.canvas.setAttr('height', this.getSize(10))
     this.children.canvas.setAttr('width', this.getSize(10))
     return this.children.canvas
   }
 
-  getQRCode() { return this.children.qrcode }
+  getQRCode() {
+    this.children.qrcode.setContainerStyle('width', `150px`)
+    this.children.qrcode.setContainerStyle('margin', '0 auto')
+    return this.children.qrcode
+  }
 
   setQRCode() {
     this.children.qrcode.clear()
