@@ -1,10 +1,12 @@
 import { HTML, nFlex } from '../libs/frontend/index.js'
 import { LinkComponent } from './link.component.js'
 
+import * as LOCAL from '../../../assets/js/utils/local.js'
+
 export class HeaderComponent extends HTML {
   props = {
     links: Array.from([
-      ['login', '/pages/login/'],
+      LOCAL.get(['access_token']) ? ['logout', '/pages/logout/'] : ['login', '/pages/login/'],
       ['products', '/products/'],
       ['projects', '/projects/'],
       ['blog', '/blog/'],
