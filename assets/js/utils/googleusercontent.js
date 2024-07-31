@@ -1,38 +1,26 @@
+import { web } from './googleusercontent.json'
 
 export const api_key = ''
 
-export const scope = [
-  'https://www.googleapis.com/auth/youtube.upload',
-  'https://www.googleapis.com/auth/youtube',
-  'https://www.googleapis.com/auth/youtubepartner',
-  'https://www.googleapis.com/auth/youtube.force-ssl',
-].join(' ')
+export const scope = 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtubepartner https://www.googleapis.com/auth/youtube.force-ssl'
 
 export const discovery = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
 
 export const response_type = 'token'
 
-export const client_id = ''
+export const client_id = web.client_id
 
-export const project_id = 'brtmvdl'
+export const project_id = web.project_id
 
-export const auth_uri = 'https://accounts.google.com/o/oauth2/auth'
+export const auth_uri = web.auth_uri
 
-export const token_uri = 'https://oauth2.googleapis.com/token'
+export const token_uri = web.token_uri
 
-export const auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1/certs'
+export const auth_provider_x509_cert_url = web.auth_provider_x509_cert_url
 
-export const redirect_uris = [
-  'http://localhost:8080/pages/login/',
-  'https://brtmvdl.github.io/pages/login/',
-  'http://localhost:8080/projects/screen-capture-api/index.html',
-  'https://brtmvdl.github.io/projects/screen-capture-api/index.html',
-]
+export const redirect_uris = web.redirect_uris
 
-export const javascript_origins = [
-  'https://brtmvdl.github.io',
-  'http://localhost:8080',
-]
+export const javascript_origins = web.javascript_origins
 
 export const redirect_uri = redirect_uris.find((url) => (new URL(window.location)).host == (new URL(url)).host)
 
