@@ -44,7 +44,7 @@ export class Page extends PaddingComponent {
     this.state.peer.on('connection', (data) => this.onPeerConnection(data))
   }
 
-  onPeerError(conn, error) {
+  onPeerError(error) {
     this.addMessage(`${this.state.peer.id}: error: ${error.message}`)
   }
 
