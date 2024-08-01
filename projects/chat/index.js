@@ -144,6 +144,6 @@ export class Page extends PaddingComponent {
   }
 
   connect(id) {
-    console.log('connect', { id })
+    if (id) this.state.peer.connect(id)
   }
 }
