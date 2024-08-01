@@ -1,32 +1,14 @@
 import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
-import { MessageModel } from '../../assets/js/models/message.model.js'
 import { MessagesComponent } from './components/content.component.js'
 import { ConnectComponent } from './components/connect.component.js'
 import { SendComponent } from './components/send.component.js'
 
-class SocketMessageModel extends MessageModel {
-  Side = 'socket'
-}
-
-class OpenMessageModel extends SocketMessageModel {
-  constructor(data = {}) {
-    super('open', data)
-  }
-}
-
-class ErrorMessageModel extends SocketMessageModel {
-  constructor(error = new Error()) {
-    super('error', error)
-  }
-}
-
-class CloseMessageModel extends SocketMessageModel {
-  constructor(data = {}) {
-    super('close', data)
-  }
-}
+import { ErrorSocketMessageModel } from '../../assets/js/models/error.socket.message.model.js'
+import { CloseSocketMessageModel } from '../../assets/js/models/close.socket.message.model.js'
+import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.message.model.js'
+import { MessageModel } from '../../assets/js/models/message.model.js'
 
 class OptionsComponent extends HTML { }
 
@@ -65,7 +47,7 @@ export class Page extends PaddingComponent {
   }
 
   onConnectOpen(data) {
-    this.dispatchMessage(new OpenMessageModel(data))
+    this.dispatchMessage(new OpenSocketMessageModel(data))
   }
 
   onConnectMessage({ data } = {}) {
@@ -73,11 +55,11 @@ export class Page extends PaddingComponent {
   }
 
   onConnectError(data) {
-    this.dispatchMessage(new ErrorMessageModel(data))
+    this.dispatchMessage(new ErrorSocketMessageModel(data))
   }
 
   onConnectClose(data) {
-    this.dispatchMessage(new CloseMessageModel(data))
+    this.dispatchMessage(new CloseSocketMessageModel(data))
   }
 
   getOptionsComponent() {
