@@ -1,14 +1,16 @@
-import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
+import { HTML } from '../../assets/js/libs/frontend/index.js'
 import { Peer } from '../../assets/js/libs/peerjs/index.js'
 import { TwoColumnsComponent } from '../../assets/js/components/two.columns.component.js'
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
+import { LinkComponent } from '../../assets/js/components/link.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { InputComponent } from './components/input.component.js'
+import { createURL, getURLSearchParam } from '../../assets/js/utils/url.js'
 
 export class Page extends PaddingComponent {
   children = {
-    peer_id: new TextComponent({ text: 'PEER ID: ' }),
+    peer_id: new LinkComponent({ text: 'chat ' }),
     messages: new HTML(),
     peer_input: new InputComponent('peer id'),
     text_input: new InputComponent('text'),
@@ -49,14 +51,15 @@ export class Page extends PaddingComponent {
   onPeerOpen() {
     const { id } = this.state.peer
     this.addMessage(`${id}: open: ${Date.now()}`)
-    this.children.peer_id.setText('PEER ID: ' + id)
+    this.children.peer_id.setText('chat ' + id)
+    this.children.peer_id.href(createURL({ search: { id } }))
   }
 
   onPeerConnection(conn) {
     this.addMessage(`${conn.peer}: connection: ${Date.now()}`)
-    conn.addEventListener('error', (err) => this.onConnectionError(conn, err))
-    conn.addEventListener('open', (data) => this.onConnectionOpen(conn, data))
-    conn.addEventListener('data', (data) => this.onConnectionData(conn, data))
+    conn.on('error', (err) => this.onConnectionError(conn, err))
+    conn.on('open', (data) => this.onConnectionOpen(conn, data))
+    conn.on('data', (data) => this.onConnectionData(conn, data))
   }
 
   onConnectionError(conn, error) {
@@ -65,6 +68,7 @@ export class Page extends PaddingComponent {
 
   onConnectionOpen(conn, data) {
     this.addMessage(`${conn.peer}: open: ${Date.now()}`)
+    this.connect(getURLSearchParam('id'))
   }
 
   onConnectionData(conn, message) {
@@ -137,5 +141,9 @@ export class Page extends PaddingComponent {
 
   addMessage(text) {
     this.children.messages.prepend(new TextComponent({ text }))
+  }
+
+  connect(id) {
+    console.log('connect', { id })
   }
 }
