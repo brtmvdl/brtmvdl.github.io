@@ -102,7 +102,7 @@ export default Array.from([
   {
     "id": "frontend",
     "tags": ["library"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "github-rest-api",
