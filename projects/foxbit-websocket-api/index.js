@@ -5,9 +5,9 @@ import { MessagesComponent } from './components/messages.component.js'
 import { FormComponent } from './components/form.component.js'
 import { InputSocketMessageModel } from '../../assets/js/models/input.socket.message.model.js'
 import { OutputSocketMessageModel } from '../../assets/js/models/output.socket.message.model.js'
-import { SocketErrorMessageModel } from './models/socket.error.message.model.js'
-import { SocketCloseMessageModel } from './models/socket.close.message.model.js'
-import { SocketOpenMessageModel } from './models/socket.open.message.model.js'
+import { ErrorSocketMessageModel } from '../../assets/js/models/error.socket.message.model.js'
+import { CloseSocketMessageModel } from '../../assets/js/models/close.socket.message.model.js'
+import { OpenSocketMessageModel } from '../../assets/js/models/open.socket.message.model.js'
 import { MessageModel } from '../../assets/js/models/message.model.js'
 
 export class Page extends PaddingComponent {
@@ -30,7 +30,7 @@ export class Page extends PaddingComponent {
   }
 
   onSocketOpen(data) {
-    this.appendMessage(new SocketOpenMessageModel())
+    this.appendMessage(new OpenSocketMessageModel())
   }
 
   onSocketMessage({ data } = {}) {
@@ -39,11 +39,11 @@ export class Page extends PaddingComponent {
   }
 
   onSocketError(data) {
-    this.appendMessage(new SocketErrorMessageModel(data))
+    this.appendMessage(new ErrorSocketMessageModel(data))
   }
 
   onSocketClose(data) {
-    this.appendMessage(new SocketCloseMessageModel())
+    this.appendMessage(new CloseSocketMessageModel())
     this.state.socket = this.createSocketConnection()
   }
 
