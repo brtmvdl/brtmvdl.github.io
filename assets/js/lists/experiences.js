@@ -127,12 +127,12 @@ export default Array.from([
   {
     "id": "imc",
     "tags": [],
-    "step": 1
+    "step": 3
   },
   {
     "id": "letter",
     "tags": ["3d"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "linkedin",
@@ -146,8 +146,8 @@ export default Array.from([
   },
   {
     "id": "math",
-    "tags": ["game"],
-    "step": 1
+    "tags": ["personal"],
+    "step": 3
   },
   {
     "id": "meetings",
@@ -197,7 +197,7 @@ export default Array.from([
   {
     "id": "piano",
     "tags": ["music", "3d", "game"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "planow",
@@ -222,11 +222,6 @@ export default Array.from([
   {
     "id": "screen-capture-api",
     "tags": [],
-    "step": 1
-  },
-  {
-    "id": "screen-capture-rest-api",
-    "tags": ["api"],
     "step": 1
   },
   {
@@ -292,7 +287,7 @@ export default Array.from([
   {
     "id": "voicerss-rest-api",
     "tags": ["rest", "api"],
-    "step": 1
+    "step": 3
   },
   {
     "id": "websocket",
