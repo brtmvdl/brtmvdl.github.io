@@ -53,6 +53,7 @@ export class Page extends PaddingComponent {
     this.addMessage(`${id}: open: ${Date.now()}`)
     this.children.peer_id.setText('chat ' + id)
     this.children.peer_id.href(createURL({ search: { id } }))
+    this.connect(getURLSearchParam('id'))
   }
 
   onPeerConnection(conn) {
@@ -68,7 +69,6 @@ export class Page extends PaddingComponent {
 
   onConnectionOpen(conn, data) {
     this.addMessage(`${conn.peer}: open: ${Date.now()}`)
-    this.connect(getURLSearchParam('id'))
   }
 
   onConnectionData(conn, message) {
