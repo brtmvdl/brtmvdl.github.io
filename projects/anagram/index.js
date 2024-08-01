@@ -44,6 +44,7 @@ class nLetter extends HTML {
   setEvents() {
     this.addEventListener('touchstart', (data) => this.onTouchStart(data))
     this.addEventListener('touchend', (data) => this.onTouchEnd(data))
+    this.addEventListener('wheel', (data) => this.onWheel(data))
   }
 
   onTouchStart(data) {
@@ -51,8 +52,24 @@ class nLetter extends HTML {
   }
 
   onTouchEnd(data) {
-    let { letter } = this.state
-    this.state.touch - data.changedTouches[0].pageY > 0 ? ++letter : --letter
+    if (this.state.touch - data.changedTouches[0].pageY > 0) this.goNext()
+    else this.goPrevious()
+  }
+
+  onWheel(data) {
+    if (data.deltaY < 0) this.goNext()
+    else this.goPrevious()
+  }
+
+  goNext() {
+    this.setLetter(this.state.letter + 1)
+  }
+
+  goPrevious() {
+    this.setLetter(this.state.letter - 1)
+  }
+
+  setLetter(letter) {
     if (letter < 97) letter = 97 // a
     if (letter > 122) letter = 122 // z
     this.state.letter = letter
