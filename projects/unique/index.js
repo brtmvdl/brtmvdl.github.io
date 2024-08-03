@@ -1,8 +1,8 @@
-import { innerWidth, innerHeight } from '../../assets/js/utils/functions.js'
+import { getWidth, getHeight } from '../../assets/js/utils/window.js'
 
 const cv = document.createElement('canvas')
-cv.width = innerWidth()
-cv.height = innerHeight()
+cv.width = getWidth()
+cv.height = getHeight()
 document.body.append(cv)
 
 const ctx = cv.getContext('2d')
