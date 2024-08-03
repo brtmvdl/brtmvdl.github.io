@@ -1,22 +1,19 @@
 import * as THREE from '../../assets/js/libs/three/index.js'
+import { getWidth, getHeight } from '../../assets/js/utils/window.js'
+import { createCamera } from '../../assets/js/utils/3d.js'
 import { createNewPeer } from '../../assets/js/utils/peer.js'
 import * as COLORS from '../../assets/js/utils/colors.js'
-
-const __ = {
-  getWidth: () => window.innerWidth,
-  getHeight: () => window.innerHeight,
-  getAspect: () => __.getWidth() / __.getHeight(),
-}
 
 const scene = new THREE.Scene()
 
 scene.add(new THREE.GridHelper(+100.0, +100.0, COLORS.WHITE))
 
-const camera = new THREE.PerspectiveCamera(45, __.getAspect())
+const camera = createCamera()
 camera.position.set(+10.0, +10.0, +0.0)
 
 const renderer = new THREE.WebGLRenderer({ precision: 'lowp' })
-renderer.setSize(__.getWidth(), __.getHeight())
+renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setSize(getWidth(), getHeight())
 document.body.appendChild(renderer.domElement)
 document.body.style.margin = '0rem'
 
