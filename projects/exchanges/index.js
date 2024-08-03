@@ -1,12 +1,16 @@
 import { HTML, nFlex } from '../../assets/js/libs/frontend/index.js'
+
 import { PaddingComponent } from '../../assets/js/components/padding.component.js'
 import { ButtonComponent } from '../../assets/js/components/button.component.js'
 import { TableComponent } from '../../assets/js/components/table.component.js'
 import { TextComponent } from '../../assets/js/components/text.component.js'
 import { TrComponent } from '../../assets/js/components/tr.component.js'
 import { TdComponent } from '../../assets/js/components/td.component.js'
+
 import { datetime2str, price2string } from '../../assets/js/utils/str.js'
+import { getWidth, getHeight } from '../../assets/js/utils/window.js'
 import * as Local from '../../assets/js/utils/local.js'
+
 import { getSymbolsList } from './lists/symbols.list.js'
 
 export class Page extends PaddingComponent {
@@ -32,7 +36,7 @@ export class Page extends PaddingComponent {
   }
 
   getFlex() {
-    const flex = (window.innerHeight < window.innerWidth) ? new nFlex() : new HTML()
+    const flex = (getHeight() < getWidth()) ? new nFlex() : new HTML()
     flex.append(this.getPricesTable())
     flex.append(this.getBuysTable())
     flex.append(this.getSellsTable())
