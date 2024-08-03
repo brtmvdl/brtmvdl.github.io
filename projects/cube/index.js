@@ -1,9 +1,10 @@
 import * as THREE from '../../assets/js/libs/three/index.js'
+import { createCamera } from '../../assets/js/utils/3d.js'
 
 import { planesInCube } from './constants.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
-import { innerWidth, innerHeight } from '../../assets/js/utils/functions.js'
+import { getWidth, getHeight } from '../../assets/js/utils/window.js'
 import { fixDecimals } from '../../assets/js/utils/math.js'
 import { createNewPeer } from '../../assets/js/utils/peer.js'
 
@@ -12,12 +13,12 @@ const __ = {
 }
 
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, innerWidth() / innerHeight(), 1e-1, 1e4)
+const camera = createCamera()
 camera.position.set(+5.0, +5.0, +3.0)
-camera.lookAt(+0.0, +0.0, +0.0)
 
 const renderer = new THREE.WebGLRenderer()
-renderer.setSize(innerWidth(), innerHeight())
+renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setSize(getWidth(), getHeight())
 document.body.appendChild(renderer.domElement)
 document.body.style.margin = '0rem'
 
