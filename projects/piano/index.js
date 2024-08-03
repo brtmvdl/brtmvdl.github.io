@@ -1,17 +1,15 @@
 import * as THREE from '../../assets/js/libs/three/index.js'
 
+import { getWidth, getHeight, getAspect } from '../../assets/js/utils/window.js'
+import { createCamera } from '../../assets/js/utils/3d.js'
+
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 
 import COLORS from './colors.js'
 import FONTS from './fonts.js'
 
-const _ = {
-  getWidth: () => window.innerWidth,
-  getHeight: () => window.innerHeight,
-  getAspect: () => _.getWidth() / _.getHeight(),
-  side: THREE.DoubleSide,
-}
+const landscape = getAspect() < 1
 
 const notes = {
   'C4': 261.63,
@@ -99,7 +97,7 @@ createTextGeometry('Piano', { size: 1 })
       geo,
       new THREE.MeshBasicMaterial({
         color: COLORS.WHITE,
-        side: _.side,
+        side: THREE.DoubleSide,
       })
     )
 
@@ -118,13 +116,13 @@ const lights = [
 lights.map((light) => scene.add(light))
 
 const materials = {
-  BLACK: new THREE.MeshBasicMaterial({ color: COLORS.BLACK, side: _.side, }),
-  GRAY: new THREE.MeshBasicMaterial({ color: COLORS.GRAY, side: _.side, }),
+  BLACK: new THREE.MeshBasicMaterial({ color: COLORS.BLACK, side: THREE.DoubleSide, }),
+  GRAY: new THREE.MeshBasicMaterial({ color: COLORS.GRAY, side: THREE.DoubleSide, }),
 }
 
 const keys = Object.keys(notes).map((keyText, ix) => {
   const key = new THREE.Mesh(
-    new THREE.BoxGeometry(+5.0, +0.1, +1.0),
+    new THREE.BoxGeometry(landscape ? +5.0 : +2.0, +0.1, +1.0),
     new THREE.MeshBasicMaterial({ color: COLORS.WHITE })
   )
 
@@ -137,7 +135,7 @@ const keys = Object.keys(notes).map((keyText, ix) => {
       const textMesh = new THREE.Mesh(geo, materials.GRAY)
 
       textMesh.rotation.set((-Math.PI / 2), (+0.0), (+Math.PI / 2))
-      textMesh.position.set(+2.35, -0.05, +0.04)
+      textMesh.position.set(landscape ? +2.35 : +0.35, -0.05, +0.04)
 
       key.add(textMesh)
     })
@@ -148,7 +146,7 @@ const keys = Object.keys(notes).map((keyText, ix) => {
       const textMesh = new THREE.Mesh(keysTextGeo, materials.BLACK)
 
       textMesh.rotation.set((-Math.PI / 2), (+0.0), (+Math.PI / 2))
-      textMesh.position.set(+2.0, -0.15, +0.4)
+      textMesh.position.set(landscape ? +2.0 : +0.0, -0.15, +0.4)
 
       key.add(textMesh)
     })
@@ -161,19 +159,18 @@ const keyGroup = new THREE.Group()
 keys.map((key) => keyGroup.add(key))
 scene.add(keyGroup)
 
-const camera = new THREE.PerspectiveCamera(75, _.getAspect())
-camera.position.set(+5.0, +5.0, +0.0)
-camera.lookAt(+0.0, +0.0, +0.0)
+const camera = createCamera()
+camera.position.set(+50.0, +0.0, +0.0)
 
 const renderer = new THREE.WebGLRenderer()
-renderer.setSize(_.getWidth(), _.getHeight())
+renderer.setSize(getWidth(), getHeight())
 document.body.appendChild(renderer.domElement)
 
 document.body.style.margin = '0'
 
 function animate() {
-  requestAnimationFrame(animate)
   renderer.render(scene, camera)
+  requestAnimationFrame(animate)
 }
 
 animate()
@@ -221,15 +218,15 @@ window.addEventListener('keyup', (ev) => {
 })
 
 window.addEventListener('resize', () => {
-  camera.aspect = _.getAspect()
+  camera.aspect = getAspect()
   camera.updateProjectionMatrix()
   //
-  renderer.setSize(_.getWidth(), _.getHeight())
+  renderer.setSize(getWidth(), getHeight())
 })
 
 renderer.domElement.addEventListener('click', (event) => {
-  pointer.x = (event.clientX / _.getWidth()) * 2 - 1
-  pointer.y = - (event.clientY / _.getHeight()) * 2 + 1
+  pointer.x = (event.clientX / getWidth()) * 2 - 1
+  pointer.y = - (event.clientY / getHeight()) * 2 + 1
   raycaster.setFromCamera(pointer, camera)
 
   const intersects = raycaster.intersectObjects(keyGroup.children)
