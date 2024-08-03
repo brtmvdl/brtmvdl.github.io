@@ -1,7 +1,9 @@
 import * as THREE from '../../assets/js/libs/three/index.js'
-import { createNewPeer } from '../../assets/js/utils/peer.js'
 import { FontLoader } from 'three/addons/loaders/FontLoader.js'
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js'
+import { getWidth, getHeight } from '../../assets/js/utils/window.js'
+import { createNewPeer } from '../../assets/js/utils/peer.js'
+import { createCamera } from '../../assets/js/utils/3d.js'
 
 THREE.Cache.enabled = true
 
@@ -51,7 +53,7 @@ let targetRotation = 0
 let targetRotationOnPointerDown = 0
 let pointerX = 0
 let pointerXOnPointerDown = 0
-let windowHalfX = window.innerWidth / 2
+let windowHalfX = getWidth() / 2
 let fontIndex = 1
 
 init()
@@ -62,7 +64,7 @@ function init() {
 
   // CAMERA
 
-  camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500)
+  camera = createCamera()
   camera.position.set(0, 400, 700)
 
   cameraTarget = new THREE.Vector3(0, 150, 0)
@@ -108,7 +110,7 @@ function init() {
 
   renderer = new THREE.WebGLRenderer({ antialias: true })
   renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setSize(getWidth(), getHeight())
   renderer.setAnimationLoop(animate)
   container.appendChild(renderer.domElement)
 
@@ -206,10 +208,10 @@ function init() {
 }
 
 function onWindowResize() {
-  windowHalfX = window.innerWidth / 2
-  camera.aspect = window.innerWidth / window.innerHeight
+  windowHalfX = getWidth() / 2
+  camera.aspect = getWidth() / getHeight()
   camera.updateProjectionMatrix()
-  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setSize(getWidth(), getHeight())
 }
 
 //
