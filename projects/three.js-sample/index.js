@@ -1,22 +1,20 @@
 import * as THREE from '../../assets/js/libs/three/index.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
-const {
-  innerHeight: HEIGHT,
-  innerWidth: WIDTH,
-  requestAnimationFrame,
-} = window
+import { getWidth, getHeight } from '../../assets/js/utils/window.js'
+import { createCamera } from '../../assets/js/utils/3d.js'
 
 document.body.style.margin = '0px'
 
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 0.1, 1000)
+const camera = createCamera()
 
 const axesHelper = new THREE.AxesHelper(5)
 scene.add(axesHelper)
 
 const renderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setSize(getWidth(), getHeight())
 document.body.appendChild(renderer.domElement)
 
 //
@@ -82,4 +80,3 @@ function animate() {
 requestAnimationFrame(animate)
 
 const random = (num = 100) => Math.floor(Math.random() * num)
-
