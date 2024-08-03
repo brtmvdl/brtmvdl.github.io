@@ -1,5 +1,7 @@
 import { HTML, nFlex } from '../libs/frontend/index.js'
 
+import { getWidth, getHeight } from '../../../assets/js/utils/window.js'
+
 export class TwoColumnsComponent extends nFlex {
   getName() { return 'two-columns-component' }
 
@@ -20,7 +22,7 @@ export class TwoColumnsComponent extends nFlex {
   }
 
   onCreate() {
-    const landscape = (window.innerWidth > window.innerHeight)
+    const landscape = (getWidth() > getHeight())
     const html = landscape ? new nFlex() : new HTML()
     html.append(this.children.html1.setContainerStyle('width', landscape ? this.state.widths[0] : ''))
     html.append(this.children.html2.setContainerStyle('width', landscape ? this.state.widths[1] : ''))

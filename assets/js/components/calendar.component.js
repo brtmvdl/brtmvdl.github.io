@@ -1,7 +1,7 @@
 import { HTML, nFlex } from '../../../assets/js/libs/frontend/index.js'
 import { SelectComponent } from '../../../assets/js/components/select.component.js'
 import { ButtonComponent } from '../../../assets/js/components/button.component.js'
-import { monthName } from '../../../assets/js/utils/functions.js'
+import { monthName } from '../../../assets/js/utils/calendar.js'
 import { padLeft } from '../../../assets/js/utils/str.js'
 
 export class CalendarComponent extends HTML {
